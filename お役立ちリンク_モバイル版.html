@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>広尾親父RC お役立ちリンク集</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f0f4f1;color:#333;font-size:14px}
+header{background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 60%,#093319 100%);color:white;padding:16px 14px 12px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.3);border-bottom:3px solid #c9a227}
+.h-inner{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.h-inner svg{flex-shrink:0}
+.h-text h1{font-size:15px;font-weight:700;letter-spacing:.04em;margin-bottom:3px}
+.h-text .sub{font-size:11px;opacity:.6}
+.filter-row{display:flex;gap:5px;flex-wrap:wrap;padding-bottom:2px}
+.filter-btn{padding:5px 11px;border-radius:20px;border:1.5px solid rgba(255,255,255,.3);background:transparent;color:white;font-size:11px;cursor:pointer;font-family:inherit;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.filter-btn.active,.filter-btn:active{background:white;border-color:white;color:#1b5e35;font-weight:700}
+.cat-section{margin:0}
+.cat-section.hidden{display:none}
+.cat-header{background:#1b5e35;color:#f0d060;font-size:12px;font-weight:700;padding:6px 14px;letter-spacing:.08em;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.cards-wrap{padding:10px 12px;display:flex;flex-direction:column;gap:10px}
+.card{background:white;border-radius:12px;padding:13px;box-shadow:0 2px 8px rgba(0,0,0,.08);border-left:4px solid #ccc}
+.card-title{font-size:14px;font-weight:700;color:#1b5e35;margin-bottom:5px;line-height:1.4}
+.card-desc{font-size:12px;color:#555;line-height:1.6;margin-bottom:9px}
+.card-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.tag{font-size:10px;background:#f0f4f1;border-radius:6px;padding:3px 8px;color:#555}
+.lbl{color:#999;margin-right:2px}
+.card-link{display:inline-block;padding:8px 16px;background:linear-gradient(135deg,#1b5e35,#0d3d20);color:white;border-radius:8px;font-size:12px;font-weight:600;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.cat-wear{border-left-color:#4fc3f7}
+.cat-shoes{border-left-color:#81c784}
+.cat-belt{border-left-color:#ffb74d}
+.cat-light{border-left-color:#f06292}
+.cat-watch{border-left-color:#ba68c8}
+.cat-food{border-left-color:#ff7043}
+.cat-video{border-left-color:#ef5350}
+.cat-tape{border-left-color:#26c6da}
+.cat-place{border-left-color:#66bb6a}
+.cat-service{border-left-color:#42a5f5}
+.cat-training{border-left-color:#ab47bc}
+.cat-article{border-left-color:#8d6e63}
+.cat-entry{border-left-color:#26a69a}
+.cat-book{border-left-color:#ec407a}
+footer{text-align:center;padding:20px;font-size:11px;color:#8aab98}
+</style>
+</head>
+<body>
+<header>
+  <div class="h-inner">
+    <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z" fill="rgba(255,255,255,0.08)" stroke="#c9a227" stroke-width="1.5"/>
+      <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#c9a227" text-anchor="middle" letter-spacing="1">HG</text>
+      <path d="M9 26 Q7 22 10 19 Q8 24 11 26 Z" fill="#c9a227" opacity="0.7"/>
+      <path d="M8 31 Q5 27 8 24 Q7 29 10 31 Z" fill="#c9a227" opacity="0.7"/>
+      <path d="M10 36 Q7 33 10 30 Q9 34 12 36 Z" fill="#c9a227" opacity="0.6"/>
+      <path d="M43 26 Q45 22 42 19 Q44 24 41 26 Z" fill="#c9a227" opacity="0.7"/>
+      <path d="M44 31 Q47 27 44 24 Q45 29 42 31 Z" fill="#c9a227" opacity="0.7"/>
+      <path d="M42 36 Q45 33 42 30 Q43 34 40 36 Z" fill="#c9a227" opacity="0.6"/>
+    </svg>
+    <div class="h-text">
+      <h1>&#127939; 広尾親父RC お役立ちリンク集</h1>
+      <div class="sub">全 40 アイテム ｜ LINEメンバー推薦</div>
+    </div>
+  </div>
+  <div class="filter-row">
+    <button class="filter-btn active" data-cat="すべて" onclick="setFilter(this)">すべて</button>
+    <button class="filter-btn" data-cat="ウェア・装備" onclick="setFilter(this)">ウェア・装備</button>
+    <button class="filter-btn" data-cat="シューズ" onclick="setFilter(this)">シューズ</button>
+    <button class="filter-btn" data-cat="ランニングベルト" onclick="setFilter(this)">ランニングベルト</button>
+    <button class="filter-btn" data-cat="ヘッドライト" onclick="setFilter(this)">ヘッドライト</button>
+    <button class="filter-btn" data-cat="セーフティライト" onclick="setFilter(this)">セーフティライト</button>
+    <button class="filter-btn" data-cat="スマートウォッチ" onclick="setFilter(this)">スマートウォッチ</button>
+    <button class="filter-btn" data-cat="補給食・薬" onclick="setFilter(this)">補給食・薬</button>
+    <button class="filter-btn" data-cat="参考動画" onclick="setFilter(this)">参考動画</button>
+    <button class="filter-btn" data-cat="テーピング自作" onclick="setFilter(this)">テーピング自作</button>
+    <button class="filter-btn" data-cat="練習場所・ショップ" onclick="setFilter(this)">練習場所・ショップ</button>
+    <button class="filter-btn" data-cat="お役立ちサービス" onclick="setFilter(this)">お役立ちサービス</button>
+    <button class="filter-btn" data-cat="トレーニング動画・配信" onclick="setFilter(this)">トレーニング動画・配信</button>
+    <button class="filter-btn" data-cat="参考記事" onclick="setFilter(this)">参考記事</button>
+    <button class="filter-btn" data-cat="大会エントリー情報" onclick="setFilter(this)">大会エントリー情報</button>
+    <button class="filter-btn" data-cat="書籍" onclick="setFilter(this)">書籍</button>
+
+  </div>
+</header>
+
+<main>
+<section class="cat-section" data-cat="ウェア・装備">
+  <div class="cat-header">&#9656; ウェア・装備（8件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-wear">
+      <div class="card-title">ダイソー 使い捨て防寒カッパ</div>
+      <div class="card-desc">冬レースのスタート前の防寒用として重宝。使い捨てなのでスタート直前に脱ぎ捨て可能。ゴミ袋70Lで代用も可。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>ダイソーオンラインショップ</span>
+        <span class="tag"><span class="lbl">推薦：</span>Nobu</span>
+      </div>
+      <a class="card-link" href="https://jp.daisonet.com/products/4550480219998" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-wear">
+      <div class="card-title">Salomon ADV SKIN 12（ザック）</div>
+      <div class="card-desc">フラスク2本付き。トレラン、帰宅ラン、スパルタン等幅広く活用可能。胸囲サイズに合わせた選択が重要。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Salomon公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>武本真哉, 吉良堅太郎</span>
+      </div>
+      <a class="card-link" href="https://salomon.jp/products/adv-skin-12-lc24644" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-wear">
+      <div class="card-title">Ledlenser H8R（ヘッドライト）</div>
+      <div class="card-desc">広尾親父ランニング部での愛用者が多い定番ライト。野沢トレイル等の夜間走行に推奨。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Ledlenser公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>kotaro, 田島</span>
+      </div>
+      <a class="card-link" href="https://ledlenser.co.jp/products/h8r_se" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-wear">
+      <div class="card-title">モンベル トレントフライヤー ジャケット</div>
+      <div class="card-desc">軽量で防水性能が高いレインウェア。パッカブルで場所を取らない。ザックの上からではなく、中に着ることを推奨。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>モンベル公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>kotaro</span>
+      </div>
+      <a class="card-link" href="https://webshop.montbell.jp/sp/goods/disp.php?product_id=2328327" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-wear">
+      <div class="card-title">New-Hale（ニューハレ）テーピング</div>
+      <div class="card-desc">VテープやXテープなど、筋肉のサポートや疲労軽減に有効。伸縮性が高く「伸ばさず置くように貼る」のがコツ。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>New-Hale公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>Tomohiko Hayashi, Shin Ogata, 安田 理人</span>
+      </div>
+      <a class="card-link" href="https://www.new-hale.com/howto/166" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-wear">
+      <div class="card-title">プロテクトJ1（皮膚保護クリーム）</div>
+      <div class="card-desc">マメ、靴擦れ、股擦れ対策に有効なクリーム。ワセリンよりベタつきにくい。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Amazon</span>
+        <span class="tag"><span class="lbl">推薦：</span>安田 理人</span>
+      </div>
+      <a class="card-link" href="https://amzn.asia/d/dXMjAY0" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-wear">
+      <div class="card-title">DECATHLON トレイルランニング バギーショーツ</div>
+      <div class="card-desc">収納力が非常に高く、これを使用し始めてからランニングベルトを使わなくなりました。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Decathlon公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>安田 理人</span>
+      </div>
+      <a class="card-link" href="https://www.decathlon.co.jp/products/mens-trail-running-baggy-shorts" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-wear">
+      <div class="card-title">Eukkis ペチコート接触冷感</div>
+      <div class="card-desc">レース後の着替え時に下半身を隠すのに重宝します。非常に軽量でコンパクト。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Amazon</span>
+        <span class="tag"><span class="lbl">推薦：</span>田島</span>
+      </div>
+      <a class="card-link" href="https://www.amazon.jp/dp/B0D4KGVFCH?ref=ppx_pop_mob_ap_share" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+<section class="cat-section" data-cat="シューズ">
+  <div class="cat-header">&#9656; シューズ（2件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-shoes">
+      <div class="card-title">METASPEED（アシックス）</div>
+      <div class="card-desc">アシックスの厚底レーシングシューズ。新モデルが登場するようです。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>ASICS公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>hiroshi shibuya</span>
+      </div>
+      <a class="card-link" href="https://www.asics.com/jp/ja/mk/running/metaspeed" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-shoes">
+      <div class="card-title">ADIZERO BOSTON 13</div>
+      <div class="card-desc">定番トレーニングモデルの新作。2025年5月1日に発売されました。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>PR Times</span>
+        <span class="tag"><span class="lbl">推薦：</span>安田 理人</span>
+      </div>
+      <a class="card-link" href="https://prtimes.jp/main/html/rd/p/000001001.000003301.html" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+<section class="cat-section" data-cat="ランニングベルト">
+  <div class="cat-header">&#9656; ランニングベルト（2件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-belt">
+      <div class="card-title">ウエストポーチ（ベルト式）</div>
+      <div class="card-desc">お腹の圧迫感が苦手な人向けのベルト式ポーチ。着脱がスムーズです。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Amazon</span>
+        <span class="tag"><span class="lbl">推薦：</span>Yoshiki</span>
+      </div>
+      <a class="card-link" href="https://www.amazon.jp/dp/B09XBD1GLW?ref=ppx_pop_mob_ap_share" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-belt">
+      <div class="card-title">Running Belt（高容量モデル）</div>
+      <div class="card-desc">サロモン製ベルトの容量不足を感じている方に。最近愛用している高容量モデル。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Amazon</span>
+        <span class="tag"><span class="lbl">推薦：</span>Nobu</span>
+      </div>
+      <a class="card-link" href="https://www.amazon.co.jp/dp/B0BVW819TC?th=1&psc=1" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+<section class="cat-section" data-cat="ヘッドライト">
+  <div class="cat-header">&#9656; ヘッドライト（1件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-light">
+      <div class="card-title">LEDLENSER NEO9R</div>
+      <div class="card-desc">後頭部のバッテリーが赤く点滅するため、別途セーフティライトを装着する必要がありません。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Ledlenser公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>及川 哲也</span>
+      </div>
+      <a class="card-link" href="https://ledlenser.co.jp/products/neo9r" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+<section class="cat-section" data-cat="セーフティライト">
+  <div class="cat-header">&#9656; セーフティライト（2件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-light">
+      <div class="card-title">セーフティライト LEDライト セット</div>
+      <div class="card-desc">バックパックに装着する赤い点滅ライトとして紹介。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Amazon</span>
+        <span class="tag"><span class="lbl">推薦：</span>田島</span>
+      </div>
+      <a class="card-link" href="https://www.amazon.jp/dp/B07KXQ15PM?ref=ppx_pop_mob_ap_share" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-light">
+      <div class="card-title">自転車用テールライト</div>
+      <div class="card-desc">安価で小型なセーフティライトの代替品として。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Amazon</span>
+        <span class="tag"><span class="lbl">推薦：</span>Shinnosuke</span>
+      </div>
+      <a class="card-link" href="https://amzn.asia/d/hvx7FEy" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+<section class="cat-section" data-cat="スマートウォッチ">
+  <div class="cat-header">&#9656; スマートウォッチ（1件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-watch">
+      <div class="card-title">Garmin Instinct</div>
+      <div class="card-desc">堅牢なGarminのGPSウォッチ。サーフィンなどのウォータースポーツにも対応。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Garmin公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>Akitoshi Kin</span>
+      </div>
+      <a class="card-link" href="https://www.garmin.co.jp/minisite/instinct/" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+<section class="cat-section" data-cat="補給食・薬">
+  <div class="cat-header">&#9656; 補給食・薬（4件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-food">
+      <div class="card-title">芍薬甘草湯（ツムラ等）</div>
+      <div class="card-desc">足の攣り対策として登山やランナーの間で知られる漢方薬。効果には個人差がある。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>ツムラ公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>Shinnosuke</span>
+      </div>
+      <a class="card-link" href="https://www.tsumura.co.jp/products/ippan/dispensing/contents/68/" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-food">
+      <div class="card-title">マグオン（Mag-on）マグネシウムサプリ</div>
+      <div class="card-desc">足攣りやエネルギー切れの予防に有効なジェルやサプリメント。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Mag-on公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>—</span>
+      </div>
+      <a class="card-link" href="https://www.mag-on.com/" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-food">
+      <div class="card-title">マグネシウム液体サプリ（楽天）</div>
+      <div class="card-desc">レース5日前から飲む足攣り予防サプリ。飲みすぎるとお腹が緩くなるので注意。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>楽天市場</span>
+        <span class="tag"><span class="lbl">推薦：</span>田島</span>
+      </div>
+      <a class="card-link" href="https://item.rakuten.co.jp/beautyforest2018/191008-001/" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-food">
+      <div class="card-title">ツーラン（足攣り対策サプリ）</div>
+      <div class="card-desc">攣った後でも効くのが特徴の足攣り対策サプリメント。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>ヨドバシカメラ</span>
+        <span class="tag"><span class="lbl">推薦：</span>kotaro</span>
+      </div>
+      <a class="card-link" href="https://www.yodobashi.com/product/100000001008477072/" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+<section class="cat-section" data-cat="参考動画">
+  <div class="cat-header">&#9656; 参考動画（5件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-video">
+      <div class="card-title">Salomonザックへのストック収納方法</div>
+      <div class="card-desc">ザックへのポール収納の5つの方法を解説した実用的動画。フラスクのストローの切り方も紹介。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>YouTube</span>
+        <span class="tag"><span class="lbl">推薦：</span>田島</span>
+      </div>
+      <a class="card-link" href="https://www.youtube.com/watch?v=2h1MjOUfKDQ" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-video">
+      <div class="card-title">厚底シューズで足首ぐらつく方向けテーピング</div>
+      <div class="card-desc">厚底シューズ使用時の安定性を高める足首テーピング方法の解説動画。前後編あり。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>YouTube</span>
+        <span class="tag"><span class="lbl">推薦：</span>hiroshi shibuya</span>
+      </div>
+      <a class="card-link" href="https://youtu.be/-a87u41RBMM" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-video">
+      <div class="card-title">走りの学校 15分間ストレッチ</div>
+      <div class="card-desc">ハセツネ等の過酷なレース後に行うと翌日まで疲れを引きずらない効果的なストレッチ。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>YouTube</span>
+        <span class="tag"><span class="lbl">推薦：</span>田島, Hiroshi Ishihara</span>
+      </div>
+      <a class="card-link" href="https://www.youtube.com/watch?v=L3qd5f7UUlI" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-video">
+      <div class="card-title">勝田マラソン 初参加向け参考動画</div>
+      <div class="card-desc">勝田マラソン初参加の方向けに三谷さんが紹介。コース・当日の流れなどを解説。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>YouTube</span>
+        <span class="tag"><span class="lbl">推薦：</span>三谷</span>
+      </div>
+      <a class="card-link" href="https://youtu.be/tPiPI7RwN-E" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-video">
+      <div class="card-title">いいのわたるさん南米大陸走破インスタライブ</div>
+      <div class="card-desc">南米大陸走破のゴール直前（残り約2km）のライブ配信。非常に参考になります。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Instagram</span>
+        <span class="tag"><span class="lbl">推薦：</span>Osamu Miyachi</span>
+      </div>
+      <a class="card-link" href="https://www.instagram.com/p/DH-4mu1PjcZ/" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+<section class="cat-section" data-cat="テーピング自作">
+  <div class="cat-header">&#9656; テーピング自作（2件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-tape">
+      <div class="card-title">ニューハレ Vテープ 自作方法</div>
+      <div class="card-desc">10cm幅のAKTテープ・SKテープからVテープを自作する方法。カット済み品より安く作れる。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>8025.jp</span>
+        <span class="tag"><span class="lbl">推薦：</span>安田 理人</span>
+      </div>
+      <a class="card-link" href="https://8025.jp/taping/makevtape/" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-tape">
+      <div class="card-title">ニューハレ Xテープ 自作方法</div>
+      <div class="card-desc">10cm幅のテープからXテープを自作する方法。関節周りのサポートに。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>8025.jp</span>
+        <span class="tag"><span class="lbl">推薦：</span>安田 理人</span>
+      </div>
+      <a class="card-link" href="https://8025.jp/taping/makextape/" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+<section class="cat-section" data-cat="練習場所・ショップ">
+  <div class="cat-header">&#9656; 練習場所・ショップ（3件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-place">
+      <div class="card-title">Runpoya（ランポヤ）</div>
+      <div class="card-desc">品川戸越銀座にあるトレランショップ。テーピング講習会や品川一周ランなどのイベントを定期開催。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Runpoya公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>安田 理人, Tomohiko Hayashi</span>
+      </div>
+      <a class="card-link" href="https://runpoya.com/" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-place">
+      <div class="card-title">TETTO（テット）</div>
+      <div class="card-desc">世田谷区上野毛のトライアスロンショップ。バイクやウェットスーツのレンタルが可能で、初心者向けの練習会も開催。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>TETTO公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>銅坂慎, Tomohiko Hayashi</span>
+      </div>
+      <a class="card-link" href="https://tettotri.stores.jp/" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-place">
+      <div class="card-title">Re.Ra.Ku PRO 永田町店（ランステ）</div>
+      <div class="card-desc">赤坂御所ランの拠点となるランナーサポート施設。キャッシュレス決済のみ。バスタオル無料クーポン等がある。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>Shinnosuke, kotaro</span>
+      </div>
+      <a class="card-link" href="https://reraku-pro.jp/nagatacho/" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+<section class="cat-section" data-cat="お役立ちサービス">
+  <div class="cat-header">&#9656; お役立ちサービス（5件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-service">
+      <div class="card-title">ココヘリ（COCOHELI）</div>
+      <div class="card-desc">遭難時の捜索ヘリサービス。発信機を携帯することで位置特定が可能。多くの部員がお守りとして加入。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>Shinnosuke, 田島, 及川 哲也, hiroshi shibuya</span>
+      </div>
+      <a class="card-link" href="https://www.cocoheli.com/others/allfreecp_2025" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-service">
+      <div class="card-title">Ibuki（イブキ）</div>
+      <div class="card-desc">GPSトラッキングによる位置情報共有サービス。大会中の仲間の居場所把握に非常に便利。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>田島, 安田 理人</span>
+      </div>
+      <a class="card-link" href="https://ja.ibuki.run/guide/gps" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-service">
+      <div class="card-title">VIC TOUR（海外マラソン旅行会社）</div>
+      <div class="card-desc">海外マラソン専門の旅行会社。ベネチアマラソン等メジャー大会のツアーを扱う。社長本人もランナー。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>VIC TOUR公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>野村 聡一郎</span>
+      </div>
+      <a class="card-link" href="https://www.vic-tour.com/" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-service">
+      <div class="card-title">たびらん（海外レースツアー）</div>
+      <div class="card-desc">Mt.FUJI 100等の国内外レースのツアーを手配する専門サービス。広尾メンバーが複数回活用。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>たびらん公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>田島, 他</span>
+      </div>
+      <a class="card-link" href="https://tabirun.run/world/" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-service">
+      <div class="card-title">Parkrun Japan</div>
+      <div class="card-desc">毎週土曜朝8時・5km・無料・タイム計測ありの市民ランイベント。初心者からタイムトライアルまで幅広く対応。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Parkrun公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>TOSSY SATO</span>
+      </div>
+      <a class="card-link" href="https://www.parkrun.jp/" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+<section class="cat-section" data-cat="トレーニング動画・配信">
+  <div class="cat-header">&#9656; トレーニング動画・配信（1件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-training">
+      <div class="card-title">走りの学校 公式チャンネル</div>
+      <div class="card-desc">ランニングフォームや体幹トレーニングなど実践的な動画が豊富。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>YouTube</span>
+        <span class="tag"><span class="lbl">推薦：</span>田島</span>
+      </div>
+      <a class="card-link" href="https://www.youtube.com/@hashirinogakkou" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+<section class="cat-section" data-cat="参考記事">
+  <div class="cat-header">&#9656; 参考記事（1件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-article">
+      <div class="card-title">初フルマラソン完走ガイド（文春オンライン）</div>
+      <div class="card-desc">初フルマラソンに挑戦する方向けの完走ガイド記事。kotaro推薦。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>文春オンライン</span>
+        <span class="tag"><span class="lbl">推薦：</span>kotaro</span>
+      </div>
+      <a class="card-link" href="https://bunshun.jp/articles/-/7035" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+<section class="cat-section" data-cat="大会エントリー情報">
+  <div class="cat-header">&#9656; 大会エントリー情報（2件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-entry">
+      <div class="card-title">ハセツネ30K ふるさと納税エントリー</div>
+      <div class="card-desc">ふるさと納税の返礼品枠でハセツネ30Kにエントリーできる制度。通常枠が埋まっても申し込める可能性あり。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>ハセツネ公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>—</span>
+      </div>
+      <a class="card-link" href="https://www.hasetsune.jp/30K/furusato.html" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-entry">
+      <div class="card-title">ハセツネ30K 公式トレーニングガイド</div>
+      <div class="card-desc">ハセツネ30K公式の推奨トレーニング内容・準備ガイド。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>ハセツネ公式サイト</span>
+        <span class="tag"><span class="lbl">推薦：</span>—</span>
+      </div>
+      <a class="card-link" href="https://www.hasetsune.jp/30K/training.html" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+<section class="cat-section" data-cat="書籍">
+  <div class="cat-header">&#9656; 書籍（2件）</div>
+  <div class="cards-wrap">
+    <div class="card cat-book">
+      <div class="card-title">Number Do 2025 RUNの裏技30 PLUS</div>
+      <div class="card-desc">50歳からでも速くなるためのトレーニングの裏技などが紹介されているランニング専門誌。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Amazon</span>
+        <span class="tag"><span class="lbl">推薦：</span>Shinnosuke</span>
+      </div>
+      <a class="card-link" href="https://www.amazon.co.jp/dp/4160083242" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    <div class="card cat-book">
+      <div class="card-title">非常識マラソンメソッド</div>
+      <div class="card-desc">ヘビースモーカーの元キャバ嬢がたった9ヵ月で3時間13分を達成した独自メソッド。石原さんが月間走行距離と30km走の関係で引用。</div>
+      <div class="card-meta">
+        <span class="tag"><span class="lbl">提供元：</span>Amazon</span>
+        <span class="tag"><span class="lbl">推薦：</span>Hiroshi Ishihara</span>
+      </div>
+      <a class="card-link" href="https://www.amazon.co.jp/dp/4797361387" target="_blank" rel="noopener noreferrer">&#128279; リンクを開く</a>
+    </div>
+    </div></section>
+
+</main>
+
+<footer>広尾親父RC — 2026</footer>
+
+<script>
+function setFilter(btn) {
+  var btns = document.querySelectorAll('.filter-btn');
+  var sections = document.querySelectorAll('.cat-section');
+  var cat = btn.getAttribute('data-cat');
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].classList.remove('active');
+  }
+  btn.classList.add('active');
+  for (var j = 0; j < sections.length; j++) {
+    if (cat === 'すべて' || sections[j].getAttribute('data-cat') === cat) {
+      sections[j].classList.remove('hidden');
+    } else {
+      sections[j].classList.add('hidden');
+    }
+  }
+}
+</script>
+</body>
+</html>
