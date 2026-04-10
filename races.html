@@ -160,6 +160,11 @@
   }
   .card-link:active { background: #d0eadb; }
 
+
+  .badge-推奨 { background: linear-gradient(135deg,#c9a227,#e8c84a); color: #1b1a00; }
+  .card.recommended { box-shadow: 0 2px 14px rgba(201,162,39,0.35); }
+  .card.recommended::before { content:''; display:block; position:absolute; inset:0; border-radius:12px; border:1.5px solid rgba(201,162,39,0.5); pointer-events:none; }
+  .card { position:relative; }
   .hidden { display: none !important; }
 
   .legend {
@@ -260,11 +265,12 @@
   <div class="month-header">1月</div>
   <div class="cards-container">
 
-    <div class="card ロード" data-cat="ロード">
+    <div class="card recommended recommended recommended recommended recommended recommended ロード" data-cat="ロード">
       <div class="card-top">
         <div class="card-date">1/11(日)</div>
         <span class="card-badge badge-ロード">ロード</span>
       </div>
+      <span class="card-badge badge-推奨">⭐ ハーフ推奨</span>
       <div class="card-title">ニューイヤーハーフマラソン</div>
       <div class="card-desc">ラン部恒例の年明けレース。レース報告少なめで歓談メインの反省会。</div>
       <div class="card-footer">
@@ -273,23 +279,13 @@
       </div>
     </div>
 
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">1/18(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">多摩川マラソングランプリ</div>
-      <div class="card-desc">鶴岡さん初マラソンで公式記録ほぼサブ4（4:00:05）！Strava記録ではサブ4達成とのこと。キンさんもサブ40（10km）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 鶴岡（初フル・ほぼサブ4）、キンさん（サブ40）</div>
-      </div>
-    </div>
 
-    <div class="card ロード" data-cat="ロード">
+    <div class="card recommended recommended recommended recommended recommended recommended ロード" data-cat="ロード">
       <div class="card-top">
         <div class="card-date">1/25(日)</div>
         <span class="card-badge badge-ロード">ロード</span>
       </div>
+      <span class="card-badge badge-推奨">⭐ フル推奨</span>
       <div class="card-title">勝田全国マラソン</div>
       <div class="card-desc">及川さんが故障でDNS→Tomo代走で参加。極寒＆強風の中、勝田の風になれたか。しんちゃんが初心者へ熱い檄文。</div>
       <div class="card-footer">
@@ -450,11 +446,12 @@
       </div>
     </div>
 
-    <div class="card トレラン" data-cat="トレラン">
+    <div class="card recommended recommended recommended recommended recommended recommended トレラン" data-cat="トレラン">
       <div class="card-top">
         <div class="card-date">3/29(日)</div>
         <span class="card-badge badge-トレラン">トレラン</span>
       </div>
+      <span class="card-badge badge-推奨">⭐ トレイル推奨</span>
       <div class="card-title">ハセツネ30K</div>
       <div class="card-desc">ラン部大所帯で参加。リーガーさん＆Tomo初参加完走！全員無事走り切る。ふるさと納税枠でエントリーする猛者も。</div>
       <div class="card-footer">
@@ -495,23 +492,13 @@
       </div>
     </div>
 
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">4/4(土)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">草レース＋北区赤羽マラソン</div>
-      <div class="card-desc">松本さん草レースで総合3位入賞（参加者36人は内緒）。いまいさんは北区赤羽マラソン3/4マラソン31km完走（大雨で大失速）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 松本（総合3位）、いまい（31km完走）</div>
-      </div>
-    </div>
 
-    <div class="card トレラン" data-cat="トレラン">
+    <div class="card recommended recommended recommended recommended recommended recommended トレラン" data-cat="トレラン">
       <div class="card-top">
         <div class="card-date">4/5(日)</div>
         <span class="card-badge badge-トレラン">トレラン</span>
       </div>
+      <span class="card-badge badge-推奨">⭐ トレイル推奨</span>
       <div class="card-title">青梅高水トレイルラン 🥇</div>
       <div class="card-desc">田島前部長が60代1位入賞🥇 牧野さん初トレラン完走！武本さん娘と16km親子参加。キンさんがグループ管理。</div>
       <div class="card-footer">
@@ -520,18 +507,33 @@
       </div>
     </div>
 
-    <div class="card ロード" data-cat="ロード">
+    <div class="card recommended recommended recommended recommended recommended recommended ロード" data-cat="ロード">
       <div class="card-top">
         <div class="card-date">4/19(日)</div>
         <span class="card-badge badge-ロード">ロード</span>
       </div>
+      <span class="card-badge badge-推奨">⭐ フル推奨</span>
       <div class="card-title">かすみがうらマラソン 🎉</div>
-      <div class="card-desc">ラン部最大級25名参加予定！宮本さん初フル挑戦。丸亀さん息子（H1）と10マイル親子参加。さだっしー5kmに参戦。スタート9:45。</div>
+      <div class="card-desc">ラン部最大級25名参加予定！宮本さん初フル挑戦。丸上さん息子（H1）と10マイル親子参加。さだっしー5kmに参戦。スタート9:45。</div>
       <div class="card-footer">
-        <div class="card-members">👥 25名予定（立原、新保、宮本（初フル）、丸亀父子、さだっしー、青木、他）</div>
+        <div class="card-members">👥 25名予定（立原、新保、宮本（初フル）、丸上父子、さだっしー、青木、他）</div>
         <a href="https://kasumigaura-marathon.jp/" class="card-link" target="_blank">公式サイト</a>
       </div>
     </div>
+    <div class="card recommended recommended recommended recommended recommended recommended recommended ロード" data-cat="ロード">
+      <div class="card-top">
+        <div class="card-date">4/19(日)</div>
+        <span class="card-badge badge-ロード">ロード</span>
+      </div>
+      <span class="card-badge badge-推奨">⭐ ウルトラ推奨</span>
+      <div class="card-title">チャレンジ富士五湖ウルトラマラソン</div>
+      <div class="card-desc">富士山を望む湖畔を走るウルトラマラソン（100km/80km/118km）。かすみがうらと同日開催。</div>
+      <div class="card-footer">
+        <div class="card-members">👥 —</div>
+        <a href="https://www.fujigoko.tv/ultra/" class="card-link" target="_blank">公式サイト</a>
+      </div>
+    </div>
+
 
     <div class="card トレラン" data-cat="トレラン">
       <div class="card-top">
@@ -654,6 +656,20 @@
       <div class="card-footer">
         <div class="card-members">👥 —</div>
         <a href="https://fujimountainrace.city.fujiyoshida.yamanashi.jp/" class="card-link" target="_blank">公式サイト</a>
+      </div>
+    </div>
+
+    <div class="card recommended recommended recommended recommended recommended recommended recommended トレラン" data-cat="トレラン">
+      <div class="card-top">
+        <div class="card-date">7/19(日)</div>
+        <span class="card-badge badge-トレラン">トレラン</span>
+      </div>
+      <span class="card-badge badge-推奨">⭐ トレイル推奨</span>
+      <div class="card-title">マウンテントレイルin野沢温泉</div>
+      <div class="card-desc">信州・野沢温泉を舞台にしたトレイルレース。温泉地ならではのアフターが最高。毎年部員参加の定番夏レース。</div>
+      <div class="card-footer">
+        <div class="card-members">👥 —</div>
+        <a href="https://nozawaonsen-trail.com/" class="card-link" target="_blank">公式サイト</a>
       </div>
     </div>
 
@@ -791,6 +807,20 @@
       </div>
     </div>
 
+    <div class="card recommended recommended recommended recommended recommended recommended recommended ロード" data-cat="ロード">
+      <div class="card-top">
+        <div class="card-date">11/22(日)</div>
+        <span class="card-badge badge-ロード">ロード</span>
+      </div>
+      <span class="card-badge badge-推奨">⭐ フル推奨</span>
+      <div class="card-title">つくばマラソン</div>
+      <div class="card-desc">ラン部定番の秋フル。フラットで記録が出やすい。渋谷さん「東京で出直し」→つくばか。</div>
+      <div class="card-footer">
+        <div class="card-members">👥 —</div>
+        <a href="https://tsukuba-marathon.com/" class="card-link" target="_blank">公式サイト</a>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -799,18 +829,6 @@
   <div class="month-header">12月</div>
   <div class="cards-container">
 
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">12月（未定）</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">つくばマラソン</div>
-      <div class="card-desc">ラン部定番の秋フル。渋谷さん「東京で出直し」→つくばか。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 —</div>
-        <a href="https://tsukuba-marathon.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
 
     <div class="card イベント" data-cat="イベント">
       <div class="card-top">
@@ -837,11 +855,12 @@
       </div>
     </div>
 
-    <div class="card トレラン" data-cat="トレラン">
+    <div class="card recommended recommended recommended recommended recommended recommended トレラン" data-cat="トレラン">
       <div class="card-top">
         <div class="card-date">12月（未定）</div>
         <span class="card-badge badge-トレラン">トレラン</span>
       </div>
+      <span class="card-badge badge-推奨">⭐ トレイル推奨</span>
       <div class="card-title">みたけ山登山競走</div>
       <div class="card-desc">（2025実績）約20名が参加。雪予報の中、田島前部長が防寒アドバイスを送り出す。緑軍団で取材受けそうな規模感。ゴール後は麓で反省会。</div>
       <div class="card-footer">
