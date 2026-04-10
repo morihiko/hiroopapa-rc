@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2026 広尾親父RC レース表</title>
 <style>
@@ -943,6 +944,51 @@ filterBtns.forEach(function(btn) {
     });
   });
 });
+</script>
+
+<div id="auth-overlay" style="position:fixed;inset:0;background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
+  <div style="background:white;border-radius:20px;padding:36px 28px;max-width:320px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.3);text-align:center">
+    <svg width="60" height="60" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:16px">
+      <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z" fill="#e8f5ee" stroke="#1b5e35" stroke-width="2"/>
+      <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#1b5e35" text-anchor="middle" letter-spacing="1">HG</text>
+      <path d="M9 26 Q7 22 10 19 Q8 24 11 26 Z" fill="#c9a227" opacity="0.8"/>
+      <path d="M8 31 Q5 27 8 24 Q7 29 10 31 Z" fill="#c9a227" opacity="0.8"/>
+      <path d="M43 26 Q45 22 42 19 Q44 24 41 26 Z" fill="#c9a227" opacity="0.8"/>
+      <path d="M44 31 Q47 27 44 24 Q45 29 42 31 Z" fill="#c9a227" opacity="0.8"/>
+    </svg>
+    <div style="font-size:16px;font-weight:700;color:#1b5e35;margin-bottom:4px">広尾親父RC</div>
+    <div style="font-size:12px;color:#888;margin-bottom:24px">部員専用ページ</div>
+    <input type="password" id="pw-input" placeholder="パスワード" inputmode="numeric" pattern="[0-9]*"
+      style="width:100%;padding:12px 14px;border:2px solid #ddd;border-radius:10px;font-size:16px;text-align:center;letter-spacing:4px;outline:none;font-family:inherit;margin-bottom:10px">
+    <button onclick="checkPw()"
+      style="width:100%;padding:12px;background:linear-gradient(135deg,#1b5e35,#0d3d20);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">
+      入室する
+    </button>
+    <div id="pw-err" style="display:none;margin-top:10px;font-size:12px;color:#e53935">パスワードが違います</div>
+  </div>
+</div>
+<script>
+(function(){
+  var PASS='0530';
+  var KEY='hg-rc-auth';
+  if(sessionStorage.getItem(KEY)==='1'){
+    document.getElementById('auth-overlay').style.display='none';
+  }
+  document.getElementById('pw-input').addEventListener('keydown',function(e){
+    if(e.key==='Enter')checkPw();
+  });
+  window.checkPw=function(){
+    var v=document.getElementById('pw-input').value;
+    if(v===PASS){
+      sessionStorage.setItem(KEY,'1');
+      document.getElementById('auth-overlay').style.display='none';
+    } else {
+      document.getElementById('pw-err').style.display='block';
+      document.getElementById('pw-input').value='';
+      document.getElementById('pw-input').focus();
+    }
+  };
+})();
 </script>
 </body>
 </html>
