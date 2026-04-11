@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>広尾親父RC｜みんなの痛み撲滅シート</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f0f4f1;color:#333;font-size:14px}
+header{background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 60%,#093319 100%);color:white;padding:16px 14px 12px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.3);border-bottom:3px solid #c9a227}
+.h-inner{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.h-text h1{font-size:15px;font-weight:700;letter-spacing:.04em;margin-bottom:2px}
+.h-text .sub{font-size:11px;opacity:.65}
+.filter-row{display:flex;gap:5px;flex-wrap:wrap}
+.filter-btn{padding:5px 12px;border-radius:20px;border:1.5px solid rgba(255,255,255,.3);background:transparent;color:white;font-size:11px;cursor:pointer;font-family:inherit;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.filter-btn.active{background:white;border-color:white;color:#1b5e35;font-weight:700}
+
+/* 統計バー */
+.stats-section{padding:12px 12px 4px}
+.stats-title{font-size:11px;color:#888;font-weight:700;letter-spacing:.06em;margin-bottom:8px}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.bar-label{font-size:11px;color:#555;width:90px;flex-shrink:0;text-align:right}
+.bar-wrap{flex:1;background:#e0e8e4;border-radius:6px;height:16px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#1b5e35,#2e7d52);display:flex;align-items:center;padding-left:6px;transition:width .3s}
+.bar-count{font-size:10px;color:white;font-weight:700}
+
+.intro{background:linear-gradient(135deg,#fffde7,#fff8e1);border-left:4px solid #c9a227;margin:4px 12px 8px;border-radius:10px;padding:10px 14px;font-size:12px;color:#555;line-height:1.7}
+
+.cards-wrap{padding:4px 12px 32px;display:flex;flex-direction:column;gap:10px}
+.card{background:white;border-radius:14px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border-left:4px solid #ccc;transition:box-shadow .15s}
+.card.hidden{display:none}
+/* 部位別カラー */
+.card[data-p="膝"]{border-left-color:#4c9be8}
+.card[data-p="アキレス腱"]{border-left-color:#ff7043}
+.card[data-p="すね"]{border-left-color:#ab47bc}
+.card[data-p="くるぶし"]{border-left-color:#26c6da}
+.card[data-p="足底筋膜"]{border-left-color:#66bb6a}
+.card[data-p="つま先"]{border-left-color:#ffb74d}
+.card[data-p="ふくらはぎ"]{border-left-color:#ef5350}
+.card[data-p="腰"]{border-left-color:#8d6e63}
+.card[data-p="肩・その他"]{border-left-color:#78909c}
+.card[data-p="足部"]{border-left-color:#ec407a}
+
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.part-badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#1b5e35;background:#e8f5ee;padding:4px 10px;border-radius:20px;flex-shrink:0}
+.reporter{font-size:11px;color:#999;padding-top:4px}
+.symptom-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.s-badge{font-size:10px;padding:3px 9px;border-radius:8px;font-weight:600}
+.s-type{background:#fff3e0;color:#e65100}
+.s-when{background:#f3e5f5;color:#7b1fa2}
+
+.section-title{font-size:10px;color:#aaa;font-weight:700;letter-spacing:.06em;margin-bottom:3px;margin-top:10px;text-transform:uppercase}
+.body-text{font-size:12px;color:#555;line-height:1.65;padding:8px 10px;background:#fafafa;border-radius:8px}
+.lesson-box{font-size:12px;color:#444;line-height:1.6;padding:8px 12px;background:linear-gradient(135deg,#fffde7,#fff8e1);border-radius:8px;margin-top:8px}
+.lesson-box::before{content:'💡 教訓：';font-weight:700;color:#c9a227;display:block;margin-bottom:3px;font-size:10px}
+.goods-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.goods-tag{font-size:10px;background:#e8f5ee;color:#1b5e35;padding:3px 9px;border-radius:6px;font-weight:600}
+.clinic-tag{font-size:10px;background:#e3f2fd;color:#1565c0;padding:3px 9px;border-radius:6px;font-weight:600}
+.drug-tag{font-size:10px;background:#fce4ec;color:#880e4f;padding:3px 9px;border-radius:6px;font-weight:600}
+footer{text-align:center;padding:16px;font-size:11px;color:#8aab98}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <svg width="44" height="44" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+      <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z" fill="rgba(255,255,255,0.08)" stroke="#c9a227" stroke-width="1.5"/>
+      <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#c9a227" text-anchor="middle" letter-spacing="1">HG</text>
+      <path d="M9 26 Q7 22 10 19 Q8 24 11 26 Z" fill="#c9a227" opacity="0.7"/>
+      <path d="M8 31 Q5 27 8 24 Q7 29 10 31 Z" fill="#c9a227" opacity="0.7"/>
+      <path d="M43 26 Q45 22 42 19 Q44 24 41 26 Z" fill="#c9a227" opacity="0.7"/>
+      <path d="M44 31 Q47 27 44 24 Q45 29 42 31 Z" fill="#c9a227" opacity="0.7"/>
+    </svg>
+    <div class="h-text">
+      <h1>&#129657; みんなの痛み撲滅シート</h1>
+      <div class="sub">広尾親父RC ― 部員の実録・治療法データベース</div>
+    </div>
+  </div>
+  <div class="filter-row" id="filterRow"></div>
+</header>
+
+<div class="stats-section">
+  <div class="stats-title">&#128202; 部位別 報告数ランキング</div>
+  <div class="bar-row"><div class="bar-label">膝の外側</div><div class="bar-wrap"><div class="bar-fill" style="width:100%"><span class="bar-count">6件</span></div></div></div>
+  <div class="bar-row"><div class="bar-label">アキレス腱</div><div class="bar-wrap"><div class="bar-fill" style="width:50%"><span class="bar-count">3件</span></div></div></div>
+  <div class="bar-row"><div class="bar-label">すね（脛）</div><div class="bar-wrap"><div class="bar-fill" style="width:67%"><span class="bar-count">4件</span></div></div></div>
+  <div class="bar-row"><div class="bar-label">つま先・指</div><div class="bar-wrap"><div class="bar-fill" style="width:50%"><span class="bar-count">3件</span></div></div></div>
+  <div class="bar-row"><div class="bar-label">くるぶし</div><div class="bar-wrap"><div class="bar-fill" style="width:33%"><span class="bar-count">2件</span></div></div></div>
+  <div class="bar-row"><div class="bar-label">膝の内側</div><div class="bar-wrap"><div class="bar-fill" style="width:33%"><span class="bar-count">2件</span></div></div></div>
+  <div class="bar-row"><div class="bar-label">その他</div><div class="bar-wrap"><div class="bar-fill" style="width:50%"><span class="bar-count">6件</span></div></div></div>
+</div>
+
+<div class="intro">全26件の実録データ。先輩部員の痛みの経験と対処法を集めました。<br>同じ箇所が痛い人は参考にしてください。</div>
+
+<div class="filter-row" id="filterRow2" style="padding:0 12px 10px;display:flex;gap:5px;flex-wrap:wrap"></div>
+
+<div class="cards-wrap" id="cards">
+
+  <div class="card" data-p="くるぶし">
+    <div class="card-top">
+      <span class="part-badge">🦶 くるぶし（外側）</span>
+      <span class="reporter">林</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">ズキズキ</span>
+      <span class="s-badge s-when">常に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">有栖川公園で練習中、下り坂で捻った。1ヶ月ラン停止＋足首サポーター、シップで対応。</div>
+    <div class="lesson-box">HOKAの厚底シューズでトレランは不安定。トレランではお勧めしない。</div>
+    <div class="goods-row"><span class="clinic-tag">🏥 祐天寺つくる整形外科</span></div>
+  </div>
+
+  <div class="card" data-p="膝">
+    <div class="card-top">
+      <span class="part-badge">🦵 膝の外側</span>
+      <span class="reporter">遠山</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鋭い痛み</span>
+      <span class="s-badge s-when">階段で痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">検査で膝蓋骨骨折あり。MRIで軟骨の浮遊が見つかり、膝のロッキング6回。トレラン＋ストレッチで膝周りを強化。</div>
+    <div class="lesson-box">膝を鍛えつつ、休ませる判断も有効。</div>
+    <div class="goods-row">
+      <span class="goods-tag">🛍 ビブラムソール</span>
+      <span class="goods-tag">🛍 トリガーポイント</span>
+      <span class="clinic-tag">🏥 代官山 整体（内藤さん紹介）</span>
+    </div>
+  </div>
+
+  <div class="card" data-p="膝">
+    <div class="card-top">
+      <span class="part-badge">🦵 膝の外側</span>
+      <span class="reporter">緒方</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鈍い痛み</span>
+      <span class="s-badge s-when">走り始めに痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">オーバープロネーションが原因。中敷きを土踏まずが高めのものに変更、腿の外側マッサージで改善。</div>
+    <div class="lesson-box">走る距離を少しずつ伸ばす。ラン後のストレッチ・マッサージをしっかりやる。</div>
+  </div>
+
+  <div class="card" data-p="アキレス腱">
+    <div class="card-top">
+      <span class="part-badge">🦶 アキレス腱</span>
+      <span class="reporter">三島</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">ズキズキ</span>
+      <span class="s-badge s-when">走り始めに痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">オーバープロネーション＋接地から蹴り出しが下手、走り過ぎが原因。整体・筋トレ・フォーム改善で対応。</div>
+    <div class="lesson-box">ラン後のケアをしっかりやる。身体に負担のないフォームの修得が重要（試行錯誤中）。</div>
+    <div class="goods-row">
+      <span class="goods-tag">🛍 ストレッチボード</span>
+      <span class="goods-tag">🛍 足指トレーニングチューブ</span>
+    </div>
+  </div>
+
+  <div class="card" data-p="アキレス腱">
+    <div class="card-top">
+      <span class="part-badge">🦶 アキレス腱</span>
+      <span class="reporter">カド</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鈍い痛み</span>
+      <span class="s-badge s-when">常に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">正しくないテーピングが原因。周辺部位の柔軟性向上で対応。</div>
+    <div class="lesson-box">ラン前の準備運動と後のケア、正しいテーピングが重要。</div>
+  </div>
+
+  <div class="card" data-p="くるぶし">
+    <div class="card-top">
+      <span class="part-badge">🦶 くるぶし（外側）</span>
+      <span class="reporter">まいく</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">きしむ感じ</span>
+      <span class="s-badge s-when">走り終えた後に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">疲れると足が内転する扁平足が原因。足でグーパー運動＋vivobarefoot（薄底）で体幹強化。左右のバランス筋トレも。</div>
+    <div class="lesson-box">左右不均等なスポーツ（テニス・ゴルフ）が遠因の可能性。左右均等な筋トレが大事。</div>
+    <div class="goods-row">
+      <span class="goods-tag">🛍 vivobarefoot</span>
+    </div>
+  </div>
+
+  <div class="card" data-p="膝">
+    <div class="card-top">
+      <span class="part-badge">🦵 膝の内側</span>
+      <span class="reporter">篠田</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鈍い痛み</span>
+      <span class="s-badge s-when">走り終えた後に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">MRI診断で左膝の半月板損傷（数年前から）。筋肉強化と柔軟性強化で対応中。</div>
+    <div class="lesson-box">筋トレ・ストレッチによる筋肉強化と柔軟性強化を継続。</div>
+  </div>
+
+  <div class="card" data-p="膝">
+    <div class="card-top">
+      <span class="part-badge">🦵 膝の外側</span>
+      <span class="reporter">草野</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鋭い痛み</span>
+      <span class="s-badge s-when">走り終えた後に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">右膝の緩さ・膝が内側に倒れやすいのが原因。整形外科で水抜き。足専門の整体で足の癖を診てもらい改善。</div>
+    <div class="lesson-box">毎日のストレッチ。足専門の整体で足の癖を診てもらうのが参考になった。</div>
+    <div class="goods-row">
+      <span class="clinic-tag">🏥 Rest駒沢整体院</span>
+      <span class="clinic-tag">🏥 SOL整形外科</span>
+      <span class="clinic-tag">🏥 世田谷スポーツクリニック</span>
+    </div>
+  </div>
+
+  <div class="card" data-p="足底筋膜">
+    <div class="card-top">
+      <span class="part-badge">👣 足底筋膜</span>
+      <span class="reporter">草野</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鈍い痛み</span>
+      <span class="s-badge s-when">朝起きた時に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">左足首の捻挫の影響が波及した可能性。通院中＋毎日のストレッチで対応。</div>
+    <div class="lesson-box">毎日のストレッチを継続。</div>
+    <div class="goods-row">
+      <span class="clinic-tag">🏥 Rest駒沢整体院</span>
+      <span class="clinic-tag">🏥 SOL整形外科</span>
+    </div>
+  </div>
+
+  <div class="card" data-p="膝">
+    <div class="card-top">
+      <span class="part-badge">🦵 膝の外側</span>
+      <span class="reporter">橘</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鋭い痛み</span>
+      <span class="s-badge s-when">常に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">トレラン中に転倒。通院中。</div>
+    <div class="lesson-box">トレランは生足で走らない。ランタイツが守ってくれる。</div>
+    <div class="goods-row"><span class="goods-tag">🛍 ランタイツ</span></div>
+  </div>
+
+  <div class="card" data-p="アキレス腱">
+    <div class="card-top">
+      <span class="part-badge">🦶 アキレス腱</span>
+      <span class="reporter">佐藤</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鋭い痛み</span>
+      <span class="s-badge s-when">朝起きた時に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">柔軟性の欠如（多分）。リハビリ中。</div>
+    <div class="goods-row"><span class="clinic-tag">🏥 アレックス脊柱クリニック</span></div>
+  </div>
+
+  <div class="card" data-p="腰">
+    <div class="card-top">
+      <span class="part-badge">💪 腰</span>
+      <span class="reporter">佐藤</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鈍い痛み</span>
+      <span class="s-badge s-when">朝起きた時に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">柔軟性の欠如（多分）。リハビリ中。</div>
+    <div class="goods-row"><span class="clinic-tag">🏥 アレックス脊柱クリニック</span></div>
+  </div>
+
+  <div class="card" data-p="膝">
+    <div class="card-top">
+      <span class="part-badge">🦵 膝の外側</span>
+      <span class="reporter">佐藤</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鈍い痛み</span>
+      <span class="s-badge s-when">走り始めに痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">柔軟性の欠如（多分）。リハビリ中。</div>
+    <div class="goods-row"><span class="clinic-tag">🏥 アレックス脊柱クリニック</span></div>
+  </div>
+
+  <div class="card" data-p="すね">
+    <div class="card-top">
+      <span class="part-badge">🦵 すね（脛）</span>
+      <span class="reporter">佐藤</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">つっぱる感じ</span>
+      <span class="s-badge s-when">走り終えた後に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">走る時のフォームが原因。マッサージで対応。</div>
+    <div class="goods-row"><span class="goods-tag">🛍 マッサージガン・低周波</span></div>
+  </div>
+
+  <div class="card" data-p="つま先">
+    <div class="card-top">
+      <span class="part-badge">👆 つま先・指</span>
+      <span class="reporter">安田</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">チクチク（針で刺すよう）</span>
+      <span class="s-badge s-when">走っている途中で痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">フルマラソン中に水ぶくれ発生。走る前に皮膚保護クリームを塗る。通気性の良い和紙素材ソックスを履く。</div>
+    <div class="lesson-box">予防が有効。水ぶくれは事前ケアで防ぐ。</div>
+    <div class="goods-row">
+      <span class="goods-tag">🛍 プロテクトJ1（クリーム）</span>
+      <span class="goods-tag">🛍 和紙素材ソックス</span>
+    </div>
+  </div>
+
+  <div class="card" data-p="肩・その他">
+    <div class="card-top">
+      <span class="part-badge">🤷 肩・その他</span>
+      <span class="reporter">緒方</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鈍い痛み（関節炎症）</span>
+      <span class="s-badge s-when">常に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">関節の炎症。服薬（ロルノキシカム）＋ラン後のアイシングで対応。</div>
+    <div class="lesson-box">痛みが出るときは早めに整形外科にかかること。</div>
+    <div class="goods-row">
+      <span class="drug-tag">💊 ロルノキシカム（消炎鎮痛剤）</span>
+      <span class="clinic-tag">🏥 整形外科</span>
+    </div>
+  </div>
+
+  <div class="card" data-p="すね">
+    <div class="card-top">
+      <span class="part-badge">🦵 すね（脛）</span>
+      <span class="reporter">加納</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">ズキズキ</span>
+      <span class="s-badge s-when">常に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">テーピングと皮膚の相性が原因。テープを剥がした際に皮膚が一緒に剥がれ、傷パワーパッドで湿潤ケア。3週間で皮膚が再生。</div>
+    <div class="lesson-box">テーピングが自分の肌に合うか確認してから貼ること。</div>
+  </div>
+
+  <div class="card" data-p="すね">
+    <div class="card-top">
+      <span class="part-badge">🦵 すね（脛）</span>
+      <span class="reporter">田中</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">重い痛み（シンスプリント）</span>
+      <span class="s-badge s-when">常に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">O脚で足が斜め内側に着地する傾向がありシンスプリントに。ワイドスタンスを意識した着地フォームの改善＋ラン後のストレッチ・マッサージ。</div>
+    <div class="lesson-box">痛い時は走らない。どうしても走る場合はテープやサポーターでしっかり固定。</div>
+    <div class="goods-row">
+      <span class="goods-tag">🛍 ザムスト スネ用サポーター</span>
+      <span class="goods-tag">🛍 キネシオテープ</span>
+      <span class="drug-tag">💊 ロキソニン（薬物動態考慮）</span>
+    </div>
+  </div>
+
+  <div class="card" data-p="つま先">
+    <div class="card-top">
+      <span class="part-badge">👆 つま先・指</span>
+      <span class="reporter">森岡</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鈍い痛み</span>
+      <span class="s-badge s-when">常に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">小さすぎるシューズで長距離を走ったのが原因。医師処方の湿布で対応。</div>
+    <div class="lesson-box">ちゃんと採寸して、適したシューズを履く。</div>
+    <div class="goods-row">
+      <span class="clinic-tag">🏥 友仁クリニック（日本橋）</span>
+      <span class="drug-tag">💊 ジクトルテープ75mg</span>
+    </div>
+  </div>
+
+  <div class="card" data-p="足部">
+    <div class="card-top">
+      <span class="part-badge">🦶 足部</span>
+      <span class="reporter">安田</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">重い痛み</span>
+      <span class="s-badge s-when">常に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">疲労・捻挫など。マイクロカレント療法で細胞修復を促進。体に流れる生体電流に似た微弱電流を流す。痛みが楽になり治りが早くなった。</div>
+    <div class="lesson-box">マイクロカレントは痛みがある時に楽になったり治りが早くなる感覚あり。</div>
+    <div class="goods-row"><span class="goods-tag">🛍 オムロン V-F080</span></div>
+  </div>
+
+  <div class="card" data-p="膝">
+    <div class="card-top">
+      <span class="part-badge">🦵 膝の外側</span>
+      <span class="reporter">島戸</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鋭い痛み</span>
+      <span class="s-badge s-when">走っている途中で痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">レントゲン異常なし。原因は加齢。休息で対応。</div>
+    <div class="goods-row"><span class="goods-tag">🛍 サポーター</span></div>
+  </div>
+
+  <div class="card" data-p="肩・その他">
+    <div class="card-top">
+      <span class="part-badge">🤷 肩・その他</span>
+      <span class="reporter">まいく</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">きしむ感じ</span>
+      <span class="s-badge s-when">特定の動きで痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">体重5kg/月の増加で腹が出て猫背になり、肩甲骨周辺の筋肉に痛みが発生。整骨院でハイボルト治療＋トムソンテーブルで矯正。姿勢維持と肩周りのストレッチで改善。</div>
+    <div class="lesson-box">すぐ整骨院へ。自己流のストレッチ2週間では改善なし。アウター筋が硬いまま無理なストレッチは逆効果。</div>
+    <div class="goods-row">
+      <span class="clinic-tag">🏥 つくも接骨院（千葉一宮）</span>
+    </div>
+  </div>
+
+  <div class="card" data-p="ふくらはぎ">
+    <div class="card-top">
+      <span class="part-badge">🦵 ふくらはぎ</span>
+      <span class="reporter">緒方</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鈍い痛み（肉離れ）</span>
+      <span class="s-badge s-when">特定の動きで痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">運動会で急に出力を上げて肉離れ発生。最初の2週間は安静→コンプレッションタイツ＋テーピング固定→キネシオテープに移行。マイクロカレントを朝晩、炎症湿布も活用。</div>
+    <div class="lesson-box">重症だと歩けるまで6週間、走れるまで3ヶ月。起きてからでは遅い。準備運動が絶対。完治まで絶対無理をしない。</div>
+    <div class="goods-row">
+      <span class="goods-tag">🛍 キネシオロジーテープ</span>
+      <span class="goods-tag">🛍 オムロン V-F080</span>
+      <span class="goods-tag">🛍 メディキュット医療用</span>
+    </div>
+  </div>
+
+  <div class="card" data-p="つま先">
+    <div class="card-top">
+      <span class="part-badge">👆 つま先・指</span>
+      <span class="reporter">野村</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鋭い痛み</span>
+      <span class="s-badge s-when">着地時に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">レース前日に購入した5本指ソックスが足の形（人差し指が最長）に合わずマラソン本番中に激痛。裸足でシューズを履いてレース継続。1週間痛みが残った。</div>
+    <div class="lesson-box">ソックスは練習で履き慣れたものを本番で使う。5本指ソックスは足指の形状との相性確認必須。</div>
+    <div class="goods-row"><span class="drug-tag">💊 ロキソニン</span></div>
+  </div>
+
+  <div class="card" data-p="すね">
+    <div class="card-top">
+      <span class="part-badge">🦵 すね（脛）</span>
+      <span class="reporter">金</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">重い痛み（疲労骨折）</span>
+      <span class="s-badge s-when">着地時に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">シンスプリント＋軽度の疲労骨折。怪我した週の合計走行距離100km。前日パークラン5kmTT＋ジョグ10km、当日ハーフのレースペース走＋ジョグ10kmという無茶なスケジュールが原因。強いマッサージも影響した可能性あり。</div>
+    <div class="lesson-box">違和感があったら追い込みすぎない。患部の強いマッサージはNG。</div>
+    <div class="goods-row">
+      <span class="goods-tag">🛍 キネシオテープ</span>
+      <span class="goods-tag">🛍 脛サポーター</span>
+      <span class="clinic-tag">🏥 東京城南整形外科（MRI）</span>
+    </div>
+  </div>
+
+  <div class="card" data-p="膝">
+    <div class="card-top">
+      <span class="part-badge">🦵 膝の内側</span>
+      <span class="reporter">金</span>
+    </div>
+    <div class="symptom-row">
+      <span class="s-badge s-type">鋭い痛み（疲労骨折）</span>
+      <span class="s-badge s-when">蹴り出し時に痛む</span>
+    </div>
+    <div class="section-title">原因・対応</div>
+    <div class="body-text">大腿骨下部の疲労骨折。前月200km弱→当月350kmに急増、スピード練を頻繁に入れ、痛いのを我慢してリレーマラソンに出てしまった。2ヶ月ノーランで回復。</div>
+    <div class="lesson-box">痛い時は走らない。スピード練は程々に。走行距離の急激な増加は禁物。</div>
+    <div class="goods-row">
+      <span class="clinic-tag">🏥 東京城南整形外科（MRI）</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>広尾親父RC — 2026｜痛みを共有し、みんなで走り続けよう</footer>
+
+<div id="auth-overlay" style="position:fixed;inset:0;background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
+  <div style="background:white;border-radius:20px;padding:36px 28px;max-width:320px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.3);text-align:center">
+    <svg width="60" height="60" viewBox="0 0 52 52" fill="none" style="margin-bottom:16px">
+      <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z" fill="#e8f5ee" stroke="#1b5e35" stroke-width="2"/>
+      <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#1b5e35" text-anchor="middle" letter-spacing="1">HG</text>
+    </svg>
+    <div style="font-size:16px;font-weight:700;color:#1b5e35;margin-bottom:4px">広尾親父RC</div>
+    <div style="font-size:12px;color:#888;margin-bottom:24px">部員専用ページ</div>
+    <input type="password" id="pw-input" placeholder="パスワード" inputmode="numeric" pattern="[0-9]*"
+      style="width:100%;padding:12px 14px;border:2px solid #ddd;border-radius:10px;font-size:16px;text-align:center;letter-spacing:4px;outline:none;font-family:inherit;margin-bottom:10px">
+    <button onclick="checkPw()"
+      style="width:100%;padding:12px;background:linear-gradient(135deg,#1b5e35,#0d3d20);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">
+      入室する
+    </button>
+    <div id="pw-err" style="display:none;margin-top:10px;font-size:12px;color:#e53935">パスワードが違います</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var PASS='0530', KEY='hg-rc-auth';
+  if(sessionStorage.getItem(KEY)==='1') document.getElementById('auth-overlay').style.display='none';
+  document.getElementById('pw-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkPw();});
+  window.checkPw=function(){
+    if(document.getElementById('pw-input').value===PASS){
+      sessionStorage.setItem(KEY,'1');
+      document.getElementById('auth-overlay').style.display='none';
+    } else {
+      document.getElementById('pw-err').style.display='block';
+      document.getElementById('pw-input').value='';
+      document.getElementById('pw-input').focus();
+    }
+  };
+})();
+
+// フィルターボタン生成
+var PARTS = ['すべて','膝','アキレス腱','すね','くるぶし','つま先','ふくらはぎ','足底筋膜','腰','肩・その他','足部'];
+var row = document.getElementById('filterRow');
+PARTS.forEach(function(p){
+  var b = document.createElement('button');
+  b.className = 'filter-btn' + (p==='すべて' ? ' active' : '');
+  b.textContent = p;
+  b.setAttribute('data-p', p);
+  b.onclick = function(){ doFilter(this); };
+  row.appendChild(b);
+});
+
+function doFilter(btn){
+  var btns = document.querySelectorAll('.filter-btn');
+  var cards = document.querySelectorAll('#cards .card');
+  var p = btn.getAttribute('data-p');
+  btns.forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  cards.forEach(function(c){
+    if(p==='すべて' || c.getAttribute('data-p')===p){
+      c.classList.remove('hidden');
+    } else {
+      c.classList.add('hidden');
+    }
+  });
+}
+</script>
+</body>
+</html>
