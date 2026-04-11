@@ -8,22 +8,29 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-.card{background:white;border-radius:20px;padding:32px 24px;max-width:360px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.25)}
-.logo{text-align:center;margin-bottom:24px}
-h1{text-align:center;font-size:17px;font-weight:700;color:#1b5e35;margin-bottom:6px}
-.sub{text-align:center;font-size:12px;color:#888;margin-bottom:28px}
-.btn{display:block;padding:16px 20px;border-radius:12px;text-decoration:none;margin-bottom:12px;background:linear-gradient(135deg,#1b5e35,#0d3d20);color:white}
+.wrap{width:100%;max-width:380px}
+.card{background:white;border-radius:20px;padding:32px 22px 24px;box-shadow:0 8px 32px rgba(0,0,0,0.25);margin-bottom:16px}
+.logo{text-align:center;margin-bottom:16px}
+h1{text-align:center;font-size:18px;font-weight:800;color:#1b5e35;margin-bottom:4px;letter-spacing:.04em}
+.sub{text-align:center;font-size:12px;color:#888;margin-bottom:24px}
+.divider{font-size:10px;color:#bbb;text-transform:uppercase;letter-spacing:.12em;margin:16px 0 10px;padding-left:2px}
+.btn{display:flex;align-items:center;gap:14px;padding:15px 16px;border-radius:14px;text-decoration:none;margin-bottom:10px;background:linear-gradient(135deg,#1b5e35,#0d3d20);color:white;transition:opacity .15s;-webkit-tap-highlight-color:transparent}
 .btn:last-child{margin-bottom:0}
-.btn-title{font-size:15px;font-weight:700;margin-bottom:3px}
-.btn-sub{font-size:11px;opacity:.7}
-footer{text-align:center;margin-top:20px;font-size:11px;color:rgba(255,255,255,0.5)}
+.btn:active{opacity:.82}
+.btn-icon{font-size:24px;flex-shrink:0;width:36px;text-align:center}
+.btn-text{}
+.btn-title{font-size:14px;font-weight:700;margin-bottom:2px}
+.btn-sub{font-size:10px;opacity:.7;line-height:1.4}
+.btn-soon{background:linear-gradient(135deg,#78909c,#546e7a);position:relative}
+.soon-badge{position:absolute;top:10px;right:12px;background:rgba(255,255,255,0.2);font-size:9px;padding:2px 7px;border-radius:8px;color:white}
+footer{text-align:center;margin-top:8px;font-size:11px;color:rgba(255,255,255,0.45)}
 </style>
 </head>
 <body>
-<div>
+<div class="wrap">
 <div class="card">
   <div class="logo">
-    <svg width="72" height="72" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="72" height="72" viewBox="0 0 52 52" fill="none">
       <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z" fill="#e8f5ee" stroke="#1b5e35" stroke-width="2"/>
       <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#1b5e35" text-anchor="middle" letter-spacing="1">HG</text>
       <path d="M9 26 Q7 22 10 19 Q8 24 11 26 Z" fill="#c9a227" opacity="0.8"/>
@@ -34,27 +41,73 @@ footer{text-align:center;margin-top:20px;font-size:11px;color:rgba(255,255,255,0
   </div>
   <h1>広尾親父RC</h1>
   <p class="sub">ランニングクラブ 部員専用ページ</p>
+
+  <div class="divider">&#x1F4C5; レース情報</div>
+
   <a class="btn" href="./races.html">
-    <div class="btn-title">&#127885; 2026 年間レース表</div>
-    <div class="btn-sub">全44大会・イベント ｜ カテゴリフィルター付き</div>
+    <div class="btn-icon">&#x1F3C5;</div>
+    <div class="btn-text">
+      <div class="btn-title">2026 年間レース表</div>
+      <div class="btn-sub">全44大会・イベント ｜ カテゴリ&推奨フィルター付き</div>
+    </div>
   </a>
+
+  <div class="divider">&#x1F4DA; 部員の知恵</div>
+
   <a class="btn" href="./links.html">
-    <div class="btn-title">&#128279; お役立ちリンク集</div>
-    <div class="btn-sub">全40アイテム ｜ LINEメンバー推薦</div>
+    <div class="btn-icon">&#x1F517;</div>
+    <div class="btn-text">
+      <div class="btn-title">お役立ちリンク集</div>
+      <div class="btn-sub">全40アイテム ｜ ウェア・補給・動画ほか</div>
+    </div>
   </a>
+
+  <a class="btn" href="./manual.html">
+    <div class="btn-icon">&#x1F6AA;</div>
+    <div class="btn-text">
+      <div class="btn-title">0次関門突破マニュアル</div>
+      <div class="btn-sub">家族交渉の虎の巻 ｜ 全11戦績・教訓収録</div>
+    </div>
+  </a>
+
+  <div class="divider">&#x1F6A7; 準備中</div>
+
+  <a class="btn btn-soon" href="#">
+    <div class="btn-icon">&#x1F4DD;</div>
+    <div class="btn-text">
+      <div class="btn-title">コンテンツ追加予定</div>
+      <div class="btn-sub">近日公開</div>
+    </div>
+    <span class="soon-badge">COMING SOON</span>
+  </a>
+
+  <a class="btn btn-soon" href="#">
+    <div class="btn-icon">&#x1F4DD;</div>
+    <div class="btn-text">
+      <div class="btn-title">コンテンツ追加予定</div>
+      <div class="btn-sub">近日公開</div>
+    </div>
+    <span class="soon-badge">COMING SOON</span>
+  </a>
+
+  <a class="btn btn-soon" href="#">
+    <div class="btn-icon">&#x1F4DD;</div>
+    <div class="btn-text">
+      <div class="btn-title">コンテンツ追加予定</div>
+      <div class="btn-sub">近日公開</div>
+    </div>
+    <span class="soon-badge">COMING SOON</span>
+  </a>
+
 </div>
 <footer>広尾親父RC — 2026</footer>
 </div>
 
 <div id="auth-overlay" style="position:fixed;inset:0;background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
   <div style="background:white;border-radius:20px;padding:36px 28px;max-width:320px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.3);text-align:center">
-    <svg width="60" height="60" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:16px">
+    <svg width="60" height="60" viewBox="0 0 52 52" fill="none" style="margin-bottom:16px">
       <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z" fill="#e8f5ee" stroke="#1b5e35" stroke-width="2"/>
       <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#1b5e35" text-anchor="middle" letter-spacing="1">HG</text>
-      <path d="M9 26 Q7 22 10 19 Q8 24 11 26 Z" fill="#c9a227" opacity="0.8"/>
-      <path d="M8 31 Q5 27 8 24 Q7 29 10 31 Z" fill="#c9a227" opacity="0.8"/>
-      <path d="M43 26 Q45 22 42 19 Q44 24 41 26 Z" fill="#c9a227" opacity="0.8"/>
-      <path d="M44 31 Q47 27 44 24 Q45 29 42 31 Z" fill="#c9a227" opacity="0.8"/>
     </svg>
     <div style="font-size:16px;font-weight:700;color:#1b5e35;margin-bottom:4px">広尾親父RC</div>
     <div style="font-size:12px;color:#888;margin-bottom:24px">部員専用ページ</div>
@@ -69,17 +122,11 @@ footer{text-align:center;margin-top:20px;font-size:11px;color:rgba(255,255,255,0
 </div>
 <script>
 (function(){
-  var PASS='0530';
-  var KEY='hg-rc-auth';
-  if(sessionStorage.getItem(KEY)==='1'){
-    document.getElementById('auth-overlay').style.display='none';
-  }
-  document.getElementById('pw-input').addEventListener('keydown',function(e){
-    if(e.key==='Enter')checkPw();
-  });
+  var PASS='0530', KEY='hg-rc-auth';
+  if(sessionStorage.getItem(KEY)==='1') document.getElementById('auth-overlay').style.display='none';
+  document.getElementById('pw-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkPw();});
   window.checkPw=function(){
-    var v=document.getElementById('pw-input').value;
-    if(v===PASS){
+    if(document.getElementById('pw-input').value===PASS){
       sessionStorage.setItem(KEY,'1');
       document.getElementById('auth-overlay').style.display='none';
     } else {

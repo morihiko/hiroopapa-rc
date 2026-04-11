@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>広尾親父RC｜0次関門突破マニュアル</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f0f4f1;color:#333;font-size:14px}
+header{background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 60%,#093319 100%);color:white;padding:16px 14px 14px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.3);border-bottom:3px solid #c9a227}
+.h-inner{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.h-text h1{font-size:15px;font-weight:700;letter-spacing:.04em;margin-bottom:2px}
+.h-text .sub{font-size:11px;opacity:.65}
+.intro{background:linear-gradient(135deg,#fffde7,#fff8e1);border-left:4px solid #c9a227;margin:12px 12px 4px;border-radius:10px;padding:12px 14px;font-size:12px;color:#555;line-height:1.7}
+.intro strong{color:#1b5e35;font-size:13px;display:block;margin-bottom:4px}
+.stats-row{display:flex;gap:8px;padding:10px 12px;flex-wrap:wrap}
+.stat{flex:1;min-width:70px;background:white;border-radius:10px;padding:10px 8px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.08)}
+.stat-num{font-size:22px;font-weight:800;color:#1b5e35;line-height:1}
+.stat-lbl{font-size:10px;color:#888;margin-top:3px}
+.filter-row{display:flex;gap:5px;padding:0 12px 10px;flex-wrap:wrap}
+.filter-btn{padding:5px 12px;border-radius:20px;border:1.5px solid #c0d4c8;background:white;color:#555;font-size:11px;cursor:pointer;font-family:inherit;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.filter-btn.active{background:#1b5e35;border-color:#1b5e35;color:white;font-weight:700}
+.cards-wrap{padding:4px 12px 24px;display:flex;flex-direction:column;gap:10px}
+.card{background:white;border-radius:14px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border-left:4px solid #ccc;transition:box-shadow .15s}
+.card.success{border-left-color:#2e7d32}
+.card.retreat{border-left-color:#f57f17}
+.card.fail{border-left-color:#c62828}
+.card.hidden{display:none}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+.badge{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.badge-突破{background:#e8f5e9;color:#2e7d32}
+.badge-撃沈{background:#ffebee;color:#c62828}
+.badge-撤退{background:#fff3e0;color:#e65100}
+.badge-自爆{background:#fce4ec;color:#ad1457}
+.player{font-size:13px;font-weight:700;color:#1b5e35;white-space:nowrap}
+.strategy-title{font-size:14px;font-weight:800;color:#1b1a00;margin-bottom:6px;line-height:1.4}
+.strategy-title .op-name{color:#1b5e35}
+.target{font-size:11px;color:#888;margin-bottom:8px}
+.target span{background:#f0f4f1;padding:2px 8px;border-radius:6px;color:#555}
+.detail{font-size:12px;color:#555;line-height:1.65;margin-bottom:10px;padding:10px 12px;background:#fafafa;border-radius:8px;border-left:3px solid #e0e0e0}
+.lesson{font-size:12px;color:#444;line-height:1.6;padding:8px 12px;background:linear-gradient(135deg,#fffde7,#fff8e1);border-radius:8px}
+.lesson::before{content:'💡 教訓：';font-weight:700;color:#c9a227;display:block;margin-bottom:3px;font-size:11px}
+footer{text-align:center;padding:20px;font-size:11px;color:#8aab98}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <svg width="44" height="44" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+      <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z" fill="rgba(255,255,255,0.08)" stroke="#c9a227" stroke-width="1.5"/>
+      <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#c9a227" text-anchor="middle" letter-spacing="1">HG</text>
+      <path d="M9 26 Q7 22 10 19 Q8 24 11 26 Z" fill="#c9a227" opacity="0.7"/>
+      <path d="M8 31 Q5 27 8 24 Q7 29 10 31 Z" fill="#c9a227" opacity="0.7"/>
+      <path d="M43 26 Q45 22 42 19 Q44 24 41 26 Z" fill="#c9a227" opacity="0.7"/>
+      <path d="M44 31 Q47 27 44 24 Q45 29 42 31 Z" fill="#c9a227" opacity="0.7"/>
+    </svg>
+    <div class="h-text">
+      <h1>&#x1F6AA; 0次関門突破マニュアル</h1>
+      <div class="sub">広尾親父RC ― 家族交渉の虎の巻</div>
+    </div>
+  </div>
+</header>
+
+<div class="intro">
+  <strong>&#x1F4DC; これは何？</strong>
+  レースへの参加を巡る「家族交渉」の実録集。突破・撤退・撃沈、先輩部員たちの戦績と教訓を余すことなく公開。出走前に読んで、賢く0次関門を突破せよ。
+</div>
+
+<div class="stats-row">
+  <div class="stat"><div class="stat-num" id="cnt-all">11</div><div class="stat-lbl">総交渉数</div></div>
+  <div class="stat"><div class="stat-num" style="color:#2e7d32" id="cnt-ok">7</div><div class="stat-lbl">突破</div></div>
+  <div class="stat"><div class="stat-num" style="color:#e65100" id="cnt-rt">1</div><div class="stat-lbl">戦略的撤退</div></div>
+  <div class="stat"><div class="stat-num" style="color:#c62828" id="cnt-ng">3</div><div class="stat-lbl">撃沈・自爆</div></div>
+</div>
+
+<div class="filter-row">
+  <button class="filter-btn active" data-f="all" onclick="doFilter(this)">すべて</button>
+  <button class="filter-btn" data-f="success" onclick="doFilter(this)">&#x2705; 突破</button>
+  <button class="filter-btn" data-f="retreat" onclick="doFilter(this)">&#x1F3F3; 撤退</button>
+  <button class="filter-btn" data-f="fail" onclick="doFilter(this)">&#x274C; 撃沈</button>
+</div>
+
+<div class="cards-wrap" id="cards">
+
+  <div class="card success" data-r="success">
+    <div class="card-top">
+      <div class="player">及</div>
+      <span class="badge badge-突破">✅ 突破</span>
+    </div>
+    <div class="strategy-title"><span class="op-name">【安全第一（ココヘリ）作戦】</span></div>
+    <div class="target">対象 → <span>各種トレラン</span></div>
+    <div class="detail">「遭難してもヘリが呼べる会員になった」とアピールし、家族の心配（反対理由）を論理的に潰す。</div>
+    <div class="lesson">家族の反対理由は「危険だから」が多い。そこを塞ぐのが一番の正攻法。</div>
+  </div>
+
+  <div class="card retreat" data-r="retreat">
+    <div class="card-top">
+      <div class="player">S</div>
+      <span class="badge badge-撤退">🏳 戦略的撤退</span>
+    </div>
+    <div class="strategy-title"><span class="op-name">【選択と集中（バーター）作戦】</span></div>
+    <div class="target">対象 → <span>野沢温泉</span></div>
+    <div class="detail">「今年の宿泊枠はKaga SPAに使うから、野沢は諦める」と宣言し、本命レースの許可を確実に取る。</div>
+    <div class="lesson">全部は無理。捨てる勇気が本命を生かす。「断腸の思い」を演出するのがコツ。</div>
+  </div>
+
+  <div class="card success" data-r="success">
+    <div class="card-top">
+      <div class="player">S</div>
+      <span class="badge badge-突破">✅ 突破</span>
+    </div>
+    <div class="strategy-title"><span class="op-name">【錦の御旗（親孝行）作戦】</span></div>
+    <div class="target">対象 → <span>姫路城マラソン</span></div>
+    <div class="detail">実家近くの大会を選び、「親孝行のために帰省する（ついでに走る）」という誰も文句を言えない大義名分を掲げる。</div>
+    <div class="lesson">帰省や法事は最強のカード。ただし実家が遠方の場合に限る。</div>
+  </div>
+
+  <div class="card success" data-r="success">
+    <div class="card-top">
+      <div class="player">た</div>
+      <span class="badge badge-突破">✅ 突破</span>
+    </div>
+    <div class="strategy-title"><span class="op-name">【便乗（ついでに）作戦】</span></div>
+    <div class="target">対象 → <span>那覇マラソン</span></div>
+    <div class="detail">地元のイベント実行委員として帰省する日程を1週間早め、その隙間にフルマラソンをねじ込む。</div>
+    <div class="lesson">「仕事や用事のついで」感を出すとガードが下がる。</div>
+  </div>
+
+  <div class="card success" data-r="success">
+    <div class="card-top">
+      <div class="player">S</div>
+      <span class="badge badge-突破">✅ 突破（疑惑）</span>
+    </div>
+    <div class="strategy-title"><span class="op-name">【匍匐前進（サラミ戦術）作戦】</span></div>
+    <div class="target">対象 → <span>富士五湖・野沢</span></div>
+    <div class="detail">まず直近のレースの許可を取り、遠い日程のレースはギリギリまで言わずに既成事実化する。</div>
+    <div class="lesson">一気に許可を取ろうとせず、少しずつハードルを下げる営業テクニックの応用。</div>
+  </div>
+
+  <div class="card success" data-r="success">
+    <div class="card-top">
+      <div class="player">H</div>
+      <span class="badge badge-突破">✅ 突破</span>
+    </div>
+    <div class="strategy-title"><span class="op-name">【札束外交（等価交換）作戦】</span></div>
+    <div class="target">対象 → <span>野沢温泉</span></div>
+    <div class="detail">自分が遊ぶ代わりに、家族には高額なサマーキャンプ（旅行）をプレゼントする。パンフレットを机に置く無言の圧力。</div>
+    <div class="lesson">「高い旅行代金と引き換えに突破」。金で解決できるなら安いもの（お財布事情による）。</div>
+  </div>
+
+  <div class="card success" data-r="success">
+    <div class="card-top">
+      <div class="player">Y</div>
+      <span class="badge badge-突破">✅ 突破（疑惑）</span>
+    </div>
+    <div class="strategy-title"><span class="op-name">【撹乱（大量申請）作戦】</span></div>
+    <div class="target">対象 → <span>多数の大会</span></div>
+    <div class="detail">佐渡、野沢、九十九里など大量の宿泊系レースを一括申請し、どれが通ったか有耶無耶にする。</div>
+    <div class="lesson">「実際突破できたかはわかりません」。普段からの「家族貯金（信頼）」がないと大炎上する諸刃の剣。</div>
+  </div>
+
+  <div class="card success" data-r="success">
+    <div class="card-top">
+      <div class="player">松</div>
+      <span class="badge badge-突破">✅ 突破（条件付）</span>
+    </div>
+    <div class="strategy-title"><span class="op-name">【免罪符（過去の実績）作戦】</span></div>
+    <div class="target">対象 → <span>富士五湖</span></div>
+    <div class="detail">「卒業旅行（ベトナム）に連れて行ったからいいだろ」と過去の功績を主張する。</div>
+    <div class="lesson">許可は出たが、報復として奥様も一人旅へ。痛み分けの結果となる。</div>
+  </div>
+
+  <div class="card fail" data-r="fail">
+    <div class="card-top">
+      <div class="player">Y</div>
+      <span class="badge badge-撃沈">❌ 撃沈（DNS）</span>
+    </div>
+    <div class="strategy-title"><span class="op-name">【付け焼き刃（直前ゴマすり）作戦】</span></div>
+    <div class="target">対象 → <span>野沢温泉</span></div>
+    <div class="detail">申込み直前の2日間だけ急に奥様孝行をして切り出す。</div>
+    <div class="lesson">下心が見え見えで逆に警戒される悪い例。「普段からの行いが全て」。</div>
+  </div>
+
+  <div class="card fail" data-r="fail">
+    <div class="card-top">
+      <div class="player">K</div>
+      <span class="badge badge-自爆">💥 自爆（DNS）</span>
+    </div>
+    <div class="strategy-title"><span class="op-name">【詰めが甘い（仕事ブロック）作戦】</span></div>
+    <div class="target">対象 → <span>5月度トレラン</span></div>
+    <div class="detail">鬼嫁山（家族）は越えたが、仕事（責任の谷間）に落ちて参加断念。</div>
+    <div class="lesson">家族だけでなく、職場調整も0次関門の一部であるという教訓。</div>
+  </div>
+
+  <div class="card fail" data-r="fail">
+    <div class="card-top">
+      <div class="player">田</div>
+      <span class="badge badge-撃沈">❌ 撃沈（DNS）</span>
+    </div>
+    <div class="strategy-title"><span class="op-name">【暴挙（冠婚葬祭変更）作戦】</span></div>
+    <div class="target">対象 → <span>野沢温泉</span></div>
+    <div class="detail">長男の結婚式と被ったため、息子に「日程変えて」と打診する。</div>
+    <div class="lesson">息子より「来なくてもいい」と激怒される。絶対にマネしてはいけないアンチパターン。</div>
+  </div>
+
+</div>
+
+<footer>広尾親父RC — 2026｜先輩の屍を越えてゆけ</footer>
+
+<div id="auth-overlay" style="position:fixed;inset:0;background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
+  <div style="background:white;border-radius:20px;padding:36px 28px;max-width:320px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.3);text-align:center">
+    <svg width="60" height="60" viewBox="0 0 52 52" fill="none" style="margin-bottom:16px">
+      <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z" fill="#e8f5ee" stroke="#1b5e35" stroke-width="2"/>
+      <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#1b5e35" text-anchor="middle" letter-spacing="1">HG</text>
+      <path d="M9 26 Q7 22 10 19 Q8 24 11 26 Z" fill="#c9a227" opacity="0.8"/>
+      <path d="M8 31 Q5 27 8 24 Q7 29 10 31 Z" fill="#c9a227" opacity="0.8"/>
+      <path d="M43 26 Q45 22 42 19 Q44 24 41 26 Z" fill="#c9a227" opacity="0.8"/>
+      <path d="M44 31 Q47 27 44 24 Q45 29 42 31 Z" fill="#c9a227" opacity="0.8"/>
+    </svg>
+    <div style="font-size:16px;font-weight:700;color:#1b5e35;margin-bottom:4px">広尾親父RC</div>
+    <div style="font-size:12px;color:#888;margin-bottom:24px">部員専用ページ</div>
+    <input type="password" id="pw-input" placeholder="パスワード" inputmode="numeric" pattern="[0-9]*"
+      style="width:100%;padding:12px 14px;border:2px solid #ddd;border-radius:10px;font-size:16px;text-align:center;letter-spacing:4px;outline:none;font-family:inherit;margin-bottom:10px">
+    <button onclick="checkPw()"
+      style="width:100%;padding:12px;background:linear-gradient(135deg,#1b5e35,#0d3d20);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">
+      入室する
+    </button>
+    <div id="pw-err" style="display:none;margin-top:10px;font-size:12px;color:#e53935">パスワードが違います</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var PASS='0530', KEY='hg-rc-auth';
+  if(sessionStorage.getItem(KEY)==='1'){
+    document.getElementById('auth-overlay').style.display='none';
+  }
+  document.getElementById('pw-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkPw();});
+  window.checkPw=function(){
+    if(document.getElementById('pw-input').value===PASS){
+      sessionStorage.setItem(KEY,'1');
+      document.getElementById('auth-overlay').style.display='none';
+    } else {
+      document.getElementById('pw-err').style.display='block';
+      document.getElementById('pw-input').value='';
+      document.getElementById('pw-input').focus();
+    }
+  };
+})();
+
+function doFilter(btn){
+  var btns=document.querySelectorAll('.filter-btn');
+  var cards=document.querySelectorAll('.card');
+  var f=btn.getAttribute('data-f');
+  for(var i=0;i<btns.length;i++) btns[i].classList.remove('active');
+  btn.classList.add('active');
+  for(var j=0;j<cards.length;j++){
+    if(f==='all'||cards[j].getAttribute('data-r')===f){
+      cards[j].classList.remove('hidden');
+    } else {
+      cards[j].classList.add('hidden');
+    }
+  }
+}
+</script>
+</body>
+</html>
