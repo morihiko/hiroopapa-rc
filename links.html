@@ -43,8 +43,52 @@ header{background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 60%,#093319 100%);co
 .cat-book{border-left-color:#ec407a}
 footer{text-align:center;padding:20px;font-size:11px;color:#8aab98}
 </style>
+<style id="gold-theme">
+/* 大理石背景対応 */
+body{background:transparent!important}
+/* ヘッダー金線 */
+header{border-bottom:1px solid rgba(201,162,39,0.4)!important}
+/* カード金縁 */
+.card{border:1px solid rgba(201,162,39,0.2)!important;border-top:2px solid rgba(201,162,39,0.5)!important;background:rgba(255,255,255,0.97)!important}
+/* セクション見出し金色 */
+.divider{color:rgba(201,162,39,0.9)!important;border-left:2px solid rgba(201,162,39,0.6);padding-left:8px!important}
+/* ボタン金縁 */
+.btn{border:1px solid rgba(201,162,39,0.25)!important}
+/* ストーリーカード金縁 */
+.story-card{border:1px solid rgba(201,162,39,0.2)!important;border-top:2px solid rgba(201,162,39,0.45)!important}
+/* ページタイトル */
+.page-title{text-shadow:0 2px 12px rgba(0,0,0,0.5)}
+/* 認証カード金縁 */
+#auth-overlay>div{border:1px solid rgba(201,162,39,0.3)!important}
+/* pain.html カード */
+.card.visible{border-left:4px solid #c9a227!important}
+/* フィルターボタン */
+.filter-btn.active,.filter-btn:hover{background:#1b5e35;border-color:rgba(201,162,39,0.5)!important}
+</style>
 </head>
 <body>
+<div id="bg" aria-hidden="true" style="position:fixed;inset:0;z-index:-1;overflow:hidden">
+<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs>
+<filter id="mf" color-interpolation-filters="sRGB">
+  <feTurbulence type="turbulence" baseFrequency="0.009 0.007" numOctaves="5" seed="11" result="t"/>
+  <feColorMatrix type="matrix" values="0.25 0.1 0 0 0.04  0.25 0.1 0 0 0.16  0.25 0.1 0 0 0.07  0 0 0 0.5 0" in="t" result="c"/>
+</filter>
+<radialGradient id="rg" cx="46%" cy="26%" r="65%">
+  <stop offset="0%" stop-color="#1e5c2d"/>
+  <stop offset="50%" stop-color="#112b19"/>
+  <stop offset="100%" stop-color="#050d07"/>
+</radialGradient>
+<radialGradient id="vig" cx="50%" cy="50%" r="75%">
+  <stop offset="25%" stop-color="rgba(0,0,0,0)"/>
+  <stop offset="100%" stop-color="rgba(0,0,0,0.6)"/>
+</radialGradient>
+</defs>
+<rect width="100%" height="100%" fill="url(#rg)"/>
+<rect width="100%" height="100%" fill="#163520" filter="url(#mf)"/>
+<rect width="100%" height="100%" fill="url(#vig)"/>
+</svg>
+</div>
+
 <header>
   <div class="h-inner">
     <a href="./index.html" style="display:inline-block;cursor:pointer;text-decoration:none;">
