@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>広尾親父ランニングクラブ — 新入部員募集</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;background:transparent;min-height:100vh;padding:24px 20px 40px}
+.wrap{width:100%;max-width:390px;margin:0 auto}
+
+/* LOGO CARD */
+.logo-card{background:rgba(255,255,255,0.97);border-radius:20px;padding:32px 22px 28px;box-shadow:0 8px 32px rgba(0,0,0,0.25);border:1px solid rgba(201,162,39,0.2);border-top:2px solid rgba(201,162,39,0.5);margin-bottom:14px;text-align:center}
+.logo-area{margin-bottom:16px}
+h1{font-size:19px;font-weight:800;color:#1b5e35;letter-spacing:.04em;margin-bottom:4px}
+.club-sub{font-size:11px;color:rgba(201,162,39,0.85);font-weight:700;letter-spacing:.12em;margin-bottom:20px}
+.catch{font-size:18px;font-weight:900;color:#1b5e35;line-height:1.6;letter-spacing:.02em;border-left:3px solid #c9a227;text-align:left;padding-left:14px;margin-bottom:0}
+.catch em{font-style:normal;display:block;font-size:13px;font-weight:500;color:#555;margin-top:4px;letter-spacing:0}
+
+/* ABOUT CARD */
+.card{background:rgba(255,255,255,0.97);border-radius:18px;padding:22px 20px;box-shadow:0 6px 24px rgba(0,0,0,0.18);border:1px solid rgba(201,162,39,0.15);border-top:2px solid rgba(201,162,39,0.4);margin-bottom:12px}
+.card-label{font-size:10px;font-weight:700;letter-spacing:.14em;color:rgba(201,162,39,0.9);text-transform:uppercase;border-left:2px solid rgba(201,162,39,0.6);padding-left:8px;margin-bottom:14px}
+.card-title{font-size:17px;font-weight:800;color:#1b5e35;line-height:1.5;margin-bottom:14px}
+.body-text{font-size:13.5px;line-height:2;color:#444}
+.body-text p{margin-bottom:12px}
+.body-text p:last-child{margin-bottom:0}
+.body-text strong{color:#1b5e35}
+.lead-copy{font-size:15px;font-weight:700;color:#1b5e35;line-height:1.75;margin-bottom:14px;padding:12px 14px;background:rgba(27,94,53,0.06);border-radius:10px}
+
+/* PAIN CARD */
+.pain-list{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.pain-item{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;background:rgba(248,246,241,0.8);border-radius:10px;border-left:2px solid rgba(201,162,39,0.4)}
+.pain-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.pain-text{font-size:12.5px;line-height:1.7;color:#444}
+
+/* ACTIVITIES */
+.act-list{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.act-item{display:flex;gap:13px;align-items:flex-start;padding:14px 13px;background:rgba(27,94,53,0.04);border-radius:12px;border:1px solid rgba(201,162,39,0.15)}
+.act-icon-wrap{width:42px;height:42px;background:linear-gradient(135deg,#1b5e35,#0d3d20);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+.act-title{font-size:13.5px;font-weight:700;color:#1b5e35;margin-bottom:4px}
+.act-body{font-size:11.5px;line-height:1.75;color:#555}
+.act-tag{display:inline-block;margin-top:6px;padding:2px 9px;border-radius:8px;background:rgba(201,162,39,0.15);font-size:10px;color:rgba(150,120,20,1);font-weight:700}
+
+/* VOICES */
+.voice-list{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.voice-item{padding:14px 14px;background:rgba(248,246,241,0.9);border-radius:12px;border-top:2px solid rgba(201,162,39,0.35)}
+.voice-text{font-size:13px;line-height:1.85;color:#333;margin-bottom:9px}
+.voice-text::before{content:'\300C';color:#c9a227;font-weight:700}
+.voice-text::after{content:'\300D';color:#c9a227;font-weight:700}
+.voice-meta{font-size:11px;color:#888;font-weight:600}
+.voice-meta span{color:#1b5e35}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:0;margin-top:4px}
+.faq-item{padding:13px 0;border-bottom:1px solid rgba(201,162,39,0.15)}
+.faq-item:last-child{border-bottom:none;padding-bottom:0}
+.faq-q{font-size:13px;font-weight:700;color:#1b5e35;margin-bottom:7px;display:flex;gap:7px;align-items:flex-start}
+.faq-q::before{content:'Q';font-size:12px;background:#c9a227;color:white;font-weight:900;padding:1px 5px;border-radius:4px;flex-shrink:0;margin-top:1px}
+.faq-a{font-size:12.5px;line-height:1.8;color:#555;padding-left:22px}
+
+/* CTA CARD */
+.cta-card{background:linear-gradient(135deg,#1b5e35,#0d3d20);border-radius:18px;padding:28px 22px;text-align:center;box-shadow:0 8px 28px rgba(13,61,32,0.4);border:1px solid rgba(201,162,39,0.3);margin-bottom:12px}
+.cta-title{font-size:18px;font-weight:900;color:white;line-height:1.55;margin-bottom:10px}
+.cta-sub{font-size:12.5px;color:rgba(255,255,255,0.68);line-height:1.85;margin-bottom:24px}
+.btn-line{display:flex;align-items:center;justify-content:center;gap:9px;padding:15px;border-radius:14px;background:#06C755;color:white;font-size:15px;font-weight:800;text-decoration:none;box-shadow:0 4px 16px rgba(6,199,85,0.28);transition:opacity .15s;letter-spacing:.02em}
+.btn-line:active{opacity:.82}
+.cta-note{margin-top:10px;font-size:11px;color:rgba(255,255,255,0.38)}
+
+/* GOLD THEME */
+body{background:transparent!important}
+
+/* FOOTER */
+footer{text-align:center;font-size:11px;color:rgba(255,255,255,0.38);margin-top:4px}
+</style>
+</head>
+<body>
+
+<div id="bg" aria-hidden="true" style="position:fixed;inset:0;z-index:-1;overflow:hidden">
+<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs>
+<filter id="mf" color-interpolation-filters="sRGB">
+  <feTurbulence type="turbulence" baseFrequency="0.009 0.007" numOctaves="5" seed="11" result="t"/>
+  <feColorMatrix type="matrix" values="0.25 0.1 0 0 0.04  0.25 0.1 0 0 0.16  0.25 0.1 0 0 0.07  0 0 0 0.5 0" in="t" result="c"/>
+</filter>
+<radialGradient id="rg" cx="46%" cy="26%" r="65%">
+  <stop offset="0%" stop-color="#1e5c2d"/>
+  <stop offset="50%" stop-color="#112b19"/>
+  <stop offset="100%" stop-color="#050d07"/>
+</radialGradient>
+<radialGradient id="vig" cx="50%" cy="50%" r="75%">
+  <stop offset="25%" stop-color="rgba(0,0,0,0)"/>
+  <stop offset="100%" stop-color="rgba(0,0,0,0.6)"/>
+</radialGradient>
+</defs>
+<rect width="100%" height="100%" fill="url(#rg)"/>
+<rect width="100%" height="100%" fill="#163520" filter="url(#mf)"/>
+<rect width="100%" height="100%" fill="url(#vig)"/>
+</svg>
+</div>
+
+<div class="wrap">
+
+  <!-- LOGO CARD -->
+  <div class="logo-card">
+    <div class="logo-area">
+      <svg width="68" height="68" viewBox="0 0 52 52" fill="none">
+        <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z" fill="#e8f5ee" stroke="#1b5e35" stroke-width="2"/>
+        <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#1b5e35" text-anchor="middle" letter-spacing="1">HG</text>
+        <path d="M9 26 Q7 22 10 19 Q8 24 11 26 Z" fill="#c9a227" opacity="0.8"/>
+        <path d="M8 31 Q5 27 8 24 Q7 29 10 31 Z" fill="#c9a227" opacity="0.8"/>
+        <path d="M43 26 Q45 22 42 19 Q44 24 41 26 Z" fill="#c9a227" opacity="0.8"/>
+        <path d="M44 31 Q47 27 44 24 Q45 29 42 31 Z" fill="#c9a227" opacity="0.8"/>
+      </svg>
+    </div>
+    <h1>広尾親父RC</h1>
+    <p class="club-sub">HIROO OYAJI RUNNING CLUB</p>
+    <p class="catch">
+      走るだけで、広尾のパパ友ができる。
+      <em>広尾学園 父親限定のランニングコミュニティ</em>
+    </p>
+  </div>
+
+  <!-- PAIN -->
+  <div class="card">
+    <p class="card-label">こんなこと、ありませんか？</p>
+    <div class="pain-list">
+      <div class="pain-item"><span class="pain-icon">👨‍👦</span><p class="pain-text">入学式以来、他のクラスのお父さんと話す機会がない</p></div>
+      <div class="pain-item"><span class="pain-icon">📋</span><p class="pain-text">健康診断の結果が毎年少しずつ気になってきた</p></div>
+      <div class="pain-item"><span class="pain-icon">🏃</span><p class="pain-text">運動を始めたいけど、一人だと続かない</p></div>
+      <div class="pain-item"><span class="pain-icon">📡</span><p class="pain-text">子どもの学校情報や友達関係のアンテナが低い</p></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="card">
+    <p class="card-label">広尾親父RCとは</p>
+    <h2 class="card-title">速くなくていい。<br>ガチじゃなくていい。</h2>
+    <div class="body-text">
+      <p class="lead-copy">月イチ、一緒に走る。反省会という名の飲み会で笑う。ランイベントで、汗と感動を共有する。</p>
+      <p>広尾学園PTA父親の会のメンバーとOBが集う、ランニングクラブです。</p>
+      <p>年齢も体力も関係なく、<strong>それぞれのペースで走れる</strong>。ここは、緑のTシャツを着た仲間のセーフティネット。</p>
+      <p>走れば体が変わる。仲間ができる。子育ての情報も自然と入ってくる。</p>
+    </div>
+  </div>
+
+  <!-- ACTIVITIES -->
+  <div class="card">
+    <p class="card-label">活動内容</p>
+    <h2 class="card-title">月に一度、<br>こんなことをしています。</h2>
+    <div class="act-list">
+      <div class="act-item">
+        <div class="act-icon-wrap">🏃</div>
+        <div>
+          <div class="act-title">定例ラン</div>
+          <p class="act-body">月1回、駒沢公園などで集まって走ります。距離もペースも自由。歩いても完走しても全員ゴール。</p>
+          <span class="act-tag">毎月開催</span>
+        </div>
+      </div>
+      <div class="act-item">
+        <div class="act-icon-wrap">🍺</div>
+        <div>
+          <div class="act-title">反省会（飲み会）</div>
+          <p class="act-body">走った後の一杯が格別。これが本番という声もあります。子どもの話、仕事の話、なんでも話せる場所。</p>
+          <span class="act-tag">走った後の楽しみ</span>
+        </div>
+      </div>
+      <div class="act-item">
+        <div class="act-icon-wrap">🏅</div>
+        <div>
+          <div class="act-title">レース参加（任意）</div>
+          <p class="act-body">フルマラソン、トライアスロン、スパルタンレース…やる気が出てきたら有志で参戦。参加は完全自由。</p>
+          <span class="act-tag">やる気が出たら</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VOICES -->
+  <div class="card">
+    <p class="card-label">部員の声</p>
+    <h2 class="card-title">走り始めたら、<br>いろんなものがついてきた。</h2>
+    <div class="voice-list">
+      <div class="voice-item">
+        <p class="voice-text">最初は5分も走れなかったのに、半年でハーフを完走できました。仲間がいるから続けられた。</p>
+        <p class="voice-meta"><span>Aさん</span> ｜ 中1のお父さん・入部2年目</p>
+      </div>
+      <div class="voice-item">
+        <p class="voice-text">入学式以来話したことがなかった同じクラスのお父さんと、今では飲み友達です。</p>
+        <p class="voice-meta"><span>Bさん</span> ｜ 高1のお父さん・入部1年目</p>
+      </div>
+      <div class="voice-item">
+        <p class="voice-text">正直、走るのはおまけ。反省会が目当てで来ています（笑）。でも気づいたら3キロ痩せてました。</p>
+        <p class="voice-meta"><span>Cさん</span> ｜ 中3のお父さん・入部3年目</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card">
+    <p class="card-label">よくある質問</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <p class="faq-q">運動経験がなくても大丈夫？</p>
+        <p class="faq-a">まったく問題ありません。走れなければ歩けばいい、それがこのクラブです。入部時にランニング未経験だった部員も複数います。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">どのくらいのペースで走るの？</p>
+        <p class="faq-a">各自のペースで走ります。速い人は速く、ゆっくりな人はゆっくり。スタートとゴールが一緒なので、ひとりになりません。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">参加費はかかる？</p>
+        <p class="faq-a">クラブへの参加費は無料です。任意でレースに参加する場合はエントリー費用が別途必要ですが、強制ではありません。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">まず一回だけ来ることはできる？</p>
+        <p class="faq-a">もちろんです。見学・体験歓迎。合わなければそれでもいいと思っています。まずお気軽にどうぞ。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-card">
+    <h2 class="cta-title">まず、<br>一回来てみてください。</h2>
+    <p class="cta-sub">入会手続きも、申込フォームも、ありません。LINEグループに入って、次の定例会に顔を出してみてください。それだけでOKです。</p>
+    <a href="https://line.me/ti/g/XXXXXXXXXX" class="btn-line">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.627.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      LINEグループに参加する
+    </a>
+    <p class="cta-note">参加無料 ｜ いつでも退会できます</p>
+  </div>
+
+  <footer>広尾親父RC — 広尾学園 父親の会 ランニングクラブ</footer>
+</div>
+
+</body>
+</html>

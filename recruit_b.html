@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>走るだけで、広尾のパパ友ができる。| 広尾親父RC</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g-dark:#0d3d20;--g-main:#1b5e35;--g-mid:#2e7d4f;
+  --gold:#c9a227;--white:#fff;--off:#f7f5f0;
+  --text:#1a1a1a;--muted:#666;--line:#06C755;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+
+/* HEADER */
+.hd{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:11px 18px;background:rgba(10,48,24,0.93);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,162,39,0.25)}
+.hd-logo{display:flex;align-items:center;gap:7px;color:white;font-weight:800;font-size:12px;letter-spacing:.06em;text-decoration:none}
+.hd-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:20px;background:var(--line);color:white;font-size:12px;font-weight:700;text-decoration:none;transition:opacity .15s}
+.hd-btn:active{opacity:.8}
+
+/* HERO */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:96px 24px 64px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hc{position:relative;z-index:1;max-width:400px;width:100%}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;background:rgba(201,162,39,0.18);border:1px solid rgba(201,162,39,0.45);color:#c9a227;font-size:11px;font-weight:700;letter-spacing:.1em;margin-bottom:22px}
+.hero-title{font-size:clamp(24px,6.5vw,34px);font-weight:900;color:white;line-height:1.5;letter-spacing:.02em;margin-bottom:14px}
+.hero-title em{font-style:normal;color:#c9a227}
+.hero-sub{font-size:13.5px;color:rgba(255,255,255,0.72);line-height:1.85;margin-bottom:30px}
+.btn-line{display:flex;align-items:center;justify-content:center;gap:9px;padding:15px 32px;border-radius:50px;background:var(--line);color:white;font-size:15px;font-weight:800;text-decoration:none;box-shadow:0 4px 20px rgba(6,199,85,0.32);transition:transform .15s,box-shadow .15s;width:100%;max-width:270px;margin:0 auto}
+.btn-line:active{transform:scale(.97);box-shadow:0 2px 10px rgba(6,199,85,0.2)}
+.hero-note{margin-top:10px;font-size:11px;color:rgba(255,255,255,0.4)}
+.scroll-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.38);font-size:10px;display:flex;flex-direction:column;align-items:center;gap:4px;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+/* STATS */
+.stats{background:var(--g-dark);padding:18px 0;border-bottom:1px solid rgba(201,162,39,0.18)}
+.stats-row{display:flex;justify-content:space-around;max-width:480px;margin:0 auto;padding:0 16px}
+.st{text-align:center}
+.st-n{font-size:20px;font-weight:900;color:var(--gold);letter-spacing:.02em}
+.st-l{font-size:10px;color:rgba(255,255,255,0.45);margin-top:1px;letter-spacing:.08em}
+
+/* SECTIONS */
+.sec{padding:56px 24px}
+.si{max-width:420px;margin:0 auto}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.ttl{font-size:clamp(19px,5vw,25px);font-weight:900;line-height:1.48;color:var(--g-dark);margin-bottom:18px}
+.body{font-size:14px;line-height:2;color:#444}
+
+/* PAIN */
+.pain-sec{background:var(--off)}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:22px}
+.pc{background:white;border-radius:14px;padding:15px 13px;border-left:3px solid rgba(201,162,39,0.45);box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.pc-i{font-size:20px;margin-bottom:7px}
+.pc-t{font-size:12px;line-height:1.75;color:#444;font-weight:500}
+
+/* ABOUT */
+.about-sec{background:white}
+.about-lead{font-size:16px;font-weight:800;color:var(--g-dark);line-height:1.75;margin-bottom:18px;border-left:3px solid var(--gold);padding-left:13px}
+.about-body p{margin-bottom:13px;font-size:14px;line-height:2;color:#444}
+.about-body p:last-child{margin-bottom:0}
+.about-body strong{color:var(--g-main)}
+
+/* ACTIVITIES */
+.act-sec{background:var(--g-dark)}
+.act-sec .ttl{color:white}
+.act-sec .lbl{color:rgba(201,162,39,0.75)}
+.act-list{display:flex;flex-direction:column;gap:11px;margin-top:22px}
+.ac{background:rgba(255,255,255,0.05);border:1px solid rgba(201,162,39,0.18);border-radius:16px;padding:18px 16px;display:flex;gap:14px;align-items:flex-start}
+.ac-icon{font-size:26px;flex-shrink:0;width:48px;height:48px;background:rgba(201,162,39,0.1);border-radius:11px;display:flex;align-items:center;justify-content:center}
+.ac-ttl{font-size:14px;font-weight:800;color:white;margin-bottom:5px}
+.ac-body{font-size:12px;line-height:1.8;color:rgba(255,255,255,0.6)}
+.ac-tag{display:inline-block;margin-top:7px;padding:2px 10px;border-radius:10px;background:rgba(201,162,39,0.18);font-size:10px;color:var(--gold);font-weight:700;letter-spacing:.05em}
+
+/* VOICES */
+.voice-sec{background:var(--off)}
+.vc-list{display:flex;flex-direction:column;gap:11px;margin-top:22px}
+.vc{background:white;border-radius:16px;padding:19px 17px;box-shadow:0 2px 12px rgba(0,0,0,0.07);border-top:2px solid rgba(201,162,39,0.38)}
+.vc-text{font-size:13.5px;line-height:1.9;color:var(--text);margin-bottom:12px}
+.vc-text::before{content:'\201C';font-size:22px;color:var(--gold);line-height:0;vertical-align:-5px;margin-right:2px}
+.vc-text::after{content:'\201D';font-size:22px;color:var(--gold);line-height:0;vertical-align:-5px;margin-left:2px}
+.vc-meta{font-size:11px;color:var(--muted);font-weight:600}
+.vc-meta span{color:var(--g-main)}
+
+/* FAQ */
+.faq-sec{background:white}
+.faq-list{margin-top:22px;display:flex;flex-direction:column;gap:13px}
+.fq{border-bottom:1px solid #eee;padding-bottom:13px}
+.fq-q{font-size:14px;font-weight:700;color:var(--g-dark);margin-bottom:7px;display:flex;gap:7px}
+.fq-q::before{content:'Q';color:var(--gold);font-weight:900;flex-shrink:0}
+.fq-a{font-size:13px;line-height:1.8;color:#555;padding-left:19px}
+
+/* FINAL CTA */
+.cta-sec{background:linear-gradient(160deg,var(--g-main),var(--g-dark));padding:60px 24px;text-align:center;position:relative;overflow:hidden}
+.cta-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%, rgba(201,162,39,0.07) 0%, transparent 60%), radial-gradient(circle at 70% 80%, rgba(201,162,39,0.05) 0%, transparent 50%)}
+.cta-inner{position:relative;z-index:1;max-width:340px;margin:0 auto}
+.cta-ttl{font-size:22px;font-weight:900;color:white;line-height:1.5;margin-bottom:11px}
+.cta-sub{font-size:13px;color:rgba(255,255,255,0.68);line-height:1.85;margin-bottom:28px}
+.cta-sec .btn-line{max-width:100%;margin:0 auto}
+
+/* FOOTER */
+.ft{background:var(--g-dark);padding:18px 24px;text-align:center;border-top:1px solid rgba(201,162,39,0.18)}
+.ft p{font-size:11px;color:rgba(255,255,255,0.32)}
+
+/* ANIMATION */
+.fi{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.fi.on{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <a href="#" class="hd-logo">
+    <svg width="26" height="26" viewBox="0 0 52 52" fill="none"><path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z" fill="#e8f5ee" stroke="#c9a227" stroke-width="2"/><text x="26" y="33" font-family="Georgia,serif" font-size="15" font-weight="bold" fill="#1b5e35" text-anchor="middle">HG</text></svg>
+    広尾親父RC
+  </a>
+  <a href="https://line.me/ti/g/XXXXXXXXXX" class="hd-btn">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.627.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+    LINEで参加
+  </a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs>
+    <filter id="mf" color-interpolation-filters="sRGB"><feTurbulence type="turbulence" baseFrequency="0.008 0.006" numOctaves="5" seed="7" result="t"/><feColorMatrix type="matrix" values="0.22 0.1 0 0 0.04  0.22 0.1 0 0 0.18  0.22 0.1 0 0 0.07  0 0 0 0.55 0" in="t"/></filter>
+    <radialGradient id="rg" cx="40%" cy="28%" r="72%"><stop offset="0%" stop-color="#1e6b38"/><stop offset="55%" stop-color="#0d3d20"/><stop offset="100%" stop-color="#020d05"/></radialGradient>
+    <radialGradient id="vig" cx="50%" cy="50%" r="80%"><stop offset="20%" stop-color="rgba(0,0,0,0)"/><stop offset="100%" stop-color="rgba(0,0,0,0.65)"/></radialGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#rg)"/>
+    <rect width="100%" height="100%" filter="url(#mf)" opacity="0.55"/>
+    <rect width="100%" height="100%" fill="url(#vig)"/>
+    </svg>
+  </div>
+  <div class="hc">
+    <div class="badge">&#127944; 広尾学園 父親限定</div>
+    <h1 class="hero-title">走るだけで、<br><em>広尾のパパ友ができる。</em></h1>
+    <p class="hero-sub">速くなくていい。ガチじゃなくていい。<br>月に一度、一緒に走って、一緒に飲む。<br>それだけのランニングコミュニティです。</p>
+    <a href="https://line.me/ti/g/XXXXXXXXXX" class="btn-line">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.627.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      LINEグループに参加する
+    </a>
+    <p class="hero-note">参加無料 ｜ いつでも退会できます</p>
+  </div>
+  <div class="scroll-hint">
+    <span>もっと見る</span>
+    <svg width="14" height="8" viewBox="0 0 14 8" fill="none" stroke="rgba(255,255,255,0.38)" stroke-width="1.5"><path d="M1 1l6 6 6-6"/></svg>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-row">
+    <div class="st"><div class="st-n">3年目</div><div class="st-l">活動</div></div>
+    <div class="st"><div class="st-n">20+</div><div class="st-l">メンバー</div></div>
+    <div class="st"><div class="st-n">月1</div><div class="st-l">定例ラン</div></div>
+    <div class="st"><div class="st-n">毎回</div><div class="st-l">反省会</div></div>
+  </div>
+</div>
+
+<!-- PAIN -->
+<section class="sec pain-sec">
+  <div class="si">
+    <p class="lbl fi">こんなこと、ありませんか？</p>
+    <h2 class="ttl fi">入学式以来、<br>他のパパと話せていない。</h2>
+    <div class="pain-grid">
+      <div class="pc fi"><div class="pc-i">👨‍👦</div><p class="pc-t">入学式以来、他のクラスのお父さんと話す機会がない</p></div>
+      <div class="pc fi"><div class="pc-i">📋</div><p class="pc-t">健康診断の数値が毎年少しずつ気になってきた</p></div>
+      <div class="pc fi"><div class="pc-i">🏃</div><p class="pc-t">ジムに入ったけど一人だと続かない</p></div>
+      <div class="pc fi"><div class="pc-i">📡</div><p class="pc-t">子どもの学校情報や友達関係のアンテナが低い</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec about-sec">
+  <div class="si">
+    <p class="lbl fi">広尾親父RCとは</p>
+    <h2 class="ttl fi">速くなくていい。<br>ガチじゃなくていい。</h2>
+    <div class="about-body fi">
+      <p class="about-lead">月イチ、一緒に走る。反省会という名の飲み会で笑う。ランイベントで、汗と感動を共有する。</p>
+      <p>広尾学園PTA父親の会のメンバーとOBが集う、ランニングクラブです。</p>
+      <p>年齢も体力も関係なく、<strong>それぞれのペースで走れる</strong>。ここは、緑のTシャツを着た仲間のセーフティネット。</p>
+      <p>走れば体が変わる。仲間ができる。子育ての情報も自然と入ってくる。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="sec act-sec">
+  <div class="si">
+    <p class="lbl fi">活動内容</p>
+    <h2 class="ttl fi">月に一度、<br>こんなことをしています。</h2>
+    <div class="act-list">
+      <div class="ac fi">
+        <div class="ac-icon">🏃</div>
+        <div>
+          <div class="ac-ttl">定例ラン</div>
+          <p class="ac-body">月1回、駒沢公園などでみんなで走ります。距離もペースも自由。歩いてもOK。完走できれば全員ゴール。</p>
+          <span class="ac-tag">毎月開催</span>
+        </div>
+      </div>
+      <div class="ac fi">
+        <div class="ac-icon">🍺</div>
+        <div>
+          <div class="ac-ttl">反省会（飲み会）</div>
+          <p class="ac-body">走った後の一杯が格別。これが本番という声もあります。子どもの話、仕事の話、なんでも話せる場所。</p>
+          <span class="ac-tag">走った後の楽しみ</span>
+        </div>
+      </div>
+      <div class="ac fi">
+        <div class="ac-icon">🏅</div>
+        <div>
+          <div class="ac-ttl">レース参加（任意）</div>
+          <p class="ac-body">フルマラソン、トライアスロン、スパルタンレース…やる気が出てきたら有志で参戦。参加は完全自由です。</p>
+          <span class="ac-tag">やる気が出たら</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section class="sec voice-sec">
+  <div class="si">
+    <p class="lbl fi">部員の声</p>
+    <h2 class="ttl fi">走り始めたら、<br>いろんなものがついてきた。</h2>
+    <div class="vc-list">
+      <div class="vc fi">
+        <p class="vc-text">最初は息切れして5分も走れなかったのに、半年でハーフマラソンを完走できました。仲間がいるから続けられた。</p>
+        <p class="vc-meta"><span>Aさん</span> ｜ 中1のお父さん・入部2年目</p>
+      </div>
+      <div class="vc fi">
+        <p class="vc-text">入学式以来話したことがなかった同じクラスのお父さんと、今では飲み友達です。子どもより仲良くなってしまった。</p>
+        <p class="vc-meta"><span>Bさん</span> ｜ 高1のお父さん・入部1年目</p>
+      </div>
+      <div class="vc fi">
+        <p class="vc-text">正直、走るのはおまけ。反省会が目当てで来ています（笑）。でも気づいたら3キロ痩せてました。</p>
+        <p class="vc-meta"><span>Cさん</span> ｜ 中3のお父さん・入部3年目</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec faq-sec">
+  <div class="si">
+    <p class="lbl fi">よくある質問</p>
+    <h2 class="ttl fi">参加前の<br>不安を解消します。</h2>
+    <div class="faq-list">
+      <div class="fq fi">
+        <p class="fq-q">運動経験がなくても大丈夫ですか？</p>
+        <p class="fq-a">まったく問題ありません。入部時にランニング未経験だった部員も複数います。走れなければ歩けばいい、それがこのクラブです。</p>
+      </div>
+      <div class="fq fi">
+        <p class="fq-q">どのくらいのペースで走るのですか？</p>
+        <p class="fq-a">各自のペースで走ります。速い人は速く、ゆっくりな人はゆっくり。スタートとゴールが一緒なので、ひとりになりません。</p>
+      </div>
+      <div class="fq fi">
+        <p class="fq-q">参加費はかかりますか？</p>
+        <p class="fq-a">クラブへの参加費は無料です。レース参加は各自でエントリー費用が必要ですが、強制参加ではありません。</p>
+      </div>
+      <div class="fq fi">
+        <p class="fq-q">まず一回だけ来てみることはできますか？</p>
+        <p class="fq-a">もちろんです。見学・体験歓迎。一回来て合わなければ、それでもいいと思っています。まずお気軽にどうぞ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-sec">
+  <div class="cta-inner">
+    <h2 class="cta-ttl fi">まず、<br>一回来てみてください。</h2>
+    <p class="cta-sub fi">入会手続きも、申込フォームも、ありません。<br>LINEグループに入って、次の定例会に顔を出してみてください。それだけでOKです。</p>
+    <a href="https://line.me/ti/g/XXXXXXXXXX" class="btn-line fi">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.627.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      LINEグループに参加する
+    </a>
+  </div>
+</section>
+
+<footer class="ft"><p>広尾親父RC — 広尾学園 父親の会 ランニングクラブ</p></footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, {threshold: 0.12});
+document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
