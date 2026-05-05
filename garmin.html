@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>広尾親父RC ガーミン虎の巻</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f0f4f1;color:#333;font-size:14px}
+header{background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 60%,#093319 100%);color:white;padding:16px 14px 12px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.3);border-bottom:3px solid #c9a227}
+.h-inner{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.h-inner svg{flex-shrink:0}
+.h-text h1{font-size:15px;font-weight:700;letter-spacing:.04em;margin-bottom:3px}
+.h-text .sub{font-size:11px;opacity:.6}
+.filter-row{display:flex;gap:5px;flex-wrap:wrap;padding-bottom:2px}
+.filter-btn{padding:5px 11px;border-radius:20px;border:1.5px solid rgba(255,255,255,.3);background:transparent;color:white;font-size:11px;cursor:pointer;font-family:inherit;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.filter-btn.active,.filter-btn:active{background:white;border-color:white;color:#1b5e35;font-weight:700}
+.cat-section{margin:0}
+.cat-section.hidden{display:none}
+.cat-header{background:#1b5e35;color:#f0d060;font-size:12px;font-weight:700;padding:6px 14px;letter-spacing:.08em;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.cards-wrap{padding:10px 12px;display:flex;flex-direction:column;gap:10px}
+.card{background:white;border-radius:12px;padding:13px;box-shadow:0 2px 8px rgba(0,0,0,.08);border-left:4px solid #ccc}
+.card-title{font-size:14px;font-weight:700;color:#1b5e35;margin-bottom:5px;line-height:1.4}
+.card-desc{font-size:12px;color:#555;line-height:1.6;margin-bottom:8px}
+.card-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:0}
+.tag{font-size:10px;background:#f0f4f1;border-radius:6px;padding:3px 8px;color:#555}
+.lbl{color:#999;margin-right:2px}
+/* 検証バッジ */
+.badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;margin-top:4px}
+.badge-hi{background:#e8f5e9;color:#2e7d32}
+.badge-mid{background:#fff8e1;color:#f57f17}
+/* カード色分け */
+.cat-basic{border-left-color:#1565c0}
+.cat-analysis{border-left-color:#00838f}
+.cat-ai{border-left-color:#6a1b9a}
+.cat-model{border-left-color:#2e7d32}
+.cat-battery{border-left-color:#e65100}
+.cat-other{border-left-color:#558b2f}
+.cat-maintenance{border-left-color:#4e342e}
+.cat-quote{border-left-color:#c9a227;background:linear-gradient(135deg,#fffde7,#fff8e1)}
+.cat-fact{border-left-color:#78909c}
+/* ステータス階段 */
+.status-ladder{display:flex;flex-direction:column;gap:0;margin:10px 0}
+.status-rung{padding:8px 10px 8px 14px;border-left:4px solid #ccc;background:#f9f9f9;margin-bottom:6px;border-radius:0 6px 6px 0}
+.status-rung.good{border-left-color:#43a047;background:#e8f5e9}
+.status-rung.mid{border-left-color:#ffa726;background:#fff8e1;margin-left:16px}
+.status-rung.warn{border-left-color:#ef5350;background:#fce4ec;margin-left:32px}
+.status-rung.bad{border-left-color:#c62828;background:#ffebee;margin-left:48px}
+.status-label{font-size:9px;font-weight:700;color:#888;margin-bottom:2px}
+.status-name{font-size:13px;font-weight:700;margin-bottom:2px}
+.status-desc{font-size:11px;color:#666}
+/* フロー図 */
+.flow-chart{display:flex;flex-direction:column;gap:0;margin:10px 0}
+.flow-step{padding:10px 14px;border-radius:8px;font-size:12px;font-weight:700;text-align:center}
+.flow-step.input{background:#e3f2fd;border:2px solid #1565c0;color:#1565c0}
+.flow-step.process{background:#fff8e1;border:2px solid #c9a227;color:#8a6000}
+.flow-step.output{background:#e8f5e9;border:2px solid #2e7d32;color:#1b5e35}
+.flow-sub{font-size:10px;font-weight:400;margin-top:3px;opacity:.8}
+.flow-arrow{text-align:center;color:#888;font-size:18px;line-height:1;padding:2px 0}
+/* モデル比較グリッド */
+.model-grid{display:flex;flex-direction:column;gap:10px;margin:10px 0}
+.model-card{border-radius:10px;border:2px solid #e0e0e0;overflow:hidden}
+.model-card.entry{border-color:#90caf9}
+.model-card.road{border-color:#a5d6a7}
+.model-card.new2025{border-color:#ffe082}
+.model-card.trail{border-color:#1b5e35}
+.model-card.flagship{border-color:#c9a227}
+.model-card.ultra{border-color:#ab47bc}
+.model-head{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f5f5f5}
+.model-card.entry .model-head{background:#e3f2fd}
+.model-card.road .model-head{background:#e8f5e9}
+.model-card.new2025 .model-head{background:#fffde7}
+.model-card.trail .model-head{background:#e8f5e9}
+.model-card.flagship .model-head{background:#fff8e1}
+.model-card.ultra .model-head{background:#f3e5f5}
+.model-name{font-size:13px;font-weight:700}
+.model-tag{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600}
+.model-card.entry .model-tag{background:#bbdefb;color:#0d47a1}
+.model-card.road .model-tag{background:#c8e6c9;color:#1b5e35}
+.model-card.new2025 .model-tag{background:#fff9c4;color:#827717}
+.model-card.trail .model-tag{background:#1b5e35;color:white}
+.model-card.flagship .model-tag{background:#c9a227;color:white}
+.model-card.ultra .model-tag{background:#ab47bc;color:white}
+.model-body{padding:8px 12px}
+.model-row{display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid #eee}
+.model-row:last-child{border-bottom:none}
+.model-key{color:#888}
+.model-val{font-weight:600;color:#333}
+.model-val.ok{color:#2e7d32}
+.model-val.no{color:#c62828}
+.model-val.full{color:#1b5e35;font-weight:700}
+.model-user{font-size:10px;color:#1b5e35;padding:6px 12px;background:#f0f4f1;border-top:1px solid #e0e0e0}
+/* バッテリー比較 */
+.battery-table{width:100%;margin:8px 0;font-size:11px}
+.battery-row{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid #eee}
+.battery-model{width:80px;flex-shrink:0;font-weight:600;font-size:11px}
+.battery-bar-wrap{flex:1;background:#f0f0f0;border-radius:4px;height:10px;position:relative;overflow:hidden}
+.battery-bar{height:100%;border-radius:4px;background:linear-gradient(90deg,#1b5e35,#43a047)}
+.battery-bar.long{background:linear-gradient(90deg,#c9a227,#f9d84a)}
+.battery-val{width:32px;text-align:right;flex-shrink:0;font-weight:700;color:#333}
+/* 救世主ボックス */
+.hero-box{background:#fff3e0;border-left:4px solid #ff8f00;border-radius:0 8px 8px 0;padding:10px 12px;margin:10px 0;font-size:11px}
+.hero-box .hero-title{font-size:12px;font-weight:700;color:#e65100;margin-bottom:4px}
+.hero-box .hero-desc{color:#555;line-height:1.6}
+/* 注意ボックス */
+.warn-box{background:#fff3e0;border-left:3px solid #ff8f00;border-radius:0 6px 6px 0;padding:8px 10px;margin:8px 0;font-size:11px;color:#e65100}
+/* ゴルフ機能リスト */
+.feature-list{margin:8px 0;display:flex;flex-direction:column;gap:6px}
+.feature-item{font-size:11px;color:#444;padding:6px 10px;background:#f5f5f5;border-radius:6px;line-height:1.5}
+/* 評価ブロック */
+.review-block{margin:8px 0}
+.review-section{margin-bottom:10px}
+.review-title{font-size:12px;font-weight:700;margin-bottom:4px}
+.review-list{padding-left:16px;display:flex;flex-direction:column;gap:3px}
+.review-list li{font-size:11px;color:#555;line-height:1.5}
+/* 対立意見 */
+.vs-grid{display:flex;gap:8px;margin:8px 0}
+.vs-item{flex:1;border-radius:8px;padding:8px 10px}
+.vs-item.pros{background:#e8f5e9;border:1px solid #a5d6a7}
+.vs-item.cons{background:#fce4ec;border:1px solid #f48fb1}
+.vs-label{font-size:10px;font-weight:700;margin-bottom:4px}
+.vs-item.pros .vs-label{color:#2e7d32}
+.vs-item.cons .vs-label{color:#c62828}
+.vs-body{font-size:11px;color:#444;line-height:1.5}
+/* 訴訟タイムライン */
+.timeline-box{margin:8px 0;display:flex;flex-direction:column;gap:6px}
+.tl-event{padding:8px 12px;border-radius:6px;border-left:4px solid #ccc;font-size:11px}
+.tl-event.ongoing{border-left-color:#ef5350;background:#fce4ec}
+.tl-event.resolved{border-left-color:#43a047;background:#e8f5e9}
+.tl-date{font-size:10px;font-weight:700;margin-bottom:3px}
+.tl-event.ongoing .tl-date{color:#c62828}
+.tl-event.resolved .tl-date{color:#2e7d32}
+.tl-text{color:#444;line-height:1.5}
+/* ファクトチェックテーブル */
+.fact-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:11px}
+.fact-table th{background:#1b5e35;color:#f0d060;padding:5px 8px;text-align:left;font-size:10px}
+.fact-table td{padding:6px 8px;border-bottom:1px solid #eee}
+.fact-table tr:nth-child(even) td{background:#f9f9f9}
+.fc-hi{color:#2e7d32;font-weight:700}
+.fc-mid{color:#f57f17;font-weight:700}
+/* 名言 */
+.quote-text{font-size:14px;font-weight:700;color:#1b5e35;font-style:italic;line-height:1.6;margin-bottom:6px}
+.quote-author{font-size:11px;color:#888;text-align:right}
+footer{text-align:center;padding:20px;font-size:11px;color:#8aab98}
+</style>
+<style id="gold-theme">
+body{background:transparent!important}
+header{border-bottom:1px solid rgba(201,162,39,0.4)!important}
+.card{border:1px solid rgba(201,162,39,0.2)!important;border-top:2px solid rgba(201,162,39,0.5)!important;background:rgba(255,255,255,0.97)!important}
+.cat-header{border-left:3px solid rgba(201,162,39,0.5)!important}
+.filter-btn.active,.filter-btn:active{border-color:rgba(201,162,39,0.8)!important}
+</style>
+</head>
+<body>
+
+<div id="bg" aria-hidden="true" style="position:fixed;inset:0;z-index:-1;overflow:hidden">
+<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs>
+<filter id="mf" color-interpolation-filters="sRGB">
+  <feTurbulence type="turbulence" baseFrequency="0.009 0.007" numOctaves="5" seed="11" result="t"/>
+  <feColorMatrix type="matrix" values="0.25 0.1 0 0 0.04  0.25 0.1 0 0 0.16  0.25 0.1 0 0 0.07  0 0 0 0.5 0" in="t" result="c"/>
+</filter>
+<radialGradient id="rg" cx="46%" cy="26%" r="65%">
+  <stop offset="0%" stop-color="#1e5c2d"/>
+  <stop offset="50%" stop-color="#112b19"/>
+  <stop offset="100%" stop-color="#050d07"/>
+</radialGradient>
+<radialGradient id="vig" cx="50%" cy="50%" r="75%">
+  <stop offset="25%" stop-color="rgba(0,0,0,0)"/>
+  <stop offset="100%" stop-color="rgba(0,0,0,0.6)"/>
+</radialGradient>
+</defs>
+<rect width="100%" height="100%" fill="url(#rg)"/>
+<rect width="100%" height="100%" fill="#163520" filter="url(#mf)"/>
+<rect width="100%" height="100%" fill="url(#vig)"/>
+</svg>
+</div>
+
+<header>
+  <div class="h-inner">
+    <svg width="36" height="36" viewBox="0 0 52 52" fill="none">
+      <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z" fill="#e8f5ee" stroke="#c9a227" stroke-width="2"/>
+      <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#1b5e35" text-anchor="middle" letter-spacing="1">HG</text>
+    </svg>
+    <div class="h-text">
+      <h1>&#x231A; 広尾親父RC ガーミン虎の巻</h1>
+      <div class="sub">全 21 件　｜　ガー民族の集合知（2025–2026）</div>
+    </div>
+  </div>
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="setFilter('all',this)">すべて</button>
+    <button class="filter-btn" onclick="setFilter('basic',this)">基本機能</button>
+    <button class="filter-btn" onclick="setFilter('analysis',this)">分析・コーチ</button>
+    <button class="filter-btn" onclick="setFilter('ai',this)">AI連携</button>
+    <button class="filter-btn" onclick="setFilter('model',this)">モデル選び</button>
+    <button class="filter-btn" onclick="setFilter('battery',this)">バッテリー</button>
+    <button class="filter-btn" onclick="setFilter('other',this)">他競技</button>
+    <button class="filter-btn" onclick="setFilter('maintenance',this)">メンテ・トラブル</button>
+    <button class="filter-btn" onclick="setFilter('quote',this)">名言録</button>
+    <button class="filter-btn" onclick="setFilter('fact',this)">ファクトチェック</button>
+  </div>
+</header>
+
+<!-- ====== 基本機能編 ====== -->
+<section class="cat-section" data-cat="basic">
+<div class="cat-header">&#x2699;&#xFE0F; 基本機能編　（4件）</div>
+<div class="cards-wrap">
+
+  <div class="card cat-basic">
+    <div class="card-title">レース中のペースアラート・アナウンス</div>
+    <div class="card-desc">イヤホンとガーミン時計をBluetooth接続しておくと、ペースアラートやアナウンスがイヤホンから流れる。設定はガーミンコネクトアプリから可能。</div>
+    <div class="warn-box">注意：レース本番でいきなり使うと設定変更ができず、誤報がかえってストレスになる。必ず練習で何度か試すこと。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">発言</span>しんちゃん</span>
+      <span class="tag"><span class="lbl">時期</span>2025/3</span>
+    </div>
+  </div>
+
+  <div class="card cat-basic">
+    <div class="card-title">Spotifyで音楽再生（プレミアム必須）</div>
+    <div class="card-desc">SpotifyのPremium登録（月額千円程度）後、ガーミンコネクトアプリ → 詳細 → Garminデバイスから設定。スマホなしでランニング中に音楽を聴ける。<br><br>しんちゃんはレース中、広尾親父動画で使用した曲のプレイリストを聴いて自分を鼓舞しているとのこと。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">発言</span>しんちゃん</span>
+    </div>
+  </div>
+
+  <div class="card cat-basic">
+    <div class="card-title">レース予定をカレンダーに登録</div>
+    <div class="card-desc">ガーミンコネクトアプリ → カレンダー → 日程選択 → イベント追加 → キーワード検索 → ゴール時間入力。トレーニングプランも自動でレース日に合わせて調整される。<br><br>複数イベントを同時登録もでき、AIが各レースに合わせて優先順位を組み立て直す（2025/11以降の機能改善）。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">発言</span>しんちゃん／安さん</span>
+    </div>
+  </div>
+
+  <div class="card cat-basic">
+    <div class="card-title">PacePro（坂を考慮したペース設定）</div>
+    <div class="card-desc">渡さん流。レースコースの上り下りに応じてペースを自動調整して案内してくれる機能。動画解説あり。<br><br>ロード（フルマラソン等）でペースを細かくコントロールしたいときに有効。トレランやウルトラでは正直、走ってる途中にペースを見る余裕がないので限定的（しんちゃん談）。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">情報</span>渡さん</span>
+      <span class="tag"><span class="lbl">解説動画</span>しんちゃん</span>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ====== 分析・コーチ編 ====== -->
+<section class="cat-section" data-cat="analysis">
+<div class="cat-header">&#x1F4CA; 分析・コーチ編　（4件）</div>
+<div class="cards-wrap">
+
+  <div class="card cat-analysis">
+    <div class="card-title">トレーニングステータスの読み方</div>
+    <div class="card-desc">走り込みすぎるとガーミンのステータスが段階的に悪化していく。下のほうが良好、上に行くほど休息が必要。</div>
+    <div class="status-ladder">
+      <div class="status-rung good">
+        <div class="status-label">良好</div>
+        <div class="status-name">プロダクティブ</div>
+        <div class="status-desc">負荷と効果のバランスが取れた理想状態。</div>
+      </div>
+      <div class="status-rung mid">
+        <div class="status-label">微妙</div>
+        <div class="status-name">アンプロダクティブ</div>
+        <div class="status-desc">負荷の割に効果が出ていない状態。強度・頻度の見直し。</div>
+      </div>
+      <div class="status-rung warn">
+        <div class="status-label">注意</div>
+        <div class="status-name">疲れています</div>
+        <div class="status-desc">休息が必要。軽めの練習に切り替え。</div>
+      </div>
+      <div class="status-rung bad">
+        <div class="status-label">最悪</div>
+        <div class="status-name">オーバーリーチ</div>
+        <div class="status-desc">回復に時間がかかる過負荷状態。練習量を大幅に減らすべき。</div>
+      </div>
+    </div>
+    <div class="card-desc">※気温が高くなると心拍が上がり、結果的にVO2Maxの推定値も下がる。季節要因による変動は気にしすぎないほうがよい（渡さん）。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">体験</span>しんちゃん（小江戸→ハセツネ→青梅高水で連続オーバーリーチ）</span>
+      <span class="tag"><span class="lbl">出典</span>渡さん／海津バイセン</span>
+    </div>
+  </div>
+
+  <div class="card cat-analysis">
+    <div class="card-title">VO2Max と気温の関係</div>
+    <div class="card-desc">気温が高くなると心拍が上昇し、ガーミンが推定するVO2Maxも下がる。これは身体が皮膚への血流を増やして冷却するため、心臓への負担が増えるから。<br><br>夏にVO2Maxが下がっていても、必ずしもフィットネスが落ちたわけではない。涼しくなれば回復することが多い。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">発言</span>渡さん</span>
+      <span class="badge badge-hi">◎ 検証：高信頼（生理学的に整合）</span>
+    </div>
+  </div>
+
+  <div class="card cat-analysis">
+    <div class="card-title">ガーミンコーチ ─ 利用者レビュー</div>
+    <div class="card-desc">吉良さん詳細レビュー（フルマラソン用プログラム1サイクル経験）：</div>
+    <div class="review-block">
+      <div class="review-section">
+        <div class="review-title">&#x1F44D; 良かった点</div>
+        <ul class="review-list">
+          <li>知識ゼロからの入り口として最適</li>
+          <li>頻度・強度の感覚がつかめる</li>
+          <li>ウォッチに自動セットされ入力不要</li>
+          <li>結果を評価してくれる</li>
+        </ul>
+      </div>
+      <div class="review-section">
+        <div class="review-title">&#x1F44E; イマイチな点</div>
+        <ul class="review-list">
+          <li>レディネスが悪いと予定がスキップされる</li>
+          <li>1週間先までしか見えず、長期計画が見えない</li>
+          <li>練習の意図（何のため）の説明が薄い</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-desc">&#x1F4A1; 結論：1サイクル走って必要な知識が身についたので、現在はChatGPTで自分用プランを組んでいる。「リディアード式」がベースだとあとから判明したのも収穫。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">レビュー</span>吉良さん</span>
+      <span class="tag"><span class="lbl">時期</span>2025/7</span>
+    </div>
+  </div>
+
+  <div class="card cat-analysis">
+    <div class="card-title">Garmin Connect+ サブスク（月額1,180円）</div>
+    <div class="card-desc">2025年3月にローンチされた有料サブスク。AIによるパーソナライズ提案・Trails+（トレイル検索強化）などが追加機能。30日間お試し無料。</div>
+    <div class="vs-grid">
+      <div class="vs-item pros">
+        <div class="vs-label">&#x1F4AC; 肯定派</div>
+        <div class="vs-body">「AIコメントでモチベ上がる」<br><small>（松さん、Stravaサブスク類似評価）</small></div>
+      </div>
+      <div class="vs-item cons">
+        <div class="vs-label">&#x1F914; 様子見派</div>
+        <div class="vs-body">「精度が信頼できないので様子見」<br><small>（岡さん）</small></div>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">情報</span>渡さん／岡さん</span>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ====== AI連携編 ====== -->
+<section class="cat-section" data-cat="ai">
+<div class="cat-header">&#x1F916; AI連携編　（3件）</div>
+<div class="cards-wrap">
+
+  <div class="card cat-ai">
+    <div class="card-title">FITデータをAIで深掘り分析</div>
+    <div class="card-desc">ガーミンコネクトのウェブ版（PC）からFITデータをダウンロードして、AIに渡すと、ピッチ・ストライド・上下動などの細かいフォーム指導まで受けられる。</div>
+    <div class="flow-chart">
+      <div class="flow-step input">① 入力<div class="flow-sub">Garmin Connect Web → FITファイルダウンロード</div></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step process">② 処理<div class="flow-sub">Claude / ChatGPT に投入</div></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step output">③ 出力<div class="flow-sub">フォーム指導・トレーニング処方</div></div>
+    </div>
+    <div class="card-desc">※AIスキルが必要。「やってる暇があったら走った方がいい」かもしれないが、データオタクには楽しい。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">手法</span>はやさん</span>
+      <span class="tag"><span class="lbl">時期</span>2026/4</span>
+    </div>
+  </div>
+
+  <div class="card cat-ai">
+    <div class="card-title">ChatGPTスクショ分析（一番手軽）</div>
+    <div class="card-desc">ガーミンコネクトのスクショを撮って、無料のChatGPTにアップロードするだけ。トレーニング状況の分析とアドバイスがもらえる。AIスキル不要、無料。<br><br>ハードルが低く、誰でも始められる入門編。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">手法</span>小田さん</span>
+      <span class="tag"><span class="lbl">時期</span>2026/4</span>
+    </div>
+  </div>
+
+  <div class="card cat-ai">
+    <div class="card-title">Adaptive Running Coach（Strava連携）</div>
+    <div class="card-desc">Stravaのデータから自動でプランを組んでくれるChatGPTのカスタムGPT。データ入力が楽。ただしStravaのAPI上限に当たることがある（時間帯を変えれば可）。<br><br>松さんはStravaにアクセスできず、個別データをChatGPTに送って回答を得た：「身長178cm/体重77kg → 目標70kgへの減量は最重要なスピード要素」「体重1kg減で1km 2〜3秒短縮」と厳しい指摘あり。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">紹介</span>はやさん</span>
+      <span class="tag"><span class="lbl">体験</span>松さん</span>
+      <span class="badge badge-mid">○ 検証：「2-3秒/km」はやや控えめ、実際は4〜13秒/km</span>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ====== モデル選び編 ====== -->
+<section class="cat-section" data-cat="model">
+<div class="cat-header">&#x231A; モデル選び編　（モデル比較）</div>
+<div class="cards-wrap">
+
+  <div class="card cat-model">
+    <div class="card-title">2025–2026 ガーミン Forerunner 系 比較</div>
+    <div class="card-desc">広尾親父RCで使われている主要モデル。用途と予算で選び分け。</div>
+    <div class="model-grid">
+
+      <div class="model-card entry">
+        <div class="model-head">
+          <span class="model-name">Forerunner 165</span>
+          <span class="model-tag">エントリー</span>
+        </div>
+        <div class="model-body">
+          <div class="model-row"><span class="model-key">コンセプト</span><span class="model-val">これからガーミンを始める人の最初の1台</span></div>
+          <div class="model-row"><span class="model-key">地図機能</span><span class="model-val no">× 簡易ナビのみ</span></div>
+        </div>
+        <div class="model-user">向いている人：野さんのようにガーミン初導入、フル/ハーフが主戦場</div>
+      </div>
+
+      <div class="model-card road">
+        <div class="model-head">
+          <span class="model-name">Forerunner 265 / 265s</span>
+          <span class="model-tag">ロード定番</span>
+        </div>
+        <div class="model-body">
+          <div class="model-row"><span class="model-key">コンセプト</span><span class="model-val">ロード向きの主力。価格と機能のバランス◎</span></div>
+          <div class="model-row"><span class="model-key">地図機能</span><span class="model-val no">× ブレッドクラムのみ</span></div>
+        </div>
+        <div class="model-user">向いている人：しんちゃんが「ロード用に」買ったように、トレラン未参戦のフル/ハーフ走者</div>
+      </div>
+
+      <div class="model-card new2025">
+        <div class="model-head">
+          <span class="model-name">Forerunner 570</span>
+          <span class="model-tag">2025新型</span>
+        </div>
+        <div class="model-body">
+          <div class="model-row"><span class="model-key">コンセプト</span><span class="model-val">最新HRセンサー＋軽量。265後継的位置づけ</span></div>
+          <div class="model-row"><span class="model-key">地図機能</span><span class="model-val no">×</span></div>
+        </div>
+        <div class="model-user">向いている人：軽量重視、最新センサーが欲しい</div>
+      </div>
+
+      <div class="model-card trail">
+        <div class="model-head">
+          <span class="model-name">Forerunner 965</span>
+          <span class="model-tag">トレラン定番</span>
+        </div>
+        <div class="model-body">
+          <div class="model-row"><span class="model-key">コンセプト</span><span class="model-val">マップ完備＋長時間バッテリー。広尾親父RCの主力</span></div>
+          <div class="model-row"><span class="model-key">地図機能</span><span class="model-val full">◎ 地形図・道路・トレイル</span></div>
+          <div class="model-row"><span class="model-key">特徴</span><span class="model-val">自動コース生成、ウルトラ向き</span></div>
+        </div>
+        <div class="model-user">向いている人：岡さん／みっちーさん／たくちゃんなど、トレラン・ウルトラ視野。広尾親父RCで最も愛用者多し</div>
+      </div>
+
+      <div class="model-card flagship">
+        <div class="model-head">
+          <span class="model-name">Forerunner 970</span>
+          <span class="model-tag">2025最新フラッグシップ</span>
+        </div>
+        <div class="model-body">
+          <div class="model-row"><span class="model-key">コンセプト</span><span class="model-val">965の正常進化＋ECG・スピーカー・LEDライト</span></div>
+          <div class="model-row"><span class="model-key">地図機能</span><span class="model-val full">◎</span></div>
+          <div class="model-row"><span class="model-key">新機能</span><span class="model-val">サファイアガラス、Triathlon Coach、Running Tolerance</span></div>
+          <div class="model-row"><span class="model-key">価格</span><span class="model-val">$749.99</span></div>
+        </div>
+        <div class="model-user">向いている人：たっちーさん（Apple Watchから乗り換え）のように、最新機能を一通り欲しい人</div>
+      </div>
+
+      <div class="model-card ultra">
+        <div class="model-head">
+          <span class="model-name">Enduro 3</span>
+          <span class="model-tag">100マイル対応</span>
+        </div>
+        <div class="model-body">
+          <div class="model-row"><span class="model-key">コンセプト</span><span class="model-val">ウルトラ・100マイラー専用機</span></div>
+          <div class="model-row"><span class="model-key">地図機能</span><span class="model-val full">◎</span></div>
+        </div>
+        <div class="model-user">向いている人：及さん／たじーさんのように、100マイルを目指すドM領域</div>
+      </div>
+
+    </div>
+    <div class="card-meta" style="margin-top:8px">
+      <span class="tag"><span class="lbl">情報</span>はやさん（部員導入実績ベース）</span>
+      <span class="badge badge-hi">◎ 検証：仕様は公式サイト準拠</span>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ====== バッテリー・長距離編 ====== -->
+<section class="cat-section" data-cat="battery">
+<div class="cat-header">&#x1F50B; バッテリー・長距離編　（3件）</div>
+<div class="cards-wrap">
+
+  <div class="card cat-battery">
+    <div class="card-title">ウルトラ・100マイル対応バッテリー比較</div>
+    <div class="card-desc">GPSモード（マルチバンド）での連続稼働時間。レース距離との相対関係で見るのが実用的。</div>
+    <div class="battery-table">
+      <div class="battery-row">
+        <div class="battery-model">FR 165</div>
+        <div class="battery-bar-wrap"><div class="battery-bar" style="width:19%"></div></div>
+        <div class="battery-val">17h</div>
+      </div>
+      <div class="battery-row">
+        <div class="battery-model">FR 265s</div>
+        <div class="battery-bar-wrap"><div class="battery-bar" style="width:22%"></div></div>
+        <div class="battery-val">20h</div>
+      </div>
+      <div class="battery-row">
+        <div class="battery-model">FR 265</div>
+        <div class="battery-bar-wrap"><div class="battery-bar" style="width:24%"></div></div>
+        <div class="battery-val">22h</div>
+      </div>
+      <div class="battery-row">
+        <div class="battery-model">FR 965</div>
+        <div class="battery-bar-wrap"><div class="battery-bar" style="width:30%"></div></div>
+        <div class="battery-val">27h</div>
+      </div>
+      <div class="battery-row">
+        <div class="battery-model">FR 970</div>
+        <div class="battery-bar-wrap"><div class="battery-bar" style="width:29%"></div></div>
+        <div class="battery-val">26h</div>
+      </div>
+      <div class="battery-row">
+        <div class="battery-model">Enduro 3</div>
+        <div class="battery-bar-wrap"><div class="battery-bar long" style="width:100%"></div></div>
+        <div class="battery-val">90h</div>
+      </div>
+    </div>
+    <div class="card-desc" style="margin-top:6px">目安：富士五湖100km=12h前後、ハセツネ=12〜18h、奥信濃100km=14〜20h、UTMF（100mile）=27〜46h</div>
+    <div class="hero-box">
+      <div class="hero-title">&#x1F9E1; 救世主：充電しながら計測継続</div>
+      <div class="hero-desc">965/970/Enduro系は、走りながらモバイルバッテリー＋USB-Cで給電可能。坂さん・しんちゃんは富士五湖や奥信濃で実証済み。USB-Cヘッドのアダプタ（及さん推薦）が便利。</div>
+    </div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">体験</span>しんちゃん／坂さん</span>
+      <span class="tag"><span class="lbl">出典</span>渡さん</span>
+    </div>
+  </div>
+
+  <div class="card cat-battery">
+    <div class="card-title">ハセツネ用：地図（GPX）の使い方</div>
+    <div class="card-desc">もっちーさんによる詳しい動画解説あり（広尾親父RCのアルバム内）。事前にコースGPXを取り込んでおけば、当日の道迷いを大幅に減らせる。<br><br>ただしマップ表示は265系（ブレッドクラムのみ）では限定的。トレランするなら965以上推奨。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">情報</span>もっちーさん</span>
+      <span class="tag"><span class="lbl">時期</span>2025/3</span>
+    </div>
+  </div>
+
+  <div class="card cat-battery">
+    <div class="card-title">ガーミン充電コードの予備</div>
+    <div class="card-desc">純正でなくともAmazonで安価な互換ケーブルが手に入る。100マイルクラスのレースに出る人は予備＋モバイルバッテリーを用意するのが安心。<br><br>「200マイルも視野に入る」（石さん談、半分冗談）。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">情報</span>石さん</span>
+      <span class="tag"><span class="lbl">アダプタ</span>及さん（USB-Cヘッド型）</span>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ====== 他競技編 ====== -->
+<section class="cat-section" data-cat="other">
+<div class="cat-header">&#x26F3; 他競技編　（1件）</div>
+<div class="cards-wrap">
+
+  <div class="card cat-other">
+    <div class="card-title">ゴルフでガーミンを使う（kotaroさんノウハウ）</div>
+    <div class="card-desc">955/965で実用。GPSがちゃんと拾える場所であればコース検索は問題なし。</div>
+    <div class="card-desc" style="font-weight:700;margin-bottom:4px">使える機能：</div>
+    <div class="feature-list">
+      <div class="feature-item">① 打数の自動カウント（パター以外）。素振りはカウントしない優秀さ</div>
+      <div class="feature-item">② 何打目をどこから打ったかをアプリで振り返り（リアルタイム不可）</div>
+      <div class="feature-item">③ 当日のピン位置を設定し、現在地から残ヤード計算（高精度）</div>
+      <div class="feature-item">④ ※ただし良い道具を持っていても、練習しないと上手にならない（kotaroさん金言）</div>
+    </div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">情報</span>kotaroさん</span>
+      <span class="tag"><span class="lbl">時期</span>2025/5</span>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ====== メンテ・トラブル編 ====== -->
+<section class="cat-section" data-cat="maintenance">
+<div class="cat-header">&#x1F527; メンテ・トラブル編　（3件）</div>
+<div class="cards-wrap">
+
+  <div class="card cat-maintenance">
+    <div class="card-title">保護フィルム必要 vs 不要 ─ 部員の見解</div>
+    <div class="vs-grid">
+      <div class="vs-item pros">
+        <div class="vs-label">&#x1F6E1; 必要派</div>
+        <div class="vs-body">及さん（純正貼付、3日目で玄関にぶつけて傷防止に役立った）／坂さん（純正2枚入り）／渡さん（傷ついたことなし）</div>
+      </div>
+      <div class="vs-item cons">
+        <div class="vs-label">&#x1F600; 不要派</div>
+        <div class="vs-body">kotaroさん（955を2年使って傷なし）／天さん（255を3年使用、縁が画面より高いので直接ダメージ受けにくい）</div>
+      </div>
+    </div>
+    <div class="card-desc">結論：傷ついたときの精神的・金銭的ダメージをどう考えるか、好みの問題。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">時期</span>2025/6</span>
+    </div>
+  </div>
+
+  <div class="card cat-maintenance">
+    <div class="card-title">古い地図の削除方法</div>
+    <div class="card-desc">ガーミンを操作して、トレランモードで地図を開始する画面の一番下に「削除」ボタンがある。長く使っていてストレージが圧迫されてきたら、古い地図を破棄して新しいものに入れ替え可能。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">情報</span>石さん</span>
+      <span class="tag"><span class="lbl">時期</span>2025/7</span>
+    </div>
+  </div>
+
+  <div class="card cat-maintenance">
+    <div class="card-title">スイム時の誤操作回避</div>
+    <div class="card-desc">ガーミン公式から「お手入れ方法」のリールが流れてきている。泳いでいると誤ってボタンを押してしまうことがあるが、対策方法も含めて解説あり。</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">関連</span>荒さん</span>
+      <span class="tag"><span class="lbl">体験</span>篠さん</span>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ====== 名言・迷言録 ====== -->
+<section class="cat-section" data-cat="quote">
+<div class="cat-header">&#x1F4AC; 名言・迷言録　（4件）</div>
+<div class="cards-wrap">
+
+  <div class="card cat-quote">
+    <div class="quote-text">「ガー民族とか、やっちまったな、と思いますが、少しだけ挽回出来たようなので、安心して眠りにつきます」</div>
+    <div class="quote-author">— kotaroさん（このグループ命名譚）</div>
+  </div>
+
+  <div class="card cat-quote">
+    <div class="quote-text">「ガーミンは空振りは許してくれるということですかね&#x1F923;」</div>
+    <div class="quote-author">— しんちゃん（ゴルフでパター以外は自動カウント、と聞いて）</div>
+  </div>
+
+  <div class="card cat-quote">
+    <div class="quote-text">「私は意志の弱い人間だなぁ、と改めて」</div>
+    <div class="quote-author">— たくちゃん（両足負傷中なのに965を結局買ってしまって）</div>
+  </div>
+
+  <div class="card cat-quote">
+    <div class="quote-text">「人生の初フルを完走します&#xFF01;」</div>
+    <div class="quote-author">— みっちーさん（965を先行投資として購入し）</div>
+  </div>
+
+</div>
+</section>
+
+<!-- ====== ファクトチェック ====== -->
+<section class="cat-section" data-cat="fact">
+<div class="cat-header">&#x1F50D; ファクトチェック注記　（参考）</div>
+<div class="cards-wrap">
+
+  <div class="card cat-fact">
+    <div class="card-title">本ページ掲載内容の検証ステータス</div>
+    <div class="card-desc">主要な主張は2026年5月時点の公開情報・公式仕様・査読論文で検証済みです。</div>
+    <table class="fact-table">
+      <thead><tr><th>主張</th><th>検証</th></tr></thead>
+      <tbody>
+        <tr><td>VO2Max は気温で下がる</td><td class="fc-hi">◎</td></tr>
+        <tr><td>FR265 地図不可、FR965 地図可</td><td class="fc-hi">◎</td></tr>
+        <tr><td>FR970 ECG/スピーカー/LED搭載</td><td class="fc-hi">◎</td></tr>
+        <tr><td>体重1kg減 → 1km 2〜3秒短縮</td><td class="fc-mid">○</td></tr>
+        <tr><td>Strava → Garmin 提訴（10/2）</td><td class="fc-mid">○</td></tr>
+      </tbody>
+    </table>
+    <div class="card-desc" style="margin-top:4px;font-size:10px;color:#888">◎ 高信頼　○ 補正・追加が必要　△ 一部誤り</div>
+  </div>
+
+  <div class="card cat-fact" style="border-left-color:#c62828">
+    <div class="card-title" style="color:#c62828">&#x1F4CC; 重要追記：ストラバ訴訟は取下げ済み</div>
+    <div class="timeline-box">
+      <div class="tl-event ongoing">
+        <div class="tl-date">2025/10/4 三さん投下時点：訴訟継続中</div>
+        <div class="tl-text">コロラド地裁にてStravaがGarminを特許侵害で提訴（9/30）。Segments・Heatmap機能が対象。</div>
+      </div>
+      <div class="tl-event resolved">
+        <div class="tl-date">その後の展開（10/21）：取下げ</div>
+        <div class="tl-text">Stravaが自主的に訴訟を取り下げ（提訴からわずか21日）。Garminの圧倒的な特許ポートフォリオを前に、反訴リスクとIPO戦略を考慮した撤退と見られる。</div>
+      </div>
+    </div>
+    <div class="card-desc">結論：宮さんが懸念した「使い勝手が悪くなる」事態は当面回避された。</div>
+  </div>
+
+  <div class="card cat-fact">
+    <div class="card-title">&#x1F4CC; 体重と速度の関係（精緻版）</div>
+    <div class="card-desc">ChatGPTが回答した「1kg減 → 1km 2〜3秒短縮」は実は<strong>かなり控えめ</strong>。Daniels の体重補正則および runningtimecalculator のモデルでは：</div>
+    <div class="feature-list">
+      <div class="feature-item">1kg減 ≒ 約1.4%の速度向上（70kgランナーの場合）</div>
+      <div class="feature-item">5:00/kmペースなら約 <strong>4〜13秒/km</strong> 短縮</div>
+      <div class="feature-item">マラソンで約3分短縮の効果</div>
+      <div class="feature-item">※ただし減量5%超は筋量低下リスクで効果が逆転する場合も</div>
+    </div>
+    <div class="card-desc" style="margin-top:8px;font-size:10px;color:#888">主な根拠：Outside Online（VO2Max・気温）／Garmin公式仕様書／DC Rainmaker（FR970レビュー、訴訟動向）／runningtimecalculator.com（Daniels式）／Bicycle Retailer（訴訟報道）</div>
+    <div class="card-meta">
+      <span class="tag"><span class="lbl">情報</span>はやさん + Claude（2026/5）</span>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<footer>広尾親父RC ─ ガーミン虎の巻 ─ 2026</footer>
+
+<!-- ====== 認証オーバーレイ ====== -->
+<div id="auth-overlay" style="position:fixed;inset:0;background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
+  <div style="background:white;border-radius:20px;padding:36px 28px;max-width:320px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.3);text-align:center">
+    <svg width="60" height="60" viewBox="0 0 52 52" fill="none" style="margin-bottom:16px">
+      <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z" fill="#e8f5ee" stroke="#1b5e35" stroke-width="2"/>
+      <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#1b5e35" text-anchor="middle" letter-spacing="1">HG</text>
+    </svg>
+    <div style="font-size:16px;font-weight:700;color:#1b5e35;margin-bottom:4px">広尾親父RC</div>
+    <div style="font-size:12px;color:#888;margin-bottom:24px">部員専用ページ</div>
+    <input type="password" id="pw-input" placeholder="パスワード" inputmode="numeric" pattern="[0-9]*"
+      style="width:100%;padding:12px 14px;border:2px solid #ddd;border-radius:10px;font-size:16px;text-align:center;letter-spacing:4px;outline:none;font-family:inherit;margin-bottom:10px">
+    <button onclick="checkPw()"
+      style="width:100%;padding:12px;background:linear-gradient(135deg,#1b5e35,#0d3d20);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">
+      入室する
+    </button>
+    <div id="pw-err" style="display:none;margin-top:10px;font-size:12px;color:#e53935">パスワードが違います</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var PASS='0530', KEY='hg-rc-auth';
+  if(sessionStorage.getItem(KEY)==='1') document.getElementById('auth-overlay').style.display='none';
+  document.getElementById('pw-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkPw();});
+  window.checkPw=function(){
+    if(document.getElementById('pw-input').value===PASS){
+      sessionStorage.setItem(KEY,'1');
+      document.getElementById('auth-overlay').style.display='none';
+    } else {
+      document.getElementById('pw-err').style.display='block';
+      document.getElementById('pw-input').value='';
+      document.getElementById('pw-input').focus();
+    }
+  };
+})();
+
+function setFilter(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.cat-section').forEach(function(s){
+    if(cat==='all'||s.dataset.cat===cat){s.classList.remove('hidden');}
+    else{s.classList.add('hidden');}
+  });
+}
+</script>
+</body>
+</html>
