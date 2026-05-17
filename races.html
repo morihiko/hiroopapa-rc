@@ -213,76 +213,30 @@
   .hg-emblem { flex-shrink: 0; }
   header h1 { margin-bottom: 4px; }
 </style>
-<style id="gold-theme">
-/* 大理石背景対応 */
-body{background:transparent!important}
-/* ヘッダー金線 */
-header{border-bottom:1px solid rgba(201,162,39,0.4)!important}
-/* カード金縁 */
-.card{border:1px solid rgba(201,162,39,0.2)!important;border-top:2px solid rgba(201,162,39,0.5)!important;background:rgba(255,255,255,0.97)!important}
-/* セクション見出し金色 */
-.divider{color:rgba(201,162,39,0.9)!important;border-left:2px solid rgba(201,162,39,0.6);padding-left:8px!important}
-/* ボタン金縁 */
-.btn{border:1px solid rgba(201,162,39,0.25)!important}
-/* ストーリーカード金縁 */
-.story-card{border:1px solid rgba(201,162,39,0.2)!important;border-top:2px solid rgba(201,162,39,0.45)!important}
-/* ページタイトル */
-.page-title{text-shadow:0 2px 12px rgba(0,0,0,0.5)}
-/* 認証カード金縁 */
-#auth-overlay>div{border:1px solid rgba(201,162,39,0.3)!important}
-/* pain.html カード */
-.card.visible{border-left:4px solid #c9a227!important}
-/* フィルターボタン */
-.filter-btn.active,.filter-btn:hover{background:#1b5e35;border-color:rgba(201,162,39,0.5)!important}
-</style>
 </head>
 <body>
-<div id="bg" aria-hidden="true" style="position:fixed;inset:0;z-index:-1;overflow:hidden">
-<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs>
-<filter id="mf" color-interpolation-filters="sRGB">
-  <feTurbulence type="turbulence" baseFrequency="0.009 0.007" numOctaves="5" seed="11" result="t"/>
-  <feColorMatrix type="matrix" values="0.25 0.1 0 0 0.04  0.25 0.1 0 0 0.16  0.25 0.1 0 0 0.07  0 0 0 0.5 0" in="t" result="c"/>
-</filter>
-<radialGradient id="rg" cx="46%" cy="26%" r="65%">
-  <stop offset="0%" stop-color="#1e5c2d"/>
-  <stop offset="50%" stop-color="#112b19"/>
-  <stop offset="100%" stop-color="#050d07"/>
-</radialGradient>
-<radialGradient id="vig" cx="50%" cy="50%" r="75%">
-  <stop offset="25%" stop-color="rgba(0,0,0,0)"/>
-  <stop offset="100%" stop-color="rgba(0,0,0,0.6)"/>
-</radialGradient>
-</defs>
-<rect width="100%" height="100%" fill="url(#rg)"/>
-<rect width="100%" height="100%" fill="#163520" filter="url(#mf)"/>
-<rect width="100%" height="100%" fill="url(#vig)"/>
-</svg>
-</div>
-
 
 <header>
   <div class="header-inner">
 
-  <a href="./index.html" style="display:inline-block;cursor:pointer;text-decoration:none;">
-    <div class="hg-emblem">
-      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Shield -->
-        <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z"
-          fill="rgba(255,255,255,0.08)" stroke="#c9a227" stroke-width="1.5"/>
-        <!-- HG text -->
-        <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold"
-          fill="#c9a227" text-anchor="middle" letter-spacing="1">HG</text>
-        <!-- Laurel left -->
-        <path d="M9 26 Q7 22 10 19 Q8 24 11 26 Z" fill="#c9a227" opacity="0.7"/>
-        <path d="M8 31 Q5 27 8 24 Q7 29 10 31 Z" fill="#c9a227" opacity="0.7"/>
-        <path d="M10 36 Q7 33 10 30 Q9 34 12 36 Z" fill="#c9a227" opacity="0.6"/>
-        <!-- Laurel right -->
-        <path d="M43 26 Q45 22 42 19 Q44 24 41 26 Z" fill="#c9a227" opacity="0.7"/>
-        <path d="M44 31 Q47 27 44 24 Q45 29 42 31 Z" fill="#c9a227" opacity="0.7"/>
-        <path d="M42 36 Q45 33 42 30 Q43 34 40 36 Z" fill="#c9a227" opacity="0.6"/>
-      </svg>
-    </div>
-  </a>
+  <div class="hg-emblem">
+    <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Shield -->
+      <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z"
+        fill="rgba(255,255,255,0.08)" stroke="#c9a227" stroke-width="1.5"/>
+      <!-- HG text -->
+      <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold"
+        fill="#c9a227" text-anchor="middle" letter-spacing="1">HG</text>
+      <!-- Laurel left -->
+      <path d="M9 26 Q7 22 10 19 Q8 24 11 26 Z" fill="#c9a227" opacity="0.7"/>
+      <path d="M8 31 Q5 27 8 24 Q7 29 10 31 Z" fill="#c9a227" opacity="0.7"/>
+      <path d="M10 36 Q7 33 10 30 Q9 34 12 36 Z" fill="#c9a227" opacity="0.6"/>
+      <!-- Laurel right -->
+      <path d="M43 26 Q45 22 42 19 Q44 24 41 26 Z" fill="#c9a227" opacity="0.7"/>
+      <path d="M44 31 Q47 27 44 24 Q45 29 42 31 Z" fill="#c9a227" opacity="0.7"/>
+      <path d="M42 36 Q45 33 42 30 Q43 34 40 36 Z" fill="#c9a227" opacity="0.6"/>
+    </svg>
+  </div>
     <div class="header-text">
       <h1>🏃 広尾親父RC　2026 年間レース表</h1>
       <div class="subtitle">全 44 大会・イベント</div>
@@ -506,6 +460,16 @@ header{border-bottom:1px solid rgba(201,162,39,0.4)!important}
       </div>
     </div>
 
+    <div class="card イベント" data-cat="イベント">
+      <div class="card-top">
+        <div class="card-date">3/29(日)</div>
+        <span class="card-badge badge-イベント">イベント</span>
+      </div>
+      <div class="card-title">桜の名所を巡るラン</div>
+      <div class="card-desc">TOSSY企画。新橋→桜門→靖国→浅草。満開の桜の中を都内ラン。反省会は浅草ツリーハウス。</div>
+      <div class="card-footer">
+        <div class="card-members">👥 TOSSY、新保、山口、間瀬、岡、他多数</div>
+      </div>
     </div>
 
   </div>
@@ -631,11 +595,11 @@ header{border-bottom:1px solid rgba(201,162,39,0.4)!important}
 
     <div class="card その他" data-cat="その他">
       <div class="card-top">
-        <div class="card-date">5/24(日)</div>
+        <div class="card-date">5/30-31</div>
         <span class="card-badge badge-その他">その他</span>
       </div>
-      <div class="card-title">スパルタンレース千葉</div>
-      <div class="card-desc">新保さんが参加。泥だらけの障害物レース。</div>
+      <div class="card-title">スパルタンレース＠千葉ドイツ村</div>
+      <div class="card-desc">5/30-31開催、広尾親父RCは5/31参加。泥だらけの障害物レース。</div>
       <div class="card-footer">
         <div class="card-members">👥 新保、緒方、渡辺、石原、他</div>
         <a href="https://spartanracejapan.jp/" class="card-link" target="_blank">公式サイト</a>
@@ -750,19 +714,6 @@ header{border-bottom:1px solid rgba(201,162,39,0.4)!important}
 <div class="month-section" data-month="9">
   <div class="month-header">9月</div>
   <div class="cards-container">
-    <div class="card イベント" data-cat="イベント">
-      <div class="card-top">
-        <div class="card-date">9/5(土)</div>
-        <span class="card-badge badge-イベント">イベント</span>
-      </div>
-      <div class="card-title">靭帯損傷組の復帰祝いラン 🎉</div>
-      <div class="card-desc">吉良＆篠田のカムバックラン。第128回・TAMAハーフマラソンに便乗参加。「確実に置いていかれちゃいますが😂」とのこと。伴走歓迎。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 吉良、篠田</div>
-        <a href="https://runnet.jp/entry/runtes/user/pc/moshicomDetailAction.do?raceId=138398&amp;div=1" class="card-link" target="_blank">レース詳細</a>
-      </div>
-    </div>
-
 
     <div class="card ロード" data-cat="ロード">
       <div class="card-top">
