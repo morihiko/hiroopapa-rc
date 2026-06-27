@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>トライアスロン虎の巻 | 広尾親父RC</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g-dark:#0d3d20;--g-main:#1b5e35;--g-mid:#2e7d4f;
+  --gold:#c9a227;--white:#fff;--off:#f7f5f0;
+  --text:#1a1a1a;--muted:#666;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+
+/* HEADER */
+.hd{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:11px 18px;background:rgba(10,48,24,0.93);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,162,39,0.25)}
+.hd-logo{display:flex;align-items:center;gap:7px;color:white;font-weight:800;font-size:12px;letter-spacing:.06em;text-decoration:none}
+.hd-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:20px;background:var(--g-main);border:1px solid rgba(201,162,39,0.4);color:white;font-size:12px;font-weight:700;text-decoration:none;transition:opacity .15s}
+.hd-btn:active{opacity:.8}
+
+/* HERO */
+.hero{position:relative;min-height:72svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:96px 24px 56px;overflow:hidden;background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 100%)}
+.hero-bg-svg{position:absolute;inset:0;z-index:0;opacity:.15}
+.hc{position:relative;z-index:1;max-width:400px;width:100%}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;background:rgba(201,162,39,0.18);border:1px solid rgba(201,162,39,0.45);color:#c9a227;font-size:11px;font-weight:700;letter-spacing:.1em;margin-bottom:20px}
+.hero-title{font-size:clamp(22px,6vw,32px);font-weight:900;color:white;line-height:1.5;letter-spacing:.02em;margin-bottom:14px}
+.hero-title em{font-style:normal;color:#c9a227}
+.hero-sub{font-size:13.5px;color:rgba(255,255,255,0.72);line-height:1.9;margin-bottom:28px}
+.hero-badges{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.hb{padding:5px 12px;border-radius:20px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.8);font-size:11px;font-weight:600}
+
+/* STEP NAV */
+.step-nav{display:flex;overflow-x:auto;gap:0;background:var(--g-dark);border-bottom:2px solid rgba(201,162,39,0.3);scrollbar-width:none;-webkit-overflow-scrolling:touch;position:sticky;top:50px;z-index:90}
+.step-nav::-webkit-scrollbar{display:none}
+.sn{flex:none;padding:12px 14px;color:rgba(255,255,255,0.5);font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.sn:hover,.sn.active{color:#c9a227;border-bottom-color:#c9a227}
+
+/* SECTIONS */
+.sec{padding:52px 24px}
+.si{max-width:440px;margin:0 auto}
+.sec-bg-off{background:var(--off)}
+.sec-bg-dark{background:var(--g-dark)}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.ttl{font-size:clamp(18px,5vw,24px);font-weight:900;line-height:1.48;color:var(--g-dark);margin-bottom:18px}
+.sec-bg-dark .ttl{color:white}
+.body-text{font-size:14px;line-height:2;color:#444}
+.sec-bg-dark .body-text{color:rgba(255,255,255,0.7)}
+
+/* 3種目カード */
+.sport-cards{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+.sc{border-radius:18px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.1);border:1px solid rgba(201,162,39,0.15)}
+.sc-head{padding:18px 18px 14px;display:flex;align-items:center;gap:12px}
+.sc-icon{font-size:32px;width:56px;height:56px;background:rgba(255,255,255,0.12);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sc-ttl-area{}
+.sc-num{font-size:10px;font-weight:700;letter-spacing:.12em;opacity:.7;margin-bottom:3px}
+.sc-ttl{font-size:16px;font-weight:900;color:white}
+.sc-dist{font-size:12px;color:rgba(255,255,255,0.7);margin-top:2px}
+.sc-body{background:white;padding:16px 18px}
+.sc-tips{font-size:13px;line-height:1.9;color:#444}
+.sc-tips li{margin-left:1em;margin-bottom:4px}
+.sc-note{margin-top:10px;padding:10px 12px;background:#f0f4f1;border-radius:10px;font-size:12px;color:var(--g-main);font-weight:600;line-height:1.7;border-left:3px solid var(--gold)}
+
+.sc-swim .sc-head{background:linear-gradient(135deg,#1565C0,#0D47A1)}
+.sc-bike .sc-head{background:linear-gradient(135deg,#2e7d4f,#1b5e35)}
+.sc-run  .sc-head{background:linear-gradient(135deg,#B71C1C,#7f0000)}
+
+/* 装備リスト */
+.gear-list{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+.gear-item{background:white;border-radius:14px;padding:15px 16px;display:flex;gap:13px;align-items:flex-start;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:3px solid rgba(201,162,39,0.5)}
+.gear-icon{font-size:22px;flex-shrink:0;width:38px;text-align:center;margin-top:2px}
+.gear-name{font-size:13px;font-weight:800;color:var(--g-dark);margin-bottom:4px}
+.gear-desc{font-size:12px;color:var(--muted);line-height:1.7}
+.gear-tag{display:inline-block;margin-top:6px;padding:2px 9px;border-radius:10px;font-size:10px;font-weight:700;letter-spacing:.04em}
+.tag-must{background:rgba(183,28,28,0.1);color:#B71C1C}
+.tag-soon{background:rgba(201,162,39,0.12);color:#8a6d00}
+.tag-nice{background:rgba(27,94,53,0.1);color:var(--g-main)}
+
+/* レースステップ */
+.race-steps{display:flex;flex-direction:column;gap:0;margin-top:24px;position:relative}
+.race-steps::before{content:'';position:absolute;left:28px;top:32px;bottom:32px;width:2px;background:rgba(201,162,39,0.25);z-index:0}
+.rs{display:flex;gap:16px;align-items:flex-start;padding:0 0 24px;position:relative;z-index:1}
+.rs:last-child{padding-bottom:0}
+.rs-num{flex-shrink:0;width:56px;height:56px;border-radius:50%;background:var(--g-main);border:3px solid rgba(201,162,39,0.5);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:white;flex-direction:column;line-height:1.2}
+.rs-num .rs-emoji{font-size:20px;line-height:1}
+.rs-cont{}
+.rs-ttl{font-size:14px;font-weight:800;color:var(--g-dark);margin-bottom:5px;padding-top:6px}
+.rs-desc{font-size:12.5px;color:var(--muted);line-height:1.8}
+.rs-tip{margin-top:8px;padding:8px 11px;background:rgba(201,162,39,0.08);border-radius:9px;font-size:11.5px;color:#6b5200;line-height:1.7;border:1px solid rgba(201,162,39,0.2)}
+
+/* 練習ルーティン */
+.practice-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.pg{background:rgba(255,255,255,0.07);border:1px solid rgba(201,162,39,0.2);border-radius:14px;padding:15px 13px}
+.pg-day{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.1em;margin-bottom:7px}
+.pg-act{font-size:13px;font-weight:700;color:white;margin-bottom:4px}
+.pg-detail{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.65}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+.fq{background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.fq-q{padding:14px 16px;font-size:13px;font-weight:800;color:var(--g-dark);display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:10px;border-left:3px solid rgba(201,162,39,0.5)}
+.fq-q::after{content:'＋';flex-shrink:0;font-size:16px;color:var(--gold);font-weight:300;transition:transform .25s}
+.fq input{display:none}
+.fq input:checked ~ .fq-q::after{transform:rotate(45deg)}
+.fq-a{font-size:13px;line-height:1.9;color:#444;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 16px}
+.fq input:checked ~ .fq-a{max-height:300px;padding:0 16px 16px}
+
+/* CTA */
+.cta-sec{background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 100%);padding:52px 24px;text-align:center}
+.cta-title{font-size:clamp(18px,5vw,24px);font-weight:900;color:white;margin-bottom:12px;line-height:1.5}
+.cta-sub{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.9;margin-bottom:28px}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:15px 28px;border-radius:30px;background:var(--gold);color:#0d3d20;font-size:14px;font-weight:900;text-decoration:none;letter-spacing:.04em;box-shadow:0 4px 16px rgba(201,162,39,0.4);transition:opacity .15s}
+.cta-btn:active{opacity:.85}
+
+/* RACE TABLE */
+.race-list{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+.rl{background:white;border-radius:14px;padding:14px 16px;display:flex;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:3px solid rgba(201,162,39,0.5)}
+.rl-date{flex-shrink:0;width:46px;text-align:center}
+.rl-month{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.06em}
+.rl-day{font-size:20px;font-weight:900;color:var(--g-dark);line-height:1}
+.rl-info{}
+.rl-name{font-size:13px;font-weight:800;color:var(--g-dark);margin-bottom:3px}
+.rl-meta{font-size:11px;color:var(--muted);line-height:1.6}
+.rl-tag{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;margin-top:5px}
+.tag-beginner{background:rgba(27,94,53,0.1);color:var(--g-main)}
+.tag-mid{background:rgba(201,162,39,0.12);color:#8a6d00}
+
+footer{background:var(--g-dark);padding:28px 24px;text-align:center;border-top:1px solid rgba(201,162,39,0.2)}
+.ft-logo{color:rgba(255,255,255,0.8);font-size:13px;font-weight:700;margin-bottom:8px}
+.ft-copy{color:rgba(255,255,255,0.3);font-size:11px}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hd">
+  <a href="index.html" class="hd-logo">
+    <span>🏃</span>
+    <span>広尾親父RC</span>
+  </a>
+  <a href="index.html" class="hd-btn">← トップへ</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-bg-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+    <text x="20" y="80" font-size="60" fill="white" opacity=".3">🏊</text>
+    <text x="150" y="160" font-size="60" fill="white" opacity=".3">🚴</text>
+    <text x="280" y="260" font-size="60" fill="white" opacity=".3">🏃</text>
+  </svg>
+  <div class="hc">
+    <div class="badge">🏅 TRIATHLON FOR BEGINNERS</div>
+    <h1 class="hero-title">
+      泳いで、漕いで、走る。<br>
+      <em>トライアスロン虎の巻</em>
+    </h1>
+    <p class="hero-sub">
+      「なんとなく興味があるけど、どうすれば…」<br>
+      広尾親父RCのリアルな経験から、<br>
+      初心者が知りたいことを全部まとめました。
+    </p>
+    <div class="hero-badges">
+      <span class="hb">🏊 スイム</span>
+      <span class="hb">🚴 バイク</span>
+      <span class="hb">🏃 ラン</span>
+    </div>
+  </div>
+</section>
+
+<!-- STEP NAV -->
+<nav class="step-nav">
+  <a href="#sports" class="sn">3種目とは</a>
+  <a href="#gear" class="sn">必要な装備</a>
+  <a href="#race" class="sn">初レース選び</a>
+  <a href="#training" class="sn">練習方法</a>
+  <a href="#flow" class="sn">レース当日の流れ</a>
+  <a href="#faq" class="sn">よくある疑問</a>
+</nav>
+
+<!-- 3種目 -->
+<section class="sec" id="sports">
+  <div class="si">
+    <div class="lbl">WHAT IS TRIATHLON</div>
+    <h2 class="ttl">3つの種目を、<br>連続してこなす競技</h2>
+    <p class="body-text">
+      トライアスロンは「スイム → バイク → ラン」の順で行う耐久競技。
+      スプリント（初心者向け）なら合計2時間前後で完走できます。
+      「全部はきつそう」と思うかもしれませんが、
+      ペース配分さえ覚えれば、体力に自信のない方でも完走できます。
+    </p>
+
+    <div class="sport-cards">
+      <!-- スイム -->
+      <div class="sc sc-swim">
+        <div class="sc-head">
+          <div class="sc-icon">🏊</div>
+          <div class="sc-ttl-area">
+            <div class="sc-num">FIRST · スイム</div>
+            <div class="sc-ttl">オープンウォータースイム</div>
+            <div class="sc-dist">スプリント距離：約750m</div>
+          </div>
+        </div>
+        <div class="sc-body">
+          <ul class="sc-tips">
+            <li>海や川などオープンウォーター（OWS）で行う</li>
+            <li>ウェットスーツ着用で浮力UP・体温保持</li>
+            <li>コースはブイを目印に周回する形が多い</li>
+            <li>泳力より「水に慣れること」が最重要</li>
+          </ul>
+          <div class="sc-note">
+            💡 広尾スイム部は毎週水曜夜に東京体育館で練習。
+            プール練習からOWS練習（三浦など）まで段階的にサポートしています。
+          </div>
+        </div>
+      </div>
+
+      <!-- バイク -->
+      <div class="sc sc-bike">
+        <div class="sc-head">
+          <div class="sc-icon">🚴</div>
+          <div class="sc-ttl-area">
+            <div class="sc-num">SECOND · バイク</div>
+            <div class="sc-ttl">ロードバイク</div>
+            <div class="sc-dist">スプリント距離：約20km</div>
+          </div>
+        </div>
+        <div class="sc-body">
+          <ul class="sc-tips">
+            <li>スイム後にそのまま乗り換えて走る</li>
+            <li>コースによっては周回コースで距離管理が必要</li>
+            <li>サイクルコンピュータ（サイコン）か
+                スマホホルダーが義務付けられる大会も多い</li>
+            <li>レンタルバイクで参加できる大会・合宿もある</li>
+          </ul>
+          <div class="sc-note">
+            💡 木更津トライアスロンでは周回コースのため
+            走行距離の把握が必須。スマホホルダー（ダイソーで入手可）を
+            バイクに取り付けてスマホをサイコン代わりに使えます。
+          </div>
+        </div>
+      </div>
+
+      <!-- ラン -->
+      <div class="sc sc-run">
+        <div class="sc-head">
+          <div class="sc-icon">🏃</div>
+          <div class="sc-ttl-area">
+            <div class="sc-num">THIRD · ラン</div>
+            <div class="sc-ttl">ロードラン</div>
+            <div class="sc-dist">スプリント距離：約5km</div>
+          </div>
+        </div>
+        <div class="sc-body">
+          <ul class="sc-tips">
+            <li>バイク後のため脚が重くなるのは全員同じ</li>
+            <li>いつものランペースより遅くなって当然</li>
+            <li>「歩いてもいい」という気持ちで望むと楽になる</li>
+            <li>最後の種目なので完走が見えてくる</li>
+          </ul>
+          <div class="sc-note">
+            💡 広尾ランニング部が毎月活動中。
+            ランの基礎は日頃の活動で十分カバーできます。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 装備 -->
+<section class="sec sec-bg-off" id="gear">
+  <div class="si">
+    <div class="lbl">GEAR & EQUIPMENT</div>
+    <h2 class="ttl">初心者が揃える<br>装備リスト</h2>
+    <p class="body-text">最初から全部買う必要はありません。
+    まずは「必須」から。他はレンタルや借り物でデビュー戦に挑みましょう。</p>
+
+    <div class="gear-list">
+      <div class="gear-item">
+        <div class="gear-icon">🩱</div>
+        <div>
+          <div class="gear-name">トライスーツ or 水着</div>
+          <div class="gear-desc">スイム〜ランをそのまま着続けられるワンピース型が便利。最初は水着でも可。</div>
+          <span class="gear-tag tag-must">必須</span>
+        </div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-icon">🤿</div>
+        <div>
+          <div class="gear-name">ウェットスーツ</div>
+          <div class="gear-desc">水温によって着用義務・禁止が変わる。初めてはレンタル（多くの大会・練習会で貸出あり）がおすすめ。何度も出るなら購入を検討。メンバーはワイズロード新橋トライアスロン館で試着して購入する人が多い。</div>
+          <span class="gear-tag tag-soon">初回はレンタルでOK</span>
+        </div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-icon">🥽</div>
+        <div>
+          <div class="gear-name">スイムゴーグル＋スイムキャップ</div>
+          <div class="gear-desc">キャップは大会支給のことが多い。ゴーグルは必ず自前で。</div>
+          <span class="gear-tag tag-must">必須</span>
+        </div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-icon">🚲</div>
+        <div>
+          <div class="gear-name">ロードバイク or クロスバイク</div>
+          <div class="gear-desc">スプリント距離なら普通のクロスバイクでも走れる。九十九里合宿などではレンタル自転車での参加実績あり。</div>
+          <span class="gear-tag tag-soon">レンタルで参加実績あり</span>
+        </div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-icon">📱</div>
+        <div>
+          <div class="gear-name">スマホホルダー（バイク用）</div>
+          <div class="gear-desc">多くの大会でサイクルコンピュータが義務付け。サイコンがない場合はスマホホルダーをバイクに取り付けてスマホを代用。ダイソーのゴム式でOK。</div>
+          <span class="gear-tag tag-must">大会によっては必須</span>
+        </div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-icon">⛑️</div>
+        <div>
+          <div class="gear-name">ヘルメット</div>
+          <div class="gear-desc">バイク走行中は着用必須。安全基準（JCF認定など）を確認して選ぶ。</div>
+          <span class="gear-tag tag-must">必須</span>
+        </div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-icon">👟</div>
+        <div>
+          <div class="gear-name">ランニングシューズ</div>
+          <div class="gear-desc">持っている靴で十分。ラン専用シューズがあれば言うことなし。</div>
+          <span class="gear-tag tag-nice">持っているもので可</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 初レース選び -->
+<section class="sec" id="race">
+  <div class="si">
+    <div class="lbl">FIRST RACE</div>
+    <h2 class="ttl">初心者におすすめの<br>レース・練習会</h2>
+    <p class="body-text">いきなり一人で申し込むより、
+    メンバーと一緒に出るのが広尾スタイル。
+    おださんら経験者が初デビューをサポートします。</p>
+
+    <div class="race-list">
+      <div class="rl">
+        <div class="rl-date">
+          <div class="rl-month">9月</div>
+          <div class="rl-day">27</div>
+        </div>
+        <div class="rl-info">
+          <div class="rl-name">99T（九十九里トライアスロン）</div>
+          <div class="rl-meta">📍 千葉・九十九里 ／ 距離：スプリント<br>メンバーがチーム名「広尾TC」で参加中</div>
+          <span class="rl-tag tag-beginner">★ 初心者デビューに最適</span>
+        </div>
+      </div>
+      <div class="rl">
+        <div class="rl-date">
+          <div class="rl-month">6月</div>
+          <div class="rl-day">21</div>
+        </div>
+        <div class="rl-info">
+          <div class="rl-name">木更津トライアスロン</div>
+          <div class="rl-meta">📍 千葉・木更津 ／ 距離：スプリント<br>毎年複数名が参加。無料練習会（6/15）も開催</div>
+          <span class="rl-tag tag-beginner">複数メンバー参加</span>
+        </div>
+      </div>
+      <div class="rl">
+        <div class="rl-date">
+          <div class="rl-month">8月</div>
+          <div class="rl-day">9</div>
+        </div>
+        <div class="rl-info">
+          <div class="rl-name">IRONMAN 70.3 Cebu（セブ島）</div>
+          <div class="rl-meta">📍 フィリピン・セブ島 ／ スイム1.9km・バイク90km・ラン21km<br>ミドル（ハーフアイアンマン）。経験者向けの海外遠征</div>
+          <span class="rl-tag tag-mid">経験者向け</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:22px;padding:16px;background:#f0f4f1;border-radius:14px;border-left:3px solid var(--gold)">
+      <div style="font-size:12px;font-weight:700;color:var(--g-main);margin-bottom:6px">📅 練習会・合宿も活用しよう</div>
+      <div style="font-size:12.5px;color:#444;line-height:1.8">
+        アスロニア練習会（5/31）、木更津無料練習会（6/15）、
+        三浦OWS（8/9）など、大会前に実践練習の機会があります。
+        九十九里合宿（まいく邸）ではバイクレンタルも可能でした。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 練習方法 -->
+<section class="sec sec-bg-dark" id="training">
+  <div class="si">
+    <div class="lbl">TRAINING PLAN</div>
+    <h2 class="ttl">広尾流・初心者の<br>週間練習モデル</h2>
+    <p class="body-text">
+      3種目すべてを完璧にしようとしない。
+      まず「完走できる体」を作ることが先決。
+    </p>
+    <div class="practice-grid">
+      <div class="pg">
+        <div class="pg-day">水曜夜</div>
+        <div class="pg-act">🏊 スイム練習</div>
+        <div class="pg-detail">東京体育館（プール）<br>週1回・60〜90分<br>ドリル＋持久スイム</div>
+      </div>
+      <div class="pg">
+        <div class="pg-day">週末</div>
+        <div class="pg-act">🚴 バイク練習</div>
+        <div class="pg-detail">公道 or 近郊コース<br>20〜50km程度<br>仲間と一緒に走ると楽</div>
+      </div>
+      <div class="pg">
+        <div class="pg-day">平日2〜3回</div>
+        <div class="pg-act">🏃 ランニング</div>
+        <div class="pg-detail">広尾ランニング部の<br>定例ランで継続<br>5〜10km程度</div>
+      </div>
+      <div class="pg">
+        <div class="pg-day">毎朝（任意）</div>
+        <div class="pg-act">💪 体幹トレ</div>
+        <div class="pg-detail">マウンテンクライマー<br>タバタ式（4分）<br>心肺機能と体幹強化</div>
+      </div>
+    </div>
+    <div style="margin-top:18px;padding:14px 15px;background:rgba(201,162,39,0.1);border:1px solid rgba(201,162,39,0.25);border-radius:12px">
+      <div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:5px">🎯 初心者向けポイント</div>
+      <div style="font-size:12.5px;color:rgba(255,255,255,0.7);line-height:1.85">
+        3種目を均等に練習する必要はなし。苦手な種目（多くの人はスイム）を
+        重点的に。バイクとランはクロストレーニングとして相互に効果が出ます。
+        繰越オプション付きでエントリーして、調整しながら進めるのも賢い方法。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- レース当日の流れ -->
+<section class="sec sec-bg-off" id="flow">
+  <div class="si">
+    <div class="lbl">RACE DAY</div>
+    <h2 class="ttl">レース当日の流れ</h2>
+    <p class="body-text">初めてだと「何をどの順番でやるの？」が不安。大まかな流れを把握しておくだけで格段に余裕が生まれます。</p>
+
+    <div class="race-steps">
+      <div class="rs">
+        <div class="rs-num"><span class="rs-emoji">🌅</span>前日</div>
+        <div class="rs-cont">
+          <div class="rs-ttl">前泊・荷物準備</div>
+          <div class="rs-desc">
+            会場が遠い場合は前泊推奨（体力温存）。
+            ウェット、ゴーグル、バイク、ヘルメット、ランシューズ、補給食をチェック。
+          </div>
+          <div class="rs-tip">💡 前日夜に荷物リストを声に出して確認すると忘れ物が減ります</div>
+        </div>
+      </div>
+      <div class="rs">
+        <div class="rs-num"><span class="rs-emoji">🎽</span>当日朝</div>
+        <div class="rs-cont">
+          <div class="rs-ttl">受付・トランジション設置</div>
+          <div class="rs-desc">
+            早めに到着して受付を済ませ、トランジションエリア（T1/T2）に
+            バイクとランシューズをセット。スタート位置も確認しておく。
+          </div>
+          <div class="rs-tip">💡 メンバーと集合写真を撮っておくのが広尾流。後で動画に使えます</div>
+        </div>
+      </div>
+      <div class="rs">
+        <div class="rs-num"><span class="rs-emoji">🏊</span>スイム</div>
+        <div class="rs-cont">
+          <div class="rs-ttl">スタート → T1（スイム→バイク）</div>
+          <div class="rs-desc">
+            ウェットを着てスタート。ゴール後はウェットを脱ぎ、
+            ヘルメットを被ってバイクへ。焦らず落ち着いてOK。
+          </div>
+          <div class="rs-tip">💡 スイム後は心拍数が高い。トランジションでゆっくり呼吸を整えても◎</div>
+        </div>
+      </div>
+      <div class="rs">
+        <div class="rs-num"><span class="rs-emoji">🚴</span>バイク</div>
+        <div class="rs-cont">
+          <div class="rs-ttl">バイク走行 → T2（バイク→ラン）</div>
+          <div class="rs-desc">
+            周回コースの場合はサイコン（またはスマホ）で距離を管理。
+            飛ばしすぎるとラン区間でバテるため、ペースに注意。
+          </div>
+          <div class="rs-tip">💡 何周走ったか分からなくなる人が続出。メモか指で数えながら走ろう</div>
+        </div>
+      </div>
+      <div class="rs">
+        <div class="rs-num"><span class="rs-emoji">🏃</span>ラン</div>
+        <div class="rs-cont">
+          <div class="rs-ttl">ランニング → ゴール！</div>
+          <div class="rs-desc">
+            脚が重くても大丈夫。歩いても完走はできる。
+            最後まで諦めずに前へ。フィニッシュテープを切った瞬間、全部が報われます。
+          </div>
+          <div class="rs-tip">💡「生きてるって感じがした」—— 初完走の感動は格別です</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="si">
+    <div class="lbl">FAQ</div>
+    <h2 class="ttl">よくある疑問</h2>
+
+    <div class="faq-list">
+      <div class="fq">
+        <input type="checkbox" id="fq1">
+        <label for="fq1" class="fq-q">泳げない（苦手）でも参加できますか？</label>
+        <div class="fq-a">
+          スプリントのスイムは750m。クロールでなくても平泳ぎでも完泳できます。
+          ウェットスーツを着ると浮力がつくので、思ったより楽に泳げます。
+          広尾スイム部で毎週水曜に練習しているので、まずそこから参加してみてください。
+        </div>
+      </div>
+      <div class="fq">
+        <input type="checkbox" id="fq2">
+        <label for="fq2" class="fq-q">自転車は何を用意すればいいですか？</label>
+        <div class="fq-a">
+          スプリント距離（約20km）であればクロスバイクでも問題ありません。
+          九十九里合宿などではレンタルバイクでの参加実績もあります。
+          本格的に続けるならロードバイクへの投資を検討しましょう。
+        </div>
+      </div>
+      <div class="fq">
+        <input type="checkbox" id="fq3">
+        <label for="fq3" class="fq-q">ウェットスーツは買わないとダメですか？</label>
+        <div class="fq-a">
+          初回はレンタルで十分です。多くの練習会・大会でレンタル可能です（例：アスロニア練習会でもレンタルあり）。
+          複数回出場する予定ができてから購入を検討するのがおすすめ。
+          メンバーはワイズロード新橋店のトライアスロン館で試着してから購入しています。
+        </div>
+      </div>
+      <div class="fq">
+        <input type="checkbox" id="fq4">
+        <label for="fq4" class="fq-q">サイクルコンピュータは必要ですか？</label>
+        <div class="fq-a">
+          大会によっては装着義務があります（例：木更津トライアスロン）。
+          専用品がなければスマホ＋スマホホルダー（ダイソーのゴム式でOK）で代用できます。
+          周回コースでは走行距離の把握が必須なので必ず準備しましょう。
+        </div>
+      </div>
+      <div class="fq">
+        <input type="checkbox" id="fq5">
+        <label for="fq5" class="fq-q">エントリーしたけど予定が変わったら？</label>
+        <div class="fq-a">
+          大会によっては「繰越オプション」付きでエントリーできます（99Tなど実績あり）。
+          異動や家族行事がある方でも、繰越オプション付きなら安心してエントリーできます。
+          迷ったら申し込んでから調整するのが広尾の流儀です。
+        </div>
+      </div>
+      <div class="fq">
+        <input type="checkbox" id="fq6">
+        <label for="fq6" class="fq-q">一人で申し込むのが不安です</label>
+        <div class="fq-a">
+          心配不要です。広尾トライアスロン部のメンバーが一緒にエントリーし、
+          練習から当日まで一緒に動きます。経験者（おださんなど）が
+          「初心者デビューはサポートします」と明言しています。
+          まずはLINEグループへの参加から声をかけてみてください。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div style="max-width:400px;margin:0 auto">
+    <div style="font-size:28px;margin-bottom:12px">🏅</div>
+    <div class="cta-title">まず、一緒に泳ごう。</div>
+    <div class="cta-sub">
+      毎週水曜夜、東京体育館のプールに集まっています。<br>
+      初心者大歓迎。モスバーガーで振り返りも楽しい。<br>
+      まずは気軽にのぞいてみてください。
+    </div>
+    <a href="index.html" class="cta-btn">広尾親父RCのトップへ →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-logo">🏃 広尾親父RC</div>
+  <div class="ft-copy">© 2026 広尾親父RC. All rights reserved.</div>
+</footer>
+
+<script>
+// スクロールでナビをアクティブに
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.sn');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, {threshold: 0.3, rootMargin: '-60px 0px -60px 0px'});
+sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>

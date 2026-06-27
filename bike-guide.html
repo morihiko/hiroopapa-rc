@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自転車虎の巻 | 広尾親父RC</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g-dark:#0d3d20;--g-main:#1b5e35;--g-mid:#2e7d4f;
+  --gold:#c9a227;--white:#fff;--off:#f7f5f0;
+  --text:#1a1a1a;--muted:#666;
+  --bike:#E65100;--bike-dark:#BF360C;--bike-light:#fef0e7;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+
+.hd{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:11px 18px;background:rgba(10,48,24,0.93);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,162,39,0.25)}
+.hd-logo{display:flex;align-items:center;gap:7px;color:white;font-weight:800;font-size:12px;letter-spacing:.06em;text-decoration:none}
+.hd-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:20px;background:var(--g-main);border:1px solid rgba(201,162,39,0.4);color:white;font-size:12px;font-weight:700;text-decoration:none}
+
+/* HERO */
+.hero{position:relative;min-height:60svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:96px 24px 48px;overflow:hidden;background:linear-gradient(160deg,#E65100 0%,#BF360C 100%)}
+.hc{position:relative;z-index:1;max-width:400px;width:100%}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.35);color:white;font-size:11px;font-weight:700;letter-spacing:.1em;margin-bottom:20px}
+.hero-title{font-size:clamp(24px,7vw,36px);font-weight:900;color:white;line-height:1.4;margin-bottom:14px}
+.hero-title em{font-style:normal;color:#ffcc80}
+.hero-sub{font-size:13.5px;color:rgba(255,255,255,0.75);line-height:1.9}
+
+/* NAV */
+.step-nav{display:flex;overflow-x:auto;gap:0;background:#BF360C;border-bottom:2px solid rgba(255,204,128,0.3);scrollbar-width:none;position:sticky;top:50px;z-index:90}
+.step-nav::-webkit-scrollbar{display:none}
+.sn{flex:none;padding:12px 14px;color:rgba(255,255,255,0.5);font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.sn:hover,.sn.active{color:#ffcc80;border-bottom-color:#ffcc80}
+
+/* SECTIONS */
+.sec{padding:48px 24px}
+.si{max-width:440px;margin:0 auto}
+.sec-bg-off{background:var(--off)}
+.sec-bg-dark{background:#BF360C}
+.sec-bg-deep{background:#7f1900}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.lbl-org{font-size:10px;font-weight:700;letter-spacing:.14em;color:#ffcc80;text-transform:uppercase;margin-bottom:8px}
+.ttl{font-size:clamp(18px,5vw,24px);font-weight:900;line-height:1.48;color:var(--g-dark);margin-bottom:16px}
+.ttl-w{color:white}
+.body-text{font-size:14px;line-height:2;color:#444}
+.body-text-w{font-size:14px;line-height:2;color:rgba(255,255,255,0.72)}
+
+/* INFO CARDS */
+.info-cards{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.ic{background:white;border-radius:16px;padding:16px;display:flex;gap:14px;box-shadow:0 2px 10px rgba(0,0,0,0.08);border-left:4px solid var(--bike)}
+.ic-icon{font-size:24px;flex-shrink:0;width:44px;text-align:center;margin-top:2px}
+.ic-ttl{font-size:13px;font-weight:800;color:var(--g-dark);margin-bottom:4px}
+.ic-desc{font-size:12.5px;color:var(--muted);line-height:1.75}
+.ic-tag{display:inline-block;margin-top:6px;padding:2px 9px;border-radius:10px;font-size:10px;font-weight:700}
+.tag-key{background:rgba(230,81,0,0.1);color:#E65100}
+.tag-warn{background:rgba(183,28,28,0.1);color:#B71C1C}
+.tag-tip{background:rgba(27,94,53,0.1);color:var(--g-main)}
+.tag-ok{background:rgba(27,94,53,0.12);color:#1b5e35}
+
+/* TIPS */
+.tip-list{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.tip{background:white;border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:3px solid rgba(201,162,39,0.5)}
+.tip-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.tip-body{}
+.tip-ttl{font-size:13px;font-weight:800;color:var(--g-dark);margin-bottom:3px}
+.tip-desc{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+/* CAMP CARDS */
+.camp-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,204,128,0.25);border-radius:14px;padding:15px;margin-bottom:10px}
+.camp-ttl{font-size:14px;font-weight:800;color:white;margin-bottom:6px}
+.camp-desc{font-size:12px;color:rgba(255,255,255,0.65);line-height:1.8}
+.camp-tag{display:inline-block;margin-top:7px;padding:2px 9px;border-radius:10px;font-size:10px;font-weight:700;background:rgba(255,204,128,0.15);color:#ffcc80}
+
+/* RULE LIST */
+.rule-list{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.rl-item{background:white;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.rl-num{display:inline-flex;width:22px;height:22px;border-radius:50%;background:var(--bike);color:white;font-size:10px;font-weight:800;align-items:center;justify-content:center;margin-right:8px;flex-shrink:0}
+.rl-ttl{font-size:13px;font-weight:800;color:var(--g-dark);margin-bottom:4px;display:flex;align-items:center}
+.rl-desc{font-size:12.5px;color:var(--muted);line-height:1.75}
+
+/* VOICE */
+.voice-list{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.vc{background:rgba(255,255,255,0.06);border:1px solid rgba(255,204,128,0.2);border-radius:14px;padding:14px 16px}
+.vc-text{font-size:13px;color:rgba(255,255,255,0.85);line-height:1.85;font-style:italic;margin-bottom:8px}
+.vc-text::before{content:'「'}
+.vc-text::after{content:'」'}
+.vc-name{font-size:11px;color:#ffcc80;font-weight:700}
+
+/* CTA */
+.cta-sec{background:linear-gradient(160deg,#E65100 0%,#BF360C 100%);padding:48px 24px;text-align:center}
+.cta-title{font-size:clamp(18px,5vw,22px);font-weight:900;color:white;margin-bottom:10px;line-height:1.5}
+.cta-sub{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.9;margin-bottom:24px}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:30px;background:var(--gold);color:#0d3d20;font-size:14px;font-weight:900;text-decoration:none}
+
+footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px solid rgba(201,162,39,0.2)}
+.ft-copy{color:rgba(255,255,255,0.3);font-size:11px}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <a href="index.html" class="hd-logo"><span>🏃</span><span>広尾親父RC</span></a>
+  <a href="index.html" class="hd-btn">← トップへ</a>
+</header>
+
+<section class="hero">
+  <div class="hc">
+    <div class="badge">🚴 BIKE GUIDE</div>
+    <h1 class="hero-title">自転車<em>虎の巻</em></h1>
+    <p class="hero-sub">
+      ロードバイクは買わなくてもいい。<br>
+      でも知っておくべきことは、ちゃんとある。<br>
+      九十九里合宿から都民の森まで、全部まとめました。
+    </p>
+  </div>
+</section>
+
+<nav class="step-nav">
+  <a href="#rules" class="sn">絶対ルール</a>
+  <a href="#rental" class="sn">バイクなし参加</a>
+  <a href="#camp" class="sn">合宿・ライド</a>
+  <a href="#shop" class="sn">おすすめショップ</a>
+  <a href="#race" class="sn">レースでのバイク</a>
+  <a href="#culture" class="sn">バイク部文化</a>
+</nav>
+
+<!-- 絶対ルール -->
+<section class="sec" id="rules">
+  <div class="si">
+    <div class="lbl">MUST KNOW</div>
+    <h2 class="ttl">バイクに乗る前に<br>知っておく3つのルール</h2>
+    <p class="body-text">
+      これだけは最初に叩き込んでおこう。
+      知らないと大会で失格になるか、安全に走れない。
+    </p>
+    <div class="rule-list">
+      <div class="rl-item">
+        <div class="rl-ttl"><span class="rl-num">1</span>サイクルコンピュータ（またはスマホ）必須</div>
+        <div class="rl-desc">
+          大会（木更津・99T等）では距離管理のためにサイクルコンピュータ着用が義務。
+          機材がなければ<strong>スマホ＋ダイソーのゴム式ホルダー（100円）</strong>で代用できる。
+          「え、それでいいの？」という声が多いが、本当にOK。
+        </div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-ttl"><span class="rl-num">2</span>周回コースは「あと何周」を常に把握する</div>
+        <div class="rl-desc">
+          木更津などの周回コースでは、何周するか分からなくなって失格ギリギリになる人が続出。
+          スタート前に「何周か」を必ず確認しメモしておく。
+          スタッフに何度確認しても恥ずかしくない。
+        </div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-ttl"><span class="rl-num">3</span>バイクで飛ばしすぎるとランがバテる</div>
+        <div class="rl-desc">
+          トライアスロンはスイム→バイク→ランの順。
+          バイクで全力出し切るとランで脚が動かなくなる。
+          「バイクは最大でも7割」が初心者の鉄則。
+          ランに余裕を残して乗ることが完走の近道。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- レンタル・バイクなし参加 -->
+<section class="sec sec-bg-off" id="rental">
+  <div class="si">
+    <div class="lbl">FOR BEGINNERS</div>
+    <h2 class="ttl">ロードバイクが<br>なくても参加できる</h2>
+    <p class="body-text">
+      「バイクを持っていないから合宿に来られない」は思い込み。
+      レンタルの選択肢が複数ある。まず来てみよう。
+    </p>
+    <div class="info-cards">
+      <div class="ic">
+        <div class="ic-icon">🏠</div>
+        <div>
+          <div class="ic-ttl">まいくさん宅（九十九里）でレンタル可</div>
+          <div class="ic-desc">
+            合宿の拠点となるまいくさんハウス（九十九里）では、ロードバイクのレンタルを用意してもらえる場合がある。
+            参加の意思を早めに伝えておこう。「バイクがない」は参加しない理由にならない。
+          </div>
+          <span class="ic-tag tag-ok">合宿参加に最適</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🏪</div>
+        <div>
+          <div class="ic-ttl">TETTO（世田谷区上野毛）</div>
+          <div class="ic-desc">
+            バイクレンタルと初心者向け練習会があるショップ。
+            「自転車乗ったことない人向け」の対応もしてもらえる雰囲気。
+            土日に初心者練習会を開催していることがある。
+          </div>
+          <span class="ic-tag tag-ok">初心者練習会あり</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">📏</div>
+        <div>
+          <div class="ic-ttl">バイクのサイズを事前に把握しておく</div>
+          <div class="ic-desc">
+            レンタル申込時に身長・股下が必要。
+            身長（cm）を測っておけばスムーズ。
+            「サイズ何ですか？」に答えられるようにしておこう。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 合宿・ライド -->
+<section class="sec sec-bg-dark" id="camp">
+  <div class="si">
+    <div class="lbl-org">CAMP & RIDE</div>
+    <h2 class="ttl ttl-w">みんなで走るライドイベント</h2>
+    <p class="body-text-w">
+      「一人で走るのはしんどい」「コースがわからない」。
+      そういう人のためのチームライドがある。
+    </p>
+
+    <div class="camp-card">
+      <div class="camp-ttl">🏕️ 九十九里合宿（まいくさんハウス）</div>
+      <div class="camp-desc">
+        まいくさんの家を拠点にした合宿スタイル。
+        平地メインの40〜90kmルートで、初心者から上級者まで一緒に走れる設計。
+        前夜から集まって翌朝走り、昼は海で食事という流れが多い。
+        バイクレンタル相談可。「九十九里は平地だから楽」が共通認識。
+      </div>
+      <span class="camp-tag">初心者OK ・ レンタルあり</span>
+    </div>
+
+    <div class="camp-card">
+      <div class="camp-ttl">🗾 都民の森ライド（おださん）</div>
+      <div class="camp-desc">
+        奥多摩・都民の森（標高1,000m超）への山岳ライド。
+        おださんがよく企画・参加しているコース。
+        本格的なヒルクライムで距離は往復70〜90km程度。
+        ある程度走れるようになってから挑戦するのがオススメ。
+      </div>
+      <span class="camp-tag">中〜上級者向け</span>
+    </div>
+
+    <div class="camp-card">
+      <div class="camp-ttl">🏔️ ヤビツ峠（表・裏）</div>
+      <div class="camp-desc">
+        神奈川・宮ヶ瀬方面のヒルクライム。天さんが挑戦希望のコース。
+        表ヤビツ（名古木〜ヤビツ）と裏ヤビツ（宮ヶ瀬〜ヤビツ）がある。
+        「走れるようになった自分を試したい」なら行ってみよう。
+      </div>
+      <span class="camp-tag">中〜上級者向け</span>
+    </div>
+
+    <div class="camp-card">
+      <div class="camp-ttl">🌊 海辺のロングライド（OWS × バイク）</div>
+      <div class="camp-desc">
+        三浦でのOWS練習と組み合わせる場合あり。
+        スイム・バイクの複合練習として、レース前のシミュレーションにもなる。
+        「走ってから泳ぐ」の順番が多い。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ショップ -->
+<section class="sec" id="shop">
+  <div class="si">
+    <div class="lbl">SHOP</div>
+    <h2 class="ttl">おすすめショップ</h2>
+    <div class="tip-list">
+      <div class="tip">
+        <div class="tip-icon">🏬</div>
+        <div>
+          <div class="tip-ttl">ワイズロード新橋 トライアスロン館</div>
+          <div class="tip-desc">
+            ウェットスーツの試着・購入に最適。
+            トライアスロン専門フロアで相談しやすい。
+            複数ブランドを比較試着できる。
+            「どれが合ってるかわからない」状態で行ってOK。
+          </div>
+        </div>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">🔧</div>
+        <div>
+          <div class="tip-ttl">TETTO（世田谷区上野毛）</div>
+          <div class="tip-desc">
+            前述のとおりレンタルと初心者練習会あり。
+            メンテナンス・バイクフィッティングも頼める。
+            最初の一台を買うときの相談相手にもなる。
+          </div>
+        </div>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">🛒</div>
+        <div>
+          <div class="tip-ttl">ダイソー（渋谷・恵比寿等）</div>
+          <div class="tip-desc">
+            スマホホルダー（ゴム式・100円）でサイクルコンピュータの代用が可能。
+            ボトルホルダーや小物も揃う。
+            「サイコン持ってない」はダイソーで解決できる。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- レースでのバイク -->
+<section class="sec sec-bg-off" id="race">
+  <div class="si">
+    <div class="lbl">ON RACE DAY</div>
+    <h2 class="ttl">レース当日の<br>バイクあるある</h2>
+    <div class="info-cards">
+      <div class="ic">
+        <div class="ic-icon">🔢</div>
+        <div>
+          <div class="ic-ttl">ラップボタンは必ず押す</div>
+          <div class="ic-desc">
+            スイム→バイク（T1）、バイク→ラン（T2）の切り替え時にラップ。
+            「押し忘れた」はデータが崩れる。意識的に習慣づけよう。
+          </div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">⛽</div>
+        <div>
+          <div class="ic-ttl">補給は早め・こまめに</div>
+          <div class="ic-desc">
+            「喉が渇いてから飲む」では遅い。
+            バイクパートは20〜40kmごとに水・補給食を入れるのが基本。
+            暑い日のセブ島は特に水分管理が厳しい。
+          </div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🌧️</div>
+        <div>
+          <div class="ic-ttl">雨の日はブレーキが効きにくい</div>
+          <div class="ic-desc">
+            カーボンリムホイールはリムブレーキが滑りやすい。
+            ディスクブレーキ採用バイクなら安心。
+            「雨なら出走しない」も立派な判断。
+          </div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🔩</div>
+        <div>
+          <div class="ic-ttl">レース前日の点検を忘れずに</div>
+          <div class="ic-desc">
+            タイヤの空気圧・ブレーキの効き・変速の確認は前日。
+            当日は手荒れしやすいので、できるだけ触らずにスタートを迎えるのが理想。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 文化 -->
+<section class="sec sec-bg-deep" id="culture">
+  <div class="si">
+    <div class="lbl-org">BIKE CULTURE</div>
+    <h2 class="ttl ttl-w">部内のリアルな声</h2>
+    <div class="voice-list">
+      <div class="vc">
+        <div class="vc-text">バイク持ってない人でも来ていいですか？合宿、全然来てください！レンタルできます</div>
+        <div class="vc-name">— まいくさん</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">スマホはダイソーのゴム式ホルダーでいけます（木更津経験済）</div>
+        <div class="vc-name">— 部内報告</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">都民の森ライドしてきた！かなりきつかった</div>
+        <div class="vc-name">— おださん</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">ヤビツ行ってみたい！表か裏かどっちがいい？</div>
+        <div class="vc-name">— 天さん</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">バイクで飛ばしすぎてランで終わった。鉄則は7割。本当に7割です</div>
+        <div class="vc-name">— レース経験者（名言）</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;padding:15px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,204,128,0.2);border-radius:14px">
+      <div style="font-size:12px;font-weight:700;color:#ffcc80;margin-bottom:8px">🚴 バイク部 非公式チェックリスト</div>
+      <ul style="font-size:12.5px;color:rgba(255,255,255,0.7);line-height:2.1;padding-left:1.2em">
+        <li>サイクルコンピュータ（またはスマホ＋ダイソーホルダー）持参</li>
+        <li>空気圧は出発前日夜に確認</li>
+        <li>周回数を事前にメモ</li>
+        <li>補給食は最低2個は携帯</li>
+        <li>バイクで7割以上出さない</li>
+        <li>T1・T2のラップボタンを忘れない</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div style="max-width:400px;margin:0 auto">
+    <div style="font-size:28px;margin-bottom:12px">🚴</div>
+    <div class="cta-title">まず乗ってみよう。<br>バイクは後から買っても遅くない。</div>
+    <div class="cta-sub">
+      レンタルで十分。九十九里の平地から始めれば<br>
+      誰でも走れるようになる。
+    </div>
+    <a href="index.html" class="cta-btn">トップページへ →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-copy">© 2026 広尾親父RC</div>
+</footer>
+
+<script>
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.sn');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+  });
+}, {threshold:0.3,rootMargin:'-60px 0px -60px 0px'});
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スイム虎の巻 | 広尾親父RC</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g-dark:#0d3d20;--g-main:#1b5e35;--g-mid:#2e7d4f;
+  --gold:#c9a227;--white:#fff;--off:#f7f5f0;
+  --text:#1a1a1a;--muted:#666;
+  --swim:#1565C0;--swim-light:#e3f0fb;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+
+.hd{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:11px 18px;background:rgba(10,48,24,0.93);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,162,39,0.25)}
+.hd-logo{display:flex;align-items:center;gap:7px;color:white;font-weight:800;font-size:12px;letter-spacing:.06em;text-decoration:none}
+.hd-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:20px;background:var(--g-main);border:1px solid rgba(201,162,39,0.4);color:white;font-size:12px;font-weight:700;text-decoration:none}
+
+/* HERO */
+.hero{position:relative;min-height:60svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:96px 24px 48px;overflow:hidden;background:linear-gradient(160deg,#1565C0 0%,#0D47A1 100%)}
+.hero-wave{position:absolute;bottom:0;left:0;right:0;opacity:.18}
+.hc{position:relative;z-index:1;max-width:400px;width:100%}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.35);color:white;font-size:11px;font-weight:700;letter-spacing:.1em;margin-bottom:20px}
+.hero-title{font-size:clamp(24px,7vw,36px);font-weight:900;color:white;line-height:1.4;margin-bottom:14px}
+.hero-title em{font-style:normal;color:#90caf9}
+.hero-sub{font-size:13.5px;color:rgba(255,255,255,0.75);line-height:1.9}
+
+/* NAV */
+.step-nav{display:flex;overflow-x:auto;gap:0;background:#0D47A1;border-bottom:2px solid rgba(144,202,249,0.3);scrollbar-width:none;position:sticky;top:50px;z-index:90}
+.step-nav::-webkit-scrollbar{display:none}
+.sn{flex:none;padding:12px 14px;color:rgba(255,255,255,0.5);font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.sn:hover,.sn.active{color:#90caf9;border-bottom-color:#90caf9}
+
+/* SECTIONS */
+.sec{padding:48px 24px}
+.si{max-width:440px;margin:0 auto}
+.sec-bg-off{background:var(--off)}
+.sec-bg-dark{background:#0D47A1}
+.sec-bg-navy{background:#0a2a5e}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.lbl-blue{font-size:10px;font-weight:700;letter-spacing:.14em;color:#90caf9;text-transform:uppercase;margin-bottom:8px}
+.ttl{font-size:clamp(18px,5vw,24px);font-weight:900;line-height:1.48;color:var(--g-dark);margin-bottom:16px}
+.ttl-w{color:white}
+.body-text{font-size:14px;line-height:2;color:#444}
+.body-text-w{font-size:14px;line-height:2;color:rgba(255,255,255,0.72)}
+
+/* INFO CARDS */
+.info-cards{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.ic{background:white;border-radius:16px;padding:16px;display:flex;gap:14px;box-shadow:0 2px 10px rgba(0,0,0,0.08);border-left:4px solid var(--swim)}
+.ic-icon{font-size:24px;flex-shrink:0;width:44px;text-align:center;margin-top:2px}
+.ic-ttl{font-size:13px;font-weight:800;color:var(--g-dark);margin-bottom:4px}
+.ic-desc{font-size:12.5px;color:var(--muted);line-height:1.75}
+.ic-tag{display:inline-block;margin-top:6px;padding:2px 9px;border-radius:10px;font-size:10px;font-weight:700}
+.tag-key{background:rgba(21,101,192,0.1);color:#1565C0}
+.tag-warn{background:rgba(183,28,28,0.1);color:#B71C1C}
+.tag-tip{background:rgba(27,94,53,0.1);color:var(--g-main)}
+
+/* DRILL CARDS */
+.drill-grid{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.dg{background:rgba(255,255,255,0.07);border:1px solid rgba(144,202,249,0.25);border-radius:14px;padding:15px}
+.dg-num{font-size:10px;font-weight:700;color:#90caf9;letter-spacing:.1em;margin-bottom:5px}
+.dg-ttl{font-size:14px;font-weight:800;color:white;margin-bottom:5px}
+.dg-desc{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.75}
+
+/* TIPS */
+.tip-list{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.tip{background:white;border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:3px solid rgba(201,162,39,0.5)}
+.tip-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.tip-body{}
+.tip-ttl{font-size:13px;font-weight:800;color:var(--g-dark);margin-bottom:3px}
+.tip-desc{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+/* VOICE */
+.voice-list{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.vc{background:rgba(255,255,255,0.05);border:1px solid rgba(144,202,249,0.2);border-radius:14px;padding:14px 16px}
+.vc-text{font-size:13px;color:rgba(255,255,255,0.85);line-height:1.85;font-style:italic;margin-bottom:8px}
+.vc-text::before{content:'「'}
+.vc-text::after{content:'」'}
+.vc-name{font-size:11px;color:#90caf9;font-weight:700}
+
+/* ALERT */
+.alert{margin-top:20px;padding:16px;background:rgba(183,28,28,0.12);border:1px solid rgba(183,28,28,0.3);border-radius:14px}
+.alert-ttl{font-size:12px;font-weight:800;color:#ef9a9a;margin-bottom:5px}
+.alert-desc{font-size:12.5px;color:rgba(255,255,255,0.7);line-height:1.75}
+.alert-link{display:inline-block;margin-top:8px;color:#90caf9;font-size:12px;text-decoration:underline}
+
+/* CTA */
+.cta-sec{background:linear-gradient(160deg,#1565C0 0%,#0D47A1 100%);padding:48px 24px;text-align:center}
+.cta-title{font-size:clamp(18px,5vw,22px);font-weight:900;color:white;margin-bottom:10px;line-height:1.5}
+.cta-sub{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.9;margin-bottom:24px}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:30px;background:var(--gold);color:#0d3d20;font-size:14px;font-weight:900;text-decoration:none}
+
+footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px solid rgba(201,162,39,0.2)}
+.ft-copy{color:rgba(255,255,255,0.3);font-size:11px}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <a href="index.html" class="hd-logo"><span>🏃</span><span>広尾親父RC</span></a>
+  <a href="index.html" class="hd-btn">← トップへ</a>
+</header>
+
+<section class="hero">
+  <svg class="hero-wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="white"/>
+  </svg>
+  <div class="hc">
+    <div class="badge">🏊 SWIM GUIDE</div>
+    <h1 class="hero-title">スイム<em>虎の巻</em></h1>
+    <p class="hero-sub">
+      毎週水曜夜、東京体育館に集まる広尾スイム部。<br>
+      練習の流れ・上達のコツ・OWSまで全部まとめました。
+    </p>
+  </div>
+</section>
+
+<nav class="step-nav">
+  <a href="#basics" class="sn">定例練習</a>
+  <a href="#caution" class="sn">休館日注意</a>
+  <a href="#drill" class="sn">ドリルメニュー</a>
+  <a href="#ows" class="sn">オープンウォーター</a>
+  <a href="#gear" class="sn">装備</a>
+  <a href="#culture" class="sn">スイム部文化</a>
+</nav>
+
+<!-- 定例練習 -->
+<section class="sec" id="basics">
+  <div class="si">
+    <div class="lbl">WEEKLY PRACTICE</div>
+    <h2 class="ttl">定例練習 — 毎週水曜夜</h2>
+    <p class="body-text">
+      広尾スイム部は東京体育館のプールで毎週水曜夜に活動。
+      特に告知なく自然に集まるスタイルで、来られる人が来る気軽さが魅力。
+      泳いだあとは近くのモスバーガーで振り返り（文化）。
+    </p>
+    <div class="info-cards">
+      <div class="ic">
+        <div class="ic-icon">🏛️</div>
+        <div>
+          <div class="ic-ttl">東京体育館（千駄ヶ谷）</div>
+          <div class="ic-desc">JR千駄ヶ谷駅・大江戸線国立競技場駅 徒歩すぐ。プールは25mコース。水着・ゴーグル持参。更衣室・シャワーあり。</div>
+          <span class="ic-tag tag-key">メイン会場</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🕕</div>
+        <div>
+          <div class="ic-ttl">18:30〜21:00頃</div>
+          <div class="ic-desc">入水時間は人によって異なる。19時を目標にしている人が多い。早く終わる人はモスに先行して待っていることも。</div>
+          <span class="ic-tag tag-tip">時間は柔軟</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">💪</div>
+        <div>
+          <div class="ic-ttl">ジムも使える（筋トレ部と共用）</div>
+          <div class="ic-desc">プールだけでなくトレーニングルームも同会場。泳ぐ前後にジムを使う人も。「泳いでからジムに行く」「ジムの後にプール」など自分でアレンジ可。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 休館日 -->
+<section class="sec sec-bg-off" id="caution">
+  <div class="si">
+    <div class="lbl">⚠️ CAUTION</div>
+    <h2 class="ttl">行く前に必ず<br>休館日を確認せよ</h2>
+    <p class="body-text">
+      東京体育館には月・火の連休や年間休館日がある。
+      確認せずに行くと無駄足になる。これは部員全員が一度は経験する洗礼。
+    </p>
+    <div class="alert" style="background:rgba(183,28,28,0.08);border-color:rgba(183,28,28,0.25);margin-top:20px;border-radius:14px;padding:16px">
+      <div class="alert-ttl" style="color:#B71C1C;font-size:13px;font-weight:800;margin-bottom:6px">🚫 あるある失敗パターン</div>
+      <div class="alert-desc" style="font-size:13px;color:#444;line-height:1.8">水着まで持参して会場に来たら休館日。スマホで確認すれば防げる。「今日みんな来ますか？」と聞く前にまず確認するのがマナー。</div>
+    </div>
+    <div class="tip-list" style="margin-top:16px">
+      <div class="tip">
+        <div class="tip-icon">📅</div>
+        <div>
+          <div class="tip-ttl">年間休館日の確認</div>
+          <div class="tip-desc"><a href="https://www.tef.or.jp/tmg/closure.html" target="_blank" style="color:var(--swim);text-decoration:none;font-weight:700">tef.or.jp/tmg/closure.html</a><br>ブックマーク推奨。月初に確認する習慣を。</div>
+        </div>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">🔍</div>
+        <div>
+          <div class="tip-ttl">当日の確認（日指定）</div>
+          <div class="tip-desc"><a href="https://www.tef.or.jp/tmg/opening.html" target="_blank" style="color:var(--swim);text-decoration:none;font-weight:700">tef.or.jp/tmg/opening.html</a><br>「今日開いてる？」はここで秒確認。</div>
+        </div>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">🏊</div>
+        <div>
+          <div class="tip-ttl">休館日の代替プール</div>
+          <div class="tip-desc">目黒区民センタープールや辰巳アクアティクスセンターが代替候補。辰巳は「抜け駆け」扱いになることも笑。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ドリルメニュー -->
+<section class="sec sec-bg-dark" id="drill">
+  <div class="si">
+    <div class="lbl-blue">TRAINING MENU</div>
+    <h2 class="ttl ttl-w">プールでやること</h2>
+    <p class="body-text-w">
+      「ただ泳ぐだけ」じゃなくドリルで質を上げる。
+      しんちゃん発信のメニューが部のスタンダード。
+    </p>
+    <div class="drill-grid">
+      <div class="dg">
+        <div class="dg-num">DRILL 01</div>
+        <div class="dg-ttl">🏊 スイムドリル</div>
+        <div class="dg-desc">
+          キックドリル・プルブイ・ビルドアップなど。
+          「初心者コースでドリルやってます」という連絡が定番。
+          速さより丁寧さ優先で。
+        </div>
+      </div>
+      <div class="dg">
+        <div class="dg-num">DRILL 02</div>
+        <div class="dg-ttl">💪 マウンテンクライマー（タバタ式）</div>
+        <div class="dg-desc">
+          20秒全力 + 10秒休憩 × 8セット＝たった4分。
+          腸腰筋・大腿四頭筋・腹筋に効く。心肺機能向上にも最適。
+          しんちゃんがYouTube動画を紹介済み（LINEアルバム参照）。
+          毎朝の習慣にしているメンバーも。やりすぎ注意、週2回程度が目安。
+        </div>
+      </div>
+      <div class="dg">
+        <div class="dg-num">DRILL 03</div>
+        <div class="dg-ttl">🎵 タバタ用BGM</div>
+        <div class="dg-desc">
+          テンション高い音楽で追い込むのがコツ。
+          「HIIT MUSIC」チャンネルが松さん推薦（YouTube）。
+          20秒/10秒のインターバルに合わせた専用BGMで集中力UP。
+        </div>
+      </div>
+      <div class="dg">
+        <div class="dg-num">BONUS</div>
+        <div class="dg-ttl">🍔 練習後はモスバーガーへ</div>
+        <div class="dg-desc">
+          東京体育館から徒歩圏内のモスが定番の振り返り場所。
+          サラダ率を競いつつ（部内記録：67%）、次のレース計画を立てる。
+          遅れた人も「先行してモスで待ってます」で合流できる。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OWS -->
+<section class="sec" id="ows">
+  <div class="si">
+    <div class="lbl">OPEN WATER SWIM</div>
+    <h2 class="ttl">オープンウォーター<br>スイム（OWS）</h2>
+    <p class="body-text">
+      プールに慣れたら次はオープンウォーター。
+      海や湾での泳ぎは感覚がプールと全然違う。
+      でも仲間と一緒なら怖くない。
+    </p>
+    <div class="tip-list">
+      <div class="tip">
+        <div class="tip-icon">🌊</div>
+        <div>
+          <div class="tip-ttl">三浦OWS（8月・年1回）</div>
+          <div class="tip-desc">しんちゃん主催の恒例イベント。前日にHYROX（障害物レース）に参加するメンバーも。打ち上げの宴会が楽しい。翌年分は調整さんで事前アンケート済み。</div>
+        </div>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">🤿</div>
+        <div>
+          <div class="tip-ttl">アスロニア練習会（5月ごろ）</div>
+          <div class="tip-desc">トライアスロン向けのOWS練習会。ウェットスーツのレンタルあり。海スイムに初めて挑戦するのに最適。「海スイムが楽しくなったらいいな」という気持ちで参加してOK。</div>
+        </div>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">📍</div>
+        <div>
+          <div class="tip-ttl">4月・オーシャンスイム練習会</div>
+          <div class="tip-desc">おださん情報。4月4日など春先に練習会が開催されることも。ウェットスーツレンタル可。大会前の実戦練習として活用しよう。</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;padding:16px;background:#e3f0fb;border-radius:14px;border-left:3px solid var(--swim)">
+      <div style="font-size:12px;font-weight:800;color:#1565C0;margin-bottom:6px">🌡️ 水温とウェットスーツ</div>
+      <div style="font-size:12.5px;color:#333;line-height:1.85">
+        水温によって着用義務・禁止が変わる。大会ごとにルール確認が必要。
+        セブ島のような水温の高いレースではウェットスーツ禁止でスイムスーツ着用に。
+        三浦などは着用OKなことが多く、浮力があって楽に泳げる。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 装備 -->
+<section class="sec sec-bg-off" id="gear">
+  <div class="si">
+    <div class="lbl">GEAR</div>
+    <h2 class="ttl">スイム装備チェックリスト</h2>
+    <div class="info-cards">
+      <div class="ic">
+        <div class="ic-icon">🥽</div>
+        <div>
+          <div class="ic-ttl">スイムゴーグル</div>
+          <div class="ic-desc">自前必須。レンタル不可。曇り止め効果があるものを選ぶ。OWSでは水が入らないタイプが安心。</div>
+          <span class="ic-tag tag-warn">自前必須</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🩱</div>
+        <div>
+          <div class="ic-ttl">水着</div>
+          <div class="ic-desc">プール練習はスイム用水着でOK。トライアスロン本番はトライスーツがあると便利（スイム〜ランをそのまま着続けられる）。</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🧢</div>
+        <div>
+          <div class="ic-ttl">スイムキャップ</div>
+          <div class="ic-desc">プールでは持参推奨。大会では通常支給される。広尾スイム部のキャップも存在（しんちゃん持参）。</div>
+          <span class="ic-tag tag-tip">大会は支給が多い</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🤿</div>
+        <div>
+          <div class="ic-ttl">ウェットスーツ（OWS用）</div>
+          <div class="ic-desc">
+            初めてはレンタルで十分。アスロニア練習会・大会でもレンタルあり。
+            複数回出るなら購入を検討。メンバーはワイズロード新橋のトライアスロン館で試着してから購入している人が多い。2xuプロペルがひとつの選択肢。
+          </div>
+          <span class="ic-tag tag-tip">初回はレンタルでOK</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 文化 -->
+<section class="sec sec-bg-navy" id="culture">
+  <div class="si">
+    <div class="lbl-blue">CLUB CULTURE</div>
+    <h2 class="ttl ttl-w">広尾スイム部の文化</h2>
+    <div class="voice-list">
+      <div class="vc">
+        <div class="vc-text">100m2分台でも良いって言われたよ。その言葉を信じることにしました</div>
+        <div class="vc-name">— しんちゃん（水泳大会参加前）</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">じゃあみんなで出ちゃおう！もうノリで行かないとね</div>
+        <div class="vc-name">— 天さん</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">今日より若い日はないでしょ</div>
+        <div class="vc-name">— 天さんの名言（部内永久保存版）</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">やったことないことは挑戦する男</div>
+        <div class="vc-name">— つよしさん（天さんの言葉を受けて）</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">サラダ率67%！</div>
+        <div class="vc-name">— しんちゃん（モスバーガー報告）</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;padding:15px;background:rgba(255,255,255,0.06);border:1px solid rgba(144,202,249,0.2);border-radius:14px">
+      <div style="font-size:12px;font-weight:700;color:#90caf9;margin-bottom:7px">🎉 広尾スイム部のルール（非公式）</div>
+      <ul style="font-size:12.5px;color:rgba(255,255,255,0.7);line-height:2;padding-left:1.2em">
+        <li>休館日に来てしまうのは通過儀礼</li>
+        <li>来られない日は正直に言う（来なくていい）</li>
+        <li>終わったらモスに寄る</li>
+        <li>前田さんより速くなろうとしない（マスターズリレー全日本チャンプ）</li>
+        <li>「出ることに意義あり」を信じる</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div style="max-width:400px;margin:0 auto">
+    <div style="font-size:28px;margin-bottom:12px">🏊</div>
+    <div class="cta-title">まず、水曜夜に来てみよう。</div>
+    <div class="cta-sub">
+      東京体育館、毎週水曜。<br>
+      何時に来ても誰かいます（たぶん）。<br>
+      ※来る前に休館日確認を忘れずに。
+    </div>
+    <a href="index.html" class="cta-btn">トップページへ →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-copy">© 2026 広尾親父RC</div>
+</footer>
+
+<script>
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.sn');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+  });
+}, {threshold:0.3,rootMargin:'-60px 0px -60px 0px'});
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
