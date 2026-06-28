@@ -45,6 +45,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP'
 .lbl-blue{font-size:10px;font-weight:700;letter-spacing:.14em;color:#90caf9;text-transform:uppercase;margin-bottom:8px}
 .ttl{font-size:clamp(18px,5vw,24px);font-weight:900;line-height:1.48;color:var(--g-dark);margin-bottom:16px}
 .ttl-w{color:white}
+.ttl-sub{font-size:16px;font-weight:800;color:var(--g-dark);margin-top:32px;margin-bottom:0}
 .body-text{font-size:14px;line-height:2;color:#444}
 .body-text-w{font-size:14px;line-height:2;color:rgba(255,255,255,0.72)}
 
@@ -70,9 +71,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP'
 .tip-list{display:flex;flex-direction:column;gap:10px;margin-top:20px}
 .tip{background:white;border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:3px solid rgba(201,162,39,0.5)}
 .tip-icon{font-size:20px;flex-shrink:0;margin-top:2px}
-.tip-body{}
 .tip-ttl{font-size:13px;font-weight:800;color:var(--g-dark);margin-bottom:3px}
 .tip-desc{font-size:12.5px;color:var(--muted);line-height:1.7}
+.tip-link{color:var(--swim);text-decoration:none;font-weight:700}
+
+/* CALLOUT (light info box) */
+.callout{margin-top:20px;padding:16px;background:var(--swim-light);border-radius:14px;border-left:3px solid var(--swim)}
+.callout-ttl{font-size:12px;font-weight:800;color:#1565C0;margin-bottom:6px}
+.callout-desc{font-size:12.5px;color:#333;line-height:1.85}
+
+/* ALERT (light warning box) */
+.alert-light{margin-top:20px;padding:16px;background:rgba(183,28,28,0.08);border:1px solid rgba(183,28,28,0.25);border-radius:14px}
+.alert-light .a-ttl{font-size:13px;font-weight:800;color:#B71C1C;margin-bottom:6px}
+.alert-light .a-desc{font-size:13px;color:#444;line-height:1.8}
 
 /* VOICE */
 .voice-list{display:flex;flex-direction:column;gap:10px;margin-top:20px}
@@ -82,11 +93,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP'
 .vc-text::after{content:'」'}
 .vc-name{font-size:11px;color:#90caf9;font-weight:700}
 
-/* ALERT */
-.alert{margin-top:20px;padding:16px;background:rgba(183,28,28,0.12);border:1px solid rgba(183,28,28,0.3);border-radius:14px}
-.alert-ttl{font-size:12px;font-weight:800;color:#ef9a9a;margin-bottom:5px}
-.alert-desc{font-size:12.5px;color:rgba(255,255,255,0.7);line-height:1.75}
-.alert-link{display:inline-block;margin-top:8px;color:#90caf9;font-size:12px;text-decoration:underline}
+/* RULES (dark list box) */
+.rules{margin-top:20px;padding:15px;background:rgba(255,255,255,0.06);border:1px solid rgba(144,202,249,0.2);border-radius:14px}
+.rules-ttl{font-size:12px;font-weight:700;color:#90caf9;margin-bottom:7px}
+.rules ul{font-size:12.5px;color:rgba(255,255,255,0.7);line-height:2;padding-left:1.2em}
 
 /* CTA */
 .cta-sec{background:linear-gradient(160deg,#1565C0 0%,#0D47A1 100%);padding:48px 24px;text-align:center}
@@ -114,15 +124,15 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
     <h1 class="hero-title">スイム<em>虎の巻</em></h1>
     <p class="hero-sub">
       毎週水曜夜、東京体育館に集まる広尾スイム部。<br>
-      練習の流れ・上達のコツ・OWSまで全部まとめました。
+      練習の流れ・上達のコツ・OWSまで、部のリアルを全部まとめました。
     </p>
   </div>
 </section>
 
 <nav class="step-nav">
   <a href="#basics" class="sn">定例練習</a>
-  <a href="#caution" class="sn">休館日注意</a>
-  <a href="#drill" class="sn">ドリルメニュー</a>
+  <a href="#caution" class="sn">休館日と代替プール</a>
+  <a href="#drill" class="sn">練習メニュー</a>
   <a href="#ows" class="sn">オープンウォーター</a>
   <a href="#gear" class="sn">装備</a>
   <a href="#culture" class="sn">スイム部文化</a>
@@ -135,92 +145,117 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
     <h2 class="ttl">定例練習 — 毎週水曜夜</h2>
     <p class="body-text">
       広尾スイム部は東京体育館のプールで毎週水曜夜に活動。
-      特に告知なく自然に集まるスタイルで、来られる人が来る気軽さが魅力。
-      泳いだあとは近くのモスバーガーで振り返り（文化）。
+      特に号令はなく、来られる人が自然に集まるスタイルが魅力。
+      泳ぐ前後にトレーニングルームで筋トレやランを足す人も多く、
+      締めは近くのモスバーガーで振り返り（これも立派な部活動）。
     </p>
     <div class="info-cards">
       <div class="ic">
         <div class="ic-icon">🏛️</div>
         <div>
           <div class="ic-ttl">東京体育館（千駄ヶ谷）</div>
-          <div class="ic-desc">JR千駄ヶ谷駅・大江戸線国立競技場駅 徒歩すぐ。プールは25mコース。水着・ゴーグル持参。更衣室・シャワーあり。</div>
+          <div class="ic-desc">JR千駄ヶ谷駅・大江戸線国立競技場駅 徒歩すぐ。50mと25mのプールがある。水着・ゴーグル・キャップ持参。更衣室・シャワーあり。</div>
           <span class="ic-tag tag-key">メイン会場</span>
         </div>
       </div>
       <div class="ic">
         <div class="ic-icon">🕕</div>
         <div>
-          <div class="ic-ttl">18:30〜21:00頃</div>
-          <div class="ic-desc">入水時間は人によって異なる。19時を目標にしている人が多い。早く終わる人はモスに先行して待っていることも。</div>
-          <span class="ic-tag tag-tip">時間は柔軟</span>
+          <div class="ic-ttl">入水時間は柔軟（17〜20時ごろ）</div>
+          <div class="ic-desc">仕事終わりに各自バラバラに入水。19時を目安にする人が多い。早く上がった人は先にモスで待っていることも。</div>
+          <span class="ic-tag tag-tip">来られる人が来る</span>
         </div>
       </div>
       <div class="ic">
         <div class="ic-icon">💪</div>
         <div>
-          <div class="ic-ttl">ジムも使える（筋トレ部と共用）</div>
-          <div class="ic-desc">プールだけでなくトレーニングルームも同会場。泳ぐ前後にジムを使う人も。「泳いでからジムに行く」「ジムの後にプール」など自分でアレンジ可。</div>
+          <div class="ic-ttl">筋トレ・ランも同じ会場で</div>
+          <div class="ic-desc">プールだけでなくトレーニングルームも同会場。「泳ぐ前に筋トレ」「スイム→トレッドミル」など、自分でアレンジしてトライアスロンの練習にする人も。</div>
         </div>
       </div>
+    </div>
+    <div class="callout">
+      <div class="callout-ttl">📸 「入ります」文化</div>
+      <div class="callout-desc">入館したらLINEグループに自撮りを投げるのが流儀。後から来た人が「あ、今日いるな」と分かって合流しやすい。決めポーズ（背筋）は任意。</div>
     </div>
   </div>
 </section>
 
-<!-- 休館日 -->
+<!-- 休館日と代替プール -->
 <section class="sec sec-bg-off" id="caution">
   <div class="si">
     <div class="lbl">⚠️ CAUTION</div>
     <h2 class="ttl">行く前に必ず<br>休館日を確認せよ</h2>
     <p class="body-text">
-      東京体育館には月・火の連休や年間休館日がある。
+      東京体育館には月・火を中心とした休みや年間休館日がある。
       確認せずに行くと無駄足になる。これは部員全員が一度は経験する洗礼。
     </p>
-    <div class="alert" style="background:rgba(183,28,28,0.08);border-color:rgba(183,28,28,0.25);margin-top:20px;border-radius:14px;padding:16px">
-      <div class="alert-ttl" style="color:#B71C1C;font-size:13px;font-weight:800;margin-bottom:6px">🚫 あるある失敗パターン</div>
-      <div class="alert-desc" style="font-size:13px;color:#444;line-height:1.8">水着まで持参して会場に来たら休館日。スマホで確認すれば防げる。「今日みんな来ますか？」と聞く前にまず確認するのがマナー。</div>
+    <div class="alert-light">
+      <div class="a-ttl">🚫 あるある失敗パターン</div>
+      <div class="a-desc">水着まで持参して会場に来たら休館日。「これをやらかさないと正式部員とは言えない」（宮地さん）。スマホで確認すれば秒で防げる。</div>
     </div>
     <div class="tip-list" style="margin-top:16px">
       <div class="tip">
         <div class="tip-icon">📅</div>
         <div>
           <div class="tip-ttl">年間休館日の確認</div>
-          <div class="tip-desc"><a href="https://www.tef.or.jp/tmg/closure.html" target="_blank" style="color:var(--swim);text-decoration:none;font-weight:700">tef.or.jp/tmg/closure.html</a><br>ブックマーク推奨。月初に確認する習慣を。</div>
+          <div class="tip-desc"><a href="https://www.tef.or.jp/tmg/closure.html" target="_blank" class="tip-link">tef.or.jp/tmg/closure.html</a><br>ブックマーク推奨。月初に確認する習慣を。</div>
         </div>
       </div>
       <div class="tip">
         <div class="tip-icon">🔍</div>
         <div>
           <div class="tip-ttl">当日の確認（日指定）</div>
-          <div class="tip-desc"><a href="https://www.tef.or.jp/tmg/opening.html" target="_blank" style="color:var(--swim);text-decoration:none;font-weight:700">tef.or.jp/tmg/opening.html</a><br>「今日開いてる？」はここで秒確認。</div>
+          <div class="tip-desc"><a href="https://www.tef.or.jp/tmg/opening.html" target="_blank" class="tip-link">tef.or.jp/tmg/opening.html</a><br>「今日開いてる？」はここで秒確認。</div>
         </div>
       </div>
-      <div class="tip">
-        <div class="tip-icon">🏊</div>
+    </div>
+
+    <h3 class="ttl-sub">休館日の代替プール</h3>
+    <div class="info-cards">
+      <div class="ic">
+        <div class="ic-icon">🏊</div>
         <div>
-          <div class="tip-ttl">休館日の代替プール</div>
-          <div class="tip-desc">目黒区民センタープールや辰巳アクアティクスセンターが代替候補。辰巳は「抜け駆け」扱いになることも笑。</div>
+          <div class="ic-ttl">目黒区民センタープール</div>
+          <div class="ic-desc">夏季の屋外50m。利用料200円とお得。レーンは一方通行で追い越し自由。夏は混むので早めに。ロッカーは100円返却式。</div>
+          <span class="ic-tag tag-tip">夏の定番</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🗼</div>
+        <div>
+          <div class="ic-ttl">芝公園アクアフィールド</div>
+          <div class="ic-desc">夏季のみ開設の屋外50m。東京タワーを見ながら泳げる。すぐ近くの港区スポーツセンター（三田）は屋内で設備も充実（区外800円）。</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🌊</div>
+        <div>
+          <div class="ic-ttl">辰巳・千葉国際 ほか</div>
+          <div class="ic-desc">辰巳アクアティクスセンターは行くと「抜け駆け」扱いになることも笑。千葉県国際総合水泳場（新習志野）は空いていて穴場（風呂はなくシャワーのみ）。</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ドリルメニュー -->
+<!-- 練習メニュー -->
 <section class="sec sec-bg-dark" id="drill">
   <div class="si">
     <div class="lbl-blue">TRAINING MENU</div>
     <h2 class="ttl ttl-w">プールでやること</h2>
     <p class="body-text-w">
       「ただ泳ぐだけ」じゃなくドリルで質を上げる。
-      しんちゃん発信のメニューが部のスタンダード。
+      力を抜いてラクに進む TIスイム（トータルイマージョン）が部のベース。
     </p>
     <div class="drill-grid">
       <div class="dg">
         <div class="dg-num">DRILL 01</div>
-        <div class="dg-ttl">🏊 スイムドリル</div>
+        <div class="dg-ttl">🏊 スイムドリル（TIスイム）</div>
         <div class="dg-desc">
           キックドリル・プルブイ・ビルドアップなど。
-          「初心者コースでドリルやってます」という連絡が定番。
+          力を抜いて長く泳ぐTIスイムはマイクさん・小田さん直伝で、
+          100mしか泳げなかった人が2000m泳げるようになった例も。
           速さより丁寧さ優先で。
         </div>
       </div>
@@ -229,9 +264,9 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="dg-ttl">💪 マウンテンクライマー（タバタ式）</div>
         <div class="dg-desc">
           20秒全力 + 10秒休憩 × 8セット＝たった4分。
-          腸腰筋・大腿四頭筋・腹筋に効く。心肺機能向上にも最適。
-          しんちゃんがYouTube動画を紹介済み（LINEアルバム参照）。
-          毎朝の習慣にしているメンバーも。やりすぎ注意、週2回程度が目安。
+          腸腰筋・大腿四頭筋・腹筋に効き、心肺機能向上にも最適。
+          緒方さん発信のメニューで、毎朝の習慣にしているメンバーも。
+          やりすぎ注意、週2回程度が目安。
         </div>
       </div>
       <div class="dg">
@@ -239,17 +274,35 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="dg-ttl">🎵 タバタ用BGM</div>
         <div class="dg-desc">
           テンション高い音楽で追い込むのがコツ。
-          「HIIT MUSIC」チャンネルが松さん推薦（YouTube）。
+          「HIIT MUSIC」チャンネルが松さん（松本さん）推薦。
           20秒/10秒のインターバルに合わせた専用BGMで集中力UP。
+        </div>
+      </div>
+      <div class="dg">
+        <div class="dg-num">DRILL 04</div>
+        <div class="dg-ttl">🎓 個人レッスンという手</div>
+        <div class="dg-desc">
+          緒方さんは東京体育館の個人レッスン（一岡コーチ・50分7,700円）でフォーム開眼。
+          自分の泳ぎを客観的に見てもらうと上達が早い。
+          「顔は真下」「常にどこか力が入ってる」など、自分では気づけない指摘がもらえる。
+        </div>
+      </div>
+      <div class="dg">
+        <div class="dg-num">COACH</div>
+        <div class="dg-ttl">📐 武本さん直伝・長く泳ぐコツ</div>
+        <div class="dg-desc">
+          ①入水は今より15cm先に手を入れる ②胸の前で大きな雪だるまを抱えるイメージ ③プランクでお尻を水面に上げる。
+          ランと同じで、月間スイム距離を稼ぐほどラクに長く泳げるようになる。
         </div>
       </div>
       <div class="dg">
         <div class="dg-num">BONUS</div>
         <div class="dg-ttl">🍔 練習後はモスバーガーへ</div>
         <div class="dg-desc">
-          東京体育館から徒歩圏内のモスが定番の振り返り場所。
-          サラダ率を競いつつ（部内記録：67%）、次のレース計画を立てる。
-          遅れた人も「先行してモスで待ってます」で合流できる。
+          東京体育館から徒歩圏内のモスプレミアム千駄ヶ谷店が定番の振り返り場所。
+          人気No.1の和牛バーガー（アボカドわさび）はテレビ紹介で混むように。
+          スタンプ10個で無料バーガー。2時間前に電話すればサラダを確保してくれる（毎週水曜ですっかり顔パス）。
+          サラダ率を競うのが恒例。
         </div>
       </div>
     </div>
@@ -263,40 +316,40 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
     <h2 class="ttl">オープンウォーター<br>スイム（OWS）</h2>
     <p class="body-text">
       プールに慣れたら次はオープンウォーター。
-      海や湾での泳ぎは感覚がプールと全然違う。
+      海での泳ぎは感覚がプールと全然違う。
       でも仲間と一緒なら怖くない。
     </p>
     <div class="tip-list">
       <div class="tip">
-        <div class="tip-icon">🌊</div>
+        <div class="tip-icon">🍉</div>
         <div>
-          <div class="tip-ttl">三浦OWS（8月・年1回）</div>
-          <div class="tip-desc">しんちゃん主催の恒例イベント。前日にHYROX（障害物レース）に参加するメンバーも。打ち上げの宴会が楽しい。翌年分は調整さんで事前アンケート済み。</div>
+          <div class="tip-ttl">三浦スイカOWS大会（8月・年1回）</div>
+          <div class="tip-desc">部で毎年参戦する外部の恒例大会。リレー（4名×500m、制限60分＝1人15分）か個人（500m〜5km）で出場。おそろTシャツとオリジナルキャップでEntry。前日にHYROX（屋内フィットネスレース）をハシゴする猛者も。リレーの取りまとめはしんちゃん・緒方さん。</div>
         </div>
       </div>
       <div class="tip">
         <div class="tip-icon">🤿</div>
         <div>
-          <div class="tip-ttl">アスロニア練習会（5月ごろ）</div>
-          <div class="tip-desc">トライアスロン向けのOWS練習会。ウェットスーツのレンタルあり。海スイムに初めて挑戦するのに最適。「海スイムが楽しくなったらいいな」という気持ちで参加してOK。</div>
+          <div class="tip-ttl">アスロニア練習会（鎌倉・材木座）</div>
+          <div class="tip-desc">トライアスロン向けのOWS講習会。まずは「超初心者練」がおすすめ。ウェットスーツのレンタルあり。東京から日帰りで行ける材木座で、海スイムの第一歩に最適。</div>
         </div>
       </div>
       <div class="tip">
-        <div class="tip-icon">📍</div>
+        <div class="tip-icon">🏖️</div>
         <div>
-          <div class="tip-ttl">4月・オーシャンスイム練習会</div>
-          <div class="tip-desc">おださん情報。4月4日など春先に練習会が開催されることも。ウェットスーツレンタル可。大会前の実戦練習として活用しよう。</div>
+          <div class="tip-ttl">伊東OWS（6月）</div>
+          <div class="tip-desc">2026年が記念すべき第1回。台風でも開催を追求する運営の熱量がすごい。JR伊東駅から徒歩5分でアクセス良好。きれいな海でおすすめ。</div>
         </div>
       </div>
     </div>
 
-    <div style="margin-top:20px;padding:16px;background:#e3f0fb;border-radius:14px;border-left:3px solid var(--swim)">
-      <div style="font-size:12px;font-weight:800;color:#1565C0;margin-bottom:6px">🌡️ 水温とウェットスーツ</div>
-      <div style="font-size:12.5px;color:#333;line-height:1.85">
-        水温によって着用義務・禁止が変わる。大会ごとにルール確認が必要。
-        セブ島のような水温の高いレースではウェットスーツ禁止でスイムスーツ着用に。
-        三浦などは着用OKなことが多く、浮力があって楽に泳げる。
-      </div>
+    <div class="callout">
+      <div class="callout-ttl">🌀 波酔い対策＝アネロン</div>
+      <div class="callout-desc">海は波で酔う。釣り人御用達の酔い止め「アネロン」が日本で買える中では最強クラス。少し高いが、三浦の波でも酔わずに泳げた実績あり。スイムの前に飲んでおくと安心。</div>
+    </div>
+    <div class="callout">
+      <div class="callout-ttl">🌡️ 水温とウェットスーツ</div>
+      <div class="callout-desc">水温によって着用義務・禁止が変わるので、大会ごとにルール確認が必要。セブ70.3のような水温の高いレースではウェットスーツ禁止でスイムスーツ着用に。三浦などは着用OKなことが多く、浮力があって楽に泳げる。</div>
     </div>
   </div>
 </section>
@@ -311,33 +364,37 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="ic-icon">🥽</div>
         <div>
           <div class="ic-ttl">スイムゴーグル</div>
-          <div class="ic-desc">自前必須。レンタル不可。曇り止め効果があるものを選ぶ。OWSでは水が入らないタイプが安心。</div>
+          <div class="ic-desc">自前必須。曇り止め効果があるものを選ぶ。OWSでは水が入りにくいタイプが安心。</div>
           <span class="ic-tag tag-warn">自前必須</span>
-        </div>
-      </div>
-      <div class="ic">
-        <div class="ic-icon">🩱</div>
-        <div>
-          <div class="ic-ttl">水着</div>
-          <div class="ic-desc">プール練習はスイム用水着でOK。トライアスロン本番はトライスーツがあると便利（スイム〜ランをそのまま着続けられる）。</div>
         </div>
       </div>
       <div class="ic">
         <div class="ic-icon">🧢</div>
         <div>
           <div class="ic-ttl">スイムキャップ</div>
-          <div class="ic-desc">プールでは持参推奨。大会では通常支給される。広尾スイム部のキャップも存在（しんちゃん持参）。</div>
+          <div class="ic-desc">東京体育館では持参必須。大会では通常支給される。武本さん発注の広尾オリジナルキャップ（緑）もあり、OWSでひと目で仲間が分かる。</div>
           <span class="ic-tag tag-tip">大会は支給が多い</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🩱</div>
+        <div>
+          <div class="ic-ttl">水着・トライスーツ</div>
+          <div class="ic-desc">プール練習はスイム用水着でOK。トライアスロン本番はトライスーツがあると便利（スイム〜ランをそのまま着続けられる）。</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">⌚</div>
+        <div>
+          <div class="ic-ttl">スマートウォッチ</div>
+          <div class="ic-desc">東京体育館で着けるなら防水カバー必須。電子ゴーグルは館内禁止だが、OWSでは進行方向が出て便利という声も。</div>
         </div>
       </div>
       <div class="ic">
         <div class="ic-icon">🤿</div>
         <div>
           <div class="ic-ttl">ウェットスーツ（OWS用）</div>
-          <div class="ic-desc">
-            初めてはレンタルで十分。アスロニア練習会・大会でもレンタルあり。
-            複数回出るなら購入を検討。メンバーはワイズロード新橋のトライアスロン館で試着してから購入している人が多い。2xuプロペルがひとつの選択肢。
-          </div>
+          <div class="ic-desc">初めてはレンタルで十分。アスロニア練習会や大会でもレンタルできる。複数回出るようになったら購入を検討。</div>
           <span class="ic-tag tag-tip">初回はレンタルでOK</span>
         </div>
       </div>
@@ -353,7 +410,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
     <div class="voice-list">
       <div class="vc">
         <div class="vc-text">100m2分台でも良いって言われたよ。その言葉を信じることにしました</div>
-        <div class="vc-name">— しんちゃん（水泳大会参加前）</div>
+        <div class="vc-name">— 緒方さん（屋内大会に挑む前）</div>
       </div>
       <div class="vc">
         <div class="vc-text">じゃあみんなで出ちゃおう！もうノリで行かないとね</div>
@@ -368,17 +425,22 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="vc-name">— つよしさん（天さんの言葉を受けて）</div>
       </div>
       <div class="vc">
+        <div class="vc-text">これをやらかさないと正式部員とは言えない</div>
+        <div class="vc-name">— 宮地さん（休館日トラップを踏んで）</div>
+      </div>
+      <div class="vc">
         <div class="vc-text">サラダ率67%！</div>
-        <div class="vc-name">— しんちゃん（モスバーガー報告）</div>
+        <div class="vc-name">— 緒方監督（モスバーガー報告）</div>
       </div>
     </div>
-    <div style="margin-top:20px;padding:15px;background:rgba(255,255,255,0.06);border:1px solid rgba(144,202,249,0.2);border-radius:14px">
-      <div style="font-size:12px;font-weight:700;color:#90caf9;margin-bottom:7px">🎉 広尾スイム部のルール（非公式）</div>
-      <ul style="font-size:12.5px;color:rgba(255,255,255,0.7);line-height:2;padding-left:1.2em">
+    <div class="rules">
+      <div class="rules-ttl">🎉 広尾スイム部のルール（非公式）</div>
+      <ul>
         <li>休館日に来てしまうのは通過儀礼</li>
         <li>来られない日は正直に言う（来なくていい）</li>
         <li>終わったらモスに寄る</li>
-        <li>前田さんより速くなろうとしない（マスターズリレー全日本チャンプ）</li>
+        <li>「入ります」とLINEに自撮りを上げる</li>
+        <li>前田さんより速くなろうとしない（マスターズリレー全日本チャンプ・25m×4の短距離専門）</li>
         <li>「出ることに意義あり」を信じる</li>
       </ul>
     </div>
@@ -392,7 +454,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
     <div class="cta-title">まず、水曜夜に来てみよう。</div>
     <div class="cta-sub">
       東京体育館、毎週水曜。<br>
-      何時に来ても誰かいます（たぶん）。<br>
+      「入ります」とLINEに投げれば、たぶん誰かいます。<br>
       ※来る前に休館日確認を忘れずに。
     </div>
     <a href="index.html" class="cta-btn">トップページへ →</a>
