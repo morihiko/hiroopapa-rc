@@ -60,6 +60,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP'
 .tag-warn{background:rgba(183,28,28,0.1);color:#B71C1C}
 .tag-tip{background:rgba(27,94,53,0.1);color:var(--g-main)}
 
+/* POOL SPEC (mini definition list inside info card) */
+.pool-spec{margin-top:10px;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:11.5px;line-height:1.55}
+.pool-spec dt{color:#1565C0;font-weight:700;white-space:nowrap}
+.pool-spec dd{color:#555}
+.pool-spec a{color:#1565C0;text-decoration:none;font-weight:700}
+
 /* DRILL CARDS */
 .drill-grid{display:flex;flex-direction:column;gap:10px;margin-top:20px}
 .dg{background:rgba(255,255,255,0.07);border:1px solid rgba(144,202,249,0.25);border-radius:14px;padding:15px}
@@ -133,6 +139,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
   <a href="#basics" class="sn">定例練習</a>
   <a href="#caution" class="sn">休館日と代替プール</a>
   <a href="#drill" class="sn">練習メニュー</a>
+  <a href="#coaching" class="sn">撮影＆コーチング</a>
   <a href="#ows" class="sn">オープンウォーター</a>
   <a href="#gear" class="sn">装備</a>
   <a href="#culture" class="sn">スイム部文化</a>
@@ -212,27 +219,61 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
     </div>
 
     <h3 class="ttl-sub">休館日の代替プール</h3>
+    <p class="body-text" style="margin-top:10px">
+      東京体育館が休みの日でも泳げる、部員おすすめの代替プール。
+      営業期間・時間は変更されることがあるので、行く前に公式サイトで最新情報を確認するのが鉄則。
+    </p>
     <div class="info-cards">
       <div class="ic">
         <div class="ic-icon">🏊</div>
-        <div>
-          <div class="ic-ttl">目黒区民センタープール</div>
-          <div class="ic-desc">夏季の屋外50m。利用料200円とお得。レーンは一方通行で追い越し自由。夏は混むので早めに。ロッカーは100円返却式。</div>
-          <span class="ic-tag tag-tip">夏の定番</span>
+        <div style="flex:1">
+          <div class="ic-ttl">目黒区民センター屋外プール</div>
+          <div class="ic-desc">夏季限定の屋外50m。利用料200円とコスパ最強で、レーンは一方通行・追い越し自由。夏は混むので早めの時間が狙い目。ロッカーは100円返却式。</div>
+          <dl class="pool-spec">
+            <dt>住所</dt><dd>目黒区目黒2-4-36（目黒駅から徒歩約12分）</dd>
+            <dt>期間</dt><dd>7/1〜9/10ごろ（夏季のみ）</dd>
+            <dt>時間</dt><dd>10:00〜20:00（最終入場は閉館30分前）</dd>
+            <dt>料金</dt><dd>大人200円／2時間（超過1時間ごと）</dd>
+            <dt>公式</dt><dd><a href="https://www.city.meguro.tokyo.jp/sports/bunkasports/sports/center_okugai_pool_ippankokai.html" target="_blank">目黒区 屋外プール一般公開</a></dd>
+          </dl>
+          <span class="ic-tag tag-tip">夏の定番・コスパ最強</span>
         </div>
       </div>
       <div class="ic">
         <div class="ic-icon">🗼</div>
-        <div>
-          <div class="ic-ttl">芝公園アクアフィールド</div>
-          <div class="ic-desc">夏季のみ開設の屋外50m。東京タワーを見ながら泳げる。すぐ近くの港区スポーツセンター（三田）は屋内で設備も充実（区外800円）。</div>
+        <div style="flex:1">
+          <div class="ic-ttl">アクアフィールド芝公園</div>
+          <div class="ic-desc">夏季のみ開設の屋外50m（8レーン）。東京タワーを真正面に見ながら泳げる絶好のロケーション。芝公園駅から徒歩1分とアクセスも抜群。すぐ近くの港区スポーツセンター（三田）は屋内で通年使える。</div>
+          <dl class="pool-spec">
+            <dt>住所</dt><dd>港区芝公園2-7-2（三田線 芝公園駅 A3出口 徒歩1分）</dd>
+            <dt>期間</dt><dd>7/1〜9/15ごろ（夏季のみ）</dd>
+            <dt>時間</dt><dd>9:00〜20:00（9/1以降は〜17:00）</dd>
+            <dt>料金</dt><dd>大人600円／2時間</dd>
+            <dt>公式</dt><dd><a href="https://minatoku-sports.com/facilities/aqua/" target="_blank">港区スポーツセンター</a>（TEL 03-5733-0575）</dd>
+          </dl>
+          <span class="ic-tag tag-tip">東京タワービュー</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🥇</div>
+        <div style="flex:1">
+          <div class="ic-ttl">東京アクアティクスセンター（辰巳）</div>
+          <div class="ic-desc">東京2020オリンピックの競泳会場。改修を終えて一般開放中で、通年泳げる屋内50m（水深2.0m）。一般公開は原則4レーン。聖地で泳げる特別感あり。部内では「行くと"抜け駆け"扱いになる」のがお約束笑。</div>
+          <dl class="pool-spec">
+            <dt>住所</dt><dd>江東区辰巳2-2-1</dd>
+            <dt>期間</dt><dd>通年（一般開放日は要確認）</dd>
+            <dt>時間</dt><dd>9:00〜21:00（夏休み期間は8:00〜）</dd>
+            <dt>料金</dt><dd>700円／2時間30分（メイン・サブ共通）</dd>
+            <dt>公式</dt><dd><a href="https://www.tef.or.jp/tac/opening.html" target="_blank">一般開放情報（当日・翌日分）</a></dd>
+          </dl>
+          <span class="ic-tag tag-key">オリンピックの聖地</span>
         </div>
       </div>
       <div class="ic">
         <div class="ic-icon">🌊</div>
-        <div>
-          <div class="ic-ttl">辰巳・千葉国際 ほか</div>
-          <div class="ic-desc">辰巳アクアティクスセンターは行くと「抜け駆け」扱いになることも笑。千葉県国際総合水泳場（新習志野）は空いていて穴場（風呂はなくシャワーのみ）。</div>
+        <div style="flex:1">
+          <div class="ic-ttl">千葉県国際総合水泳場 ほか</div>
+          <div class="ic-desc">新習志野の千葉県国際総合水泳場は空いていて穴場（風呂はなくシャワーのみ）。少し足を伸ばせば選択肢はまだある。いずれも営業時間・休館日は公式で要確認。</div>
         </div>
       </div>
     </div>
@@ -280,11 +321,11 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
       </div>
       <div class="dg">
         <div class="dg-num">DRILL 04</div>
-        <div class="dg-ttl">🎓 個人レッスンという手</div>
+        <div class="dg-ttl">🎓 教わる・撮ってもらう手も</div>
         <div class="dg-desc">
-          緒方さんは東京体育館の個人レッスン（一岡コーチ・50分7,700円）でフォーム開眼。
-          自分の泳ぎを客観的に見てもらうと上達が早い。
-          「顔は真下」「常にどこか力が入ってる」など、自分では気づけない指摘がもらえる。
+          ひとりで泳ぐだけが練習じゃない。フォームを動画に撮ってもらったり、
+          個人レッスン・スクール・辰巳のクラスで教わると上達が一気に早くなる。
+          詳しくは次の「撮影＆コーチング」セクションへ。
         </div>
       </div>
       <div class="dg">
@@ -305,6 +346,54 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
           サラダ率を競うのが恒例。
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- 撮影＆コーチング -->
+<section class="sec sec-bg-off" id="coaching">
+  <div class="si">
+    <div class="lbl">FILMING & COACHING</div>
+    <h2 class="ttl">撮影＆コーチング<br>自分の泳ぎを客観視する</h2>
+    <p class="body-text">
+      自分の泳ぎは、自分では見えない。動画に撮ってもらう・コーチに見てもらうと、
+      「腕の伸びが足りない」「ローリングが大きすぎる」など自分では気づけない課題が一目で分かる。
+      部のメンバーが試した撮影とレッスンの選択肢をまとめました。
+    </p>
+
+    <div class="callout">
+      <div class="callout-ttl">📹 泳ぎを動画で撮ってもらう</div>
+      <div class="callout-desc">いちばん手軽なフォームチェックがこれ。小田さんは自分のスイムを撮ってもらい「腕は伸ばせているが伸びの時間が短い」「呼吸時のローリングが大きすぎる」と課題を発見。曰く「自分がどう泳いでいるかは分からないので、たまに撮ってもらうと上達が早くなる」。武本さんも動画分析からフォーム改善に取り組んだ実績あり。水曜練で仲間に頼んでみよう。</div>
+    </div>
+
+    <h3 class="ttl-sub">レッスンという手</h3>
+    <div class="tip-list">
+      <div class="tip">
+        <div class="tip-icon">🎓</div>
+        <div>
+          <div class="tip-ttl">個人レッスン（東京体育館・TIスイム）</div>
+          <div class="tip-desc">一岡コーチのTIスイム個人レッスン。50分7,700円。常に自分だけを見てもらえるので「実行→改善」のサイクルが速く、緒方さんはこれでフォーム開眼。「顔を真下に固定できてない」「常にどこか力が入ってる」など、自分では気づけない指摘がもらえる。</div>
+        </div>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">👥</div>
+        <div>
+          <div class="tip-ttl">団体スクールという手</div>
+          <div class="tip-desc">しんのすけさんは月謝制のスクールに通学（月8,000円・月4回まで・レベル別グループ）。個別フォーム指導はないが共通ドリルで全体を底上げ。「まず個人レッスンで自分の課題を知り、あとは団体で量をこなす」という使い分けもアリ。</div>
+        </div>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">🥇</div>
+        <div>
+          <div class="tip-ttl">辰巳のスイムクラス（オリンピアン講師）</div>
+          <div class="tip-desc">東京アクアティクスセンターでは単発のスイムクラスが開催される。緒方さんが出た背泳ぎローリングのクラスはオリンピアンの先生が優しく指導してくれて好評。中上級者向けの長水路クラスもあり、レース前の刺激入れに最適。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-ttl">🐬 部内に頼れるコーチがいる</div>
+      <div class="callout-desc">お金をかけなくても、水曜練で「こっそり捕まえて教わる」のが広尾スタイル。武本さん（部長・フォーム理論の使い手）、小田さん（TIスイム＆トライアスロン全般）、マイクさん（TIスイム伝道師。100mしか泳げなかった人を2,000m泳げるように育てた実績）。OWSのコツはアスロニア練習会（→次のセクション）でも教われる。</div>
     </div>
   </div>
 </section>
@@ -331,7 +420,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="tip-icon">🤿</div>
         <div>
           <div class="tip-ttl">アスロニア練習会（鎌倉・材木座）</div>
-          <div class="tip-desc">トライアスロン向けのOWS講習会。まずは「超初心者練」がおすすめ。ウェットスーツのレンタルあり。東京から日帰りで行ける材木座で、海スイムの第一歩に最適。</div>
+          <div class="tip-desc">トライアスロン向けのOWS講習会。まずは「超初心者練」がおすすめ（先にこれを飛ばしてインターバルに出て後悔した声も）。ウェットスーツのレンタルあり。東京から日帰りで行ける材木座で、海スイムの第一歩に最適。教わるコツ：①ワセリンを袖口の内外に塗る（脱ぎ着が楽）②入水は顎を引いてイルカ式 ③ブイの確認と呼吸は分ける ④上手い人にくっついて泳ぐ。同日2本目は半額。</div>
         </div>
       </div>
       <div class="tip">
