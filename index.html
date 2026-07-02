@@ -12,7 +12,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;bac
 .card{background:white;border-radius:20px;padding:32px 22px 24px;box-shadow:0 8px 32px rgba(0,0,0,0.25);margin-bottom:16px}
 .logo{text-align:center;margin-bottom:16px}
 h1{text-align:center;font-size:18px;font-weight:800;color:#1b5e35;margin-bottom:4px;letter-spacing:.04em}
-.sub{text-align:center;font-size:12px;color:#888;margin-bottom:24px}
+.sub{text-align:center;font-size:11px;color:#A8873C;letter-spacing:.18em;margin-bottom:24px}
 .divider{font-size:10px;color:#bbb;text-transform:uppercase;letter-spacing:.12em;margin:16px 0 10px;padding-left:2px}
 .btn{display:flex;align-items:center;gap:14px;padding:15px 16px;border-radius:14px;text-decoration:none;margin-bottom:10px;background:linear-gradient(135deg,#1b5e35,#0d3d20);color:white;transition:opacity .15s;-webkit-tap-highlight-color:transparent}
 .btn:last-child{margin-bottom:0}
@@ -222,8 +222,8 @@ footer{letter-spacing:.08em}
 <footer>広尾親父RC — 2026</footer>
 </div>
 
-<div id="auth-overlay" style="position:fixed;inset:0;background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
-  <div style="background:white;border-radius:20px;padding:36px 28px;max-width:320px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.3);text-align:center">
+<div id="auth-overlay" style="position:fixed;inset:0;background:radial-gradient(900px 600px at 50% 30%,#1E4936 0%,#122C20 55%,#0C1F16 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
+  <div style="background:#FFFDF6;border:1px solid #D9C98F;border-radius:14px;padding:36px 28px;max-width:320px;width:100%;box-shadow:inset 0 0 0 4px #FFFDF6,inset 0 0 0 5px rgba(195,162,77,.45),0 18px 50px rgba(0,0,0,.55);text-align:center">
     <svg width="60" height="68" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:16px" aria-label="広尾親父RC">
 <defs>
 <linearGradient id="hgauthg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4936"/><stop offset="1" stop-color="#0F2A1E"/></linearGradient>
@@ -248,16 +248,16 @@ footer{letter-spacing:.08em}
 <path d="M23 49 L41 49" stroke="url(#hgauthau)" stroke-width="1.2"/>
 <path d="M27 52.5 L37 52.5" stroke="rgba(201,162,39,0.6)" stroke-width="1"/>
 </svg>
-    <div style="font-size:16px;font-weight:700;color:#1b5e35;margin-bottom:4px">広尾親父RC</div>
-    <div style="font-size:12px;color:#888;margin-bottom:24px">部員専用ページ</div>
+    <div style="font-family:'Shippori Mincho',serif;font-size:19px;font-weight:800;color:#1B4030;letter-spacing:.06em;margin-bottom:4px">広尾親父RC</div>
+    <div style="font-size:11px;color:#A8873C;letter-spacing:.18em;margin-bottom:24px">部員専用ページ</div>
     <input type="password" id="pw-input" placeholder="パスワード" inputmode="numeric" pattern="[0-9]*"
-      style="width:100%;padding:12px 14px;border:2px solid #ddd;border-radius:10px;font-size:16px;text-align:center;letter-spacing:4px;outline:none;font-family:inherit;margin-bottom:10px">
+      style="width:100%;padding:12px 14px;border:1px solid #D9C98F;background:#FFFEFA;border-radius:10px;font-size:16px;text-align:center;letter-spacing:4px;outline:none;font-family:inherit;margin-bottom:10px">
     <button onclick="checkPw()"
-      style="width:100%;padding:12px;background:linear-gradient(135deg,#1b5e35,#0d3d20);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">
+      style="width:100%;padding:12px;background:linear-gradient(180deg,#1E4936,#0F2A1E);color:#EBD79A;border:1px solid #C3A24D;letter-spacing:.1em;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">
       入室する
     </button>
     <div id="pw-err" style="display:none;margin-top:10px;font-size:12px;color:#e53935">パスワードが違います</div>
-    <div style="margin-top:20px;padding-top:16px;border-top:1px solid #f0ece0">
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid #E8DDBD">
       <a href="./about.html" style="font-size:12px;color:#999;text-decoration:none;display:block;text-align:center;letter-spacing:.04em">広尾親父ランニングクラブとは？ →</a>
     </div>
   </div>
