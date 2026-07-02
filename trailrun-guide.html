@@ -104,11 +104,75 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP'
 footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px solid rgba(201,162,39,0.2)}
 .ft-copy{color:rgba(255,255,255,0.3);font-size:11px}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
+<style id="tora-theme">
+:root{--white:#F7F3E8;--off:#F1EBDA;--gold:#C3A24D;--trail:#A8873C;--trail-light:#F1E8CC;--trail-deep:#17382A}
+/* ===== 虎の巻 1a theme (金縁の実録帖) ===== */
+.badge{white-space:nowrap}
+.hb{white-space:nowrap}
+.sn{white-space:nowrap}
+body{background:#F7F3E8}
+.hero{background:linear-gradient(180deg,#143526 0%,#1B4030 100%);border-bottom:3px solid #C3A24D;min-height:auto;padding:110px 24px 54px}
+.badge{font-family:Cinzel,serif;letter-spacing:.3em;background:rgba(195,162,77,.14);border:1px solid rgba(195,162,77,.55);color:#D9BF75;border-radius:999px;font-weight:600}
+.hero-title{font-family:'Shippori Mincho',serif;font-weight:800}
+.hero-title em{color:#EBD79A}
+.hero-sub{color:rgba(244,239,223,.78)}
+.hb{border:1px solid rgba(195,162,77,.45);background:rgba(195,162,77,.1);color:#EBD79A}
+.disclaimer{background:#F1EBDA;color:#7A6320;border-bottom:1px solid #DECFA0}
+.step-nav{background:#F1EBDA;border-bottom:1px solid #DECFA0;padding:10px 12px;gap:8px}
+.sn{background:#FFFDF6;border:1px solid #D9C98F;border-radius:999px;padding:7px 14px;color:#3E3A2E;font-weight:500;margin-bottom:0}
+.sn:hover,.sn.active{background:#1B4030;border:1px solid #C3A24D;color:#EBD79A}
+.sec-bg-off{background:#F1EBDA}
+.sec-bg-dark,.sec-bg-night,.sec-bg-navy,.sec-bg-deep{background:linear-gradient(135deg,#17382A,#1E4634)}
+.lbl,.lbl-w,.lbl-blue,.lbl-org{font-family:Cinzel,serif;letter-spacing:.28em;font-weight:600}
+.lbl{color:#A8873C}
+.lbl-w,.lbl-blue,.lbl-org{color:#C9AC5C}
+.ttl,.ttl-w,.ttl-sub,.cta-title{font-family:'Shippori Mincho',serif;font-weight:700}
+.ttl{color:#1B4030}
+.ttl::after{content:'';display:block;height:1px;background:linear-gradient(90deg,#C3A24D,rgba(195,162,77,.1));margin-top:12px}
+.ttl-w{color:#F2ECD9}
+.ttl-w::after{background:linear-gradient(90deg,#C3A24D,rgba(195,162,77,.18))}
+.ttl-sub{color:#1B4030}
+.body-text{color:#4A4536}
+.body-text-w{color:rgba(242,236,217,.75)}
+.ic,.tip,.vc-l,.rung,.gear-item,.rl,.fq,.rl-item{background:#FFFDF6;border:1px solid #D9C98F;border-radius:10px;box-shadow:inset 0 0 0 4px #FFFDF6,inset 0 0 0 5px rgba(195,162,77,.45),0 2px 8px rgba(60,50,20,.08)}
+.ic-ttl,.tip-ttl,.rung-ttl,.gear-name,.rl-name,.fq-q,.rl-ttl,.rs-ttl,.camp-ttl,.dg-ttl,.a-ttl{font-family:'Shippori Mincho',serif;font-weight:700}
+.ic-ttl,.tip-ttl,.rung-ttl{color:#1B4030;font-size:14px}
+.ic-desc,.tip-desc,.rung-desc{color:#5C564A}
+.ic-tag{border-radius:999px}
+.tag-key{background:#1B4030;color:#E3CE8F}
+.tag-tip{background:#F1E8CC;color:#8A6D2E}
+.fq-q{border-left:none;color:#1B4030}
+.dg,.pg,.camp-card{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(195,162,77,.4);border-top:2px solid #C3A24D}
+.dg-num,.pg-day{font-family:Cinzel,serif;color:#C9AC5C;letter-spacing:.2em}
+.dg-ttl,.camp-ttl{color:#EBD79A}
+.dg-desc,.camp-desc{color:rgba(242,236,217,.78)}
+.camp-tag{background:rgba(195,162,77,.15);color:#E3CE8F}
+.vc{background:rgba(255,255,255,.05);border:1px solid rgba(195,162,77,.35)}
+.vc-text{color:rgba(242,236,217,.9)}
+.vc-name{color:#D9BF75}
+.vc-l-name{color:#A8873C}
+.rules{border:1px solid rgba(195,162,77,.4)}
+.rules-ttl{color:#D9BF75}
+.rules ul{color:rgba(242,236,217,.75)}
+.pool-spec dt{color:#A8873C}
+.tip-link{color:#A8873C}
+.note,.callout{background:linear-gradient(135deg,#17382A,#1E4634);border:1px solid #C3A24D;border-radius:12px}
+.note-ttl,.callout-ttl{color:#D9BF75;font-size:13px}
+.note-desc,.callout-desc{color:rgba(244,239,223,.85)}
+.note a,.callout a{color:#E3CE8F!important}
+.cta-sec{background:linear-gradient(180deg,#17382A,#0F2A1E);border-top:1px solid rgba(195,162,77,.4)}
+.cta-sub{color:rgba(242,236,217,.65)}
+.cta-btn{background:linear-gradient(180deg,#E8D391,#C3A24D);color:#3D2F0E;box-shadow:0 2px 10px rgba(0,0,0,.3)}
+footer{background:#0F2A1E}
+</style>
 </head>
 <body>
 
 <header class="hd">
-  <a href="index.html" class="hd-logo"><span>🏃</span><span>広尾親父RC</span></a>
+  <a href="index.html" class="hd-logo"><svg width="26" height="29" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="広尾親父RC"><defs><linearGradient id="hgtraig" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4936"/><stop offset="1" stop-color="#0F2A1E"/></linearGradient><linearGradient id="hgtraiau" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBD79A"/><stop offset="0.5" stop-color="#C9A227"/><stop offset="1" stop-color="#9A7B2E"/></linearGradient></defs><path d="M32 3 L58 12 L58 36 C58 52 46 64 32 69 C18 64 6 52 6 36 L6 12 Z" fill="url(#hgtraig)" stroke="url(#hgtraiau)" stroke-width="2.5"/><path d="M32 8 L53.5 15.5 L53.5 35.5 C53.5 49 43.5 59.5 32 64 C20.5 59.5 10.5 49 10.5 35.5 L10.5 15.5 Z" fill="none" stroke="rgba(201,162,39,0.45)" stroke-width="1"/><g fill="url(#hgtraiau)"><path d="M15.5 30 Q12.5 25 15.5 20.5 Q18.5 25 15.5 30 Z"/><path d="M14.5 37 Q10.5 33 12 27.5 Q16.5 31.5 14.5 37 Z"/><path d="M15.5 44 Q10.5 41 11 35 Q16.5 38.5 15.5 44 Z"/><path d="M18 50.5 Q12.5 49 12 43 Q18 45.5 18 50.5 Z"/><path d="M22 56 Q16 55.5 14.5 50 Q21 51.5 22 56 Z"/><path d="M48.5 30 Q51.5 25 48.5 20.5 Q45.5 25 48.5 30 Z"/><path d="M49.5 37 Q53.5 33 52 27.5 Q47.5 31.5 49.5 37 Z"/><path d="M48.5 44 Q53.5 41 53 35 Q47.5 38.5 48.5 44 Z"/><path d="M46 50.5 Q51.5 49 52 43 Q46 45.5 46 50.5 Z"/><path d="M42 56 Q48 55.5 49.5 50 Q43 51.5 42 56 Z"/></g><path d="M29.5 16.5 L32 12.5 L34.5 16.5 L32 15.2 Z" fill="url(#hgtraiau)"/><text x="32" y="42" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="bold" fill="url(#hgtraiau)" text-anchor="middle" letter-spacing="1.5">HG</text><path d="M23 49 L41 49" stroke="url(#hgtraiau)" stroke-width="1.2"/><path d="M27 52.5 L37 52.5" stroke="rgba(201,162,39,0.6)" stroke-width="1"/></svg><span>広尾親父RC</span></a>
   <a href="index.html" class="hd-btn">← トップへ</a>
 </header>
 
@@ -154,7 +218,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
       <div class="rung">
         <div class="rung-num">1</div>
         <div class="rung-ttl">初レース：みたけ山／青梅高水／ハセツネ30K／野沢14km</div>
-        <div class="rung-desc">牧野さんは青梅高水でトレラン初挑戦→時間内完走→そのままStravaデビュー。たかSさんは野沢14kmで初トレイル。「みんなで走るから絶対頑張れます。絶対楽しいです」（たじー）。</div>
+        <div class="rung-desc">マキノさんは青梅高水でトレラン初挑戦→時間内完走→そのままStravaデビュー。たかSさんは野沢14kmで初トレイル。「みんなで走るから絶対頑張れます。絶対楽しいです」（たじー）。</div>
       </div>
       <div class="rung">
         <div class="rung-num">2</div>
@@ -169,7 +233,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
       <div class="rung">
         <div class="rung-num">4</div>
         <div class="rung-ttl">ウルトラトレイル：奥信濃100／阿蘇ボルケーノ／FUJI100mi</div>
-        <div class="rung-desc">石原さん・銅坂さんは「倍々メソッド」（距離を倍々に伸ばす）で奥信濃100km完走。大重さん評「ムーアの法則並み」。ここまで来ると「残すはアレ（100マイル）ですが、全くもって達成できる気がしません」（石原さん）。</div>
+        <div class="rung-desc">いっしー・銅ちゃんは「倍々メソッド」（距離を倍々に伸ばす）で奥信濃100km完走。しげさん評「ムーアの法則並み」。ここまで来ると「残すはアレ（100マイル）ですが、全くもって達成できる気がしません」（いっしー）。</div>
       </div>
     </div>
     <div class="note">
@@ -188,12 +252,12 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
       <div class="dg">
         <div class="dg-num">3月末 — 奥多摩</div>
         <div class="dg-ttl">🌄 ハセツネ30K</div>
-        <div class="dg-desc">トレランシーズンの走り始め。2026年は部から10名の大所帯で参加し全員完走。「去年はそこまで真剣にクリック合戦しなくても大丈夫。開始時間にスタンバイしてれば恐らく申し込めます」（テリー）。ふるさと納税枠あり（林・石原が利用）。及川さん「すごく辛い思い出が…迷いましたが、また申し込んでしまった」——これがハセツネの魔力。本番前の試走も部の恒例。</div>
+        <div class="dg-desc">トレランシーズンの走り始め。2026年は部から10名の大所帯で参加し全員完走。「去年はそこまで真剣にクリック合戦しなくても大丈夫。開始時間にスタンバイしてれば恐らく申し込めます」（テリー）。ふるさと納税枠あり（はやさん・いっしーが利用）。及さん「すごく辛い思い出が…迷いましたが、また申し込んでしまった」——これがハセツネの魔力。本番前の試走も部の恒例。</div>
       </div>
       <div class="dg">
         <div class="dg-num">4月上旬 — 青梅</div>
         <div class="dg-ttl">⛰️ 青梅高水トレイルラン</div>
-        <div class="dg-desc">「アクセスも良く、初めてでも試走すれば完走可能な大会」（松本さん）。「上級クラス30kmは、実際は24kmです」（たじー）。2026年はたじーさんが60代1位入賞、武本さんは娘さんと16km親子参加（賞状は「就活のガクチカになるかな」）。3月に部で試走会を実施するのが恒例。</div>
+        <div class="dg-desc">「アクセスも良く、初めてでも試走すれば完走可能な大会」（松さん）。「上級クラス30kmは、実際は24kmです」（たじー）。2026年はたじーさんが60代1位入賞、武さんは娘さんと16km親子参加（賞状は「就活のガクチカになるかな」）。3月に部で試走会を実施するのが恒例。</div>
       </div>
       <div class="dg">
         <div class="dg-num">7月 — 信州（部最大の遠征）</div>
@@ -208,27 +272,27 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
       <div class="dg">
         <div class="dg-num">4月末 — 富士山麓</div>
         <div class="dg-ttl">🗻 Mt.FUJI100（FUJI/KAI/ASUMI）</div>
-        <div class="dg-desc">国内最大級。2026年はボブ齊藤がFUJI100mi、たじー・ゴーチャン・まいくがKAI70k（たじー年代別2位）、海津さんがASUMI40k。スタート・ゴール5分の宿を含むツアー（ルクタス）利用が部の定番。ITRAポイントによる参加資格に注意。</div>
+        <div class="dg-desc">国内最大級。2026年はボブさいさんがFUJI100mi、たじー・ゴーチャン・まいくがKAI70k（たじー年代別2位）、かいさんがASUMI40k。スタート・ゴール5分の宿を含むツアー（ルクタス）利用が部の定番。ITRAポイントによる参加資格に注意。</div>
       </div>
       <div class="dg">
         <div class="dg-num">6月 — 信州・北陸</div>
         <div class="dg-ttl">🏔️ 奥信濃100 ＆ Kaga Spa Trail</div>
-        <div class="dg-desc">奥信濃100（100km/累積4800m/制限21時間）：齊藤さん記録更新、銅坂さん・石原さんが自己最長完走。たじーはサポート役で参戦。加賀スパ（雨のドロンコ大会）：澤村さんが100kmリベンジ完走、武本さんは「20回近く転んで関門アウト。夢のような10時間の最後尾単独走。痺れる悪夢を泣きながら楽しんできました」。</div>
+        <div class="dg-desc">奥信濃100（100km/累積4800m/制限21時間）：さいさん記録更新、銅ちゃん・いっしーが自己最長完走。たじーはサポート役で参戦。加賀スパ（雨のドロンコ大会）：さわさんが100kmリベンジ完走、武さんは「20回近く転んで関門アウト。夢のような10時間の最後尾単独走。痺れる悪夢を泣きながら楽しんできました」。</div>
       </div>
       <div class="dg">
         <div class="dg-num">10月 — 奥多摩（本家）</div>
         <div class="dg-ttl">🌙 ハセツネCUP（日本山岳耐久レース 71.5km）</div>
-        <div class="dg-desc">夜通し走る本家ハセツネ。公式案内P33に石原さんが載った実績あり。「今年も広尾親父RCの爪痕を残すべく頑張りましょう🐾」（石原さん）。しんのすけの「きつかったレース」ランキング3位（1位・2位は内緒→ラン虎の巻のウルトラ欄へ）。</div>
+        <div class="dg-desc">夜通し走る本家ハセツネ。公式案内P33にいっしーが載った実績あり。「今年も広尾親父RCの爪痕を残すべく頑張りましょう🐾」（いっしー）。しんのすけの「きつかったレース」ランキング3位（1位・2位は内緒→ラン虎の巻のウルトラ欄へ）。</div>
       </div>
       <div class="dg">
         <div class="dg-num">12月 — 御岳・伊豆</div>
         <div class="dg-ttl">❄️ みたけ山登山競走 ＆ ITJ</div>
-        <div class="dg-desc">みたけ山は約20名で参加する年末の恒例（雪の年も）。伊豆トレイルジャーニーは銅坂さんが制限ギリギリで完走し「泥んこになって、少年になった気分です」。ゴール後は宿坊でくつろぐのが通。</div>
+        <div class="dg-desc">みたけ山は約20名で参加する年末の恒例（雪の年も）。伊豆トレイルジャーニーは銅ちゃんが制限ギリギリで完走し「泥んこになって、少年になった気分です」。ゴール後は宿坊でくつろぐのが通。</div>
       </div>
       <div class="dg">
         <div class="dg-num">海外・変わり種</div>
         <div class="dg-ttl">🌏 by UTMB遠征・アドベンチャーレース</div>
-        <div class="dg-desc">たじーは台湾Xtrail Kenting 25kmで年代別1位（UTMBショートレース年代別4連勝）、H1の次男も10kmで年代別2位の親子入賞。竹嶋さんは年末の京都グレイトラウンド130k完走。緒方さん発案の奥多摩アドベンチャーレース（MTB・カヌー・トレイル複合）も新ジャンルとして定着中。</div>
+        <div class="dg-desc">たじーは台湾Xtrail Kenting 25kmで年代別1位（UTMBショートレース年代別4連勝）、H1の次男も10kmで年代別2位の親子入賞。たけしーは年末の京都グレイトラウンド130k完走。緒さん発案の奥多摩アドベンチャーレース（MTB・カヌー・トレイル複合）も新ジャンルとして定着中。</div>
       </div>
     </div>
   </div>
@@ -240,14 +304,14 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
     <div class="lbl">GEAR TALK</div>
     <h2 class="ttl">装備 — 特にザック論争の記録</h2>
     <p class="body-text">
-      篠田さんの「トレランザック、どれがいい？」という一つの質問から生まれた、部の集合知。
+      篠さんの「トレランザック、どれがいい？」という一つの質問から生まれた、部の集合知。
     </p>
     <div class="info-cards">
       <div class="ic">
         <div class="ic-icon">🎒</div>
         <div>
           <div class="ic-ttl">結論：サロモン ADV SKIN 12 が部内一番人気</div>
-          <div class="ic-desc">「使用実績として希望用途（スパルタン・トレラン練・帰宅ラン・街ラン）は全部満たしています」（吉良さん）。「フラスク2本付きでコスパよく1択目としておすすめ。長時間背負うのでサイズが重要。僕は胸囲110cmでXL。できれば原宿のサロモンショップで試すこと。胸板が厚い人は女性モデルを選ぶ人もいます（フラスクが擦れない配慮）」（武本さん）。</div>
+          <div class="ic-desc">「使用実績として希望用途（スパルタン・トレラン練・帰宅ラン・街ラン）は全部満たしています」（きらさん）。「フラスク2本付きでコスパよく1択目としておすすめ。長時間背負うのでサイズが重要。僕は胸囲110cmでXL。できれば原宿のサロモンショップで試すこと。胸板が厚い人は女性モデルを選ぶ人もいます（フラスクが擦れない配慮）」（武さん）。</div>
           <span class="ic-tag tag-key">試着してから買え</span>
         </div>
       </div>
@@ -255,7 +319,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="ic-icon">📏</div>
         <div>
           <div class="ic-ttl">容量の目安（部員の実測値）</div>
-          <div class="ic-desc">「トレラン用なら12Lで十分。通勤ランにも使えて14インチPCもギリ入る。冬の着替え多めなら15L欲しい」（天さん）。「8Lで夏冬対応できるが、水1L携行が義務の大会なら12Lあるといい」（山口さん）。銅坂さんは15L派。緒方さんの山岳用60+20Lは「トレランには向いてないかもしれない」（本人談）。</div>
+          <div class="ic-desc">「トレラン用なら12Lで十分。通勤ランにも使えて14インチPCもギリ入る。冬の着替え多めなら15L欲しい」（天さん）。「8Lで夏冬対応できるが、水1L携行が義務の大会なら12Lあるといい」（ぐっさん）。銅ちゃんは15L派。緒さんの山岳用60+20Lは「トレランには向いてないかもしれない」（本人談）。</div>
         </div>
       </div>
       <div class="ic">
@@ -269,7 +333,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="ic-icon">🔔</div>
         <div>
           <div class="ic-ttl">熊対策：鈴は大きめ、スプレーは品薄</div>
-          <div class="ic-desc">「熊対策で、熊鈴を少し大きめに！」（遠山さん）。「熊避けスプレーは品薄」。武本さんは加賀スパで転倒しクマスプレーを紛失→スイーパーが回収してくれて生還。勝田帰りの近藤さんへの声援も「残りクマに気をつけてがんばってー」だった。</div>
+          <div class="ic-desc">「熊対策で、熊鈴を少し大きめに！」（チチさん）。「熊避けスプレーは品薄」。武さんは加賀スパで転倒しクマスプレーを紛失→スイーパーが回収してくれて生還。勝田帰りのこんちゃんへの声援も「残りクマに気をつけてがんばってー」だった。</div>
           <span class="ic-tag tag-warn">2026年の必須話題</span>
         </div>
       </div>
@@ -277,7 +341,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="ic-icon">👟</div>
         <div>
           <div class="ic-ttl">トレランシューズ活</div>
-          <div class="ic-desc">遠山さん、終活ならぬ「トレランシューズ活」を宣言して65kmに挑戦中。形から入るのも立派な入山方法である。</div>
+          <div class="ic-desc">チチさん、終活ならぬ「トレランシューズ活」を宣言して65kmに挑戦中。形から入るのも立派な入山方法である。</div>
         </div>
       </div>
     </div>
@@ -295,7 +359,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
       <div class="tip"><div class="tip-icon">❄️</div><div><div class="tip-ttl">雪・寒さの日（たじーのみたけ山アドバイス）</div><div class="tip-desc">「雪予報なので防水や厚手の手袋を。足元滑るので、転ばないよう体の真下着地を意識。ゴール後は冷えないよう無理せず。雪上を走れたらラッキーと気持ちを切り替えて楽しんで」。</div></div></div>
       <div class="tip"><div class="tip-icon">🥵</div><div><div class="tip-ttl">熱中症は強者も倒す</div><div class="tip-desc">阿蘇2026、快晴の日に元部長・元副部長がそろって熱中症リタイア。「天気が良すぎて何も喉を通らないいつものパターン」。景色の良いレース＝日陰がないレースでもある。</div></div></div>
       <div class="tip"><div class="tip-icon">📡</div><div><div class="tip-ttl">位置共有はIBUKI＋αで</div><div class="tip-desc">ロングレースの応援はIBUKI（GPSトラッキング）が部の定番。小江戸大江戸ではIBUKI＋AirTag＋Googleマップ共有の三段構えで応援隊が夜通しリレーした。山ではネットが繋がらない前提で（奥信濃「58km地点、ネットが全く繋がらない」）。</div></div></div>
-      <div class="tip"><div class="tip-icon">🪪</div><div><div class="tip-ttl">トレランに代走は無い</div><div class="tip-desc">「トレランは本人確認が厳格です。レースで怪我をしたときの保険と、ITRAポイントに影響するから」（石原さん）。ロードの緩い文化を持ち込まないこと。</div></div></div>
+      <div class="tip"><div class="tip-icon">🪪</div><div><div class="tip-ttl">トレランに代走は無い</div><div class="tip-desc">「トレランは本人確認が厳格です。レースで怪我をしたときの保険と、ITRAポイントに影響するから」（いっしー）。ロードの緩い文化を持ち込まないこと。</div></div></div>
     </div>
     <div class="note">
       <div class="note-ttl">🏋️ 山の練習は山だけじゃない</div>
@@ -314,14 +378,14 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="ic-icon">👀</div>
         <div>
           <div class="ic-ttl">試走してから本番に臨む</div>
-          <div class="ic-desc">青梅高水試走会、ハセツネ30試走、富士吉田試走——部の強い人ほど試走している。「初めてでも試走すれば完走可能」（松本さん・青梅高水評）。初トレランの牧野さんも本番前に24km試走に参加して完走した。</div>
+          <div class="ic-desc">青梅高水試走会、ハセツネ30試走、富士吉田試走——部の強い人ほど試走している。「初めてでも試走すれば完走可能」（松さん・青梅高水評）。初トレランのマキノさんも本番前に24km試走に参加して完走した。</div>
         </div>
       </div>
       <div class="ic">
         <div class="ic-icon">📈</div>
         <div>
           <div class="ic-ttl">距離は倍々で伸ばす（倍々メソッド）</div>
-          <div class="ic-desc">石原さん・銅坂さんの実践法。30K→50K→100Kと段階を踏む。ITRAポイントの仕組みも実質そうなっている。飛び級したくなったら阿蘇の熱中症リタイア記録を読み返すこと。</div>
+          <div class="ic-desc">いっしー・銅ちゃんの実践法。30K→50K→100Kと段階を踏む。ITRAポイントの仕組みも実質そうなっている。飛び級したくなったら阿蘇の熱中症リタイア記録を読み返すこと。</div>
         </div>
       </div>
       <div class="ic">
@@ -355,31 +419,31 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
       </div>
       <div class="vc">
         <div class="vc-text">今年出ましたが、すごく辛い思い出が😅。迷いましたが、またハセツネ30K申し込んでしまった😆</div>
-        <div class="vc-name">— 及川さん（トレランの中毒性について）</div>
+        <div class="vc-name">— 及さん（トレランの中毒性について）</div>
       </div>
       <div class="vc">
         <div class="vc-text">夢のような10時間の最後尾単独走。久しぶりに痺れる悪夢を泣きながら楽しんできました</div>
-        <div class="vc-name">— 武本さん（加賀スパ・関門アウトの弁）</div>
+        <div class="vc-name">— 武さん（加賀スパ・関門アウトの弁）</div>
       </div>
       <div class="vc">
         <div class="vc-text">泥んこになって、少年になった気分です👍</div>
-        <div class="vc-name">— 銅坂さん（ITJ完走直後）</div>
+        <div class="vc-name">— 銅ちゃん（ITJ完走直後）</div>
       </div>
       <div class="vc">
         <div class="vc-text">野沢の下りも絶叫マシンと思えばまだまだ楽しめます</div>
-        <div class="vc-name">— 大重さん（ジェットコースター年齢制限問題を受けて）</div>
+        <div class="vc-name">— しげさん（ジェットコースター年齢制限問題を受けて）</div>
       </div>
       <div class="vc">
         <div class="vc-text">第1セクションで諦める可能性60%、最終関門に間に合わない可能性40%、完走する可能性0%、くらいの想定です。</div>
-        <div class="vc-name">— 宮地さん（勢いで野沢37kmに申し込んだ夜）</div>
+        <div class="vc-name">— みやっち（勢いで野沢37kmに申し込んだ夜）</div>
       </div>
       <div class="vc">
         <div class="vc-text">千葉鋸山トレラン、橘さんと行ってきます！今年は流血しないぞ！</div>
-        <div class="vc-name">— 林（広報部長・学習する男）</div>
+        <div class="vc-name">— はやさん（広報部長・学習する男）</div>
       </div>
       <div class="vc">
         <div class="vc-text">サドだけどマゾ</div>
-        <div class="vc-name">— ボブ齊藤（佐渡の新設50kmトレイル「SIGoT」に寄せて）</div>
+        <div class="vc-name">— ボブさいさん（佐渡の新設50kmトレイル「SIGoT」に寄せて）</div>
       </div>
     </div>
     <div style="margin-top:20px;padding:15px;background:rgba(255,255,255,0.06);border:1px solid rgba(197,225,165,0.2);border-radius:14px">
