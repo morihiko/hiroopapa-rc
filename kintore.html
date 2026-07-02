@@ -101,6 +101,32 @@ header{border-bottom:1px solid rgba(201,162,39,0.4)!important}
 .cat-quote{border:1px solid rgba(201,162,39,0.4)!important;border-left:4px solid #c9a227!important}
 .filter-btn.active,.filter-btn:hover{background:#1b5e35;border-color:rgba(201,162,39,0.5)!important}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
+<style id="tora-theme">
+/* ===== 虎の巻 1a theme (金縁の実録帖) ===== */
+body{background:#F7F3E8!important;color:#4A4536}
+#bg{display:none}
+header{background:linear-gradient(160deg,#17382A 0%,#0F2A1E 100%)!important;border-bottom:3px solid #C3A24D!important}
+.h-text h1{font-family:'Shippori Mincho',serif;font-weight:700;font-size:13.5px;letter-spacing:.04em;white-space:nowrap}
+.h-text .sub{opacity:1;color:rgba(217,191,117,.85)}
+.filter-btn{border:1px solid rgba(195,162,77,.5);color:#EBD79A;background:rgba(195,162,77,.08)}
+.filter-btn.active,.filter-btn:active{background:#C3A24D!important;border-color:#C3A24D!important;color:#17382A!important;font-weight:700}
+.cat-header{background:linear-gradient(90deg,#17382A,#1E4634);color:#D9BF75;font-family:'Shippori Mincho',serif;font-size:13px;letter-spacing:.12em;border-left:3px solid #C3A24D;text-shadow:none;padding:8px 14px}
+.card{background:#FFFDF6!important;border:1px solid #D9C98F!important;border-top:1px solid #D9C98F!important;border-radius:10px;box-shadow:inset 0 0 0 4px #FFFDF6,inset 0 0 0 5px rgba(195,162,77,.45),0 2px 8px rgba(60,50,20,.08)!important}
+.card-title{font-family:'Shippori Mincho',serif;color:#1B4030}
+.tag{background:#F1E8CC;color:#6B6046}
+.card.cat-quote{background:linear-gradient(135deg,#17382A,#1E4634)!important;border:1px solid #C3A24D!important;box-shadow:0 3px 10px rgba(23,56,42,.3)!important}
+.cat-quote .quote-text{font-family:'Shippori Mincho',serif;color:#F2ECD9;font-style:normal}
+.cat-quote .quote-author{color:#D9BF75}
+.cat-quote .card-title{color:#EBD79A}
+.cat-quote .card-desc{color:rgba(242,236,217,.8)}
+.cat-quote .tag{background:rgba(255,255,255,.12);color:#E3CE8F}
+.cat-quote .lbl{color:rgba(227,206,143,.7)}
+.fact-table th{background:#1B4030;color:#D9BF75}
+footer{color:#8A8168}
+</style>
 </head>
 <body>
 <div id="bg" aria-hidden="true" style="position:fixed;inset:0;z-index:-1;overflow:hidden">
@@ -128,14 +154,30 @@ header{border-bottom:1px solid rgba(201,162,39,0.4)!important}
 <header>
   <div class="h-inner">
     <a href="./index.html" style="display:inline-block;cursor:pointer;text-decoration:none;">
-      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z" fill="rgba(255,255,255,0.08)" stroke="#c9a227" stroke-width="1.5"/>
-        <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#c9a227" text-anchor="middle" letter-spacing="1">HG</text>
-        <path d="M9 26 Q7 22 10 19 Q8 24 11 26 Z" fill="#c9a227" opacity="0.7"/>
-        <path d="M8 31 Q5 27 8 24 Q7 29 10 31 Z" fill="#c9a227" opacity="0.7"/>
-        <path d="M43 26 Q45 22 42 19 Q44 24 41 26 Z" fill="#c9a227" opacity="0.7"/>
-        <path d="M44 31 Q47 27 44 24 Q45 29 42 31 Z" fill="#c9a227" opacity="0.7"/>
-      </svg>
+      <svg width="44" height="50" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="広尾親父RC">
+<defs>
+<linearGradient id="hgkintg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4936"/><stop offset="1" stop-color="#0F2A1E"/></linearGradient>
+<linearGradient id="hgkintau" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBD79A"/><stop offset="0.5" stop-color="#C9A227"/><stop offset="1" stop-color="#9A7B2E"/></linearGradient>
+</defs>
+<path d="M32 3 L58 12 L58 36 C58 52 46 64 32 69 C18 64 6 52 6 36 L6 12 Z" fill="url(#hgkintg)" stroke="url(#hgkintau)" stroke-width="2.5"/>
+<path d="M32 8 L53.5 15.5 L53.5 35.5 C53.5 49 43.5 59.5 32 64 C20.5 59.5 10.5 49 10.5 35.5 L10.5 15.5 Z" fill="none" stroke="rgba(201,162,39,0.45)" stroke-width="1"/>
+<g fill="url(#hgkintau)">
+<path d="M15.5 30 Q12.5 25 15.5 20.5 Q18.5 25 15.5 30 Z"/>
+<path d="M14.5 37 Q10.5 33 12 27.5 Q16.5 31.5 14.5 37 Z"/>
+<path d="M15.5 44 Q10.5 41 11 35 Q16.5 38.5 15.5 44 Z"/>
+<path d="M18 50.5 Q12.5 49 12 43 Q18 45.5 18 50.5 Z"/>
+<path d="M22 56 Q16 55.5 14.5 50 Q21 51.5 22 56 Z"/>
+<path d="M48.5 30 Q51.5 25 48.5 20.5 Q45.5 25 48.5 30 Z"/>
+<path d="M49.5 37 Q53.5 33 52 27.5 Q47.5 31.5 49.5 37 Z"/>
+<path d="M48.5 44 Q53.5 41 53 35 Q47.5 38.5 48.5 44 Z"/>
+<path d="M46 50.5 Q51.5 49 52 43 Q46 45.5 46 50.5 Z"/>
+<path d="M42 56 Q48 55.5 49.5 50 Q43 51.5 42 56 Z"/>
+</g>
+<path d="M29.5 16.5 L32 12.5 L34.5 16.5 L32 15.2 Z" fill="url(#hgkintau)"/>
+<text x="32" y="42" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="bold" fill="url(#hgkintau)" text-anchor="middle" letter-spacing="1.5">HG</text>
+<path d="M23 49 L41 49" stroke="url(#hgkintau)" stroke-width="1.2"/>
+<path d="M27 52.5 L37 52.5" stroke="rgba(201,162,39,0.6)" stroke-width="1"/>
+</svg>
     </a>
     <div class="h-text">
       <h1>&#x1F4AA; 広尾親父RC 筋トレ虎の巻</h1>
@@ -564,18 +606,15 @@ function setFilter(btn) {
 }
 </script>
 
-<div id="auth-overlay" style="position:fixed;inset:0;background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
-  <div style="background:white;border-radius:20px;padding:36px 28px;max-width:320px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.3);text-align:center">
-    <svg width="60" height="60" viewBox="0 0 52 52" fill="none" style="margin-bottom:16px">
-      <path d="M26 3 L46 10 L46 28 C46 39 36 48 26 50 C16 48 6 39 6 28 L6 10 Z" fill="#e8f5ee" stroke="#1b5e35" stroke-width="2"/>
-      <text x="26" y="33" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#1b5e35" text-anchor="middle" letter-spacing="1">HG</text>
-    </svg>
-    <div style="font-size:16px;font-weight:700;color:#1b5e35;margin-bottom:4px">広尾親父RC</div>
-    <div style="font-size:12px;color:#888;margin-bottom:24px">部員専用ページ</div>
+<div id="auth-overlay" style="position:fixed;inset:0;background:radial-gradient(900px 600px at 50% 30%,#1E4936 0%,#122C20 55%,#0C1F16 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
+  <div style="background:#FFFDF6;border:1px solid #D9C98F;border-radius:14px;padding:36px 28px;max-width:320px;width:100%;box-shadow:inset 0 0 0 4px #FFFDF6,inset 0 0 0 5px rgba(195,162,77,.45),0 18px 50px rgba(0,0,0,.55);text-align:center">
+    <svg width="60" height="68" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:16px" aria-label="広尾親父RC"><defs><linearGradient id="hgkinx0g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4936"/><stop offset="1" stop-color="#0F2A1E"/></linearGradient><linearGradient id="hgkinx0au" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBD79A"/><stop offset="0.5" stop-color="#C9A227"/><stop offset="1" stop-color="#9A7B2E"/></linearGradient></defs><path d="M32 3 L58 12 L58 36 C58 52 46 64 32 69 C18 64 6 52 6 36 L6 12 Z" fill="url(#hgkinx0g)" stroke="url(#hgkinx0au)" stroke-width="2.5"/><path d="M32 8 L53.5 15.5 L53.5 35.5 C53.5 49 43.5 59.5 32 64 C20.5 59.5 10.5 49 10.5 35.5 L10.5 15.5 Z" fill="none" stroke="rgba(201,162,39,0.45)" stroke-width="1"/><g fill="url(#hgkinx0au)"><path d="M15.5 30 Q12.5 25 15.5 20.5 Q18.5 25 15.5 30 Z"/><path d="M14.5 37 Q10.5 33 12 27.5 Q16.5 31.5 14.5 37 Z"/><path d="M15.5 44 Q10.5 41 11 35 Q16.5 38.5 15.5 44 Z"/><path d="M18 50.5 Q12.5 49 12 43 Q18 45.5 18 50.5 Z"/><path d="M22 56 Q16 55.5 14.5 50 Q21 51.5 22 56 Z"/><path d="M48.5 30 Q51.5 25 48.5 20.5 Q45.5 25 48.5 30 Z"/><path d="M49.5 37 Q53.5 33 52 27.5 Q47.5 31.5 49.5 37 Z"/><path d="M48.5 44 Q53.5 41 53 35 Q47.5 38.5 48.5 44 Z"/><path d="M46 50.5 Q51.5 49 52 43 Q46 45.5 46 50.5 Z"/><path d="M42 56 Q48 55.5 49.5 50 Q43 51.5 42 56 Z"/></g><path d="M29.5 16.5 L32 12.5 L34.5 16.5 L32 15.2 Z" fill="url(#hgkinx0au)"/><text x="32" y="42" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="bold" fill="url(#hgkinx0au)" text-anchor="middle" letter-spacing="1.5">HG</text><path d="M23 49 L41 49" stroke="url(#hgkinx0au)" stroke-width="1.2"/><path d="M27 52.5 L37 52.5" stroke="rgba(201,162,39,0.6)" stroke-width="1"/></svg>
+    <div style="font-family:'Shippori Mincho',serif;font-size:19px;font-weight:800;color:#1B4030;letter-spacing:.06em;margin-bottom:4px">広尾親父RC</div>
+    <div style="font-size:11px;color:#A8873C;letter-spacing:.18em;margin-bottom:24px">部員専用ページ</div>
     <input type="password" id="pw-input" placeholder="パスワード" inputmode="numeric" pattern="[0-9]*"
-      style="width:100%;padding:12px 14px;border:2px solid #ddd;border-radius:10px;font-size:16px;text-align:center;letter-spacing:4px;outline:none;font-family:inherit;margin-bottom:10px">
+      style="width:100%;padding:12px 14px;border:1px solid #D9C98F;background:#FFFEFA;border-radius:10px;font-size:16px;text-align:center;letter-spacing:4px;outline:none;font-family:inherit;margin-bottom:10px">
     <button onclick="checkPw()"
-      style="width:100%;padding:12px;background:linear-gradient(135deg,#1b5e35,#0d3d20);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">
+      style="width:100%;padding:12px;background:linear-gradient(180deg,#1E4936,#0F2A1E);color:#EBD79A;border:1px solid #C3A24D;letter-spacing:.1em;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">
       入室する
     </button>
     <div id="pw-err" style="display:none;margin-top:10px;font-size:12px;color:#e53935">パスワードが違います</div>

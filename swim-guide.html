@@ -113,11 +113,75 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP'
 footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px solid rgba(201,162,39,0.2)}
 .ft-copy{color:rgba(255,255,255,0.3);font-size:11px}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
+<style id="tora-theme">
+:root{--white:#F7F3E8;--off:#F1EBDA;--gold:#C3A24D;--swim:#A8873C;--swim-light:#F1E8CC}
+/* ===== 虎の巻 1a theme (金縁の実録帖) ===== */
+.badge{white-space:nowrap}
+.hb{white-space:nowrap}
+.sn{white-space:nowrap}
+body{background:#F7F3E8}
+.hero{background:linear-gradient(180deg,#143526 0%,#1B4030 100%);border-bottom:3px solid #C3A24D;min-height:auto;padding:110px 24px 54px}
+.badge{font-family:Cinzel,serif;letter-spacing:.3em;background:rgba(195,162,77,.14);border:1px solid rgba(195,162,77,.55);color:#D9BF75;border-radius:999px;font-weight:600}
+.hero-title{font-family:'Shippori Mincho',serif;font-weight:800}
+.hero-title em{color:#EBD79A}
+.hero-sub{color:rgba(244,239,223,.78)}
+.hb{border:1px solid rgba(195,162,77,.45);background:rgba(195,162,77,.1);color:#EBD79A}
+.disclaimer{background:#F1EBDA;color:#7A6320;border-bottom:1px solid #DECFA0}
+.step-nav{background:#F1EBDA;border-bottom:1px solid #DECFA0;padding:10px 12px;gap:8px}
+.sn{background:#FFFDF6;border:1px solid #D9C98F;border-radius:999px;padding:7px 14px;color:#3E3A2E;font-weight:500;margin-bottom:0}
+.sn:hover,.sn.active{background:#1B4030;border:1px solid #C3A24D;color:#EBD79A}
+.sec-bg-off{background:#F1EBDA}
+.sec-bg-dark,.sec-bg-night,.sec-bg-navy,.sec-bg-deep{background:linear-gradient(135deg,#17382A,#1E4634)}
+.lbl,.lbl-w,.lbl-blue,.lbl-org{font-family:Cinzel,serif;letter-spacing:.28em;font-weight:600}
+.lbl{color:#A8873C}
+.lbl-w,.lbl-blue,.lbl-org{color:#C9AC5C}
+.ttl,.ttl-w,.ttl-sub,.cta-title{font-family:'Shippori Mincho',serif;font-weight:700}
+.ttl{color:#1B4030}
+.ttl::after{content:'';display:block;height:1px;background:linear-gradient(90deg,#C3A24D,rgba(195,162,77,.1));margin-top:12px}
+.ttl-w{color:#F2ECD9}
+.ttl-w::after{background:linear-gradient(90deg,#C3A24D,rgba(195,162,77,.18))}
+.ttl-sub{color:#1B4030}
+.body-text{color:#4A4536}
+.body-text-w{color:rgba(242,236,217,.75)}
+.ic,.tip,.vc-l,.rung,.gear-item,.rl,.fq,.rl-item{background:#FFFDF6;border:1px solid #D9C98F;border-radius:10px;box-shadow:inset 0 0 0 4px #FFFDF6,inset 0 0 0 5px rgba(195,162,77,.45),0 2px 8px rgba(60,50,20,.08)}
+.ic-ttl,.tip-ttl,.rung-ttl,.gear-name,.rl-name,.fq-q,.rl-ttl,.rs-ttl,.camp-ttl,.dg-ttl,.a-ttl{font-family:'Shippori Mincho',serif;font-weight:700}
+.ic-ttl,.tip-ttl,.rung-ttl{color:#1B4030;font-size:14px}
+.ic-desc,.tip-desc,.rung-desc{color:#5C564A}
+.ic-tag{border-radius:999px}
+.tag-key{background:#1B4030;color:#E3CE8F}
+.tag-tip{background:#F1E8CC;color:#8A6D2E}
+.fq-q{border-left:none;color:#1B4030}
+.dg,.pg,.camp-card{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(195,162,77,.4);border-top:2px solid #C3A24D}
+.dg-num,.pg-day{font-family:Cinzel,serif;color:#C9AC5C;letter-spacing:.2em}
+.dg-ttl,.camp-ttl{color:#EBD79A}
+.dg-desc,.camp-desc{color:rgba(242,236,217,.78)}
+.camp-tag{background:rgba(195,162,77,.15);color:#E3CE8F}
+.vc{background:rgba(255,255,255,.05);border:1px solid rgba(195,162,77,.35)}
+.vc-text{color:rgba(242,236,217,.9)}
+.vc-name{color:#D9BF75}
+.vc-l-name{color:#A8873C}
+.rules{border:1px solid rgba(195,162,77,.4)}
+.rules-ttl{color:#D9BF75}
+.rules ul{color:rgba(242,236,217,.75)}
+.pool-spec dt{color:#A8873C}
+.tip-link{color:#A8873C}
+.note,.callout{background:linear-gradient(135deg,#17382A,#1E4634);border:1px solid #C3A24D;border-radius:12px}
+.note-ttl,.callout-ttl{color:#D9BF75;font-size:13px}
+.note-desc,.callout-desc{color:rgba(244,239,223,.85)}
+.note a,.callout a{color:#E3CE8F!important}
+.cta-sec{background:linear-gradient(180deg,#17382A,#0F2A1E);border-top:1px solid rgba(195,162,77,.4)}
+.cta-sub{color:rgba(242,236,217,.65)}
+.cta-btn{background:linear-gradient(180deg,#E8D391,#C3A24D);color:#3D2F0E;box-shadow:0 2px 10px rgba(0,0,0,.3)}
+footer{background:#0F2A1E}
+</style>
 </head>
 <body>
 
 <header class="hd">
-  <a href="index.html" class="hd-logo"><span>🏃</span><span>広尾親父RC</span></a>
+  <a href="index.html" class="hd-logo"><svg width="26" height="29" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="広尾親父RC"><defs><linearGradient id="hgswimg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4936"/><stop offset="1" stop-color="#0F2A1E"/></linearGradient><linearGradient id="hgswimau" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBD79A"/><stop offset="0.5" stop-color="#C9A227"/><stop offset="1" stop-color="#9A7B2E"/></linearGradient></defs><path d="M32 3 L58 12 L58 36 C58 52 46 64 32 69 C18 64 6 52 6 36 L6 12 Z" fill="url(#hgswimg)" stroke="url(#hgswimau)" stroke-width="2.5"/><path d="M32 8 L53.5 15.5 L53.5 35.5 C53.5 49 43.5 59.5 32 64 C20.5 59.5 10.5 49 10.5 35.5 L10.5 15.5 Z" fill="none" stroke="rgba(201,162,39,0.45)" stroke-width="1"/><g fill="url(#hgswimau)"><path d="M15.5 30 Q12.5 25 15.5 20.5 Q18.5 25 15.5 30 Z"/><path d="M14.5 37 Q10.5 33 12 27.5 Q16.5 31.5 14.5 37 Z"/><path d="M15.5 44 Q10.5 41 11 35 Q16.5 38.5 15.5 44 Z"/><path d="M18 50.5 Q12.5 49 12 43 Q18 45.5 18 50.5 Z"/><path d="M22 56 Q16 55.5 14.5 50 Q21 51.5 22 56 Z"/><path d="M48.5 30 Q51.5 25 48.5 20.5 Q45.5 25 48.5 30 Z"/><path d="M49.5 37 Q53.5 33 52 27.5 Q47.5 31.5 49.5 37 Z"/><path d="M48.5 44 Q53.5 41 53 35 Q47.5 38.5 48.5 44 Z"/><path d="M46 50.5 Q51.5 49 52 43 Q46 45.5 46 50.5 Z"/><path d="M42 56 Q48 55.5 49.5 50 Q43 51.5 42 56 Z"/></g><path d="M29.5 16.5 L32 12.5 L34.5 16.5 L32 15.2 Z" fill="url(#hgswimau)"/><text x="32" y="42" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="bold" fill="url(#hgswimau)" text-anchor="middle" letter-spacing="1.5">HG</text><path d="M23 49 L41 49" stroke="url(#hgswimau)" stroke-width="1.2"/><path d="M27 52.5 L37 52.5" stroke="rgba(201,162,39,0.6)" stroke-width="1"/></svg><span>広尾親父RC</span></a>
   <a href="index.html" class="hd-btn">← トップへ</a>
 </header>
 
@@ -199,7 +263,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
     </p>
     <div class="alert-light">
       <div class="a-ttl">🚫 あるある失敗パターン</div>
-      <div class="a-desc">水着まで持参して会場に来たら休館日。「これをやらかさないと正式部員とは言えない」（宮地さん）。スマホで確認すれば秒で防げる。</div>
+      <div class="a-desc">水着まで持参して会場に来たら休館日。「これをやらかさないと正式部員とは言えない」（みやっち）。スマホで確認すれば秒で防げる。</div>
     </div>
     <div class="tip-list" style="margin-top:16px">
       <div class="tip">
@@ -273,7 +337,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="ic-icon">🌊</div>
         <div style="flex:1">
           <div class="ic-ttl">千葉県国際総合水泳場（新習志野）</div>
-          <div class="ic-desc">少し足を伸ばす穴場。50mプールが2つあり、東京体育館より空いていることが多い。お風呂はなくシャワーのみ（石鹸・シャンプー不可）。宮地さんおすすめ。</div>
+          <div class="ic-desc">少し足を伸ばす穴場。50mプールが2つあり、東京体育館より空いていることが多い。お風呂はなくシャワーのみ（石鹸・シャンプー不可）。みやっちおすすめ。</div>
           <dl class="pool-spec">
             <dt>住所</dt><dd>習志野市茜浜2-3-3（JR京葉線 新習志野駅）</dd>
             <dt>期間</dt><dd>通年（休館：毎月第3月曜ほか）</dd>
@@ -303,7 +367,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="dg-ttl">🏊 スイムドリル（TIスイム）</div>
         <div class="dg-desc">
           キックドリル・プルブイ・ビルドアップなど。
-          力を抜いて長く泳ぐTIスイムはマイクさん・小田さん直伝で、
+          力を抜いて長く泳ぐTIスイムはマイクさん・おださん直伝で、
           100mしか泳げなかった人が2000m泳げるようになった例も。
           速さより丁寧さ優先で。
         </div>
@@ -314,7 +378,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="dg-desc">
           20秒全力 + 10秒休憩 × 8セット＝たった4分。
           腸腰筋・大腿四頭筋・腹筋に効き、心肺機能向上にも最適。
-          緒方さん発信のメニューで、毎朝の習慣にしているメンバーも。
+          緒さん発信のメニューで、毎朝の習慣にしているメンバーも。
           やりすぎ注意、週2回程度が目安。
         </div>
       </div>
@@ -323,7 +387,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="dg-ttl">🎵 タバタ用BGM</div>
         <div class="dg-desc">
           テンション高い音楽で追い込むのがコツ。
-          「HIIT MUSIC」チャンネルが松さん（松本さん）推薦。
+          「HIIT MUSIC」チャンネルが松さん（松さん）推薦。
           20秒/10秒のインターバルに合わせた専用BGMで集中力UP。
         </div>
       </div>
@@ -338,7 +402,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
       </div>
       <div class="dg">
         <div class="dg-num">COACH</div>
-        <div class="dg-ttl">📐 武本さん直伝・長く泳ぐコツ</div>
+        <div class="dg-ttl">📐 武さん直伝・長く泳ぐコツ</div>
         <div class="dg-desc">
           ①入水は今より15cm先に手を入れる ②胸の前で大きな雪だるまを抱えるイメージ ③プランクでお尻を水面に上げる。
           ランと同じで、月間スイム距離を稼ぐほどラクに長く泳げるようになる。
@@ -371,7 +435,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
 
     <div class="callout">
       <div class="callout-ttl">📹 泳ぎを動画で撮ってもらう</div>
-      <div class="callout-desc">いちばん手軽なフォームチェックがこれ。小田さんは自分のスイムを撮ってもらい「腕は伸ばせているが伸びの時間が短い」「呼吸時のローリングが大きすぎる」と課題を発見。曰く「自分がどう泳いでいるかは分からないので、たまに撮ってもらうと上達が早くなる」。武本さんも動画分析からフォーム改善に取り組んだ実績あり。水曜練で仲間に頼んでみよう。</div>
+      <div class="callout-desc">いちばん手軽なフォームチェックがこれ。おださんは自分のスイムを撮ってもらい「腕は伸ばせているが伸びの時間が短い」「呼吸時のローリングが大きすぎる」と課題を発見。曰く「自分がどう泳いでいるかは分からないので、たまに撮ってもらうと上達が早くなる」。武さんも動画分析からフォーム改善に取り組んだ実績あり。水曜練で仲間に頼んでみよう。</div>
     </div>
 
     <h3 class="ttl-sub">レッスンという手</h3>
@@ -380,7 +444,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="tip-icon">🎓</div>
         <div>
           <div class="tip-ttl">個人レッスン（東京体育館・TIスイム）</div>
-          <div class="tip-desc">一岡コーチのTIスイム個人レッスン。50分7,700円。常に自分だけを見てもらえるので「実行→改善」のサイクルが速く、緒方さんはこれでフォーム開眼。「顔を真下に固定できてない」「常にどこか力が入ってる」など、自分では気づけない指摘がもらえる。</div>
+          <div class="tip-desc">一岡コーチのTIスイム個人レッスン。50分7,700円。常に自分だけを見てもらえるので「実行→改善」のサイクルが速く、緒さんはこれでフォーム開眼。「顔を真下に固定できてない」「常にどこか力が入ってる」など、自分では気づけない指摘がもらえる。</div>
         </div>
       </div>
       <div class="tip">
@@ -394,14 +458,14 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="tip-icon">🥇</div>
         <div>
           <div class="tip-ttl">辰巳のスイムクラス（オリンピアン講師）</div>
-          <div class="tip-desc">東京アクアティクスセンターでは単発のスイムクラスが開催される。緒方さんが出た背泳ぎローリングのクラスはオリンピアンの先生が優しく指導してくれて好評。中上級者向けの長水路クラスもあり、レース前の刺激入れに最適。</div>
+          <div class="tip-desc">東京アクアティクスセンターでは単発のスイムクラスが開催される。緒さんが出た背泳ぎローリングのクラスはオリンピアンの先生が優しく指導してくれて好評。中上級者向けの長水路クラスもあり、レース前の刺激入れに最適。</div>
         </div>
       </div>
     </div>
 
     <div class="callout">
       <div class="callout-ttl">🐬 部内に頼れるコーチがいる</div>
-      <div class="callout-desc">お金をかけなくても、水曜練で「こっそり捕まえて教わる」のが広尾スタイル。武本さん（部長・フォーム理論の使い手）、小田さん（TIスイム＆トライアスロン全般）、マイクさん（TIスイム伝道師。100mしか泳げなかった人を2,000m泳げるように育てた実績）。OWSのコツはアスロニア練習会（→次のセクション）でも教われる。</div>
+      <div class="callout-desc">お金をかけなくても、水曜練で「こっそり捕まえて教わる」のが広尾スタイル。武さん（部長・フォーム理論の使い手）、おださん（TIスイム＆トライアスロン全般）、マイクさん（TIスイム伝道師。100mしか泳げなかった人を2,000m泳げるように育てた実績）。OWSのコツはアスロニア練習会（→次のセクション）でも教われる。</div>
     </div>
 
     <h3 class="ttl-sub">🎬 おすすめYouTube</h3>
@@ -411,7 +475,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="tip-icon">🏊</div>
         <div>
           <div class="tip-ttl">TIスイム（トータルイマージョン）解説</div>
-          <div class="tip-desc">小田さん直伝のTIスイムを動画で予習・復習。まいくさん共有のプレイリスト。「力を抜いてラクに長く泳ぐ」泳ぎの参考に。<br><a href="https://youtube.com/playlist?list=PLmeVh3HDKExE83J_NfOth27RnFraYZVk5" target="_blank" class="tip-link">プレイリストを開く →</a></div>
+          <div class="tip-desc">おださん直伝のTIスイムを動画で予習・復習。まいくさん共有のプレイリスト。「力を抜いてラクに長く泳ぐ」泳ぎの参考に。<br><a href="https://youtube.com/playlist?list=PLmeVh3HDKExE83J_NfOth27RnFraYZVk5" target="_blank" class="tip-link">プレイリストを開く →</a></div>
         </div>
       </div>
     </div>
@@ -433,7 +497,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="tip-icon">🍉</div>
         <div>
           <div class="tip-ttl">三浦スイカOWS大会（8月・年1回）</div>
-          <div class="tip-desc">部で毎年参戦する外部の恒例大会。リレー（4名×500m、制限60分＝1人15分）か個人（500m〜5km）で出場。おそろTシャツとオリジナルキャップでEntry。前日にHYROX（屋内フィットネスレース）をハシゴする猛者も。リレーの取りまとめはしんちゃん・緒方さん。</div>
+          <div class="tip-desc">部で毎年参戦する外部の恒例大会。リレー（4名×500m、制限60分＝1人15分）か個人（500m〜5km）で出場。おそろTシャツとオリジナルキャップでEntry。前日にHYROX（屋内フィットネスレース）をハシゴする猛者も。リレーの取りまとめはしんちゃん・緒さん。</div>
         </div>
       </div>
       <div class="tip">
@@ -481,7 +545,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <div class="ic-icon">🧢</div>
         <div>
           <div class="ic-ttl">スイムキャップ</div>
-          <div class="ic-desc">東京体育館では持参必須。大会では通常支給される。武本さん発注の広尾オリジナルキャップ（緑）もあり、OWSでひと目で仲間が分かる。</div>
+          <div class="ic-desc">東京体育館では持参必須。大会では通常支給される。武さん発注の広尾オリジナルキャップ（緑）もあり、OWSでひと目で仲間が分かる。</div>
           <span class="ic-tag tag-tip">大会は支給が多い</span>
         </div>
       </div>
@@ -519,7 +583,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
     <div class="voice-list">
       <div class="vc">
         <div class="vc-text">100m2分台でも良いって言われたよ。その言葉を信じることにしました</div>
-        <div class="vc-name">— 緒方さん（屋内大会に挑む前）</div>
+        <div class="vc-name">— 緒さん（屋内大会に挑む前）</div>
       </div>
       <div class="vc">
         <div class="vc-text">じゃあみんなで出ちゃおう！もうノリで行かないとね</div>
@@ -535,11 +599,11 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
       </div>
       <div class="vc">
         <div class="vc-text">これをやらかさないと正式部員とは言えない</div>
-        <div class="vc-name">— 宮地さん（休館日トラップを踏んで）</div>
+        <div class="vc-name">— みやっち（休館日トラップを踏んで）</div>
       </div>
       <div class="vc">
         <div class="vc-text">サラダ率67%！</div>
-        <div class="vc-name">— 緒方監督（モスバーガー報告）</div>
+        <div class="vc-name">— 緒さん監督（モスバーガー報告）</div>
       </div>
     </div>
     <div class="rules">
@@ -549,7 +613,7 @@ footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px so
         <li>来られない日は正直に言う（来なくていい）</li>
         <li>終わったらモスに寄る</li>
         <li>「入ります」とLINEに自撮りを上げる</li>
-        <li>前田さんより速くなろうとしない（マスターズリレー全日本チャンプ・25m×4の短距離専門）</li>
+        <li>まえさんより速くなろうとしない（マスターズリレー全日本チャンプ・25m×4の短距離専門）</li>
         <li>「出ることに意義あり」を信じる</li>
       </ul>
     </div>
