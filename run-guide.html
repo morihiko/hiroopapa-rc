@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ラン虎の巻 | 広尾親父RC</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g-dark:#0d3d20;--g-main:#1b5e35;--g-mid:#2e7d4f;
+  --gold:#c9a227;--white:#fff;--off:#f7f5f0;
+  --text:#1a1a1a;--muted:#666;
+  --run:#c62828;--run-light:#fdeaea;--run-deep:#8e1b1b;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+
+.hd{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:11px 18px;background:rgba(10,48,24,0.93);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,162,39,0.25)}
+.hd-logo{display:flex;align-items:center;gap:7px;color:white;font-weight:800;font-size:12px;letter-spacing:.06em;text-decoration:none}
+.hd-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:20px;background:var(--g-main);border:1px solid rgba(201,162,39,0.4);color:white;font-size:12px;font-weight:700;text-decoration:none}
+
+/* HERO */
+.hero{position:relative;min-height:60svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:96px 24px 48px;overflow:hidden;background:linear-gradient(160deg,#c62828 0%,#8e1b1b 100%)}
+.hero-wave{position:absolute;bottom:0;left:0;right:0;opacity:.18}
+.hc{position:relative;z-index:1;max-width:400px;width:100%}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.35);color:white;font-size:11px;font-weight:700;letter-spacing:.1em;margin-bottom:20px}
+.hero-title{font-size:clamp(24px,7vw,36px);font-weight:900;color:white;line-height:1.4;margin-bottom:14px}
+.hero-title em{font-style:normal;color:#ffcdd2}
+.hero-sub{font-size:13.5px;color:rgba(255,255,255,0.78);line-height:1.9}
+
+/* NAV */
+.step-nav{display:flex;overflow-x:auto;gap:0;background:#8e1b1b;border-bottom:2px solid rgba(255,205,210,0.3);scrollbar-width:none;position:sticky;top:50px;z-index:90}
+.step-nav::-webkit-scrollbar{display:none}
+.sn{flex:none;padding:12px 14px;color:rgba(255,255,255,0.55);font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.sn:hover,.sn.active{color:#ffcdd2;border-bottom-color:#ffcdd2}
+
+/* SECTIONS */
+.sec{padding:48px 24px}
+.si{max-width:440px;margin:0 auto}
+.sec-bg-off{background:var(--off)}
+.sec-bg-dark{background:#8e1b1b}
+.sec-bg-night{background:#5c1010}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.lbl-w{font-size:10px;font-weight:700;letter-spacing:.14em;color:#ffcdd2;text-transform:uppercase;margin-bottom:8px}
+.ttl{font-size:clamp(18px,5vw,24px);font-weight:900;line-height:1.48;color:var(--g-dark);margin-bottom:16px}
+.ttl-w{color:white}
+.body-text{font-size:14px;line-height:2;color:#444}
+.body-text-w{font-size:14px;line-height:2;color:rgba(255,255,255,0.75)}
+
+/* INFO CARDS */
+.info-cards{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.ic{background:white;border-radius:16px;padding:16px;display:flex;gap:14px;box-shadow:0 2px 10px rgba(0,0,0,0.08);border-left:4px solid var(--run)}
+.ic-icon{font-size:24px;flex-shrink:0;width:44px;text-align:center;margin-top:2px}
+.ic-ttl{font-size:13px;font-weight:800;color:var(--g-dark);margin-bottom:4px}
+.ic-desc{font-size:12.5px;color:var(--muted);line-height:1.75}
+.ic-tag{display:inline-block;margin-top:6px;padding:2px 9px;border-radius:10px;font-size:10px;font-weight:700}
+.tag-key{background:var(--run-light);color:var(--run)}
+.tag-warn{background:rgba(183,28,28,0.1);color:#B71C1C}
+.tag-tip{background:rgba(27,94,53,0.1);color:var(--g-main)}
+
+/* TIPS */
+.tip-list{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.tip{background:white;border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:3px solid rgba(201,162,39,0.5)}
+.tip-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.tip-ttl{font-size:13px;font-weight:800;color:var(--g-dark);margin-bottom:3px}
+.tip-desc{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+/* DARK CARDS */
+.drill-grid{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.dg{background:rgba(255,255,255,0.07);border:1px solid rgba(255,205,210,0.25);border-radius:14px;padding:15px}
+.dg-num{font-size:10px;font-weight:700;color:#ffcdd2;letter-spacing:.1em;margin-bottom:5px}
+.dg-ttl{font-size:14px;font-weight:800;color:white;margin-bottom:5px}
+.dg-desc{font-size:12px;color:rgba(255,255,255,0.65);line-height:1.75}
+
+/* VOICE */
+.voice-list{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.vc{background:rgba(255,255,255,0.05);border:1px solid rgba(255,205,210,0.2);border-radius:14px;padding:14px 16px}
+.vc-text{font-size:13px;color:rgba(255,255,255,0.88);line-height:1.85;font-style:italic;margin-bottom:8px}
+.vc-text::before{content:'「'}
+.vc-text::after{content:'」'}
+.vc-name{font-size:11px;color:#ffcdd2;font-weight:700}
+
+/* VOICE LIGHT */
+.vc-l{background:white;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:3px solid var(--run)}
+.vc-l-text{font-size:13px;color:#333;line-height:1.85;font-style:italic;margin-bottom:8px}
+.vc-l-text::before{content:'「'}
+.vc-l-text::after{content:'」'}
+.vc-l-name{font-size:11px;color:var(--run);font-weight:700}
+
+/* NOTE BOX */
+.note{margin-top:20px;padding:16px;background:var(--run-light);border-radius:14px;border-left:3px solid var(--run)}
+.note-ttl{font-size:12px;font-weight:800;color:var(--run);margin-bottom:6px}
+.note-desc{font-size:12.5px;color:#333;line-height:1.85}
+
+.disclaimer{background:#fff8e1;padding:10px 16px;font-size:11px;color:#7a6000;line-height:1.7;text-align:center}
+
+/* CTA */
+.cta-sec{background:linear-gradient(160deg,#c62828 0%,#8e1b1b 100%);padding:48px 24px;text-align:center}
+.cta-title{font-size:clamp(18px,5vw,22px);font-weight:900;color:white;margin-bottom:10px;line-height:1.5}
+.cta-sub{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.9;margin-bottom:24px}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:30px;background:var(--gold);color:#0d3d20;font-size:14px;font-weight:900;text-decoration:none}
+
+footer{background:var(--g-dark);padding:24px;text-align:center;border-top:1px solid rgba(201,162,39,0.2)}
+.ft-copy{color:rgba(255,255,255,0.3);font-size:11px}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <a href="index.html" class="hd-logo"><span>🏃</span><span>広尾親父RC</span></a>
+  <a href="index.html" class="hd-btn">← トップへ</a>
+</header>
+
+<section class="hero">
+  <svg class="hero-wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="white"/>
+  </svg>
+  <div class="hc">
+    <div class="badge">🏃 RUN GUIDE</div>
+    <h1 class="hero-title">ラン<em>虎の巻</em></h1>
+    <p class="hero-sub">
+      初フルへの背中押しから、脚攣り対策、クリック合戦まで。<br>
+      教科書ではなく、広尾親父の実体験と生声だけを集めました。
+    </p>
+  </div>
+</section>
+
+<div class="disclaimer">※ このページは部員のLINEでの発言・実体験をまとめたものです。医学・大会情報等の正確性は各自でご確認ください。</div>
+
+<nav class="step-nav">
+  <a href="#first" class="sn">初フルへの道</a>
+  <a href="#training" class="sn">練習の知恵</a>
+  <a href="#raceday" class="sn">当日の知恵</a>
+  <a href="#cramp" class="sn">脚攣り対策</a>
+  <a href="#injury" class="sn">故障と回復</a>
+  <a href="#entry" class="sn">エントリー戦略</a>
+  <a href="#gear" class="sn">装備・ツール</a>
+  <a href="#ultra" class="sn">ウルトラの世界</a>
+  <a href="#culture" class="sn">ラン部語録</a>
+</nav>
+
+<!-- 初フルへの道 -->
+<section class="sec" id="first">
+  <div class="si">
+    <div class="lbl">FIRST FULL MARATHON</div>
+    <h2 class="ttl">初フルへの道 —<br>迷える子羊たちへ</h2>
+    <p class="body-text">
+      「赤坂一周も走れなかった」親父たちが、次々にフルマラソンを完走してきたのがこの部。
+      迷っている人の背中を押してきた実際の言葉と体験談を残します。
+    </p>
+    <div class="info-cards">
+      <div class="ic">
+        <div class="ic-icon">🐑</div>
+        <div>
+          <div class="ic-ttl">宮本さんの場合（かすみがうらで初フル）</div>
+          <div class="ic-desc">「フルは怖じ気づいています」→ 部員総出の後押しで「飛び込みました。ポチっちゃいました」→ 見事完走。「エイドほぼ制覇できて大満足」。迷ったら聞いてみると、天使（悪魔？）のささやきが返ってくる。</div>
+          <span class="ic-tag tag-key">実録・背中押し劇場</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🌺</div>
+        <div>
+          <div class="ic-ttl">たかSさんの場合（那覇で初フル）</div>
+          <div class="ic-desc">最後尾ブロックからスタートまで24分。「走ることよりも制限時間との戦いが大変」。それでも走ってる最中に「また来年も出よう」と決めた。支えになったのは、たじーさんの「30キロランの記録的には5時間台で完走できる」という言葉。</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🌊</div>
+        <div>
+          <div class="ic-ttl">森下さんの場合（湘南で初フル）</div>
+          <div class="ic-desc">「2年半前に初めてラン部に参加した時は赤坂一周もできなかった僕が」5時間6分で完走。「月一の練習会に参加しているだけで2周走れるようになります。自信ない方、最後尾で僕とおしゃべりしながら走り歩きしましょう」。</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🏃</div>
+        <div>
+          <div class="ic-ttl">内藤さんの場合（勝田で初フル級）</div>
+          <div class="ic-desc">まず10km（1時間4分）から始めて「フルはこれの4倍以上…」とビビっていたのが、勝田で5時間切り達成。段階を踏むルートも全然アリ。</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip-list">
+      <div class="tip"><div class="tip-icon">💬</div><div><div class="tip-ttl">かけさん（掛足さん）の飛び込みポエム</div><div class="tip-desc">「つらい事など一つもなく、楽しく気持ちのよいマラソンでした（たしか）。沿道からの声援に励まされました（本当に）。トライすると人生変わると思います。飛び込もう（本当に）」</div></div></div>
+      <div class="tip"><div class="tip-icon">💬</div><div><div class="tip-ttl">かけさんの達成感論</div><div class="tip-desc">「42キロのいろんな記憶をぜーんぶ吹き飛ばしてゴールしたとき心の底から『やったぜ！！』と思えるのは、ビジネスでもなかなかありません。そしてまた味わいたいと思います」</div></div></div>
+      <div class="tip"><div class="tip-icon">💬</div><div><div class="tip-ttl">森下さんの「一回勝負」理論</div><div class="tip-desc">「初回で完走しないと、こんなシンドイこともう一回やらなきゃならないじゃん、という超後ろ向きな絶対一回勝負の精神論もオススメですよ」</div></div></div>
+      <div class="tip"><div class="tip-icon">💬</div><div><div class="tip-ttl">林（広報部長）の初フル回想</div><div class="tip-desc">「みんな一生懸命走ってて、生きてるって感じがした。あの日の感覚を忘れないまま続けて来られたことが嬉しい。数字にとらわれすぎず、この冒険を続けたい」</div></div></div>
+    </div>
+    <div class="note">
+      <div class="note-ttl">🎯 みんなで出る「推奨大会」から始めるのが王道</div>
+      <div class="note-desc">松本さん・林広報部長まとめの10名以上参加の定番：かすみがうら（4月）、つくば（11月）、勝田（1月）、ニューイヤーハーフ（1月）。「最初はみんなと出たい方は推奨レースに参加してみてください。レース後の打ち上げ含めて楽しいですよ」（松本さん）。詳細は<a href="races.html" style="color:var(--run);font-weight:700">年間レース表</a>へ。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 練習の知恵 -->
+<section class="sec sec-bg-off" id="training">
+  <div class="si">
+    <div class="lbl">TRAINING</div>
+    <h2 class="ttl">レース前の練習 —<br>30km走 諸説あり問題</h2>
+    <p class="body-text">
+      フル前の「30km走」をめぐって部内で交わされた大論争。結論：諸説ある。自分に合うやり方を選ぼう。
+    </p>
+    <div class="tip-list">
+      <div class="tip"><div class="tip-icon">📅</div><div><div class="tip-ttl">TOSSY式・逆算テーパリング</div><div class="tip-desc">「2週間前の30km走は疲れが抜けないままレースになる恐れ。理想は3週間前30km → 2週間前21km → 1週間前10km」</div></div></div>
+      <div class="tip"><div class="tip-icon">👟</div><div><div class="tip-ttl">天さん式・気合とシューズ確認</div><div class="tip-desc">「マラソン前に30km練習したことがなく、いつも気合で乗り切ってます。でも2週間前までに20kmくらいは走ってシューズや靴下具合を確認します」</div></div></div>
+      <div class="tip"><div class="tip-icon">📖</div><div><div class="tip-ttl">石原式・月間距離の6分の1ルール</div><div class="tip-desc">「月間走行距離の1/6以上を一度に走るのはメリットよりダメージが大きい（なんかの本より）。月間180km未満なので30km走はやりません（キリッ）」※出典は岩本能史『非常識マラソンメソッド』。「キャバ嬢という言葉に惹かれて図書館で借りたら意外と面白かった」</div></div></div>
+      <div class="tip"><div class="tip-icon">⏱️</div><div><div class="tip-ttl">時間重視派</div><div class="tip-desc">「2週間前は3時間走。距離より時間を重視。限界が来る感覚を知る、と書いてある本もありました」（林）。30km走も諸説あるのだ。</div></div></div>
+      <div class="tip"><div class="tip-icon">🏊</div><div><div class="tip-ttl">澤村式・水中ウォーキング革命</div><div class="tip-desc">怪我明け・多忙・体重増でもPB更新した澤村さんの秘密は「水中ウォーキングしまくってます。体重減らないけど、ランには効いてます」。緒方さん曰く「インナーマッスルの強化になるのでバカにできない」。この方法で加賀スパ100km完走まで至った。</div></div></div>
+      <div class="tip"><div class="tip-icon">🍚</div><div><div class="tip-ttl">たじー部長の年末年始指令</div><div class="tip-desc">「帰省や旅行で暴飲暴食しがち。取ったカロリーは走って帳尻を合わせましょう。休み前と休み明けの体重チェックを。ケガや体調不良の方は走らずにまず治しましょう」</div></div></div>
+    </div>
+    <div class="note">
+      <div class="note-ttl">🏃 練習の場はいろいろある</div>
+      <div class="note-desc">毎月第3木曜の赤坂御所定例ラン（1周3.3km×お好みで）、皇居ラン、土曜朝の駒ラン（駒沢公園 9:30トレセン前）、二子玉・桃井のparkrun、東京マラソンコース試走会など。三谷さんが赤坂でサブ4ペーサー（5:35/km）をやってくれる日もある。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 当日の知恵 -->
+<section class="sec" id="raceday">
+  <div class="si">
+    <div class="lbl">RACE DAY</div>
+    <h2 class="ttl">レース当日の知恵</h2>
+    <div class="info-cards">
+      <div class="ic">
+        <div class="ic-icon">🧥</div>
+        <div>
+          <div class="ic-ttl">スタート前の防寒＝ゴミ袋 or 100均カッパ</div>
+          <div class="ic-desc">「冬レースはスタート前に結構待ちます。使い捨てのペラペラのカッパか、15L以上のゴミ袋に穴を開けて防風ポンチョに」（安田さん）。ぬくいさんは70Lゴミ袋派（身長180cmでお尻まで隠れる）。スタートしたらコース脇のゴミ箱・回収スタッフへ。</div>
+          <span class="ic-tag tag-key">冬レース必須</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🌪️</div>
+        <div>
+          <div class="ic-ttl">スタート直後は「我慢」（しんのすけ訓）</div>
+          <div class="ic-desc">「スタート直後はアドレナリンが出まくってるので、想定より速くならない我慢。後半は苦しさに耐える我慢。日頃の練習を頑張った自分を信じて」（勝田初フル組への檄文より）</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🏦</div>
+        <div>
+          <div class="ic-ttl">温井語録「前半の貯金は後半の2倍の借金」</div>
+          <div class="ic-desc">前半に貯めた時間は、後半その2倍になって返ってくる。あわせて「攣っても止まらず走り続ける」という上級者向けありがたいお言葉も（※真似は自己責任）。</div>
+          <span class="ic-tag tag-warn">突っ込み厳禁</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">📋</div>
+        <div>
+          <div class="ic-ttl">三谷式・サブ4ペース設計</div>
+          <div class="ic-desc">サブ4は5:40/kmだが、号砲からスタートライン通過まで4〜5分＋給水・トイレを考慮して5:34/km（上り5:45、下り5:30メド）で設計。部の大会では背中に目標タイムを掲示してペーサーもしてくれる。タイム目標のシールを腕に貼る「ペース表タトゥー」も部内で流行。</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🚻</div>
+        <div>
+          <div class="ic-ttl">トイレ・現地情報は先輩に聞け</div>
+          <div class="ic-desc">勝田：駅からスタートまでのドンキのトイレが使える（Kadoさん）／例年ブロックF横が空いている（かけさん）。かすみがうら：会場手前の橋の左の小トイレがガラガラ（遠山さん）、土浦駅近く駐車場のトイレも穴場。こういう情報こそグループLINEの真価。</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🧴</div>
+        <div>
+          <div class="ic-ttl">日焼け対策を舐めるな（かすみがうらの教訓）</div>
+          <div class="ic-desc">2026年かすみがうらは快晴で「大火傷」続出。教訓：①高い日焼け止めは汗で落ちにくい ②円を描くように塗り込む ③電車内で塗って走る前に2度塗り ④足・首・腕の塗り残し注意 ⑤薄手の長袖もあり。「サロンパスが貼れなくて辛い」（ぼーちゃん）</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">♨️</div>
+        <div>
+          <div class="ic-ttl">レース後の風呂・打ち上げまでがレース</div>
+          <div class="ic-desc">勝田＝クリスタルプラザ（30分1000円・激混み早め推奨）or あかつきの湯。つくば・かすみがうら＝湯楽の里（読みは「ゆら」の里。ノブさんが数年間「ゆらく」と読んでいた）。走った後の反省会込みで一つの遠足。</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">📣</div>
+        <div>
+          <div class="ic-ttl">応援ナビ＆応援文化</div>
+          <div class="ic-desc">大規模大会は公式「応援ナビ」が確実（エアタグ共有は人混みで遅延しがち、実験済み）。走らない部員が沿道に立つのがラン部流。「皆さんの応援がなければDNFしていた」（しんのすけ・200km完走後）。送る言葉は「ご走運を！」。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 脚攣り対策 -->
+<section class="sec sec-bg-dark" id="cramp">
+  <div class="si">
+    <div class="lbl-w">CRAMP MEASURES</div>
+    <h2 class="ttl ttl-w">脚攣り対策 —<br>マグネシウム教団のすべて</h2>
+    <p class="body-text-w">
+      35km過ぎの「脚攣りタイマー」に苦しむ親父たちが編み出した対策集。UTMB日本人1位・池畑選手のお墨付きも。
+    </p>
+    <div class="drill-grid">
+      <div class="dg">
+        <div class="dg-num">METHOD 01 — 齊藤式</div>
+        <div class="dg-ttl">💧 マグネシウム・ローディング（液体）</div>
+        <div class="dg-desc">トレランでふくらはぎを激しく攣ってDNFして以来、たじーさん直伝の液体マグネシウムをレース5日前から摂取。「飲みすぎるとお腹が緩くなるので注意」。</div>
+      </div>
+      <div class="dg">
+        <div class="dg-num">METHOD 02 — ぼーちゃん式フルコース</div>
+        <div class="dg-ttl">🧴 塗る・飲む・仕込む</div>
+        <div class="dg-desc">①出走1週間前から毎日マグバーム（マグネシウム軟膏）を足に塗る ②普段からマグネシウム・カルシウム・亜鉛入りサプリ ③出走前にコムレケア（芍薬甘草湯）。「次はグラファイトバンドに手を出す予定（もしくは潔く引退）」。</div>
+      </div>
+      <div class="dg">
+        <div class="dg-num">METHOD 03 — 池畑選手公認</div>
+        <div class="dg-ttl">⚡ グレートマグネシウム</div>
+        <div class="dg-desc">「すごく効きますよね。レース前のマグネシウムローディングも間違いないです。僕は毎日20滴ほど飲み物に溶かして飲んでます」（池畑拓哉選手・3年連続UTMB日本人1位）。かけさん推薦の「ツーラン」は攣った後でも効くとのこと。</div>
+      </div>
+      <div class="dg">
+        <div class="dg-num">METHOD 04 — 松本説</div>
+        <div class="dg-ttl">🔁 ペースじゃなくて「慣れ」</div>
+        <div class="dg-desc">「ペースを落としてもジェルでも効果なし。35kmで脚攣りタイマー発動。対策は①30km走を練習で体験する ②後半でフォームを変える練習」。銅坂さんは「疲労させないフォーム・疲労しても動かせるフォーム・ペース配分」の3点を意識。</div>
+      </div>
+      <div class="dg">
+        <div class="dg-num">METHOD 05 — たかS式</div>
+        <div class="dg-ttl">🧂 塩タブレット＋グリセリンローディング</div>
+        <div class="dg-desc">グリセリンローディング研究から辿り着いた塩タブレットを小分けにして携行＆おすそ分け。かすみがうらの給水所枯渇事件では「35kmでようやくCoke ONでアクエリアス買えた。遅いランナーには命綱」という学びも（小銭 or スマホ決済を持て）。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 故障と回復 -->
+<section class="sec sec-bg-off" id="injury">
+  <div class="si">
+    <div class="lbl">INJURY & RECOVERY</div>
+    <h2 class="ttl">故障と回復 —<br>RICEからMEATへ</h2>
+    <p class="body-text">
+      部内には本物の医師（宮本先生）がいる。ホノルルで肉離れした海津さんへの助言から生まれた、部の共有知。
+    </p>
+    <div class="info-cards">
+      <div class="ic">
+        <div class="ic-icon">🧊</div>
+        <div>
+          <div class="ic-ttl">最初の24〜48時間はRICE</div>
+          <div class="ic-desc">安静(Rest)・アイシング(Ice)・圧迫(Compression)・挙上(Elevation)。「冷やしすぎも良くないので定期的に」（緒方さん・経験者）。そしてアルコールは炎症を助長するのでNG。「水のようなバドワイザーでもALCはNG」（山口さん）。</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🥩</div>
+        <div>
+          <div class="ic-ttl">その後は早めにMEATへ移行（宮本先生）</div>
+          <div class="ic-desc">「24-48時間はRICEを実行し、なるべく早くMEAT（movement/exercise/analgesics/therapy＝動かして機能回復）に移行するのが今のコンセンサス。適度な炎症は回復を促進する。自分の身体の声に耳を傾けながら」。筋トレ部の公式見解は「Rice（炭水化物）よりMeat（タンパク質）」（しんのすけ）。</div>
+          <span class="ic-tag tag-key">部内ドクター公認</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🏥</div>
+        <div>
+          <div class="ic-ttl">キンさんの教訓：違和感が出たらまず病院・MRI</div>
+          <div class="ic-desc">「当初の痛みは大したことなかったのに、整骨院で強めにマッサージされて悪化。シンスプリントで弱った脛が圧迫に耐えられず骨まで傷めた可能性と診断。少しでも違和感がある時はまず病院で検査を」。医者の名言「走るなって言っても、走るんでしょう」も残った。</div>
+          <span class="ic-tag tag-warn">悪化パターン実録</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">😴</div>
+        <div>
+          <div class="ic-ttl">回復法の結論は「睡眠」</div>
+          <div class="ic-desc">遠山さんの「やる気負債から復活できません」相談への部の答え：「私も睡眠です。トイレに起きても、また寝ます」（たじー）。石原さんからは「読み始めるとすぐ眠くなる」睡眠本の貸し出しオファーも。</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🧘</div>
+        <div>
+          <div class="ic-ttl">たじー部長の故障ゼロ習慣</div>
+          <div class="ic-desc">「寝る前のストレッチを続けて、今年は故障無しで過ごせました」。おすすめストレッチ動画は部内で「見ながらやってるとセリフを覚えちゃう」レベルで定着（天さん）。</div>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <div class="note-ttl">🩹 もっと詳しく：みんなの痛み撲滅シート</div>
+      <div class="note-desc">部位別の故障と治療の実録データベースは<a href="pain.html" style="color:var(--run);font-weight:700">みんなの痛み撲滅シート</a>へ。シンスプリント、肉離れ、靭帯損傷からのカムバック例まで、全部先輩たちの実体験です。</div>
+    </div>
+  </div>
+</section>
+
+<!-- エントリー戦略 -->
+<section class="sec" id="entry">
+  <div class="si">
+    <div class="lbl">ENTRY STRATEGY</div>
+    <h2 class="ttl">エントリー戦略 —<br>クリック合戦を制する</h2>
+    <p class="body-text">
+      「やらないと始まらない！」（TOSSY）。人気大会は出走より申込が難関。部員の勝敗データに基づく攻略メモ。
+    </p>
+    <div class="tip-list">
+      <div class="tip"><div class="tip-icon">💻</div><div><div class="tip-ttl">スマホよりPC</div><div class="tip-desc">アクアライン2026実録：「スマホは砂時計から先に進めず、PCでエントリーできた」（坂本さん）「2時間待ちしてるみたい。スマホはムリ、PCなら行けそう」（かけさん）。ヒロさんは「気合が足りないと思い11キロ走ってから再チャレンジ」で成功（参考にならない）。</div></div></div>
+      <div class="tip"><div class="tip-icon">⏰</div><div><div class="tip-ttl">開始時刻にスタンバイは最低条件</div><div class="tip-desc">ハイロックスは開始13分で満席、湘南国際も年々早期に定員締切。つくばの一般エントリーもクリック合戦（2026年は7/5(日)20時開始だった）。「クリック合戦が2分以内完了という第0次関門」（TOSSY・小江戸大江戸評）。</div></div></div>
+      <div class="tip"><div class="tip-icon">🎁</div><div><div class="tip-ttl">ふるさと納税枠・チャリティ枠という抜け道</div><div class="tip-desc">ハセツネ30K（林・石原が利用）、金沢マラソン（5万円で確実エントリー）など。東京マラソンはチャリティ10万円〜で、かけさんが39団体の寄付単価を全部計算した資料を反省会で公開済み。「マクドナルドは34番目に単価の高い激戦区でした。さーせん」。</div></div></div>
+      <div class="tip"><div class="tip-icon">🏨</div><div><div class="tip-ttl">地方レースは抽選結果前に宿を押さえる</div><div class="tip-desc">「当選直後からあっという間に埋まります。ホテルは通常1万円をその日だけ2.4万円くらいで売りますが、悪意はありません、たぶん」（かけさん）。金沢ではカプセルホテル1.9万円が観測された。前日までキャンセル無料の宿を先に確保が鉄則（野村さんはスーパー銭湯併設・素泊まり9300円を発掘）。</div></div></div>
+      <div class="tip"><div class="tip-icon">🎲</div><div><div class="tip-ttl">抽選は数を打つ（野村メソッド）</div><div class="tip-desc">「秋の抽選大会、全てエントリーしてみました。当選した大会に出ようかと」→ 結果は1勝4敗（神戸だけ当選）。「今年はなかなか厳しいです」。それでも当たった大会には出られる。</div></div></div>
+      <div class="tip"><div class="tip-icon">⚠️</div><div><div class="tip-ttl">代走文化への部長見解</div><div class="tip-desc">「広尾ラン部の中では代走は当たり前になっていますが、真剣に取り組んでいる人達の間では御法度です。リスクもある事を理解して行なって下さい」（たじー）。特にトレランは保険とITRAポイントの関係で本人確認が厳格。</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 装備・ツール -->
+<section class="sec sec-bg-off" id="gear">
+  <div class="si">
+    <div class="lbl">GEAR & TOOLS</div>
+    <h2 class="ttl">装備・ツールの生声</h2>
+    <div class="info-cards">
+      <div class="ic">
+        <div class="ic-icon">👟</div>
+        <div>
+          <div class="ic-ttl">シューズはプロに見てもらうのもアリ</div>
+          <div class="ic-desc">たかSさんは夫婦でFS☆RUNNINGの藤原さんのシューズ選び＆フォーム指導を受けた。「靴の購入は特に何も言われないので、コンサルだけ受けても問題なさそう」。ちなみにワークマン1800円で始めた人が、いつの間にか高級シューズに変わって妻に気づかれるのが部の様式美。</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🩹</div>
+        <div>
+          <div class="ic-ttl">ニューハレ・テーピング講習会の学び</div>
+          <div class="ic-desc">「テープは伸ばさない。貼る部位の筋肉をストレッチさせた状態で置くように貼る」が鉄則（怪我の固定以外）。オーバープロネーション対策の貼り方も講習で習得。「10cm幅のAKT/SKテープを買うとVテープ・Xテープを自作できて安い」（安田さん）。緒方さん・リーガーさん・林が受講済み。</div>
+          <span class="ic-tag tag-key">講習会実録</span>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">💡</div>
+        <div>
+          <div class="ic-ttl">光るLEDアームバンド（無料）</div>
+          <div class="ic-desc">東京都の「RUN and SAFETY」ながら見守りボランティアに登録するとLEDアームバンドがもらえる。夜の定例ランが安全に＆ちょっと意味が出る。広尾親父RCとして31名分を申請済み。「光る親父で街をちょっと明るく💡」（林）</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🥤</div>
+        <div>
+          <div class="ic-ttl">Coke ONアプリ</div>
+          <div class="ic-desc">歩数でスタンプが貯まりドリンク無料券に。部内チーム「Hiroo親父」も結成済み。ただし「ウルトラ80kmは不正と認定されたのか一歩もカウントされませんでした」（かけさん）。走りすぎ判定に注意。</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">🏛️</div>
+        <div>
+          <div class="ic-ttl">陸連登録（広尾親父ＲＣ）</div>
+          <div class="ic-desc">2026年4月から団体登録開始。メリット：①公認記録になる ②別大カテ1〜3など登録者限定大会 ③東京マラソン等で前方ブロック ④サロマでスペシャルドリンク ⑤所属名が「広尾親父ＲＣ」に。注意：陸連の部はイヤホン基本NG（TOSSY）、ゼッケンが胸と背中の2枚になり「ガチ勢から見られる」（しんのすけ）。</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">📊</div>
+        <div>
+          <div class="ic-ttl">全日本マラソンランキング（1歳刻み）</div>
+          <div class="ic-desc">毎年発表される年齢別ランキングは部のお祭り。2026年はたじー36位（フル）・23位（ハーフ）、渋谷さん89位＆95位。しんのすけ試算「サブ3→57歳で100位、サブ3.5→65歳、サブ4→70歳。みんな走り続けたらいけるよ」。部長返し「キープを目標にしたらキープできません。PBはいつも狙って欲しい」。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ウルトラの世界 -->
+<section class="sec sec-bg-night" id="ultra">
+  <div class="si">
+    <div class="lbl-w">BEYOND THE FULL</div>
+    <h2 class="ttl ttl-w">フルの先へ —<br>ウルトラの世界</h2>
+    <p class="body-text-w">
+      「そして、フルの先にはウルトラの世界が皆様をお待ちしていますよ（ふふふ）」（坂本さん）。
+      100kmへ、200kmへ。実際に行ってしまった人たちの記録。
+    </p>
+    <div class="drill-grid">
+      <div class="dg">
+        <div class="dg-num">100km — チャレンジ富士五湖</div>
+        <div class="dg-ttl">🗻 かけさん、初80kmで10時間切り</div>
+        <div class="dg-desc">「エイドが豪華すぎて野村さんしか思い浮かべない」と言いながら初ウルトラ完走。62kmは制限11時間で「ウルトラ挑戦してみたい方におすすめ」（坂本さん）。ぬくいさんは62kmの「護衛（伴走）」として15分差スタートから追いつく荒技を披露。</div>
+      </div>
+      <div class="dg">
+        <div class="dg-num">100km — 野辺山ウルトラ</div>
+        <div class="dg-ttl">⛰️ 東の横綱・累積2700m</div>
+        <div class="dg-desc">三谷さん初ウルトラ完走「前半の下り砂利道で4分台で飛ばしたら30kmの上りで太ももが攣って撃沈。ここでサブ10できたらどこでもできそう」。坂本さんは68kmを制限16分前にゴール。「レース途中で温泉の誘惑があるので負けないこと」（しんのすけ）。</div>
+      </div>
+      <div class="dg">
+        <div class="dg-num">100km — サロマ湖</div>
+        <div class="dg-ttl">🌊 ウルトラの父、執念の前進</div>
+        <div class="dg-desc">坂本さん、昨年の60km関門から今年は79.3km関門まで前進（あと20kmで悲願のゴール）。「膝の爆弾を抱えながら」の挑戦に部内総員リスペクト。陸連登録者はスペシャルドリンクが置けるのもサロマ。</div>
+      </div>
+      <div class="dg">
+        <div class="dg-num">200km — 小江戸大江戸</div>
+        <div class="dg-ttl">🏮 しんのすけ、サブ32時間の伝説</div>
+        <div class="dg-desc">川越から東京を巡る200km。深夜も早朝も部員が沿道リレー応援。「完走した嬉しさより、やっと終わったという安堵感で泣いてしまいました。皆様の応援がなければDNFしていた。ラン部最高❤️」。武本さんの体験記「フルが4時間切れる走力があれば誰でも参加できます。今人生がつらいと感じる人以外には、おすすめしませんｗ」は部内文学の金字塔。</div>
+      </div>
+      <div class="dg">
+        <div class="dg-num">GRAND SLAM</div>
+        <div class="dg-ttl">🏆 市民ランナーのグランドスラム</div>
+        <div class="dg-desc">①サブ3（フル）②サブ10（100km）③富士登山競走・山頂コース完走 の3冠。まず五合目コース2時間20分クリアから（激烈クリック合戦）。「ヤバイ⁉️一つもクリアしてない😱」（たじー・当時）→ その後KAI70k年代別2位など山で爆進中。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ラン部語録 -->
+<section class="sec sec-bg-dark" id="culture">
+  <div class="si">
+    <div class="lbl-w">CLUB CULTURE</div>
+    <h2 class="ttl ttl-w">ラン部語録・文化</h2>
+    <div class="voice-list">
+      <div class="vc">
+        <div class="vc-text">ランニング部に入って、自分の人生が大きく変わりました。良い方に、です。皆さんもぜひ。</div>
+        <div class="vc-name">— かけさん（新入部員勧誘に寄せて）</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">フルマラソンを一度でも完走した部員の多くは、継続的にランニングに取り組んでいる。そして人生を少しずつ変えていってる。飛び込もう！</div>
+        <div class="vc-name">— かけさん</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">前半の貯金は後半の2倍の借金</div>
+        <div class="vc-name">— 温井さん（部内格言・殿堂入り）</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">ご走運を！！🐚🐚</div>
+        <div class="vc-name">— 遠山チチさん（レース朝の定型句。貝は「ほら貝」）</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">今日の教訓。「幹事はロケハンに行く。仕事でもラン部でも」</div>
+        <div class="vc-name">— かけさん（予約した店が潰れていた事件より）</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">妻「あれ、パパのランニングシューズ変わった？高そうだけど…🙄」 私「。。。。🫣」</div>
+        <div class="vc-name">— しんのすけ（わが家の会話）</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">ラン部はcrazyが過ぎるから気づかないけど、みんなcrazyだよね😂</div>
+        <div class="vc-name">— 天さん（外国人同僚に100km走を話した結果）</div>
+      </div>
+      <div class="vc">
+        <div class="vc-text">走り続けるのは大賛成ですが、キープを目標にしたら、キープ出来ません。まだまだみんな伸びしろ有りますよ</div>
+        <div class="vc-name">— たじー（先代部長）</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;padding:15px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,205,210,0.2);border-radius:14px">
+      <div style="font-size:12px;font-weight:700;color:#ffcdd2;margin-bottom:7px">🍺 ラン部の非公式ルール</div>
+      <ul style="font-size:12.5px;color:rgba(255,255,255,0.7);line-height:2;padding-left:1.2em">
+        <li>毎月第3木曜は赤坂御所定例ラン＆反省会（雨天決行が原則）</li>
+        <li>レースの朝は「ご走運を！」、完走したら全力で祝う</li>
+        <li>走れない月も反省会だけの参加は大歓迎（ドタ参もOK）</li>
+        <li>最後尾には森下さんがいる。安心して最後尾へ</li>
+        <li>PayPay払いしたら調整さんに○をつける</li>
+        <li>緑シャツを着ていれば、京都でも海外でも仲間に見つけてもらえる</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div style="max-width:400px;margin:0 auto">
+    <div style="font-size:28px;margin-bottom:12px">🏃</div>
+    <div class="cta-title">まず、第3木曜の赤坂に来てみよう。</div>
+    <div class="cta-sub">
+      赤坂御所1周3.3km、19時スタート。<br>
+      走れなくても、歩いても、反省会だけでも。<br>
+      最後尾でおしゃべりしながらでOKです。
+    </div>
+    <a href="races.html" class="cta-btn">年間レース表を見る →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-copy">© 2026 広尾親父RC ｜ 出典：部員LINEグループの実録</div>
+</footer>
+
+<script>
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.sn');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+  });
+}, {threshold:0.3,rootMargin:'-60px 0px -60px 0px'});
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
