@@ -1,6 +1,7 @@
 // 広尾親父RC bot 中継サーバー（Cloudflare Workers）
 // 役割: API鍵を預かり、公開サイトの本文を知識ベースにして Claude に質問を渡す。
-// 設定は wrangler.toml（公開値）と `wrangler secret`（鍵・合言葉）。
+// 入口は2つ: /chat（サイトの小窓）と /line（LINE公式アカウントの webhook）。
+// 設定は wrangler.toml（公開値）と `wrangler secret`（鍵・合言葉・LINEのトークン）。
 
 const PAGES = [
   'about', 'run-guide', 'pain', 'races', 'races-2025', 'garmin', 'kintore',
@@ -188,6 +189,107 @@ async function handleChat(request, env, ctx) {
   }
 }
 
+
+// ---------- LINE ----------
+const LINE_API = 'https://api.line.me/v2/bot';
+const LINE_HISTORY_TTL = 60 * 60;        // 会話の続きを覚えておく時間
+const LINE_GREETING = 'こんにちは、広尾親父RC bot です。サイトに載っていること（レース表・練習の目安・活動アーカイブなど）なら答えられます。例:「来月のレース予定は？」「次の定例ランはいつ？」';
+const LINE_GROUP_GREETING = '広尾親父RC bot です。グループでは「@広尾親父RC bot」と呼びかけたメッセージだけに答えます。';
+
+async function lineVerify(secret, body, signature) {
+  if (!signature) return false;
+  const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  const mac = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(body));
+  const expected = btoa(String.fromCharCode(...new Uint8Array(mac)));
+  if (expected.length !== signature.length) return false;
+  let diff = 0;
+  for (let i = 0; i < expected.length; i++) diff |= expected.charCodeAt(i) ^ signature.charCodeAt(i);
+  return diff === 0;
+}
+
+async function lineApi(env, path, payload) {
+  const res = await fetch(LINE_API + path, {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + env.LINE_CHANNEL_ACCESS_TOKEN, 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) console.log('line api', path, res.status, (await res.text()).slice(0, 200));
+  return res.ok;
+}
+
+async function lineSend(env, replyToken, chatId, text) {
+  const messages = [{ type: 'text', text: text.replace(/\*\*/g, '').slice(0, 4900) }];
+  if (replyToken && await lineApi(env, '/message/reply', { replyToken, messages })) return;
+  // 返信トークンが切れていたら push（無料枠の通数を1つ使う）
+  await lineApi(env, '/message/push', { to: chatId, messages });
+}
+
+function lineQuestion(message) {
+  // グループではメンションされたときだけ。メンション部分を本文から外す
+  let text = message.text || '';
+  const mentionees = (message.mention && message.mention.mentionees) || [];
+  const toSelf = mentionees.some(m => m.isSelf === true);
+  const ranges = mentionees.filter(m => m.isSelf === true).sort((a, b) => b.index - a.index);
+  for (const r of ranges) text = text.slice(0, r.index) + text.slice(r.index + r.length);
+  return { toSelf, text: text.trim() };
+}
+
+async function processLineEvents(events, env, ctx) {
+  for (const ev of events) {
+    try {
+      const src = ev.source || {};
+      const chatId = src.groupId || src.roomId || src.userId;
+      const isGroup = src.type !== 'user';
+      if (ev.type === 'follow') { await lineSend(env, ev.replyToken, chatId, LINE_GREETING); continue; }
+      if (ev.type === 'join') { await lineSend(env, ev.replyToken, chatId, LINE_GROUP_GREETING); continue; }
+      if (ev.type !== 'message') continue;
+      if (ev.message.type !== 'text') { if (!isGroup) await lineSend(env, ev.replyToken, chatId, '文字で質問してください。'); continue; }
+
+      const { toSelf, text } = lineQuestion(ev.message);
+      if (isGroup && !toSelf) continue;
+      if (!text) { await lineSend(env, ev.replyToken, chatId, '聞きたいことを文字で送ってください。'); continue; }
+
+      const who = src.userId || chatId;
+      const minute = Math.floor(Date.now() / 60000);
+      if (await bump(env.CHAT_KV, `line:${who}:${minute}`, 120) > PER_MINUTE_LIMIT) { await lineSend(env, ev.replyToken, chatId, '少し間をあけてから聞いてください。'); continue; }
+      const dailyLimit = parseInt(env.DAILY_LIMIT || '100', 10);
+      if (await bump(env.CHAT_KV, `day:${jstDate()}`, 2 * 24 * 3600) > dailyLimit) { await lineSend(env, ev.replyToken, chatId, '今日の質問数が上限に達しました。明日また聞いてください。'); continue; }
+
+      if (!isGroup) lineApi(env, '/chat/loading/start', { chatId, loadingSeconds: 20 }).catch(() => {});
+
+      const histKey = `line:hist:${chatId}`;
+      let history = [];
+      try { history = JSON.parse((await env.CHAT_KV.get(histKey)) || '[]'); } catch { history = []; }
+      const messages = [...history, { role: 'user', content: text.slice(0, MAX_QUESTION_CHARS) }].slice(-HISTORY_KEEP);
+      if (messages[0].role !== 'user') messages.shift();
+
+      let reply;
+      try {
+        const kb = await getKb(env, ctx);
+        reply = await askClaude(env, kb, messages);
+      } catch (e) {
+        console.log('line chat failed', e.message);
+        reply = '今はうまく答えられません。少し待ってからもう一度どうぞ。';
+      }
+      await lineSend(env, ev.replyToken, chatId, reply);
+      await env.CHAT_KV.put(histKey, JSON.stringify([...messages, { role: 'assistant', content: reply }].slice(-HISTORY_KEEP)), { expirationTtl: LINE_HISTORY_TTL });
+    } catch (e) {
+      console.log('line event failed', e.message);
+    }
+  }
+}
+
+async function handleLine(request, env, ctx) {
+  if (!env.LINE_CHANNEL_SECRET || !env.LINE_CHANNEL_ACCESS_TOKEN) return json({ error: 'line not configured' }, 503, {});
+  const body = await request.text();
+  if (!(await lineVerify(env.LINE_CHANNEL_SECRET, body, request.headers.get('x-line-signature')))) return json({ error: 'bad signature' }, 401, {});
+  let data;
+  try { data = JSON.parse(body); } catch { return json({ error: 'bad json' }, 400, {}); }
+  const work = processLineEvents(data.events || [], env, ctx);
+  if (ctx && ctx.waitUntil) ctx.waitUntil(work); else await work;
+  return json({ ok: true }, 200, {});
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -195,8 +297,9 @@ export default {
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: corsHeaders(env, origin) });
     if (url.pathname === '/health') return json({ ok: true, date: jstDate() }, 200, {});
     if (url.pathname === '/chat' && request.method === 'POST') return handleChat(request, env, ctx);
+    if (url.pathname === '/line' && request.method === 'POST') return handleLine(request, env, ctx);
     return json({ error: 'not found' }, 404, {});
   },
 };
 
-export const _internal = { htmlToText, extractHistoryTable, buildKb, PAGES };
+export const _internal = { htmlToText, extractHistoryTable, buildKb, PAGES, lineVerify, lineQuestion };

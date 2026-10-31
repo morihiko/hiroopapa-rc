@@ -1,12 +1,13 @@
 # 広尾親父RC bot
 
-サイトの各ページ右下に出る「🏃 広尾親父RC bot」の仕組みと、立ち上げ手順。
+サイトの各ページ右下に出る「🏃 広尾親父RC bot」と、同じ中継につながる LINE 公式アカウントの仕組み・立ち上げ手順。
 
 ## 仕組み（3部品）
 
 | 部品 | 場所 | 役割 |
 |---|---|---|
 | 小窓 | `../chat.js`（各ページが読み込む） | 質問を中継へ送り、答えを表示する。パスワード画面が出ている間は隠れる |
+| LINE | LINE 公式アカウント → 中継の `/line` | 1対1では全部の文字メッセージに、グループでは「@広尾親父RC bot」と呼びかけたときだけ答える。会話の続きは1時間おぼえる |
 | 中継 | `worker.js`（Cloudflare Workers） | API鍵を預かる。公開サイトの本文を1日1回取り直して「サイト資料」にし、Claude に渡す |
 | 回答 | Claude Haiku 5.5 | サイト資料だけを根拠に答える。資料にないことは「載っていない」と言う |
 
@@ -52,6 +53,41 @@ cd ~/ai-office/hiroopapa-rc && git add -A && git commit -m "広尾親父RC bot �
 ```
 1分ほどで公開サイトに小窓が出る。
 
+## LINE 版の立ち上げ（本人作業、20分）
+
+LINE 側の費用はゼロです。答えは「応答メッセージ」扱いで通数に数えられません。返信が間に合わなかったときだけ push（月200通の無料枠）を使います。
+
+### 1. LINE 公式アカウントを作る
+https://entry.line.biz/start/jp/ から「LINE公式アカウントを作成」。認証は不要（未認証アカウントで可）。
+名前は「広尾親父RC bot」。
+
+### 2. Messaging API を有効にする
+LINE Official Account Manager → 設定 → Messaging API → 「Messaging APIを利用する」。プロバイダー名は自分の名前など何でも可。
+終わると **Channel secret** が表示される。
+
+### 3. LINE Developers で設定する
+https://developers.line.biz/console/ → 作ったチャネル →
+- 「Messaging API設定」タブ → **チャネルアクセストークン（長期）** を発行
+- 同タブ → **Webhook URL** に `https://hiroopapa-rc-bot.hiroopapa-rc.workers.dev/line` を入れ、**Webhookの利用** をオン
+- 同タブ → 「LINE公式アカウント機能」→ **応答メッセージ: 無効**、**あいさつメッセージ: 無効**（bot が自分で返すため）
+- グループでも使うなら 同じ欄の **グループ・複数人チャットへの参加を許可する: 許可**
+
+### 4. 鍵を中継に預ける（Mac で）
+```bash
+cd ~/ai-office/hiroopapa-rc/chatbot && npx -y wrangler@latest secret put LINE_CHANNEL_SECRET
+```
+（Channel secret を貼って Enter）
+```bash
+cd ~/ai-office/hiroopapa-rc/chatbot && npx -y wrangler@latest secret put LINE_CHANNEL_ACCESS_TOKEN
+```
+（チャネルアクセストークンを貼って Enter）
+
+### 5. 確かめる
+LINE Developers の Webhook URL 欄の「検証」を押して「成功」が出れば接続完了。
+自分の LINE で QR コードから友だち追加し、「次の定例ランはいつ？」と送る。
+
+グループに入れるときは、グループの招待から追加し、「@広尾親父RC bot 質問」の形で呼ぶ。
+
 ## 日々の運用
 
 - **使った量を見る**: Cloudflare ダッシュボード → Workers → hiroopapa-rc-bot → Logs に1問ごとのトークン数が出る。お金は Console の Usage で見る
@@ -60,7 +96,7 @@ cd ~/ai-office/hiroopapa-rc && git add -A && git commit -m "広尾親父RC bot �
   cd ~/ai-office/hiroopapa-rc/chatbot && npx wrangler@latest kv key delete --binding CHAT_KV "kb:v1"
   ```
 - **上限を変える**: `wrangler.toml` の `DAILY_LIMIT` を直して `npx wrangler@latest deploy`
-- **止める**: Cloudflare ダッシュボードで Worker を削除するか、`chat.js` の読み込みを各ページから外す
+- **止める**: Cloudflare ダッシュボードで Worker を削除するか、`chat.js` の読み込みを各ページから外す。LINE だけ止めるなら Developers で Webhook の利用をオフ
 
 ## 資料に入るページ
 
