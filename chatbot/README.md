@@ -7,14 +7,19 @@
 | 部品 | 場所 | 役割 |
 |---|---|---|
 | 小窓 | `../chat.js`（各ページが読み込む） | 質問を中継へ送り、答えを表示する。パスワード画面が出ている間は隠れる |
-| LINE | LINE 公式アカウント → 中継の `/line` | 1対1では全部の文字メッセージに、グループでは「@広尾親父RC bot」と呼びかけたときだけ答える。会話の続きは1時間おぼえる |
+| LINE | LINE 公式アカウント → 中継の `/line` | 最初にサイトと同じ4桁の合言葉を送った相手（グループはグループごと）にだけ答える。1対1では全部の文字メッセージに、グループでは「@広尾親父RC bot」と呼びかけたときだけ答える。会話の続きは1時間おぼえる |
 | 中継 | `worker.js`（Cloudflare Workers） | API鍵を預かる。公開サイトの本文を1日1回取り直して「サイト資料」にし、Claude に渡す |
 | 回答 | Claude Haiku 5.5 | サイト資料だけを根拠に答える。資料にないことは「載っていない」と言う |
 
 - 質問数の上限: 1日100問（`wrangler.toml` の `DAILY_LIMIT`）、同じ相手は1分に10問
 - 合言葉: 小窓の `CLUB_TOKEN` と中継の secret `CLUB_TOKEN` が一致した質問だけ受け付ける
+- LINE の合言葉: secret `LINE_PASS`（サイトのパスワードと同じ4桁）。間違いは1時間に5回まで。許可済みの相手は KV の `line:ok:<id>` に残る（取り消すときはそのキーを消す）
 - 費用の目安: 1問1〜2円。月50問なら100円以下。固定費なし
 - サイトを更新すれば翌日には答えに反映される（急ぐときは下の「資料を作り直す」）
+
+## 公開範囲
+
+LINE 公式アカウントは未認証のままにする（検索結果・おすすめ・Web 版プロフィールに出ない）。アカウント認証は申請しない。
 
 ## 立ち上げ手順（本人作業、15分）
 
@@ -81,10 +86,14 @@ cd ~/ai-office/hiroopapa-rc/chatbot && npx -y wrangler@latest secret put LINE_CH
 cd ~/ai-office/hiroopapa-rc/chatbot && npx -y wrangler@latest secret put LINE_CHANNEL_ACCESS_TOKEN
 ```
 （チャネルアクセストークンを貼って Enter）
+```bash
+cd ~/ai-office/hiroopapa-rc/chatbot && npx -y wrangler@latest secret put LINE_PASS
+```
+（サイトと同じ4桁を貼って Enter）
 
 ### 5. 確かめる
 LINE Developers の Webhook URL 欄の「検証」を押して「成功」が出れば接続完了。
-自分の LINE で QR コードから友だち追加し、「次の定例ランはいつ？」と送る。
+自分の LINE で QR コードから友だち追加し、合言葉の4桁を送ってから「次の定例ランはいつ？」と送る。
 
 グループに入れるときは、グループの招待から追加し、「@広尾親父RC bot 質問」の形で呼ぶ。
 

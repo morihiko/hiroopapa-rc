@@ -193,8 +193,12 @@ async function handleChat(request, env, ctx) {
 // ---------- LINE ----------
 const LINE_API = 'https://api.line.me/v2/bot';
 const LINE_HISTORY_TTL = 60 * 60;        // 会話の続きを覚えておく時間
-const LINE_GREETING = 'こんにちは、広尾親父RC bot です。サイトに載っていること（レース表・練習の目安・活動アーカイブなど）なら答えられます。例:「来月のレース予定は？」「次の定例ランはいつ？」';
-const LINE_GROUP_GREETING = '広尾親父RC bot です。グループでは「@広尾親父RC bot」と呼びかけたメッセージだけに答えます。';
+const LINE_GREETING = 'こんにちは、広尾親父RC bot です。サイトに載っていること（レース表・練習の目安・活動アーカイブなど）なら答えられます。\n\n部員確認のため、まずサイトと同じ4桁の合言葉を送ってください。';
+const LINE_ASK_PASS = '部員確認のため、サイトと同じ4桁の合言葉を送ってください（創立記念日）。';
+const LINE_PASS_OK = '合言葉を確認しました。これから答えます。例:「来月のレース予定は？」「次の定例ランはいつ？」';
+const LINE_PASS_LOCK = '合言葉の間違いが続いたので、しばらく受け付けを止めます。1時間ほどしてからもう一度どうぞ。';
+const PASS_FAIL_LIMIT = 5;             // 合言葉の間違いは1時間に5回まで
+const LINE_GROUP_GREETING = '広尾親父RC bot です。グループでは「@広尾親父RC bot」と呼びかけたメッセージだけに答えます。最初に「@広尾親父RC bot 合言葉」の形でサイトと同じ4桁を送ってください。';
 
 async function lineVerify(secret, body, signature) {
   if (!signature) return false;
@@ -252,6 +256,21 @@ async function processLineEvents(events, env, ctx) {
       const who = src.userId || chatId;
       const minute = Math.floor(Date.now() / 60000);
       if (await bump(env.CHAT_KV, `line:${who}:${minute}`, 120) > PER_MINUTE_LIMIT) { await lineSend(env, ev.replyToken, chatId, '少し間をあけてから聞いてください。'); continue; }
+
+      // 合言葉ゲート: 1対1は相手ごと、グループはグループごとに一度だけ
+      if (env.LINE_PASS && !(await env.CHAT_KV.get(`line:ok:${chatId}`))) {
+        const fails = parseInt((await env.CHAT_KV.get(`line:fail:${who}`)) || '0', 10);
+        if (fails >= PASS_FAIL_LIMIT) { await lineSend(env, ev.replyToken, chatId, LINE_PASS_LOCK); continue; }
+        const passRe = new RegExp('(^|\\D)' + env.LINE_PASS.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(\\D|$)');
+        if (passRe.test(text.replace(/[\s　]/g, ''))) {
+          await env.CHAT_KV.put(`line:ok:${chatId}`, '1');
+          await lineSend(env, ev.replyToken, chatId, LINE_PASS_OK);
+        } else {
+          await bump(env.CHAT_KV, `line:fail:${who}`, 3600);
+          await lineSend(env, ev.replyToken, chatId, LINE_ASK_PASS);
+        }
+        continue;
+      }
       const dailyLimit = parseInt(env.DAILY_LIMIT || '100', 10);
       if (await bump(env.CHAT_KV, `day:${jstDate()}`, 2 * 24 * 3600) > dailyLimit) { await lineSend(env, ev.replyToken, chatId, '今日の質問数が上限に達しました。明日また聞いてください。'); continue; }
 
