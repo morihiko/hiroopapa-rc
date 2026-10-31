@@ -56,7 +56,7 @@
     var d = document.createElement('div'); d.className = 'hrc-m hrc-' + role + (cls ? ' hrc-' + cls : ''); render(d, text);
     log.appendChild(d); log.scrollTop = log.scrollHeight; return d;
   }
-  add('a', 'こんにちは。サイトに載っていること（レース表・練習の目安・活動アーカイブなど）なら答えられます。');
+  add('a', 'こんにちは。サイトに載っていること（レース表・練習の目安・活動アーカイブなど）なら答えられます。\n\n部員限定です。答えの転送は部内だけでお願いします。名前はサイトと同じ愛称だけで、本名・連絡先は答えません。質問の内容は運営者以外は見ません。');
 
   function open() { box.classList.add('open'); btn.style.display = 'none'; setTimeout(function () { ta.focus(); }, 50); }
   function close() { box.classList.remove('open'); btn.style.display = ''; }
