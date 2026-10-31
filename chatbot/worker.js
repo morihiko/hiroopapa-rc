@@ -8,10 +8,10 @@ const PAGES = [
   'links', 'swim-guide', 'bike-guide', 'trailrun-guide', 'triathlon-guide',
 ];
 const PAGE_TITLES = {
-  about: '部の紹介', 'run-guide': 'ランニング入門', pain: '痛み撲滅委員会',
-  races: '年間レース表（今年度）', 'races-2025': '2025年レース表', garmin: 'Garmin活用',
-  kintore: '筋トレ', links: 'リンク集', 'swim-guide': 'スイム入門', 'bike-guide': 'バイク入門',
-  'trailrun-guide': 'トレラン入門', 'triathlon-guide': 'トライアスロン入門', history: '活動アーカイブ',
+  about: '部の紹介', 'run-guide': 'ラン虎の巻', pain: 'みんなの痛み撲滅シート',
+  races: '2026年度レース表', 'races-2025': '2025年度レース表（記録）', garmin: 'ガーミン虎の巻',
+  kintore: '筋トレ虎の巻', links: 'お役立ちリンク集', 'swim-guide': 'スイム虎の巻', 'bike-guide': '自転車虎の巻',
+  'trailrun-guide': 'トレラン虎の巻', 'triathlon-guide': 'トライアスロン虎の巻', history: '活動アーカイブ',
 };
 const KB_KEY = 'kb:v1';
 const KB_TTL_SEC = 24 * 60 * 60;       // 知識ベースは1日ごとに取り直す
@@ -30,7 +30,7 @@ const SYSTEM_RULES = `あなたは「広尾親父RC bot」。広尾親父RC（�
 - 部員の本名・連絡先・住所など資料にない個人情報は答えない、推測もしない。
 - 太字（**）や見出し記号（#）などのマークダウン記法は使わない。箇条書きは行頭「・」で書く。
 - 回答は簡潔に。目安200字、箇条書きは最大6項目まで。該当が多いときは代表的なものに絞り、「他にも◯件あります。絞り込んで聞いてください」と添える。長い説明を求められたときだけ長くする。
-- 関連するページがあれば、最後に「→ ページ名」の形で案内する（URLは書かない）。
+- 関連するページがあれば、最後に「→ ファイル名.html」の形で1〜3件書く（例: → run-guide.html）。ファイル名は資料の見出しにあるものだけを使い、ページ名やURLは書かない（こちらでリンクに置き換える）。
 - 医療的な判断（この痛みは走ってよいか等）は一般論にとどめ、整形外科など専門家への相談を勧める。`;
 
 function siteBase(env) {
@@ -144,7 +144,21 @@ async function askClaude(env, kb, messages) {
   const u = data.usage || {};
   console.log(JSON.stringify({ usage: { input: u.input_tokens, cache_read: u.cache_read_input_tokens, cache_write: u.cache_creation_input_tokens, output: u.output_tokens }, stop: data.stop_reason }));
   if (data.stop_reason === 'refusal' || !text) return 'その質問にはお答えできません。ランニングや部の活動について聞いてください。';
-  return text;
+  return linkPages(text, env);
+}
+
+// 「→ run-guide.html」をページ名＋URLに置き換える（LINEもサイトもURLはそのまま押せる）
+function linkPages(text, env) {
+  const base = siteBase(env);
+  let out = text.replace(/→\s*\(?([a-z0-9-]+)\.html\)?[ \t]*(?:（[^）\n]*）)?/g, (m, f) => {
+    const title = PAGE_TITLES[f];
+    return title ? `→ ${title} ${base}${f}.html` : m;
+  });
+  // ファイル名ではなくページ名で書いてきたときの保険
+  for (const [f, title] of Object.entries(PAGE_TITLES)) {
+    out = out.replace(new RegExp(`→\\s*${title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![^\\n]*https?://)`, 'g'), `→ ${title} ${base}${f}.html`);
+  }
+  return out;
 }
 
 async function handleChat(request, env, ctx) {
@@ -321,4 +335,4 @@ export default {
   },
 };
 
-export const _internal = { htmlToText, extractHistoryTable, buildKb, PAGES, lineVerify, lineQuestion };
+export const _internal = { htmlToText, extractHistoryTable, buildKb, PAGES, lineVerify, lineQuestion, linkPages };

@@ -25,6 +25,7 @@
 #hrc-chat textarea:focus{border-color:#1b5e35}\
 #hrc-chat .hrc-send{position:static;width:auto;border:0;background:#1b5e35;color:#fff;border-radius:12px;padding:0 16px;font-weight:700;font-size:14px;cursor:pointer}\
 #hrc-chat .hrc-send:disabled{background:#9aa89f}\
+#hrc-chat .hrc-link{display:inline-block;margin-left:6px;padding:1px 9px;border-radius:999px;background:#1b5e35;color:#fff;font-size:12px;text-decoration:none;vertical-align:1px}\
 #hrc-chat .hrc-note{font-size:10px;color:#999;text-align:center;padding:0 10px 8px;background:#fff}\
 @media (max-width:480px){#hrc-chat{right:0;bottom:0;width:100vw;max-width:100vw;height:80vh;border-radius:18px 18px 0 0}}';
 
@@ -42,8 +43,17 @@
   var log = box.querySelector('.hrc-log'), ta = box.querySelector('textarea'), send = box.querySelector('.hrc-send');
   var history = [], busy = false;
 
+  // URL だけをリンクにして表示する（HTMLは解釈しない）
+  function render(el, text) {
+    el.textContent = '';
+    var parts = String(text).split(/(https?:\/\/[^\s]+)/g);
+    for (var i = 0; i < parts.length; i++) {
+      if (/^https?:\/\//.test(parts[i])) { var a = document.createElement('a'); a.href = parts[i]; a.textContent = '開く'; a.target = '_blank'; a.rel = 'noopener'; a.className = 'hrc-link'; el.appendChild(a); }
+      else el.appendChild(document.createTextNode(parts[i]));
+    }
+  }
   function add(role, text, cls) {
-    var d = document.createElement('div'); d.className = 'hrc-m hrc-' + role + (cls ? ' hrc-' + cls : ''); d.textContent = text;
+    var d = document.createElement('div'); d.className = 'hrc-m hrc-' + role + (cls ? ' hrc-' + cls : ''); render(d, text);
     log.appendChild(d); log.scrollTop = log.scrollHeight; return d;
   }
   add('a', 'こんにちは。サイトに載っていること（レース表・練習の目安・活動アーカイブなど）なら答えられます。');
@@ -64,7 +74,7 @@
     }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
       .then(function (res) {
         var reply = ((res.j && res.j.reply) || 'うまく答えられませんでした。').replace(/\*\*/g, '');
-        wait.textContent = reply; wait.classList.remove('hrc-wait');
+        render(wait, reply); wait.classList.remove('hrc-wait');
         if (res.ok) history.push({ role: 'assistant', content: reply }); else history.pop();
       })
       .catch(function () { wait.textContent = '通信できませんでした。電波の良いところで試してください。'; wait.classList.remove('hrc-wait'); history.pop(); })
