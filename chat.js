@@ -2,7 +2,7 @@
    中継サーバー（chatbot/worker.js）に質問を送り、答えを表示する。
    設定: WORKER_URL は Cloudflare にデプロイしたあとの URL。CLUB_TOKEN は中継側の合言葉と同じ値。 */
 (function () {
-  var WORKER_URL = 'https://hiroopapa-rc-bot.REPLACE_ME.workers.dev';
+  var WORKER_URL = 'https://hiroopapa-rc-bot.hiroopapa-rc.workers.dev';
   var CLUB_TOKEN = 'hiroopapa-2026';
   if (WORKER_URL.indexOf('REPLACE_ME') >= 0) return; // 未設定なら何も出さない
 
