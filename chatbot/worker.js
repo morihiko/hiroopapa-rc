@@ -35,6 +35,9 @@ const SYSTEM_RULES = `あなたは「ロンドン」。広尾親父RC（東京�
   1) 愛称の揺れを吸収する。資料の愛称は「苗字の一部＋さん」「ひらがな」「ちゃん付け」が多いので、聞かれた名前の頭1〜2文字や読みで資料を探す（例: 緒方さん→緒さん、かけたりさん→かけさん）。候補が1つなら「○○さんのことかな？」と添えて答え、複数なら候補を並べて聞き返す。
   2) 見つかったら、資料に書いてある事実（出たレース、作ったもの、教えてくれたこと、アーカイブに出てくる場面）だけを挙げる。レース表に名前があるだけでも、最低限「2026年は○○に出てるよ」のように、載っている事実をそのまま返す。資料にない褒め言葉を足さない。
   3) どこにも無ければ、ユーモラスに、でも本人を傷つけずに返す。system の「今回の部品」にある【書き出し】【いいところ】【締め】を、この順で3つとも使う。冗談の部分（鼻・昼寝・さつまいも・しっぽ等）は削らずに残し、その人の名前や質問に合わせて少しだけ言い換える。この答えでは「運営の人に聞いてみてね」は言わない（人のことは運営に聞くものではない）。同じ人のことを同じ会話で何度聞かれても、毎回この部品で新しく答え、「さっきと同じ」「何度も聞くね」のような指摘はしない。守ること: 笑いの矛先はぼく（ロンドン）の鼻・記憶・犬らしさに向け、本人の不在・実績・足の速さをネタにしない。「まだ何もしてない」「目立ってない」の含みを出さない。「いいところ」は本当のこと（聞きに来てくれた、部の仲間、など）だけを挙げる。締めがページのおすすめなら、そのページを「→ ファイル名.html」で添える。
+- 太字（**）や見出し記号（#）などのマークダウン記法は使わない。箇条書きは行頭「・」で書く。
+- スタンプ: 答えの最後の行に「[スタンプ:うれしい]」の形で1つだけ付けられる。種類は うれしい／応援／ごめん／やあ／照れ／おやすみ。付けるのは、お礼やほめ言葉をもらった時（うれしい・照れ）、これから走る人やレース前の人を励ます時（応援）、答えられなくて謝る時やサイトに載っていない人の話の時（ごめん・うれしい）、あいさつ（やあ）、寝る前のあいさつ（おやすみ）だけ。レース日程や練習法など事務的な答えには付けない。
+- 回答は簡潔に。目安200字、箇条書きは最大6項目まで。該当が多いときは代表的なものに絞り、「他にも◯件あります。絞り込んで聞いてください」と添える。長い説明を求められたときだけ長くする。
 - 関連するページがあれば、最後に「→ ファイル名.html」の形で1〜3件書く（例: → run-guide.html）。ファイル名は資料の見出しにあるものだけを使い、ページ名やURLは書かない（こちらでリンクに置き換える）。
 - 医療的な判断（この痛みは走ってよいか等）は一般論にとどめ、整形外科など専門家への相談を勧める。`;
 
@@ -83,6 +86,23 @@ const NF_CLOSINGS = [
   'トレランに興味があるなら、トレラン虎の巻からどうぞ。山はぼくの得意分野（→ trailrun-guide.html）',
   'Garmin の設定は Garmin 虎の巻に載ってる。時計を整えると走るのが楽しくなるよ（→ garmin.html）',
 ];
+const STICKER_PACKAGE = '11537';
+const STICKERS = {
+  'うれしい': ['52002734', '52002735', '52002745', '52002752', '52002748'],
+  '応援':     ['52002767', '52002740', '52002735'],
+  'ごめん':   ['52002754', '52002739', '52002751', '52002770'],
+  'やあ':     ['52002768', '52002738'],
+  '照れ':     ['52002747', '52002737', '52002742'],
+  'おやすみ': ['52002764'],
+};
+const STICKER_RE = /\n?\s*\[スタンプ[:：]\s*([^\]]+?)\s*\]\s*$/;
+function splitSticker(text) {
+  const m = text.match(STICKER_RE);
+  if (!m) return { text, sticker: null };
+  const ids = STICKERS[m[1].trim()];
+  return { text: text.replace(STICKER_RE, '').trim(), sticker: ids ? pickOne(ids) : null };
+}
+const PRAISE_RE = /(ナイス|ありがと|あざ|サンキュ|すごい|すげ|えらい|かわいい|可愛い|優秀|賢い|かしこい|好き|最高|いいね|グッジョブ|天才|おりこう|お利口|よしよし|がんばれ|頑張れ)/;
 function pickOne(a) { return a[Math.floor(Math.random() * a.length)]; }
 function notFoundParts() {
   return '今回の部品（サイトに載っていない人に答えるとき。○○はその人の名前に置き換える）:\n【書き出し】' + pickOne(NF_OPENINGS) + '\n【いいところ】' + pickOne(NF_PRAISES) + '\n【締め】' + pickOne(NF_CLOSINGS);
@@ -256,7 +276,7 @@ async function handleChat(request, env, ctx) {
 
   try {
     const kb = await getKb(env, ctx);
-    const reply = await askClaude(env, kb, messages);
+    const reply = splitSticker(await askClaude(env, kb, messages)).text;
     return json({ reply }, 200, cors);
   } catch (e) {
     console.log('chat failed', e.message);
@@ -298,8 +318,11 @@ async function lineApi(env, path, payload) {
   return res.ok;
 }
 
-async function lineSend(env, replyToken, chatId, text) {
-  const messages = [{ type: 'text', text: text.replace(/\*\*/g, '').slice(0, 4900) }];
+async function lineSend(env, replyToken, chatId, text, stickerId) {
+  const messages = [];
+  if (text) messages.push({ type: 'text', text: text.replace(/\*\*/g, '').slice(0, 4900) });
+  if (stickerId) messages.push({ type: 'sticker', packageId: STICKER_PACKAGE, stickerId });
+  if (!messages.length) return;
   if (replyToken && await lineApi(env, '/message/reply', { replyToken, messages })) return;
   // 返信トークンが切れていたら push（無料枠の通数を1つ使う）
   await lineApi(env, '/message/push', { to: chatId, messages });
@@ -324,10 +347,21 @@ async function processLineEvents(events, env, ctx) {
       if (ev.type === 'follow') { await lineSend(env, ev.replyToken, chatId, LINE_GREETING); continue; }
       if (ev.type === 'join') { await lineSend(env, ev.replyToken, chatId, LINE_GROUP_GREETING); continue; }
       if (ev.type !== 'message') continue;
+      if (ev.message.type === 'sticker') { if (!isGroup) await lineSend(env, ev.replyToken, chatId, '', pickOne(STICKERS['うれしい'])); continue; }
       if (ev.message.type !== 'text') { if (!isGroup) await lineSend(env, ev.replyToken, chatId, '文字で質問してください。'); continue; }
 
       const { toSelf, text } = lineQuestion(ev.message);
-      if (isGroup && !toSelf) continue;
+      if (isGroup && !toSelf) {
+        const raw = String(ev.message.text || '');
+        if (raw.length <= 40 && /ロンドン/.test(raw) && PRAISE_RE.test(raw) && await env.CHAT_KV.get(`line:ok:${chatId}`)) {
+          const k = `line:gsticker:${chatId}`;
+          if (!(await env.CHAT_KV.get(k))) {
+            await env.CHAT_KV.put(k, '1', { expirationTtl: 600 });
+            await lineSend(env, ev.replyToken, chatId, '', pickOne(/ごめん|すまん/.test(raw) ? STICKERS['ごめん'] : STICKERS['照れ']));
+          }
+        }
+        continue;
+      }
       if (!text) { await lineSend(env, ev.replyToken, chatId, '聞きたいことを文字で送ってください。'); continue; }
 
       const who = src.userId || chatId;
@@ -367,8 +401,9 @@ async function processLineEvents(events, env, ctx) {
         console.log('line chat failed', e.message);
         reply = '今はうまく答えられません。少し待ってからもう一度どうぞ。';
       }
-      await lineSend(env, ev.replyToken, chatId, reply);
-      await env.CHAT_KV.put(histKey, JSON.stringify([...messages, { role: 'assistant', content: reply }].slice(-HISTORY_KEEP)), { expirationTtl: LINE_HISTORY_TTL });
+      const out = splitSticker(reply);
+      await lineSend(env, ev.replyToken, chatId, out.text, out.sticker);
+      await env.CHAT_KV.put(histKey, JSON.stringify([...messages, { role: 'assistant', content: out.text }].slice(-HISTORY_KEEP)), { expirationTtl: LINE_HISTORY_TTL });
     } catch (e) {
       console.log('line event failed', e.message);
     }
