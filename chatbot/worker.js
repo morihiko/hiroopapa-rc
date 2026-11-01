@@ -124,7 +124,68 @@ function htmlToText(html) {
   s = s.replace(/<[^>]+>/g, '\n');
   s = s.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
   s = s.replace(/[ \t]+/g, ' ').replace(/\n\s*\n+/g, '\n');
+  s = s.replace(/^ ?(公式サイト|🔗 リンクを開く|&#128279; リンクを開く|HG|← トップへ|▲ トップへ)$/gm, '').replace(/\n\s*\n+/g, '\n');
   return s.trim();
+}
+
+// Python 風のシングルクォート JS オブジェクトを JSON に（pain.html の allData 用。eval は使わない）
+function singleQuotedToJson(src) {
+  let out = '', i = 0;
+  while (i < src.length) {
+    const c = src[i];
+    if (c === "'") {
+      let j = i + 1, buf = '';
+      while (j < src.length && src[j] !== "'") {
+        if (src[j] === '\\' && j + 1 < src.length) { const n = src[j + 1]; buf += n === "'" ? "'" : '\\' + n; j += 2; continue; }
+        buf += src[j]; j++;
+      }
+      out += JSON.stringify(buf); i = j + 1;
+    } else if (c === '"') {
+      let j = i + 1; while (j < src.length && src[j] !== '"') { if (src[j] === '\\') j++; j++; }
+      out += src.slice(i, j + 1); i = j + 1;
+    } else { out += c; i++; }
+  }
+  return out.replace(/,\s*([}\]])/g, '$1').replace(/\bTrue\b/g, 'true').replace(/\bFalse\b/g, 'false').replace(/\bNone\b/g, 'null');
+}
+
+// みんなの痛み撲滅シート: ページ内の allData を表に
+function extractPainTable(html) {
+  const i = html.indexOf('var allData = ');
+  if (i < 0) return '';
+  const j = html.indexOf('};\n', i);
+  if (j < 0) return '';
+  let obj;
+  try { obj = JSON.parse(singleQuotedToJson(html.slice(i + 'var allData = '.length, j + 1))); } catch (e) { console.log('pain parse failed', e.message); return ''; }
+  const rows = [];
+  for (const part of Object.keys(obj)) {
+    for (const it of obj[part]) {
+      const extra = [it.goods, it.shop && '店:' + it.shop, it.clinic && '病院:' + it.clinic, it.drug && '薬:' + it.drug].filter(Boolean).join('、');
+      rows.push([part.replace(/^▼/, ''), it.display_part, it.reporter, [it.symptom1, it.symptom2].filter(Boolean).join('／'), it.cause, it.remedy, it.lesson, extra]
+        .map(v => String(v || '').replace(/\s+/g, ' ')).join(' | '));
+    }
+  }
+  return '=== ページ: みんなの痛み撲滅シート (pain.html)（列: 部位 | 細かい部位 | 報告者 | 症状 | 原因 | 対応 | 教訓 | 道具・店・病院・薬）===\n' + rows.join('\n');
+}
+
+// お役立ちリンク集: 品名・一言・推薦者だけに圧縮（提供元・URL・長い説明は落とす）
+function extractLinksTable(html) {
+  const rows = [];
+  const secRe = /<section class="cat-section" data-cat="([^"]+)">([\s\S]*?)<\/section>/g;
+  let m;
+  while ((m = secRe.exec(html))) {
+    const cat = m[1];
+    const cardRe = /<div class="card-title">([\s\S]*?)<\/div>\s*<div class="card-desc">([\s\S]*?)<\/div>([\s\S]*?)(?=<div class="card |<\/div>\s*<\/section>)/g;
+    let c;
+    while ((c = cardRe.exec(m[2]))) {
+      const title = htmlToText(c[1]);
+      let desc = htmlToText(c[2]).replace(/\s+/g, ' ');
+      if (desc.length > 45) desc = desc.slice(0, 45) + '…';
+      const rec = (c[3].match(/推薦：<\/span>([^<]*)/) || [])[1] || '';
+      rows.push(`${cat} | ${title} | ${desc} | 推薦:${rec.trim()}`);
+    }
+  }
+  if (!rows.length) return '';
+  return '=== ページ: お役立ちリンク集 (links.html)（列: 分類 | 品名 | 一言 | 推薦者。詳しい説明とリンク先はページ参照）===\n' + rows.join('\n');
 }
 
 function extractHistoryTable(html) {
@@ -143,7 +204,8 @@ function extractHistoryTable(html) {
   let arr;
   try { arr = JSON.parse(html.slice(i, end)); } catch { return ''; }
   const cols = ['date', 'y', 'cat', 'title', 'desc', 'members', 'memory', 'rec'];
-  const rows = arr.map(r => cols.map(k => String(r[k] ?? '').replace(/\s+/g, ' ')).join(' | '));
+  const cap = { desc: 45, memory: 70 };
+  const rows = arr.map(r => cols.map(k => { let v = String(r[k] ?? '').replace(/\s+/g, ' '); if (cap[k] && v.length > cap[k]) v = v.slice(0, cap[k]) + '…'; return v; }).join(' | '));
   return '=== 活動アーカイブ（列: 日付 | 年 | 種別 | 大会・活動名 | 内容 | 参加者 | 思い出 | 記録）===\n' + rows.join('\n');
 }
 
@@ -153,7 +215,9 @@ async function buildKb(env) {
   for (const p of PAGES) {
     const res = await fetch(base + p + '.html', { cf: { cacheTtl: 3600 } });
     if (!res.ok) { console.log('kb fetch failed', p, res.status); continue; }
-    parts.push(`=== ページ: ${PAGE_TITLES[p] || p} (${p}.html) ===\n` + htmlToText(await res.text()));
+    const html = await res.text();
+    const special = p === 'links' ? extractLinksTable(html) : p === 'pain' ? extractPainTable(html) : '';
+    parts.push(special || (`=== ページ: ${PAGE_TITLES[p] || p} (${p}.html) ===\n` + htmlToText(html)));
   }
   const hist = await fetch(base + 'history.html', { cf: { cacheTtl: 3600 } });
   if (hist.ok) parts.push(extractHistoryTable(await hist.text()));
