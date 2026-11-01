@@ -231,8 +231,10 @@ async function buildKb(env) {
   const base = siteBase(env);
   const parts = [];
   let races2025Text = '';
+  // 資料を作り直すのは KV が空のときだけ。毎回付く ?t= で Cloudflare と GitHub の古いコピーを避け、更新直後の版を読む
+  const fresh = '?t=' + Date.now();
   for (const p of PAGES) {
-    const res = await fetch(base + p + '.html', { cf: { cacheTtl: 3600 } });
+    const res = await fetch(base + p + '.html' + fresh);
     if (!res.ok) { console.log('kb fetch failed', p, res.status); continue; }
     const html = await res.text();
     const special = p === 'links' ? extractLinksTable(html) : p === 'pain' ? extractPainTable(html) : '';
@@ -240,7 +242,7 @@ async function buildKb(env) {
     if (p === 'races-2025') races2025Text = text;
     parts.push(text);
   }
-  const hist = await fetch(base + 'history.html', { cf: { cacheTtl: 3600 } });
+  const hist = await fetch(base + 'history.html' + fresh);
   if (hist.ok) parts.push(extractHistoryTable(await hist.text(), races2025Text));
   const kb = parts.join('\n\n');
   if (kb.length < 10000) throw new Error('knowledge base too small: ' + kb.length);
