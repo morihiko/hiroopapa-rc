@@ -195,7 +195,18 @@ function extractLinksTable(html) {
   return '=== ページ: お役立ちリンク集 (links.html)（列: 分類 | 品名 | 一言 | 推薦者。詳しい説明とリンク先はページ参照）===\n' + rows.join('\n');
 }
 
-function extractHistoryTable(html) {
+// races-2025 のページに同じ日付・同じ大会名で載っている2025年度の行か（10万トークンに収めるため、重複はページ側だけ残す）
+function onRaces2025(r, text) {
+  if (r.fy !== 2025 || !text) return false;
+  const head = String(r.title).replace(/[（(].*$/, '').replace(/[^\p{L}\p{N}]/gu, '').slice(0, 5);
+  if (head.length < 2) return false;
+  for (let k = text.indexOf(r.date); k >= 0; k = text.indexOf(r.date, k + 1)) {
+    if (text.slice(k, k + 150).replace(/[^\p{L}\p{N}]/gu, '').includes(head)) return true;
+  }
+  return false;
+}
+
+function extractHistoryTable(html, races2025Text) {
   const i = html.indexOf('[{"id"');
   if (i < 0) return '';
   // 配列の終わりを括弧の対応で探す（文字列内の括弧は無視）
@@ -212,22 +223,25 @@ function extractHistoryTable(html) {
   try { arr = JSON.parse(html.slice(i, end)); } catch { return ''; }
   const cols = ['date', 'y', 'cat', 'title', 'desc', 'members', 'memory', 'rec'];
   const cap = { desc: 45, memory: 70 };
-  const rows = arr.map(r => cols.map(k => { let v = String(r[k] ?? '').replace(/\s+/g, ' '); if (cap[k] && v.length > cap[k]) v = v.slice(0, cap[k]) + '…'; return v; }).join(' | '));
+  const rows = arr.filter(r => !onRaces2025(r, races2025Text)).map(r => cols.map(k => { let v = String(r[k] ?? '').replace(/\s+/g, ' '); if (cap[k] && v.length > cap[k]) v = v.slice(0, cap[k]) + '…'; return v; }).join(' | '));
   return '=== 活動アーカイブ（列: 日付 | 年 | 種別 | 大会・活動名 | 内容 | 参加者 | 思い出 | 記録）===\n' + rows.join('\n');
 }
 
 async function buildKb(env) {
   const base = siteBase(env);
   const parts = [];
+  let races2025Text = '';
   for (const p of PAGES) {
     const res = await fetch(base + p + '.html', { cf: { cacheTtl: 3600 } });
     if (!res.ok) { console.log('kb fetch failed', p, res.status); continue; }
     const html = await res.text();
     const special = p === 'links' ? extractLinksTable(html) : p === 'pain' ? extractPainTable(html) : '';
-    parts.push(special || (`=== ページ: ${PAGE_TITLES[p] || p} (${p}.html) ===\n` + htmlToText(html)));
+    const text = special || (`=== ページ: ${PAGE_TITLES[p] || p} (${p}.html) ===\n` + htmlToText(html));
+    if (p === 'races-2025') races2025Text = text;
+    parts.push(text);
   }
   const hist = await fetch(base + 'history.html', { cf: { cacheTtl: 3600 } });
-  if (hist.ok) parts.push(extractHistoryTable(await hist.text()));
+  if (hist.ok) parts.push(extractHistoryTable(await hist.text(), races2025Text));
   const kb = parts.join('\n\n');
   if (kb.length < 10000) throw new Error('knowledge base too small: ' + kb.length);
   return kb;
