@@ -286,7 +286,7 @@ function json(body, status, headers) {
   return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json; charset=utf-8', ...headers } });
 }
 
-async function askClaude(env, kb, messages) {
+async function askClaude(env, kb, messages, speakerName) {
   const body = {
     model: env.MODEL || 'claude-haiku-5-5',
     max_tokens: 2000,
@@ -295,7 +295,7 @@ async function askClaude(env, kb, messages) {
       { type: 'text', text: SYSTEM_RULES },
       { type: 'text', text: 'サイト資料:\n\n' + kb, cache_control: { type: 'ephemeral' } },
       { type: 'text', text: LONDON_PROFILE + '\n\n今回話していいエピソード:\n' + pickEpisodes(2) + '\n\n' + notFoundParts() + await aliasBlock(env) },
-      { type: 'text', text: `今日の日付: ${jstDate()}（日本時間）` },
+      { type: 'text', text: `今日の日付: ${jstDate()}（日本時間）` + speakerBlock(speakerName) },
     ],
     messages,
   };
@@ -314,6 +314,40 @@ async function askClaude(env, kb, messages) {
   console.log(JSON.stringify({ usage: { input: u.input_tokens, cache_read: u.cache_read_input_tokens, cache_write: u.cache_creation_input_tokens, output: u.output_tokens }, stop: data.stop_reason }));
   if (data.stop_reason === 'refusal' || !text) return 'その質問にはお答えできません。ランニングや部の活動について聞いてください。';
   return linkPages(text, env);
+}
+
+// 話している相手の LINE 表示名（サイトでは無し）。キャッシュの後ろに置くので、毎回変わっても割引は崩れない
+function speakerBlock(name) {
+  if (!name) return '';
+  return `\n\nいま話しかけてきた人の LINE 表示名: 「${name}」
+- この人は「${callName(name)}さん」と呼ぶ。毎回は呼ばない。最初の返事、お礼、励ます・ねぎらう場面など、自然なところで1回だけ（目安: 2〜3回の返事に1回）。
+- グループでも、呼ぶのは今話しかけてきたこの人だけ。
+- この表示名を、サイト資料の愛称や「名寄せ表」と結び付けない。「○○さんは資料の△△さんだね」のような推測も言わない（サイトの愛称は匿名にしてあるため）。本人が「ぼくは資料の△△だよ」と自分で言ったときだけ、その会話の中でその愛称の話をしてよい。`;
+}
+
+// 表示名から呼び名を作る: 絵文字・記号・かっこ書きを外し、長すぎれば切る
+function callName(name) {
+  let n = String(name).replace(/[（(【\[][^）)】\]]*[）)】\]]/g, '')
+    .replace(/[\p{Extended_Pictographic}\u200d\ufe0f]/gu, '')
+    .replace(/[★☆♪♡♥〜~＠@＊*・|｜_]+/g, ' ')
+    .replace(/\s+/g, ' ').trim();
+  n = n.replace(/(さん|様|さま|ちゃん|くん|君)$/, '').trim();
+  if ([...n].length > 12) n = [...n].slice(0, 12).join('');
+  return n || String(name).trim().slice(0, 12);
+}
+
+// LINE の表示名を取る（保存はしない。1対1もグループも友だち登録なしで取れる）
+async function lineDisplayName(env, src) {
+  if (!src.userId) return '';
+  const path = src.type === 'group' ? `/group/${src.groupId}/member/${src.userId}`
+    : src.type === 'room' ? `/room/${src.roomId}/member/${src.userId}`
+    : `/profile/${src.userId}`;
+  try {
+    const res = await fetch(LINE_API + path, { headers: { 'Authorization': 'Bearer ' + env.LINE_CHANNEL_ACCESS_TOKEN } });
+    if (!res.ok) { console.log('line profile', res.status); return ''; }
+    const p = await res.json();
+    return String(p.displayName || '').slice(0, 40);
+  } catch (e) { console.log('line profile failed', e.message); return ''; }
 }
 
 // 「→ run-guide.html」をページ名＋URLに置き換える（LINEもサイトもURLはそのまま押せる）
@@ -376,7 +410,7 @@ async function handleChat(request, env, ctx) {
 // ---------- LINE ----------
 const LINE_API = 'https://api.line.me/v2/bot';
 const LINE_HISTORY_TTL = 60 * 60;        // 会話の続きを覚えておく時間
-const LINE_PRIVACY = '【お願いと約束】\n・部員限定だよ。このアカウントや答えの内容は部外に転送しないでね\n・未認証アカウントだから、LINE の検索にも「おすすめ」にも出ないよ。QR か URL を知ってる人だけが追加できる\n・名前や愛称は送って大丈夫。電話番号・住所・持病みたいなデリケートなことだけは送らないでね\n・やりとりは1時間で自動で消えるよ。どこにも保存してないし、運営の人も見てない。AI の学習にも使われないよ\n・ぼくが答えに出す名前はサイトと同じ愛称だけ。本名・連絡先・住所は答えないよ';
+const LINE_PRIVACY = '【お願いと約束】\n・部員限定だよ。このアカウントや答えの内容は部外に転送しないでね\n・未認証アカウントだから、LINE の検索にも「おすすめ」にも出ないよ。QR か URL を知ってる人だけが追加できる\n・名前や愛称は送って大丈夫。電話番号・住所・持病みたいなデリケートなことだけは送らないでね\n・やりとりは1時間で自動で消えるよ。どこにも保存してないし、運営の人も見てない。AI の学習にも使われないよ\n・話しかけてくれた人は LINE の表示名で呼ぶよ（表示名は覚えておかない）。ほかの部員のことを答えるときはサイトと同じ愛称だけ。本名・連絡先・住所は答えないよ';
 const LINE_GREETING = 'やあ、広尾親父RC のワンナー、ロンドンだよ。走るのとサイトの案内が仕事。\nレース表・練習の目安・活動アーカイブなど、サイトに載ってることなら答えられるよ。初心者の人ほど気軽に聞いてね。\n\n' + LINE_PRIVACY + '\n\n部員確認のため、まずサイトと同じ4桁の合言葉を送ってね。\n（ヒント: 学校の創立記念日を月日の4桁で。検索すると出てきます）';
 const LINE_ASK_PASS = '部員確認のため、サイトと同じ4桁の合言葉を送ってね。\n（ヒント: 学校の創立記念日を月日の4桁で。検索すると出てきます）';
 const LINE_PASS_OK = '合言葉、確認できたよ。ようこそ！\nさっそくどうぞ。例:「来月のレース予定は？」「次の定例ランはいつ？」「走り始めは何分くらい？」\n\n答えや画面の転送は部内だけでお願いね。';
@@ -462,7 +496,8 @@ async function processLineEvents(events, env, ctx) {
         const passRe = new RegExp('(^|\\D)' + env.LINE_PASS.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(\\D|$)');
         if (passRe.test(text.replace(/[\s　]/g, ''))) {
           await env.CHAT_KV.put(`line:ok:${chatId}`, '1');
-          await lineSend(env, ev.replyToken, chatId, LINE_PASS_OK);
+          const nm = await lineDisplayName(env, src);
+          await lineSend(env, ev.replyToken, chatId, (nm ? `${callName(nm)}さん、` : '') + LINE_PASS_OK);
         } else {
           await bump(env.CHAT_KV, `line:fail:${who}`, 3600);
           await lineSend(env, ev.replyToken, chatId, LINE_ASK_PASS);
@@ -482,8 +517,8 @@ async function processLineEvents(events, env, ctx) {
 
       let reply;
       try {
-        const kb = await getKb(env, ctx);
-        reply = await askClaude(env, kb, messages);
+        const [kb, name] = await Promise.all([getKb(env, ctx), lineDisplayName(env, src)]);
+        reply = await askClaude(env, kb, messages, name);
       } catch (e) {
         console.log('line chat failed', e.message);
         reply = '今はうまく答えられません。少し待ってからもう一度どうぞ。';
