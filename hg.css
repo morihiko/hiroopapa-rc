@@ -1,0 +1,226 @@
+/* =========================================================
+   広尾親父RC 共通スタイル（正本）  hg.css  v1.0  2026-11-08
+   ---------------------------------------------------------
+   ・色・文字・余白・部品は、すべてここで決める。
+   ・ページの中に色コード（#xxxxxx）を直接書かない。var(--hg-…) を使う。
+   ・直したいときは、ページで上書きせず、このファイルを直す。
+   ・ルールの説明は design/DESIGN.md、見本は design/catalog.html。
+   ========================================================= */
+
+/* ---------- 1. トークン（色・文字・余白の決まり） ---------- */
+:root{
+  /* 緑（クラブの地の色） */
+  --hg-green-deep:#0F2A1E;   /* いちばん暗い緑。扉・暗い面の奥 */
+  --hg-green:#1B4030;        /* 基本の緑。見出し文字・主ボタン・暗い面 */
+  --hg-green-soft:#1E4936;   /* 明るめの緑。グラデーションの相方 */
+
+  /* 金（線と飾り。面には使わない） */
+  --hg-gold:#C3A24D;         /* 金の線・縁・下線。明るい地の上で文字に使わない */
+  --hg-gold-light:#EBD79A;   /* 暗い緑の上の金文字 */
+  --hg-gold-ink:#7A6320;     /* 明るい地の上の金文字（読める濃さ） */
+
+  /* 紙（明るい地） */
+  --hg-paper:#F7F3E8;        /* ページの地 */
+  --hg-paper-alt:#F1EBDA;    /* 交互に敷く地・注意書きの帯 */
+  --hg-card:#FFFDF6;         /* カードの中 */
+  --hg-line:#D9C98F;         /* 明るい地の上の細い線・枠 */
+
+  /* 墨（文字） */
+  --hg-ink:#3E3A2E;          /* 本文 */
+  --hg-ink-muted:#5C564A;    /* 補足・説明文 */
+  --hg-ink-on-dark:#F2ECD9;  /* 暗い緑の上の本文 */
+
+  /* 種目の色（タグ・小さな印だけ。面や見出しには使わない） */
+  --hg-run:#C62828;
+  --hg-swim:#1565C0;
+  --hg-bike:#BF360C;
+  --hg-trail:#33691E;
+
+  /* 文字 */
+  --hg-font-body:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP',sans-serif;
+  --hg-font-head:'Shippori Mincho',serif;   /* 日本語の見出し */
+  --hg-font-label:Cinzel,serif;             /* 英字（クラブ名の欧文・数字の飾り）だけ。見出しやラベルには使わない */
+  --hg-fs-xs:11px;   /* ラベル・注記 */
+  --hg-fs-sm:13px;   /* 説明文 */
+  --hg-fs-md:15px;   /* 本文 */
+  --hg-fs-lg:18px;   /* カードの題 */
+  --hg-fs-xl:22px;   /* 節の見出し */
+  --hg-fs-hero:clamp(24px,7vw,34px); /* ページの大見出し */
+  --hg-lh:1.9;
+
+  /* 余白（4の倍数だけ使う） */
+  --hg-s1:4px; --hg-s2:8px; --hg-s3:12px; --hg-s4:16px;
+  --hg-s5:24px; --hg-s6:32px; --hg-s7:48px;
+
+  /* 角の丸み */
+  --hg-r-sm:6px;     /* タグの角・小物 */
+  --hg-r-md:10px;    /* カード */
+  --hg-r-lg:14px;    /* 大きいボタン・扉のカード */
+  --hg-r-pill:999px; /* 丸ボタン・丸タグ */
+
+  /* 影 */
+  --hg-shadow:0 2px 8px rgba(60,50,20,.08);
+  --hg-shadow-lift:0 14px 44px rgba(0,0,0,.5);
+
+  /* 幅 */
+  --hg-width:440px;  /* 読みものの最大幅（スマホ前提） */
+}
+
+/* ---------- 2. 土台 ---------- */
+.hg *, .hg *::before, .hg *::after{box-sizing:border-box}
+.hg{
+  margin:0;font-family:var(--hg-font-body);font-size:var(--hg-fs-md);
+  line-height:var(--hg-lh);color:var(--hg-ink);background:var(--hg-paper);
+  -webkit-text-size-adjust:100%;
+}
+.hg a{color:var(--hg-green)}
+.hg-wrap{max-width:var(--hg-width);margin:0 auto;padding:0 var(--hg-s5)}
+
+/* ---------- 3. 部品 ---------- */
+
+/* 3-1 ヘッダー：上に固定。左にロゴ、右に戻るボタン */
+.hg-header{
+  position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:var(--hg-s3) var(--hg-s4);background:var(--hg-green-deep);
+  border-bottom:1px solid var(--hg-gold);
+}
+.hg-header__logo{color:var(--hg-ink-on-dark);font-weight:800;font-size:var(--hg-fs-sm);letter-spacing:.06em;text-decoration:none}
+.hg .hg-header__logo{color:var(--hg-ink-on-dark)}
+
+/* 3-2 扉（ヒーロー）：ページの最初。バッジ＋大見出し＋ひとこと */
+.hg-hero{
+  text-align:center;padding:var(--hg-s7) var(--hg-s5);color:var(--hg-ink-on-dark);
+  background:linear-gradient(180deg,var(--hg-green-deep) 0%,var(--hg-green) 100%);
+  border-bottom:3px solid var(--hg-gold);
+}
+.hg-hero__title{font-family:var(--hg-font-head);font-weight:800;font-size:var(--hg-fs-hero);line-height:1.4;margin:var(--hg-s4) 0 var(--hg-s3)}
+.hg-hero__title em{font-style:normal;color:var(--hg-gold-light)}
+.hg-hero__sub{font-size:var(--hg-fs-sm);opacity:.8;margin:0}
+
+/* 3-3 バッジ：扉の上の短い札（日本語） */
+.hg-badge{
+  display:inline-block;padding:var(--hg-s1) var(--hg-s4);border-radius:var(--hg-r-pill);
+  font-family:var(--hg-font-body);font-weight:700;font-size:var(--hg-fs-xs);letter-spacing:.16em;
+  color:var(--hg-gold-light);border:1px solid var(--hg-gold);background:rgba(195,162,77,.14);white-space:nowrap;
+}
+
+/* 3-4 節：地の色を交互に敷く */
+.hg-section{padding:var(--hg-s7) 0}
+.hg-section--alt{background:var(--hg-paper-alt)}
+.hg-section--dark{background:linear-gradient(135deg,var(--hg-green-deep),var(--hg-green));color:var(--hg-ink-on-dark)}
+
+/* 3-5 見出しの組：日本語ラベル（中身を言う）＋明朝の見出し＋金の下線 */
+.hg-label{display:block;font-family:var(--hg-font-body);font-weight:700;font-size:var(--hg-fs-xs);letter-spacing:.12em;color:var(--hg-gold-ink);margin-bottom:var(--hg-s1)}
+.hg-title{font-family:var(--hg-font-head);font-weight:700;font-size:var(--hg-fs-xl);line-height:1.5;color:var(--hg-green);margin:0 0 var(--hg-s4)}
+.hg-title::after{content:'';display:block;height:1px;margin-top:var(--hg-s3);background:linear-gradient(90deg,var(--hg-gold),rgba(195,162,77,.1))}
+.hg-section--dark .hg-label{color:var(--hg-gold-light)}
+.hg-section--dark .hg-title{color:var(--hg-ink-on-dark)}
+
+/* 3-6 金縁カード：内側にもう一本の金線が入る二重縁 */
+.hg-card{
+  background:var(--hg-card);border:1px solid var(--hg-line);border-radius:var(--hg-r-md);
+  padding:var(--hg-s4) var(--hg-s4);margin-bottom:var(--hg-s3);
+  box-shadow:inset 0 0 0 4px var(--hg-card),inset 0 0 0 5px rgba(195,162,77,.45),var(--hg-shadow);
+}
+.hg-card__title{font-family:var(--hg-font-head);font-weight:700;font-size:var(--hg-fs-lg);color:var(--hg-green);margin:0 0 var(--hg-s1)}
+.hg-card__text{font-size:var(--hg-fs-sm);color:var(--hg-ink-muted);margin:0}
+
+/* 3-7 タグ：短い分類の札 */
+.hg-tag{display:inline-block;padding:2px var(--hg-s3);border-radius:var(--hg-r-pill);font-size:var(--hg-fs-xs);font-weight:700;line-height:1.7;background:var(--hg-paper-alt);color:var(--hg-gold-ink)}
+.hg-tag--key{background:var(--hg-green);color:var(--hg-gold-light)}
+.hg-tag--run{background:var(--hg-run);color:#fff}
+.hg-tag--swim{background:var(--hg-swim);color:#fff}
+.hg-tag--bike{background:var(--hg-bike);color:#fff}
+.hg-tag--trail{background:var(--hg-trail);color:#fff}
+
+/* 3-8 目次の丸ボタン：横に並ぶ。今いる場所は緑 */
+.hg-pills{display:flex;gap:var(--hg-s2);overflow-x:auto;padding:var(--hg-s3);background:var(--hg-paper-alt);border-bottom:1px solid var(--hg-line);scrollbar-width:none}
+.hg-pill{flex:none;padding:6px var(--hg-s4);border-radius:var(--hg-r-pill);background:var(--hg-card);border:1px solid var(--hg-line);color:var(--hg-ink);font-size:var(--hg-fs-xs);text-decoration:none;white-space:nowrap}
+.hg .hg-pill{color:var(--hg-ink)}
+.hg .hg-pill:hover,.hg .hg-pill.is-active{background:var(--hg-green);border-color:var(--hg-gold);color:var(--hg-gold-light)}
+
+/* 3-9 ボタン：主（緑に金縁）と、控えめ（枠だけ） */
+.hg-btn{display:inline-block;padding:var(--hg-s3) var(--hg-s5);border-radius:var(--hg-r-pill);font-size:var(--hg-fs-sm);font-weight:700;text-decoration:none;text-align:center;
+  background:var(--hg-green);color:var(--hg-ink-on-dark);border:1px solid var(--hg-gold);cursor:pointer}
+.hg .hg-btn{color:var(--hg-ink-on-dark)}
+.hg .hg-btn--ghost{background:transparent;color:var(--hg-green);border-color:var(--hg-line)}
+.hg-btn:active{opacity:.82}
+
+/* 3-10 メニューの行：トップページの一覧。絵文字＋題＋説明 */
+.hg-menu{display:flex;align-items:center;gap:var(--hg-s3);padding:var(--hg-s4);margin-bottom:var(--hg-s2);border-radius:var(--hg-r-lg);text-decoration:none;
+  background:linear-gradient(135deg,var(--hg-green-soft),var(--hg-green-deep));border:1px solid rgba(195,162,77,.35);color:var(--hg-ink-on-dark)}
+.hg .hg-menu{color:var(--hg-ink-on-dark)}
+.hg-menu__icon{font-size:24px;width:36px;text-align:center;flex:none}
+.hg-menu__title{display:block;font-size:var(--hg-fs-md);font-weight:700;line-height:1.5}
+.hg-menu__sub{display:block;font-size:var(--hg-fs-xs);opacity:.75;line-height:1.5}
+
+/* 3-11 注意書きの帯 */
+.hg-note{padding:var(--hg-s3) var(--hg-s4);background:var(--hg-paper-alt);border-left:3px solid var(--hg-gold);color:var(--hg-gold-ink);font-size:var(--hg-fs-sm);border-radius:0 var(--hg-r-sm) var(--hg-r-sm) 0}
+
+/* 暗い面（扉・暗い節）の中の注意書きは、自動で金の札に変わる */
+.hg-hero .hg-note,.hg-section--dark .hg-note{background:rgba(195,162,77,.14);border:1px solid rgba(195,162,77,.45);border-radius:var(--hg-r-lg);color:var(--hg-ink-on-dark);font-weight:700;text-align:center}
+
+/* 3-13 リード文：節の最初のひとこと。金の縦線つき */
+.hg-lead{font-size:var(--hg-fs-lg);font-weight:800;line-height:1.75;color:var(--hg-green);border-left:3px solid var(--hg-gold);padding-left:var(--hg-s3);margin:0 0 var(--hg-s4)}
+
+/* 3-14 横並びカード：金縁カードの左に絵文字を置く形（.hg-card に足す） */
+.hg-card--row{display:flex;gap:var(--hg-s3);align-items:flex-start}
+.hg-card__icon{flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:22px;border-radius:var(--hg-r-md);background:var(--hg-paper-alt)}
+.hg-card__meta{display:block;font-size:var(--hg-fs-xs);font-weight:700;color:var(--hg-gold-ink);line-height:1.6}
+
+/* 3-15 声：部員の声・ひとことの引用 */
+.hg-quote{background:var(--hg-card);border:1px solid var(--hg-line);border-top:2px solid var(--hg-gold);border-radius:var(--hg-r-md);padding:var(--hg-s4);margin:0 0 var(--hg-s3)}
+.hg-quote__text{font-size:var(--hg-fs-sm);line-height:1.9;margin:0 0 var(--hg-s2)}
+.hg-quote__text::before{content:'\201C';color:var(--hg-gold);font-family:var(--hg-font-head);font-size:22px;line-height:0;vertical-align:-5px;margin-right:2px}
+.hg-quote__text::after{content:'\201D';color:var(--hg-gold);font-family:var(--hg-font-head);font-size:22px;line-height:0;vertical-align:-5px;margin-left:2px}
+.hg-quote__who{font-size:var(--hg-fs-xs);color:var(--hg-ink-muted);font-weight:700;margin:0}
+.hg-quote__who b{color:var(--hg-green)}
+
+/* 3-16 質問と答え */
+.hg-faq{border-bottom:1px solid var(--hg-line);padding:var(--hg-s3) 0}
+.hg-faq:last-child{border-bottom:none}
+.hg-faq__q{display:flex;gap:var(--hg-s2);font-weight:700;color:var(--hg-green);margin:0 0 var(--hg-s1)}
+.hg-faq__q::before{content:'Q';font-family:var(--hg-font-label);color:var(--hg-gold-ink);flex:none}
+.hg-faq__a{font-size:var(--hg-fs-sm);color:var(--hg-ink-muted);padding-left:var(--hg-s5);margin:0}
+
+/* 3-18 チェックリスト：「当てはまりませんか？」の自己点検。金の四角が印 */
+.hg-checklist{list-style:none;margin:0;padding:0}
+.hg-checklist li{position:relative;padding:var(--hg-s3) 0 var(--hg-s3) var(--hg-s6);border-bottom:1px solid var(--hg-line);font-size:var(--hg-fs-md);line-height:1.7}
+.hg-checklist li:last-child{border-bottom:none}
+.hg-checklist li::before{content:'';position:absolute;left:var(--hg-s1);top:calc(var(--hg-s3) + 5px);width:16px;height:16px;border:1.5px solid var(--hg-gold);border-radius:3px;background:var(--hg-card)}
+
+/* 3-19 罫線リスト：予定・一覧。題＋いつ＋どこ を罫線で区切る（カードにしない） */
+.hg-list{margin:0;padding:0;list-style:none;border-top:2px solid var(--hg-green)}
+.hg-list li{display:grid;grid-template-columns:2em minmax(0,1fr);gap:0 var(--hg-s3);padding:var(--hg-s3) 0;border-bottom:1px solid var(--hg-line)}
+.hg-list__icon{grid-row:span 3;font-size:20px;line-height:1.5;text-align:center}
+.hg-list__title{font-family:var(--hg-font-head);font-weight:700;font-size:var(--hg-fs-lg);color:var(--hg-green);line-height:1.5}
+.hg-list__when{font-size:var(--hg-fs-sm);font-weight:700;color:var(--hg-gold-ink)}
+.hg-list__where{font-size:var(--hg-fs-sm);color:var(--hg-ink-muted)}
+
+/* 3-20 紋章：扉の主役。ロゴの盾を大きく置く */
+.hg-crest{display:block;margin:0 auto var(--hg-s4);filter:drop-shadow(0 6px 18px rgba(0,0,0,.35))}
+
+/* 3-17 フッター */
+.hg-footer{background:var(--hg-green-deep);border-top:1px solid var(--hg-gold);padding:var(--hg-s4) var(--hg-s5);text-align:center;font-size:var(--hg-fs-xs);color:var(--hg-ink-on-dark);opacity:.9}
+.hg-footer p{margin:0;opacity:.6}
+
+/* 扉を画面いっぱいにする（入口のページ用） */
+.hg-hero--tall{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.hg-hero--tall > *{max-width:400px}
+
+/* ---------- 4. 並べ方の道具 ---------- */
+.hg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--hg-s2)}
+.hg-grid > .hg-card{margin-bottom:0}
+.hg-stack > * + *{margin-top:var(--hg-s3)}
+.hg-center{text-align:center}
+
+/* ふわっと出る（.hg-fade に、画面に入ったら .is-on を付ける） */
+.hg-fade{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.hg-fade.is-on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.hg-fade{opacity:1;transform:none;transition:none}}
+
+/* 3-12 表：レース表など */
+.hg-table{width:100%;border-collapse:collapse;font-size:var(--hg-fs-sm);background:var(--hg-card)}
+.hg-table th{background:var(--hg-green);color:var(--hg-gold-light);font-weight:700;text-align:left;padding:var(--hg-s2) var(--hg-s3)}
+.hg-table td{padding:var(--hg-s2) var(--hg-s3);border-bottom:1px solid var(--hg-line)}
+.hg-table tr:nth-child(even) td{background:var(--hg-paper)}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>見本帳 | 広尾親父RC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../hg.css">
+<style>
+/* 見本帳だけの並べ方。色は書かない */
+.sw{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--hg-s2)}
+.sw div{border:1px solid var(--hg-line);border-radius:var(--hg-r-sm);overflow:hidden;font-size:var(--hg-fs-xs);background:var(--hg-card)}
+.sw i{display:block;height:44px}
+.sw b,.sw code{display:block;padding:0 var(--hg-s2)}
+.sw code{color:var(--hg-ink-muted);padding-bottom:var(--hg-s1)}
+.row{display:flex;flex-wrap:wrap;gap:var(--hg-s2);align-items:center;margin-bottom:var(--hg-s3)}
+.cap{font-size:var(--hg-fs-xs);color:var(--hg-ink-muted);margin:var(--hg-s5) 0 var(--hg-s2)}
+</style>
+</head>
+<body class="hg">
+
+<header class="hg-header">
+  <a class="hg-header__logo" href="../index.html">広尾親父RC</a>
+  <a class="hg-btn" href="../index.html">トップへ</a>
+</header>
+
+<div class="hg-hero">
+  <span class="hg-badge">デザインルール</span>
+  <h1 class="hg-hero__title">広尾親父RC <em>見本帳</em></h1>
+  <p class="hg-hero__sub">色・文字・部品の正本。ページはここにある部品だけで組む。</p>
+</div>
+
+<nav class="hg-pills">
+  <a class="hg-pill is-active" href="#color">色</a>
+  <a class="hg-pill" href="#type">文字</a>
+  <a class="hg-pill" href="#parts">部品</a>
+  <a class="hg-pill" href="#dark">暗い節</a>
+</nav>
+
+<section class="hg-section" id="color"><div class="hg-wrap">
+  <span class="hg-label">色の決まり</span>
+  <h2 class="hg-title">色（基本13＋種目4）</h2>
+  <p class="cap">緑：クラブの地の色</p>
+  <div class="sw">
+    <div><i style="background:var(--hg-green-deep)"></i><b>暗い緑</b><code>--hg-green-deep</code></div>
+    <div><i style="background:var(--hg-green)"></i><b>基本の緑</b><code>--hg-green</code></div>
+    <div><i style="background:var(--hg-green-soft)"></i><b>明るめの緑</b><code>--hg-green-soft</code></div>
+  </div>
+  <p class="cap">金：線と飾り（面に使わない）</p>
+  <div class="sw">
+    <div><i style="background:var(--hg-gold)"></i><b>金の線</b><code>--hg-gold</code></div>
+    <div><i style="background:var(--hg-gold-light)"></i><b>緑の上の金文字</b><code>--hg-gold-light</code></div>
+    <div><i style="background:var(--hg-gold-ink)"></i><b>紙の上の金文字</b><code>--hg-gold-ink</code></div>
+  </div>
+  <p class="cap">紙と墨：明るい地と文字</p>
+  <div class="sw">
+    <div><i style="background:var(--hg-paper)"></i><b>ページの地</b><code>--hg-paper</code></div>
+    <div><i style="background:var(--hg-paper-alt)"></i><b>交互の地</b><code>--hg-paper-alt</code></div>
+    <div><i style="background:var(--hg-card)"></i><b>カードの中</b><code>--hg-card</code></div>
+    <div><i style="background:var(--hg-line)"></i><b>細い線</b><code>--hg-line</code></div>
+    <div><i style="background:var(--hg-ink)"></i><b>本文</b><code>--hg-ink</code></div>
+    <div><i style="background:var(--hg-ink-muted)"></i><b>補足</b><code>--hg-ink-muted</code></div>
+    <div><i style="background:var(--hg-ink-on-dark)"></i><b>緑の上の本文</b><code>--hg-ink-on-dark</code></div>
+  </div>
+  <p class="cap">種目の色：タグと小さな印だけ</p>
+  <div class="row">
+    <span class="hg-tag hg-tag--run">ラン</span>
+    <span class="hg-tag hg-tag--swim">スイム</span>
+    <span class="hg-tag hg-tag--bike">バイク</span>
+    <span class="hg-tag hg-tag--trail">トレラン</span>
+  </div>
+</div></section>
+
+<section class="hg-section hg-section--alt" id="type"><div class="hg-wrap">
+  <span class="hg-label">文字の決まり</span>
+  <h2 class="hg-title">文字は3種類だけ</h2>
+  <div class="hg-card">
+    <span class="hg-label">ヒラギノ角ゴ太字 — ラベル（日本語で中身を言う）</span>
+    <h3 class="hg-card__title">しっぽり明朝 — 日本語の見出し</h3>
+    <p class="hg-card__text">ヒラギノ角ゴ — 本文と説明。大きさは 11 / 13 / 15 / 18 / 22 の5段と、扉の大見出しだけ。</p>
+  </div>
+</div></section>
+
+<section class="hg-section" id="parts"><div class="hg-wrap">
+  <span class="hg-label">使える部品</span>
+  <h2 class="hg-title">部品</h2>
+
+  <p class="cap">金縁カード  .hg-card</p>
+  <div class="hg-card">
+    <span class="hg-tag hg-tag--key">鉄則</span>
+    <h3 class="hg-card__title">30km以降は「我慢」ではなく「補給」</h3>
+    <p class="hg-card__text">ジェルは5kmごと。給水所の手前で開けておく。</p>
+  </div>
+
+  <p class="cap">タグ  .hg-tag  .hg-tag--key</p>
+  <div class="row">
+    <span class="hg-tag">ふつう</span>
+    <span class="hg-tag hg-tag--key">鉄則</span>
+  </div>
+
+  <p class="cap">ボタン  .hg-btn  .hg-btn--ghost</p>
+  <div class="row">
+    <a class="hg-btn" href="#">レース表を見る</a>
+    <a class="hg-btn hg-btn--ghost" href="#">あとで</a>
+  </div>
+
+  <p class="cap">メニューの行  .hg-menu</p>
+  <a class="hg-menu" href="#">
+    <span class="hg-menu__icon">🏅</span>
+    <span><span class="hg-menu__title">2026年度 レース表</span><span class="hg-menu__sub">2026.4〜2027.3 ｜ カテゴリ＆推奨フィルター付き</span></span>
+  </a>
+
+  <p class="cap">注意書きの帯  .hg-note</p>
+  <div class="hg-note">体調や持病に関わることは、必ず医師に相談してください。</div>
+
+  <p class="cap">表  .hg-table</p>
+  <table class="hg-table">
+    <tr><th>日付</th><th>大会</th><th>種目</th></tr>
+    <tr><td>11/23</td><td>つくばマラソン</td><td><span class="hg-tag hg-tag--run">ラン</span></td></tr>
+    <tr><td>12/7</td><td>（例）大会名</td><td><span class="hg-tag hg-tag--trail">トレラン</span></td></tr>
+  </table>
+</div></section>
+
+<section class="hg-section hg-section--dark" id="dark"><div class="hg-wrap">
+  <span class="hg-label">締めの節</span>
+  <h2 class="hg-title">暗い節  .hg-section--dark</h2>
+  <p>締めの呼びかけや、強調したい節に。中のラベルと見出しは自動で金と生成りに変わる。</p>
+  <a class="hg-btn" href="#">LINEで聞く</a>
+</div></section>
+
+</body>
+</html>
