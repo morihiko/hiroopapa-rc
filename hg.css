@@ -1,5 +1,5 @@
 /* =========================================================
-   広尾親父RC 共通スタイル（正本）  hg.css  v1.0  2026-11-08
+   広尾親父RC 共通スタイル（正本）  hg.css  v1.2  2026-11-08
    ---------------------------------------------------------
    ・色・文字・余白・部品は、すべてここで決める。
    ・ページの中に色コード（#xxxxxx）を直接書かない。var(--hg-…) を使う。
@@ -199,6 +199,68 @@
 
 /* 3-20 紋章：扉の主役。ロゴの盾を大きく置く */
 .hg-crest{display:block;margin:0 auto var(--hg-s4);filter:drop-shadow(0 6px 18px rgba(0,0,0,.35))}
+
+/* ===== 虎の巻（読みものページ）で使う部品 ===== */
+
+/* 3-21 本文の段落・小見出し */
+.hg-text{margin:0 0 var(--hg-s4)}
+.hg-subtitle{font-family:var(--hg-font-head);font-weight:700;font-size:var(--hg-fs-lg);color:var(--hg-green);margin:var(--hg-s5) 0 var(--hg-s3)}
+.hg-emoji{font-size:28px;line-height:1;margin-bottom:var(--hg-s3)}
+
+/* 3-22 扉の小札：扉の下に並ぶ短い札（例：スイム／バイク／ラン） */
+.hg-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--hg-s2);margin-top:var(--hg-s4)}
+.hg-chip{padding:2px var(--hg-s3);border-radius:var(--hg-r-pill);border:1px solid rgba(195,162,77,.45);background:rgba(195,162,77,.1);color:var(--hg-gold-light);font-size:var(--hg-fs-xs);font-weight:700;white-space:nowrap}
+
+/* 3-23 注意タグ */
+.hg-tag--warn{background:var(--hg-run);color:#fff}
+
+/* 3-24 ひとこと（知恵の行）：カードにしない軽い一覧。絵文字＋題＋説明を罫線で区切る */
+.hg-tip{display:flex;gap:var(--hg-s3);padding:var(--hg-s3) 0;border-bottom:1px solid var(--hg-line)}
+.hg-tip:last-child{border-bottom:none}
+.hg-tip__icon{flex:none;width:28px;font-size:20px;line-height:1.5;text-align:center}
+.hg-tip > div:last-child{flex:1;min-width:0}
+.hg-tip__title{font-weight:700;color:var(--hg-green);line-height:1.6}
+.hg-tip__text{font-size:var(--hg-fs-sm);color:var(--hg-ink-muted)}
+
+/* 3-25 注意書きの箱：題つきの注意書き（.hg-note に題と本文を入れる） */
+.hg-note{margin:var(--hg-s4) 0}
+.hg-note__title{font-weight:700;color:var(--hg-green);margin-bottom:var(--hg-s1)}
+.hg-note__text{color:var(--hg-ink)}
+.hg-section--alt .hg-note{background:var(--hg-card)}
+.hg-note--warn{border-left-color:var(--hg-run)}
+.hg-note--warn .hg-note__title{color:var(--hg-run)}
+
+/* 3-26 段取り：順番に意味があるもの（ステップ・当日の流れ・番号つきの決まり） */
+.hg-steps{margin:var(--hg-s4) 0;padding:0;list-style:none}
+.hg-step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 var(--hg-s3);padding:var(--hg-s3) 0;border-bottom:1px solid var(--hg-line)}
+.hg-step:last-child{border-bottom:none}
+.hg-step__num{grid-row:span 4;min-width:32px;height:32px;padding:0 var(--hg-s2);border-radius:var(--hg-r-pill);background:var(--hg-green);color:var(--hg-gold-light);font-weight:800;font-size:var(--hg-fs-sm);display:flex;align-items:center;justify-content:center;gap:var(--hg-s1);white-space:nowrap}
+.hg-step__title{font-family:var(--hg-font-head);font-weight:700;font-size:var(--hg-fs-lg);color:var(--hg-green);line-height:1.5}
+.hg-step__text{font-size:var(--hg-fs-sm);color:var(--hg-ink-muted)}
+.hg-steps--labeled .hg-step{grid-template-columns:6.5em minmax(0,1fr)}
+.hg-steps--labeled .hg-step__num{justify-self:start}
+.hg-step__tip{margin-top:var(--hg-s2);font-size:var(--hg-fs-sm);color:var(--hg-gold-ink);font-weight:700}
+
+/* 3-27 カードの頭・種目の印・箇条書き */
+.hg-card__head{display:flex;gap:var(--hg-s3);align-items:center;margin-bottom:var(--hg-s3)}
+.hg-card--row > div:last-child{flex:1;min-width:0}
+.hg-card--run{border-top:3px solid var(--hg-run)}
+.hg-card--swim{border-top:3px solid var(--hg-swim)}
+.hg-card--bike{border-top:3px solid var(--hg-bike)}
+.hg-card--trail{border-top:3px solid var(--hg-trail)}
+.hg-bullets{margin:var(--hg-s2) 0;padding-left:1.2em;font-size:var(--hg-fs-sm)}
+.hg-bullets li{margin-bottom:var(--hg-s1)}
+.hg-bullets li::marker{color:var(--hg-gold)}
+
+/* 3-28 日付の札：大会一覧の左に月日 */
+.hg-date{flex:none;width:52px;text-align:center;border:1px solid var(--hg-line);border-radius:var(--hg-r-sm);background:var(--hg-paper);overflow:hidden}
+.hg-date__month{background:var(--hg-green);color:var(--hg-gold-light);font-size:var(--hg-fs-xs);font-weight:700;line-height:1.8}
+.hg-date__day{font-family:var(--hg-font-head);font-weight:800;font-size:var(--hg-fs-xl);color:var(--hg-green);line-height:1.6}
+
+/* 3-29 項目表：住所・時間・料金などを項目名と中身で並べる */
+.hg-spec{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--hg-s1) var(--hg-s3);margin:var(--hg-s3) 0;font-size:var(--hg-fs-sm)}
+.hg-spec dt{font-weight:700;color:var(--hg-gold-ink)}
+.hg-spec dd{margin:0}
 
 /* 3-17 フッター */
 .hg-footer{background:var(--hg-green-deep);border-top:1px solid var(--hg-gold);padding:var(--hg-s4) var(--hg-s5);text-align:center;font-size:var(--hg-fs-xs);color:var(--hg-ink-on-dark);opacity:.9}
