@@ -18,6 +18,7 @@
   --hg-gold:#C3A24D;         /* 金の線・縁・下線。明るい地の上で文字に使わない */
   --hg-gold-light:#EBD79A;   /* 暗い緑の上の金文字 */
   --hg-gold-ink:#7A6320;     /* 明るい地の上の金文字（読める濃さ） */
+  --hg-gold-soft:rgba(195,162,77,.45); /* 半透明の金。細い縁・内側の二重線 */
 
   /* 紙（明るい地） */
   --hg-paper:#F7F3E8;        /* ページの地 */
@@ -152,6 +153,9 @@
 .hg .hg-menu{color:var(--hg-ink-on-dark)}
 .hg-menu__icon{font-size:24px;width:36px;text-align:center;flex:none}
 .hg-menu__title{display:block;font-size:var(--hg-fs-md);font-weight:700;line-height:1.5}
+.hg-menu--soon{background:var(--hg-paper-alt);border-color:var(--hg-line);color:var(--hg-ink-muted)}
+.hg .hg-menu--soon{color:var(--hg-ink-muted)}
+.hg-menu > .hg-tag{margin-left:auto;flex:none}
 .hg-menu__sub{display:block;font-size:var(--hg-fs-xs);opacity:.75;line-height:1.5}
 
 /* 3-11 注意書きの帯 */
@@ -261,6 +265,39 @@
 .hg-spec{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--hg-s1) var(--hg-s3);margin:var(--hg-s3) 0;font-size:var(--hg-fs-sm)}
 .hg-spec dt{font-weight:700;color:var(--hg-gold-ink)}
 .hg-spec dd{margin:0}
+
+/* 3-30 合言葉の扉：hg-auth.js が差し込む。ページには書かない */
+.hg-auth{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:var(--hg-s5);
+  background:radial-gradient(900px 600px at 50% 30%,var(--hg-green-soft) 0%,var(--hg-green-deep) 100%);font-family:var(--hg-font-body)}
+.hg-auth__card{width:100%;max-width:320px;text-align:center;padding:36px 28px;border-radius:var(--hg-r-lg);background:var(--hg-card);border:1px solid var(--hg-line);
+  box-shadow:inset 0 0 0 4px var(--hg-card),inset 0 0 0 5px rgba(195,162,77,.45),var(--hg-shadow-lift)}
+.hg-auth__crest{display:block;margin:0 auto var(--hg-s4)}
+.hg-auth__title{font-family:var(--hg-font-head);font-weight:800;font-size:var(--hg-fs-lg);color:var(--hg-green);letter-spacing:.06em}
+.hg-auth__sub{font-size:var(--hg-fs-xs);font-weight:700;color:var(--hg-gold-ink);letter-spacing:.16em;margin-bottom:var(--hg-s5)}
+.hg-auth__input{width:100%;box-sizing:border-box;padding:var(--hg-s3) var(--hg-s4);border:1px solid var(--hg-line);background:var(--hg-paper);border-radius:var(--hg-r-md);
+  font:inherit;font-size:16px;text-align:center;letter-spacing:4px;color:var(--hg-ink);margin-bottom:var(--hg-s2)}
+.hg-auth__input:focus{outline:2px solid var(--hg-gold);outline-offset:1px}
+.hg-auth__btn{width:100%;padding:var(--hg-s3);border-radius:var(--hg-r-md);border:1px solid var(--hg-gold);background:linear-gradient(180deg,var(--hg-green-soft),var(--hg-green-deep));
+  color:var(--hg-gold-light);font:inherit;font-size:var(--hg-fs-md);font-weight:700;letter-spacing:.1em;cursor:pointer}
+.hg-auth__btn:focus-visible{outline:2px solid var(--hg-gold);outline-offset:2px}
+.hg-auth__err{margin-top:var(--hg-s2);font-size:var(--hg-fs-sm);font-weight:700;color:var(--hg-run)}
+.hg-auth__hint{margin-top:var(--hg-s3);font-size:var(--hg-fs-xs);line-height:1.6;color:var(--hg-ink-muted)}
+.hg-auth__about{display:block;margin-top:var(--hg-s5);padding-top:var(--hg-s4);border-top:1px solid var(--hg-line);font-size:var(--hg-fs-xs);color:var(--hg-ink-muted);text-decoration:none}
+
+/* 3-31 絞り込みボタン：.hg-pill を <button> で使うときの整え（aria-pressed と .is-active を付ける） */
+button.hg-pill{font-family:inherit;line-height:inherit;cursor:pointer}
+button.hg-pill:focus-visible{outline:2px solid var(--hg-gold);outline-offset:2px}
+
+/* 3-32 タグの列・数字の並び */
+.hg-tags{display:flex;flex-wrap:wrap;align-items:center;gap:var(--hg-s1) var(--hg-s2);margin:var(--hg-s2) 0}
+.hg-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--hg-s2);margin:var(--hg-s4) 0 0}
+.hg-stat{background:var(--hg-card);border:1px solid var(--hg-line);border-radius:var(--hg-r-md);padding:var(--hg-s3) var(--hg-s1);text-align:center}
+.hg-stat__num{font-family:var(--hg-font-head);font-weight:800;font-size:var(--hg-fs-xl);color:var(--hg-green);line-height:1.3}
+.hg-stat__lbl{font-size:var(--hg-fs-xs);color:var(--hg-ink-muted);line-height:1.5}
+
+/* 交互の地の上では、タグの地をカード色にして埋もれないようにする。フッターのリンクは金 */
+.hg-section--alt .hg-tag:not([class*="hg-tag--"]){background:var(--hg-card)}
+.hg .hg-footer a{color:var(--hg-gold-light)}
 
 /* 3-17 フッター */
 .hg-footer{background:var(--hg-green-deep);border-top:1px solid var(--hg-gold);padding:var(--hg-s4) var(--hg-s5);text-align:center;font-size:var(--hg-fs-xs);color:var(--hg-ink-on-dark);opacity:.9}

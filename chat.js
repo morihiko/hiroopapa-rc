@@ -6,32 +6,33 @@
   var CLUB_TOKEN = 'hiroopapa-2026';
   if (WORKER_URL.indexOf('REPLACE_ME') >= 0) return; // 未設定なら何も出さない
 
-  var css = '\
-#hrc-chat-btn{position:fixed;right:16px;bottom:16px;z-index:9000;border:1px solid rgba(201,162,39,.45);background:linear-gradient(135deg,#1b5e35,#0d3d20);color:#fff;border-radius:999px;padding:12px 18px;font:700 14px/1 -apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.3);cursor:pointer;-webkit-tap-highlight-color:transparent}\
-#hrc-chat-btn:active{opacity:.85}\
-#hrc-chat{position:fixed;right:16px;bottom:16px;z-index:9001;width:360px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 32px);background:#fff;border-radius:18px;border:1px solid rgba(201,162,39,.35);border-top:3px solid rgba(201,162,39,.7);box-shadow:0 12px 40px rgba(0,0,0,.35);display:none;flex-direction:column;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif}\
-#hrc-chat.open{display:flex}\
-#hrc-chat .hrc-hd{position:static;width:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:linear-gradient(135deg,#1b5e35,#0d3d20);color:#fff}\
-#hrc-chat .hrc-hd b{font-size:14px;letter-spacing:.04em}\
-#hrc-chat .hrc-hd small{display:block;font-size:10px;opacity:.75;margin-top:2px}\
-#hrc-chat .hrc-hd button{background:none;border:0;color:#fff;font-size:20px;cursor:pointer;padding:0 4px}\
-#hrc-chat .hrc-log{flex:1;overflow-y:auto;padding:12px;background:#f6f7f5;-webkit-overflow-scrolling:touch}\
-#hrc-chat .hrc-m{max-width:88%;margin-bottom:10px;padding:9px 12px;border-radius:14px;font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word}\
-#hrc-chat .hrc-m.hrc-u{margin-left:auto;background:#1b5e35;color:#fff;border-bottom-right-radius:4px}\
-#hrc-chat .hrc-m.hrc-a{background:#fff;color:#222;border:1px solid #e3e6e1;border-bottom-left-radius:4px}\
-#hrc-chat .hrc-m.hrc-a.hrc-wait{color:#888}\
-#hrc-chat .hrc-ft{display:flex;gap:8px;padding:10px;border-top:1px solid #e3e6e1;background:#fff}\
-#hrc-chat textarea{position:static;width:auto;flex:1;resize:none;border:1px solid #cfd6cf;border-radius:12px;padding:9px 11px;font:14px/1.4 inherit;height:42px;max-height:96px;outline:none}\
-#hrc-chat textarea:focus{border-color:#1b5e35}\
-#hrc-chat .hrc-send{position:static;width:auto;border:0;background:#1b5e35;color:#fff;border-radius:12px;padding:0 16px;font-weight:700;font-size:14px;cursor:pointer}\
-#hrc-chat .hrc-send:disabled{background:#9aa89f}\
-#hrc-chat .hrc-link{display:inline-block;margin-left:6px;padding:1px 9px;border-radius:999px;background:#1b5e35;color:#fff;font-size:12px;text-decoration:none;vertical-align:1px}\
-#hrc-chat .hrc-note{font-size:10px;color:#999;text-align:center;padding:0 10px 8px;background:#fff}\
-@media (max-width:480px){#hrc-chat{right:0;bottom:0;width:100vw;max-width:100vw;height:80vh;border-radius:18px 18px 0 0}}';
+  /* 色は hg.css のトークンを使う（読み込まれていないページ用に、括弧の中は同じ色の予備） */
+  var css = '#hrc-chat-btn{position:fixed;right:16px;bottom:16px;z-index:9000;border:1px solid var(--hg-gold,#C3A24D);background:linear-gradient(135deg,var(--hg-green-soft,#1E4936),var(--hg-green-deep,#0F2A1E));color:var(--hg-gold-light,#EBD79A);border-radius:999px;padding:12px 18px;font:700 14px/1 var(--hg-font-body,-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif);box-shadow:0 6px 20px rgba(0,0,0,.3);cursor:pointer;-webkit-tap-highlight-color:transparent}' +
+    '#hrc-chat-btn:active{opacity:.85}' +
+    '#hrc-chat-btn:focus-visible,#hrc-chat button:focus-visible{outline:2px solid var(--hg-gold,#C3A24D);outline-offset:2px}' +
+    '#hrc-chat{position:fixed;right:16px;bottom:16px;z-index:9001;width:360px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 32px);background:var(--hg-card,#FFFDF6);border-radius:14px;border:1px solid var(--hg-line,#D9C98F);border-top:3px solid var(--hg-gold,#C3A24D);box-shadow:0 12px 40px rgba(0,0,0,.35);display:none;flex-direction:column;overflow:hidden;font-family:var(--hg-font-body,-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif)}' +
+    '#hrc-chat.open{display:flex}' +
+    '#hrc-chat .hrc-hd{position:static;width:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:linear-gradient(135deg,var(--hg-green-soft,#1E4936),var(--hg-green-deep,#0F2A1E));color:var(--hg-ink-on-dark,#F2ECD9);border-bottom:1px solid var(--hg-gold,#C3A24D)}' +
+    '#hrc-chat .hrc-hd b{font-family:var(--hg-font-head,serif);font-size:15px;font-weight:700;letter-spacing:.04em;color:var(--hg-gold-light,#EBD79A)}' +
+    '#hrc-chat .hrc-hd small{display:block;font-size:11px;opacity:.8;margin-top:2px}' +
+    '#hrc-chat .hrc-hd button{background:none;border:0;color:var(--hg-ink-on-dark,#F2ECD9);font-size:20px;cursor:pointer;padding:0 4px}' +
+    '#hrc-chat .hrc-log{flex:1;overflow-y:auto;padding:12px;background:var(--hg-paper,#F7F3E8);-webkit-overflow-scrolling:touch}' +
+    '#hrc-chat .hrc-m{max-width:88%;margin-bottom:10px;padding:9px 12px;border-radius:12px;font-size:13.5px;line-height:1.7;white-space:pre-wrap;word-break:break-word}' +
+    '#hrc-chat .hrc-m.hrc-u{margin-left:auto;background:var(--hg-green,#1B4030);color:var(--hg-ink-on-dark,#F2ECD9);border-bottom-right-radius:4px}' +
+    '#hrc-chat .hrc-m.hrc-a{background:var(--hg-card,#FFFDF6);color:var(--hg-ink,#3E3A2E);border:1px solid var(--hg-line,#D9C98F);border-bottom-left-radius:4px}' +
+    '#hrc-chat .hrc-m.hrc-a.hrc-wait{color:var(--hg-ink-muted,#5C564A)}' +
+    '#hrc-chat .hrc-ft{display:flex;gap:8px;padding:10px;border-top:1px solid var(--hg-line,#D9C98F);background:var(--hg-card,#FFFDF6)}' +
+    '#hrc-chat textarea{position:static;width:auto;flex:1;resize:none;border:1px solid var(--hg-line,#D9C98F);background:var(--hg-paper,#F7F3E8);color:var(--hg-ink,#3E3A2E);border-radius:10px;padding:9px 11px;font:14px/1.4 inherit;height:42px;max-height:96px;outline:none}' +
+    '#hrc-chat textarea:focus{border-color:var(--hg-gold,#C3A24D);box-shadow:0 0 0 2px var(--hg-gold-soft,rgba(195,162,77,.45))}' +
+    '#hrc-chat .hrc-send{position:static;width:auto;border:1px solid var(--hg-gold,#C3A24D);background:var(--hg-green,#1B4030);color:var(--hg-gold-light,#EBD79A);border-radius:10px;padding:0 16px;font-weight:700;font-size:14px;cursor:pointer}' +
+    '#hrc-chat .hrc-send:disabled{opacity:.5;cursor:default}' +
+    '#hrc-chat .hrc-link{display:inline-block;margin-left:6px;padding:1px 9px;border-radius:999px;background:var(--hg-green,#1B4030);color:var(--hg-gold-light,#EBD79A);font-size:12px;text-decoration:none;vertical-align:1px}' +
+    '#hrc-chat .hrc-note{font-size:11px;color:var(--hg-ink-muted,#5C564A);text-align:center;padding:0 10px 8px;background:var(--hg-card,#FFFDF6)}' +
+    '@media (max-width:480px){#hrc-chat{right:0;bottom:0;width:100vw;max-width:100vw;height:80vh;border-radius:14px 14px 0 0}}';
 
   var style = document.createElement('style'); style.textContent = css; document.head.appendChild(style);
 
-  var btn = document.createElement('button'); btn.id = 'hrc-chat-btn'; btn.type = 'button'; btn.textContent = '🏃 広尾親父RC bot';
+  var btn = document.createElement('button'); btn.id = 'hrc-chat-btn'; btn.type = 'button'; btn.textContent = '広尾親父RC bot に聞く';
   var box = document.createElement('div'); box.id = 'hrc-chat';
   box.innerHTML =
     '<div class="hrc-hd"><div><b>広尾親父RC bot</b><small>レース・練習・アーカイブのことを聞けます</small></div><button type="button" aria-label="閉じる">×</button></div>' +
@@ -83,10 +84,12 @@
   send.onclick = ask;
   ta.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); ask(); } });
 
-  // パスワード画面が出ている間は隠す（ページ側の合言葉ゲートを尊重する）
-  var gate = document.getElementById('auth-overlay');
-  if (gate) {
-    var sync = function () { var hidden = gate.style.display === 'none'; btn.style.display = hidden && !box.classList.contains('open') ? '' : 'none'; if (!hidden) box.classList.remove('open'); };
-    sync(); new MutationObserver(sync).observe(gate, { attributes: true, attributeFilter: ['style'] });
+  // 合言葉の扉（hg-auth.js が差し込む #auth-overlay）が出ている間は隠す。扉は入室すると取り除かれる
+  if (document.getElementById('auth-overlay')) {
+    btn.style.display = 'none';
+    var watch = new MutationObserver(function () {
+      if (!document.getElementById('auth-overlay')) { if (!box.classList.contains('open')) btn.style.display = ''; watch.disconnect(); }
+    });
+    watch.observe(document.body, { childList: true, subtree: true });
   }
 })();

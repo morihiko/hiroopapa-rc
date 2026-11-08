@@ -5,635 +5,362 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>広尾親父RC 筋トレ虎の巻</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f0f4f1;color:#333;font-size:14px}
-header{background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 60%,#093319 100%);color:white;padding:16px 14px 12px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.3);border-bottom:3px solid #c9a227}
-.h-inner{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.h-inner svg{flex-shrink:0}
-.h-text h1{font-size:15px;font-weight:700;letter-spacing:.04em;margin-bottom:3px}
-.h-text .sub{font-size:11px;opacity:.6}
-.filter-row{display:flex;gap:5px;flex-wrap:wrap;padding-bottom:2px}
-.filter-btn{padding:5px 11px;border-radius:20px;border:1.5px solid rgba(255,255,255,.3);background:transparent;color:white;font-size:11px;cursor:pointer;font-family:inherit;white-space:nowrap;-webkit-tap-highlight-color:transparent}
-.filter-btn.active,.filter-btn:active{background:white;border-color:white;color:#1b5e35;font-weight:700}
-.cat-section{margin:0}
-.cat-section.hidden{display:none}
-.cat-header{background:#1b5e35;color:#f0d060;font-size:12px;font-weight:700;padding:6px 14px;letter-spacing:.08em;text-shadow:0 1px 2px rgba(0,0,0,.4)}
-.cards-wrap{padding:10px 12px;display:flex;flex-direction:column;gap:10px}
-.card{background:white;border-radius:12px;padding:13px;box-shadow:0 2px 8px rgba(0,0,0,.08);border-left:4px solid #ccc}
-.card-title{font-size:14px;font-weight:700;color:#1b5e35;margin-bottom:5px;line-height:1.4}
-.card-desc{font-size:12px;color:#555;line-height:1.6;margin-bottom:8px}
-.card-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:0}
-.tag{font-size:10px;background:#f0f4f1;border-radius:6px;padding:3px 8px;color:#555}
-.lbl{color:#999;margin-right:2px}
-/* 検証バッジ */
-.badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;margin-top:6px}
-.badge-hi{background:#e8f5e9;color:#2e7d32}
-.badge-mid{background:#fff8e1;color:#f57f17}
-.badge-low{background:#fce4ec;color:#c62828}
-/* カード色分け */
-.cat-theory{border-left-color:#5c6bc0}
-.cat-practice{border-left-color:#ef6c00}
-.cat-protein{border-left-color:#26a69a}
-.cat-recipe{border-left-color:#ec407a}
-.cat-injury{border-left-color:#42a5f5}
-.cat-race{border-left-color:#ab47bc}
-.cat-quote{border-left-color:#c9a227;background:linear-gradient(135deg,#fffde7,#fff8e1)}
-.cat-fact{border-left-color:#78909c}
-/* レベルチャート */
-.level-chart{display:flex;flex-direction:column;gap:0;margin:10px 0}
-.level-row{display:flex;align-items:stretch;gap:0}
-.level-badge{width:44px;min-width:44px;background:#e8f5e9;color:#1b5e35;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-direction:column;border-radius:6px 0 0 6px;padding:6px 2px;text-align:center}
-.level-content{flex:1;background:#f9f9f9;border:1px solid #e0e0e0;border-left:none;border-radius:0 6px 6px 0;padding:8px 10px}
-.level-name{font-size:13px;font-weight:700;color:#1b5e35;margin-bottom:2px}
-.level-desc{font-size:11px;color:#666}
-.level-arrow{text-align:center;color:#c9a227;font-size:10px;padding:2px 0;font-weight:600}
-.level-row.top .level-badge{background:#c9a227;color:white}
-.level-row.top .level-content{background:#fffde7;border-color:#f9d84a}
-/* ドロップセット */
-.step-chart{display:flex;flex-direction:column;gap:0;margin:10px 0}
-.step-row{display:flex;align-items:stretch;gap:0}
-.step-num{width:44px;min-width:44px;background:#1b5e35;color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-direction:column;border-radius:6px 0 0 6px;padding:6px 2px;text-align:center}
-.step-content{flex:1;background:#f9f9f9;border:1px solid #e0e0e0;border-left:none;border-radius:0 6px 6px 0;padding:8px 10px}
-.step-name{font-size:13px;font-weight:700;color:#333;margin-bottom:2px}
-.step-desc{font-size:11px;color:#666}
-.step-arrow{text-align:center;color:#ef6c00;font-size:10px;padding:2px 0;font-weight:600}
-/* プロテインタイムライン */
-.timeline{display:flex;align-items:flex-start;gap:6px;margin:8px 0;overflow-x:auto}
-.tl-item{flex:1;min-width:60px;text-align:center}
-.tl-label{font-size:9px;color:#666;margin-bottom:2px}
-.tl-bar{height:12px;border-radius:3px;margin-bottom:2px}
-.tl-bar.whey{background:linear-gradient(90deg,#26a69a,#80cbc4)}
-.tl-bar.casein{background:linear-gradient(90deg,#5c6bc0,#9fa8da)}
-.tl-time{font-size:9px;color:#999}
-/* ステータス階段 */
-.status-ladder{display:flex;flex-direction:column;gap:4px;margin:10px 0}
-.status-item{padding:8px 12px;border-radius:6px;border-left:4px solid #ccc;background:#f9f9f9}
-.status-item.good{border-left-color:#43a047;background:#e8f5e9}
-.status-item.mid{border-left-color:#ffa726;background:#fff8e1}
-.status-item.warn{border-left-color:#ef5350;background:#fce4ec}
-.status-item.bad{border-left-color:#c62828;background:#ffebee}
-.status-label{font-size:9px;font-weight:700;color:#888;margin-bottom:2px}
-.status-name{font-size:13px;font-weight:700}
-.status-desc{font-size:11px;color:#666}
-/* 材料ブロック */
-.ingredients{background:#f5f5f5;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:11px;line-height:1.7;color:#444}
-.ingredients .label{font-weight:700;color:#1b5e35;margin-bottom:4px;display:block}
-/* 名言 */
-.quote-text{font-size:14px;font-weight:700;color:#1b5e35;font-style:italic;line-height:1.6;margin-bottom:6px}
-.quote-author{font-size:11px;color:#888;text-align:right}
-/* ファクトチェックテーブル */
-.fact-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:11px}
-.fact-table th{background:#1b5e35;color:#f0d060;padding:5px 8px;text-align:left;font-size:10px}
-.fact-table td{padding:6px 8px;border-bottom:1px solid #eee}
-.fact-table tr:nth-child(even) td{background:#f9f9f9}
-.fc-hi{color:#2e7d32;font-weight:700}
-.fc-mid{color:#f57f17;font-weight:700}
-.fc-low{color:#c62828;font-weight:700}
-/* 注意ボックス */
-.warn-box{background:#fff3e0;border-left:3px solid #ff8f00;border-radius:0 6px 6px 0;padding:8px 10px;margin:8px 0;font-size:11px;color:#e65100}
-footer{text-align:center;padding:20px;font-size:11px;color:#8aab98}
-</style>
-<style id="gold-theme">
-body{background:transparent!important}
-header{border-bottom:1px solid rgba(201,162,39,0.4)!important}
-.card{border:1px solid rgba(201,162,39,0.2)!important;border-top:2px solid rgba(201,162,39,0.5)!important;background:rgba(255,255,255,0.97)!important}
-.cat-quote{border:1px solid rgba(201,162,39,0.4)!important;border-left:4px solid #c9a227!important}
-.filter-btn.active,.filter-btn:hover{background:#1b5e35;border-color:rgba(201,162,39,0.5)!important}
-</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
-<style id="tora-theme">
-/* ===== 虎の巻 1a theme (金縁の実録帖) ===== */
-body{background:#F7F3E8!important;color:#4A4536}
-#bg{display:none}
-header{background:linear-gradient(160deg,#17382A 0%,#0F2A1E 100%)!important;border-bottom:3px solid #C3A24D!important}
-.h-text h1{font-family:'Shippori Mincho',serif;font-weight:700;font-size:13.5px;letter-spacing:.04em;white-space:nowrap}
-.h-text .sub{opacity:1;color:rgba(217,191,117,.85)}
-.filter-btn{border:1px solid rgba(195,162,77,.5);color:#EBD79A;background:rgba(195,162,77,.08)}
-.filter-btn.active,.filter-btn:active{background:#C3A24D!important;border-color:#C3A24D!important;color:#17382A!important;font-weight:700}
-.cat-header{background:linear-gradient(90deg,#17382A,#1E4634);color:#D9BF75;font-family:'Shippori Mincho',serif;font-size:13px;letter-spacing:.12em;border-left:3px solid #C3A24D;text-shadow:none;padding:8px 14px}
-.card{background:#FFFDF6!important;border:1px solid #D9C98F!important;border-top:1px solid #D9C98F!important;border-radius:10px;box-shadow:inset 0 0 0 4px #FFFDF6,inset 0 0 0 5px rgba(195,162,77,.45),0 2px 8px rgba(60,50,20,.08)!important}
-.card-title{font-family:'Shippori Mincho',serif;color:#1B4030}
-.tag{background:#F1E8CC;color:#6B6046}
-.card.cat-quote{background:linear-gradient(135deg,#17382A,#1E4634)!important;border:1px solid #C3A24D!important;box-shadow:0 3px 10px rgba(23,56,42,.3)!important}
-.cat-quote .quote-text{font-family:'Shippori Mincho',serif;color:#F2ECD9;font-style:normal}
-.cat-quote .quote-author{color:#D9BF75}
-.cat-quote .card-title{color:#EBD79A}
-.cat-quote .card-desc{color:rgba(242,236,217,.8)}
-.cat-quote .tag{background:rgba(255,255,255,.12);color:#E3CE8F}
-.cat-quote .lbl{color:rgba(227,206,143,.7)}
-.fact-table th{background:#1B4030;color:#D9BF75}
-footer{color:#8A8168}
+<link rel="stylesheet" href="./hg.css">
+<style>
+/* このページだけの並べ方（色・書体・大きさは hg.css） */
+button.hg-pill{font-family:inherit;line-height:inherit;cursor:pointer}
+.kintore-pills{flex-wrap:wrap;overflow-x:visible}
+.kintore-tags{display:flex;flex-wrap:wrap;gap:var(--hg-s1);margin-top:var(--hg-s3)}
+.kintore-aside{margin-top:var(--hg-s2)}
+.kintore-small{font-size:var(--hg-fs-xs)}
+.kintore-quote .hg-card__title{line-height:1.6}
+.kintore-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--hg-s2);margin:var(--hg-s3) 0}
+.kintore-compare__item{background:var(--hg-paper-alt);border-radius:var(--hg-r-sm);padding:var(--hg-s2)}
+.kintore-compare__name{font-size:var(--hg-fs-sm);font-weight:700;color:var(--hg-green);line-height:1.5}
+.kintore-compare__cap{font-size:var(--hg-fs-xs);color:var(--hg-ink-muted)}
+.kintore-bar{height:8px;margin:var(--hg-s1) 0;border-radius:var(--hg-r-sm);background:var(--hg-gold)}
+.kintore-bar--short{width:30%}
+.kintore-bar--long{width:80%;background:var(--hg-green)}
 </style>
 </head>
-<body>
-<div id="bg" aria-hidden="true" style="position:fixed;inset:0;z-index:-1;overflow:hidden">
-<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs>
-<filter id="mf" color-interpolation-filters="sRGB">
-  <feTurbulence type="turbulence" baseFrequency="0.009 0.007" numOctaves="5" seed="11" result="t"/>
-  <feColorMatrix type="matrix" values="0.25 0.1 0 0 0.04  0.25 0.1 0 0 0.16  0.25 0.1 0 0 0.07  0 0 0 0.5 0" in="t" result="c"/>
-</filter>
-<radialGradient id="rg" cx="46%" cy="26%" r="65%">
-  <stop offset="0%" stop-color="#1e5c2d"/>
-  <stop offset="50%" stop-color="#112b19"/>
-  <stop offset="100%" stop-color="#050d07"/>
-</radialGradient>
-<radialGradient id="vig" cx="50%" cy="50%" r="75%">
-  <stop offset="25%" stop-color="rgba(0,0,0,0)"/>
-  <stop offset="100%" stop-color="rgba(0,0,0,0.6)"/>
-</radialGradient>
-</defs>
-<rect width="100%" height="100%" fill="url(#rg)"/>
-<rect width="100%" height="100%" fill="#163520" filter="url(#mf)"/>
-<rect width="100%" height="100%" fill="url(#vig)"/>
-</svg>
-</div>
-
-<header>
-  <div class="h-inner">
-    <a href="./index.html" style="display:inline-block;cursor:pointer;text-decoration:none;">
-      <svg width="44" height="50" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="広尾親父RC">
-<defs>
-<linearGradient id="hgkintg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4936"/><stop offset="1" stop-color="#0F2A1E"/></linearGradient>
-<linearGradient id="hgkintau" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBD79A"/><stop offset="0.5" stop-color="#C9A227"/><stop offset="1" stop-color="#9A7B2E"/></linearGradient>
-</defs>
-<path d="M32 3 L58 12 L58 36 C58 52 46 64 32 69 C18 64 6 52 6 36 L6 12 Z" fill="url(#hgkintg)" stroke="url(#hgkintau)" stroke-width="2.5"/>
-<path d="M32 8 L53.5 15.5 L53.5 35.5 C53.5 49 43.5 59.5 32 64 C20.5 59.5 10.5 49 10.5 35.5 L10.5 15.5 Z" fill="none" stroke="rgba(201,162,39,0.45)" stroke-width="1"/>
-<g fill="url(#hgkintau)">
-<path d="M15.5 30 Q12.5 25 15.5 20.5 Q18.5 25 15.5 30 Z"/>
-<path d="M14.5 37 Q10.5 33 12 27.5 Q16.5 31.5 14.5 37 Z"/>
-<path d="M15.5 44 Q10.5 41 11 35 Q16.5 38.5 15.5 44 Z"/>
-<path d="M18 50.5 Q12.5 49 12 43 Q18 45.5 18 50.5 Z"/>
-<path d="M22 56 Q16 55.5 14.5 50 Q21 51.5 22 56 Z"/>
-<path d="M48.5 30 Q51.5 25 48.5 20.5 Q45.5 25 48.5 30 Z"/>
-<path d="M49.5 37 Q53.5 33 52 27.5 Q47.5 31.5 49.5 37 Z"/>
-<path d="M48.5 44 Q53.5 41 53 35 Q47.5 38.5 48.5 44 Z"/>
-<path d="M46 50.5 Q51.5 49 52 43 Q46 45.5 46 50.5 Z"/>
-<path d="M42 56 Q48 55.5 49.5 50 Q43 51.5 42 56 Z"/>
-</g>
-<path d="M29.5 16.5 L32 12.5 L34.5 16.5 L32 15.2 Z" fill="url(#hgkintau)"/>
-<text x="32" y="42" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="bold" fill="url(#hgkintau)" text-anchor="middle" letter-spacing="1.5">HG</text>
-<path d="M23 49 L41 49" stroke="url(#hgkintau)" stroke-width="1.2"/>
-<path d="M27 52.5 L37 52.5" stroke="rgba(201,162,39,0.6)" stroke-width="1"/>
-</svg>
-    </a>
-    <div class="h-text">
-      <h1>&#x1F4AA; 広尾親父RC 筋トレ虎の巻</h1>
-      <div class="sub">全 23 件 ｜ 部員の集合知（2025–2026）</div>
-    </div>
-  </div>
-  <div class="filter-row">
-    <button class="filter-btn active" data-cat="すべて" onclick="setFilter(this)">すべて</button>
-    <button class="filter-btn" data-cat="理論" onclick="setFilter(this)">理論</button>
-    <button class="filter-btn" data-cat="実践" onclick="setFilter(this)">実践</button>
-    <button class="filter-btn" data-cat="プロテイン" onclick="setFilter(this)">プロテイン</button>
-    <button class="filter-btn" data-cat="レシピ" onclick="setFilter(this)">レシピ</button>
-    <button class="filter-btn" data-cat="怪我・回復" onclick="setFilter(this)">怪我・回復</button>
-    <button class="filter-btn" data-cat="競技" onclick="setFilter(this)">競技</button>
-    <button class="filter-btn" data-cat="名言録" onclick="setFilter(this)">名言録</button>
-    <button class="filter-btn" data-cat="ファクトチェック" onclick="setFilter(this)">ファクトチェック</button>
-  </div>
+<body class="hg">
+<script src="./hg-auth.js"></script>
+<header class="hg-header">
+  <a class="hg-header__logo" href="./index.html">広尾親父RC</a>
+  <a class="hg-btn" href="./index.html">トップへ</a>
 </header>
+
+<section class="hg-hero">
+  <div class="hg-emoji">&#x1F4AA;</div>
+  <span class="hg-badge">広尾親父RC</span>
+  <h1 class="hg-hero__title">筋トレ虎の巻</h1>
+  <p class="hg-hero__sub">全 23 件 ｜ 部員の集合知（2025–2026）</p>
+</section>
+
+<nav class="hg-pills kintore-pills" aria-label="分類で絞り込む">
+  <button type="button" class="hg-pill is-active" data-cat="すべて" onclick="setFilter(this)">すべて</button>
+  <button type="button" class="hg-pill" data-cat="理論" onclick="setFilter(this)">理論</button>
+  <button type="button" class="hg-pill" data-cat="実践" onclick="setFilter(this)">実践</button>
+  <button type="button" class="hg-pill" data-cat="プロテイン" onclick="setFilter(this)">プロテイン</button>
+  <button type="button" class="hg-pill" data-cat="レシピ" onclick="setFilter(this)">レシピ</button>
+  <button type="button" class="hg-pill" data-cat="怪我・回復" onclick="setFilter(this)">怪我・回復</button>
+  <button type="button" class="hg-pill" data-cat="競技" onclick="setFilter(this)">競技</button>
+  <button type="button" class="hg-pill" data-cat="名言録" onclick="setFilter(this)">名言録</button>
+  <button type="button" class="hg-pill" data-cat="ファクトチェック" onclick="setFilter(this)">ファクトチェック</button>
+</nav>
 
 <main>
 
 <!-- 理論編 -->
-<section class="cat-section" data-cat="理論">
-  <div class="cat-header">&#x1F4D6; 理論編（3件）</div>
-  <div class="cards-wrap">
+<section class="hg-section" data-cat="理論"><div class="hg-wrap">
+  <h2 class="hg-title">&#x1F4D6; 理論編（3件）</h2>
 
-    <div class="card cat-theory">
-      <div class="card-title">総負荷量の法則</div>
-      <div class="card-desc">筋肥大は <strong>「強度 × 回数 × セット数」</strong> で決まる。バーベルを重くすることがすべてではない。<br><br>あと1〜2回しかできない、または潰れるところまでやれば、低負荷でも高負荷と同等の効果が得られる。腕立て伏せを潰れるまで×3〜4セットでもじゅうぶん効く。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>緒さん</span>
-        <span class="tag"><span class="lbl">時期：</span>2025/7</span>
-        <span class="badge badge-hi">◎ 検証：高信頼</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">総負荷量の法則</h3>
+      <div class="hg-card__text">筋肥大は <strong>「強度 × 回数 × セット数」</strong> で決まる。バーベルを重くすることがすべてではない。<br><br>あと1〜2回しかできない、または潰れるところまでやれば、低負荷でも高負荷と同等の効果が得られる。腕立て伏せを潰れるまで×3〜4セットでもじゅうぶん効く。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：緒さん</span>
+        <span class="hg-tag">時期：2025/7</span>
+        <span class="hg-tag">◎ 検証：高信頼</span>
       </div>
-    </div>
+    </article>
 
-    <div class="card cat-theory">
-      <div class="card-title">休憩は長めでOK</div>
-      <div class="card-desc">従来「30秒〜1分」と言われていたが、最新研究ではむしろ <strong>長めの休憩（2〜3分）</strong> のほうが筋肥大・筋力ともに効果が高い。<br><br>高重量複合種目（デッドリフト等）は3〜5分。単関節種目（カール等）は1〜2分が現実的。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>緒さん</span>
-        <span class="tag"><span class="lbl">時期：</span>2025/7</span>
-        <span class="badge badge-hi">◎ 検証：高信頼</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">休憩は長めでOK</h3>
+      <div class="hg-card__text">従来「30秒〜1分」と言われていたが、最新研究ではむしろ <strong>長めの休憩（2〜3分）</strong> のほうが筋肥大・筋力ともに効果が高い。<br><br>高重量複合種目（デッドリフト等）は3〜5分。単関節種目（カール等）は1〜2分が現実的。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：緒さん</span>
+        <span class="hg-tag">時期：2025/7</span>
+        <span class="hg-tag">◎ 検証：高信頼</span>
       </div>
-    </div>
+    </article>
 
-    <div class="card cat-theory">
-      <div class="card-title">頻度は週2〜3回</div>
-      <div class="card-desc">同じ部位を毎日鍛えるのは回復不足でNG。日替わりで部位を変えるなら毎日でも可。<br><br>例：胸（腕立て）／背中（懸垂）／脚（スクワット）でローテーション。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>緒さん</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">頻度は週2〜3回</h3>
+      <div class="hg-card__text">同じ部位を毎日鍛えるのは回復不足でNG。日替わりで部位を変えるなら毎日でも可。<br><br>例：胸（腕立て）／背中（懸垂）／脚（スクワット）でローテーション。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：緒さん</span>
       </div>
-    </div>
+    </article>
 
-  </div>
-</section>
+</div></section>
 
 <!-- 実践編 -->
-<section class="cat-section" data-cat="実践">
-  <div class="cat-header">&#x1F3C6; 実践編（3件）</div>
-  <div class="cards-wrap">
+<section class="hg-section hg-section--alt" data-cat="実践"><div class="hg-wrap">
+  <h2 class="hg-title">&#x1F3C6; 実践編（3件）</h2>
 
-    <div class="card cat-practice">
-      <div class="card-title">腕立て伏せ 7段階ロードマップ</div>
-      <div class="card-desc">各レベルで <strong>40回×3セット</strong> できるようになったら次へ。最低でも30回×3セット、初回にできても1週間（2〜3回）は同じレベルで。</div>
-      <div class="level-chart">
-        <div class="level-row">
-          <div class="level-badge"><span style="font-size:9px">Lv.</span><span style="font-size:13px;font-weight:700">1</span></div>
-          <div class="level-content"><div class="level-name">壁</div><div class="level-desc">立ったまま壁に手をついて。手首・肩への負担が最も少ない入口。</div></div>
-        </div>
-        <div class="level-arrow">↓ 40回×3セットで次へ</div>
-        <div class="level-row">
-          <div class="level-badge"><span style="font-size:9px">Lv.</span><span style="font-size:13px;font-weight:700">2</span></div>
-          <div class="level-content"><div class="level-name">テーブル</div><div class="level-desc">テーブルに手をついて斜め姿勢。壁よりやや負荷増。</div></div>
-        </div>
-        <div class="level-arrow">↓ 40回×3セットで次へ</div>
-        <div class="level-row">
-          <div class="level-badge"><span style="font-size:9px">Lv.</span><span style="font-size:13px;font-weight:700">3</span></div>
-          <div class="level-content"><div class="level-name">イス</div><div class="level-desc">イスに手をついた腕立て。床に近づくにつれ負荷が上がる。</div></div>
-        </div>
-        <div class="level-arrow">↓ 40回×3セットで次へ</div>
-        <div class="level-row">
-          <div class="level-badge"><span style="font-size:9px">Lv.</span><span style="font-size:13px;font-weight:700">4</span></div>
-          <div class="level-content"><div class="level-name">床で膝つき</div><div class="level-desc">膝を床について上半身を支える。普通の腕立てへの橋渡し。</div></div>
-        </div>
-        <div class="level-arrow">↓ 40回×3セットで次へ</div>
-        <div class="level-row">
-          <div class="level-badge"><span style="font-size:9px">Lv.</span><span style="font-size:13px;font-weight:700">5</span></div>
-          <div class="level-content"><div class="level-name">普通の腕立て</div><div class="level-desc">足は床、つま先と両手のみ接地。ここまでくればそこそこの胸板。</div></div>
-        </div>
-        <div class="level-arrow">↓ 40回×3セットで次へ</div>
-        <div class="level-row">
-          <div class="level-badge"><span style="font-size:9px">Lv.</span><span style="font-size:13px;font-weight:700">6</span></div>
-          <div class="level-content"><div class="level-name">アーチャー / デクライン</div><div class="level-desc">片腕は横に伸ばす（アーチャー）、または足をイスに置く（デクライン）。</div></div>
-        </div>
-        <div class="level-arrow">↓ 40回×3セットで次へ</div>
-        <div class="level-row top">
-          <div class="level-badge"><span style="font-size:9px">Lv.</span><span style="font-size:13px;font-weight:700">7</span></div>
-          <div class="level-content"><div class="level-name">🏆 ワンハンドプッシュアップ</div><div class="level-desc">完全制覇。ここまで来たら大胸筋は十分発達している。</div></div>
-        </div>
+    <article class="hg-card">
+      <h3 class="hg-card__title">腕立て伏せ 7段階ロードマップ</h3>
+      <div class="hg-card__text">各レベルで <strong>40回×3セット</strong> できるようになったら次へ。最低でも30回×3セット、初回にできても1週間（2〜3回）は同じレベルで。</div>
+      <ol class="hg-steps">
+        <li class="hg-step"><div class="hg-step__num">Lv.1</div><div class="hg-step__title">壁</div><div class="hg-step__text">立ったまま壁に手をついて。手首・肩への負担が最も少ない入口。</div><div class="hg-step__tip">↓ 40回×3セットで次へ</div></li>
+        <li class="hg-step"><div class="hg-step__num">Lv.2</div><div class="hg-step__title">テーブル</div><div class="hg-step__text">テーブルに手をついて斜め姿勢。壁よりやや負荷増。</div><div class="hg-step__tip">↓ 40回×3セットで次へ</div></li>
+        <li class="hg-step"><div class="hg-step__num">Lv.3</div><div class="hg-step__title">イス</div><div class="hg-step__text">イスに手をついた腕立て。床に近づくにつれ負荷が上がる。</div><div class="hg-step__tip">↓ 40回×3セットで次へ</div></li>
+        <li class="hg-step"><div class="hg-step__num">Lv.4</div><div class="hg-step__title">床で膝つき</div><div class="hg-step__text">膝を床について上半身を支える。普通の腕立てへの橋渡し。</div><div class="hg-step__tip">↓ 40回×3セットで次へ</div></li>
+        <li class="hg-step"><div class="hg-step__num">Lv.5</div><div class="hg-step__title">普通の腕立て</div><div class="hg-step__text">足は床、つま先と両手のみ接地。ここまでくればそこそこの胸板。</div><div class="hg-step__tip">↓ 40回×3セットで次へ</div></li>
+        <li class="hg-step"><div class="hg-step__num">Lv.6</div><div class="hg-step__title">アーチャー / デクライン</div><div class="hg-step__text">片腕は横に伸ばす（アーチャー）、または足をイスに置く（デクライン）。</div><div class="hg-step__tip">↓ 40回×3セットで次へ</div></li>
+        <li class="hg-step"><div class="hg-step__num">Lv.7</div><div class="hg-step__title">🏆 ワンハンドプッシュアップ</div><div class="hg-step__text">完全制覇。ここまで来たら大胸筋は十分発達している。</div></li>
+      </ol>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：緒さん</span>
+        <span class="hg-tag">時期：2025/7</span>
       </div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>緒さん</span>
-        <span class="tag"><span class="lbl">時期：</span>2025/7</span>
-      </div>
-    </div>
+    </article>
 
-    <div class="card cat-practice">
-      <div class="card-title">フォームとスピードの基本</div>
-      <div class="card-desc">お腹に力を入れて身体をまっすぐ。お尻が下がる／上がるのはNG。<br><br>下ろすときは <strong>肩甲骨を寄せる</strong>。腕だけ曲げ伸ばしすると胸に効かない。<br><br>テンポは「2秒で下ろす → 1秒止める → 2秒で上げる」。勢いでやらず丁寧に。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>緒さん</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">フォームとスピードの基本</h3>
+      <div class="hg-card__text">お腹に力を入れて身体をまっすぐ。お尻が下がる／上がるのはNG。<br><br>下ろすときは <strong>肩甲骨を寄せる</strong>。腕だけ曲げ伸ばしすると胸に効かない。<br><br>テンポは「2秒で下ろす → 1秒止める → 2秒で上げる」。勢いでやらず丁寧に。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：緒さん</span>
       </div>
-    </div>
+    </article>
 
-    <div class="card cat-practice">
-      <div class="card-title">吉さん流ドロップセット鬼コース</div>
-      <div class="card-desc">追い込みたい人向け、休憩なしの段階下げ式。各ステージは <strong>「上がらなくなるまで」</strong>。</div>
-      <div class="step-chart">
-        <div class="step-row">
-          <div class="step-num"><span style="font-size:9px">STEP</span><span style="font-size:14px;font-weight:700">1</span></div>
-          <div class="step-content"><div class="step-name">脚乗せ腕立て</div><div class="step-desc">ベンチ等に脚を乗せ高負荷から。</div></div>
-        </div>
-        <div class="step-arrow">↓ 休憩なし</div>
-        <div class="step-row">
-          <div class="step-num"><span style="font-size:9px">STEP</span><span style="font-size:14px;font-weight:700">2</span></div>
-          <div class="step-content"><div class="step-name">通常腕立て</div><div class="step-desc">そのまま脚を下ろして床へ。</div></div>
-        </div>
-        <div class="step-arrow">↓ 休憩なし</div>
-        <div class="step-row">
-          <div class="step-num"><span style="font-size:9px">STEP</span><span style="font-size:14px;font-weight:700">3</span></div>
-          <div class="step-content"><div class="step-name">膝つき</div><div class="step-desc">膝を床につけて軽負荷化。</div></div>
-        </div>
-        <div class="step-arrow">↓ 休憩なし</div>
-        <div class="step-row">
-          <div class="step-num"><span style="font-size:9px">STEP</span><span style="font-size:14px;font-weight:700">4</span></div>
-          <div class="step-content"><div class="step-name">階段1段に膝</div><div class="step-desc">段差を使ってさらに軽く。</div></div>
-        </div>
-        <div class="step-arrow">↓ 休憩なし</div>
-        <div class="step-row">
-          <div class="step-num"><span style="font-size:9px">STEP</span><span style="font-size:14px;font-weight:700">5</span></div>
-          <div class="step-content"><div class="step-name">階段2段目以降</div><div class="step-desc">限界まで段を上げて続行。</div></div>
-        </div>
+    <article class="hg-card">
+      <h3 class="hg-card__title">吉さん流ドロップセット鬼コース</h3>
+      <div class="hg-card__text">追い込みたい人向け、休憩なしの段階下げ式。各ステージは <strong>「上がらなくなるまで」</strong>。</div>
+      <ol class="hg-steps">
+        <li class="hg-step"><div class="hg-step__num">1</div><div class="hg-step__title">脚乗せ腕立て</div><div class="hg-step__text">ベンチ等に脚を乗せ高負荷から。</div><div class="hg-step__tip">↓ 休憩なし</div></li>
+        <li class="hg-step"><div class="hg-step__num">2</div><div class="hg-step__title">通常腕立て</div><div class="hg-step__text">そのまま脚を下ろして床へ。</div><div class="hg-step__tip">↓ 休憩なし</div></li>
+        <li class="hg-step"><div class="hg-step__num">3</div><div class="hg-step__title">膝つき</div><div class="hg-step__text">膝を床につけて軽負荷化。</div><div class="hg-step__tip">↓ 休憩なし</div></li>
+        <li class="hg-step"><div class="hg-step__num">4</div><div class="hg-step__title">階段1段に膝</div><div class="hg-step__text">段差を使ってさらに軽く。</div><div class="hg-step__tip">↓ 休憩なし</div></li>
+        <li class="hg-step"><div class="hg-step__num">5</div><div class="hg-step__title">階段2段目以降</div><div class="hg-step__text">限界まで段を上げて続行。</div></li>
+      </ol>
+      <div class="hg-card__text kintore-aside kintore-small">※緒さん評：「辛そうすぎて自分はやりたくない🤣」</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発案：吉さん</span>
+        <span class="hg-tag">難易度：★★★★★</span>
       </div>
-      <div class="card-desc" style="font-size:11px;color:#888;margin-top:4px">※緒さん評：「辛そうすぎて自分はやりたくない🤣」</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発案：</span>吉さん</span>
-        <span class="tag"><span class="lbl">難易度：</span>★★★★★</span>
-      </div>
-    </div>
+    </article>
 
-  </div>
-</section>
+</div></section>
 
 <!-- プロテイン編 -->
-<section class="cat-section" data-cat="プロテイン">
-  <div class="cat-header">&#x1F964; プロテイン編（3件）</div>
-  <div class="cards-wrap">
+<section class="hg-section" data-cat="プロテイン"><div class="hg-wrap">
+  <h2 class="hg-title">&#x1F964; プロテイン編（3件）</h2>
 
-    <div class="card cat-protein">
-      <div class="card-title">ホエイ vs ミルク（カゼイン）</div>
-      <div class="card-desc"><strong>ホエイ：</strong>吸収が速く、血中アミノ酸ピークは約90分。運動後リカバリー向き。BCAA豊富。<br><strong>カゼイン：</strong>胃でゲル状になり、4〜6時間かけてゆっくり供給。腹持ちが良く就寝前向き。</div>
-      <div style="display:flex;gap:8px;margin:10px 0">
-        <div style="flex:1;background:#e0f2f1;border-radius:6px;padding:8px;font-size:11px">
-          <div style="font-weight:700;color:#00695c;margin-bottom:4px">ホエイ 速攻型</div>
-          <div style="background:#26a69a;height:8px;border-radius:3px;width:30%;margin-bottom:3px"></div>
-          <div style="font-size:10px;color:#666">ピーク90分</div>
-        </div>
-        <div style="flex:1;background:#e8eaf6;border-radius:6px;padding:8px;font-size:11px">
-          <div style="font-weight:700;color:#3949ab;margin-bottom:4px">カゼイン 持続型</div>
-          <div style="background:#5c6bc0;height:8px;border-radius:3px;width:80%;margin-bottom:3px"></div>
-          <div style="font-size:10px;color:#666">4〜6時間維持</div>
-        </div>
+    <article class="hg-card">
+      <h3 class="hg-card__title">ホエイ vs ミルク（カゼイン）</h3>
+      <div class="hg-card__text"><strong>ホエイ：</strong>吸収が速く、血中アミノ酸ピークは約90分。運動後リカバリー向き。BCAA豊富。<br><strong>カゼイン：</strong>胃でゲル状になり、4〜6時間かけてゆっくり供給。腹持ちが良く就寝前向き。</div>
+      <div class="kintore-compare">
+        <div class="kintore-compare__item"><div class="kintore-compare__name">ホエイ 速攻型</div><div class="kintore-bar kintore-bar--short"></div><div class="kintore-compare__cap">ピーク90分</div></div>
+        <div class="kintore-compare__item"><div class="kintore-compare__name">カゼイン 持続型</div><div class="kintore-bar kintore-bar--long"></div><div class="kintore-compare__cap">4〜6時間維持</div></div>
       </div>
-      <div class="card-desc" style="margin-top:4px">※目的に応じて使い分け。総タンパク量のほうが吸収速度より重要。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">情報源：</span>まいくさん</span>
-        <span class="badge badge-low">△ 「7-8時間」は誇張、4-6時間が妥当</span>
+      <div class="hg-card__text kintore-aside">※目的に応じて使い分け。総タンパク量のほうが吸収速度より重要。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">情報源：まいくさん</span>
+        <span class="hg-tag hg-tag--warn">△ 「7-8時間」は誇張、4-6時間が妥当</span>
       </div>
-    </div>
+    </article>
 
-    <div class="card cat-protein">
-      <div class="card-title">摂取量とタイミング</div>
-      <div class="card-desc">1回20〜30gが目安。それ以上は追加効果が減る。<br><br>朝走った後はミルクプロテインで腹持ち良く、というのが天さん流。<br><br><strong>「筋トレ後すぐ飲まないと効果ない」は神話。</strong>1日のトータル摂取量のほうが重要。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>天さん／緒さん</span>
-        <span class="tag"><span class="lbl">出典：</span>MELOS記事（元ボディビルダー大学教授解説）</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">摂取量とタイミング</h3>
+      <div class="hg-card__text">1回20〜30gが目安。それ以上は追加効果が減る。<br><br>朝走った後はミルクプロテインで腹持ち良く、というのが天さん流。<br><br><strong>「筋トレ後すぐ飲まないと効果ない」は神話。</strong>1日のトータル摂取量のほうが重要。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：天さん／緒さん</span>
+        <span class="hg-tag">出典：MELOS記事（元ボディビルダー大学教授解説）</span>
       </div>
-    </div>
+    </article>
 
-    <div class="card cat-protein">
-      <div class="card-title">グリーンカレープロテイン</div>
-      <div class="card-desc">玄米ご飯にかけて、ゆで卵と一緒に。腹持ちが良くて朝食にも夜食にも。<br><br>フィールサイクル会員価格だと4,000円弱で買えるとの情報。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>緒さん</span>
-        <span class="tag"><span class="lbl">時期：</span>2025/11</span>
-        <span class="tag"><span class="lbl">購入先：</span>Amazon／フィールサイクル</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">グリーンカレープロテイン</h3>
+      <div class="hg-card__text">玄米ご飯にかけて、ゆで卵と一緒に。腹持ちが良くて朝食にも夜食にも。<br><br>フィールサイクル会員価格だと4,000円弱で買えるとの情報。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：緒さん</span>
+        <span class="hg-tag">時期：2025/11</span>
+        <span class="hg-tag">購入先：Amazon／フィールサイクル</span>
       </div>
-    </div>
+    </article>
 
-  </div>
-</section>
+</div></section>
 
 <!-- 親父の筋トレ飯 -->
-<section class="cat-section" data-cat="レシピ">
-  <div class="cat-header">&#x1F373; 親父の筋トレ飯（4件）</div>
-  <div class="cards-wrap">
+<section class="hg-section hg-section--alt" data-cat="レシピ"><div class="hg-wrap">
+  <h2 class="hg-title">&#x1F373; 親父の筋トレ飯（4件）</h2>
 
-    <div class="card cat-recipe">
-      <div class="card-title">鶏ささみとレタスのレモンペッパーパスタ</div>
-      <div class="card-desc">子供（中2／小5）にも好評の高タンパク・さっぱりレシピ。</div>
-      <div class="ingredients">
-        <span class="label">材料（2人分）</span>
-        パスタ 160g／鶏ささみ 2本／レタス 4〜5枚（太めみじん切り）／にんにく 1片／オリーブオイル 大2／白ワイン 大2／レモン汁 大1／粗びき黒こしょう たっぷり／塩 少々
+    <article class="hg-card">
+      <h3 class="hg-card__title">鶏ささみとレタスのレモンペッパーパスタ</h3>
+      <div class="hg-card__text">子供（中2／小5）にも好評の高タンパク・さっぱりレシピ。</div>
+      <div class="hg-note"><div class="hg-note__title">材料（2人分）</div><div class="hg-note__text">パスタ 160g／鶏ささみ 2本／レタス 4〜5枚（太めみじん切り）／にんにく 1片／オリーブオイル 大2／白ワイン 大2／レモン汁 大1／粗びき黒こしょう たっぷり／塩 少々</div></div>
+      <div class="hg-note"><div class="hg-note__title">作り方</div><div class="hg-note__text">①パスタを表示より1分短く茹で、ゆで汁お玉1杯取っておく ②オリーブオイルににんにく→ささみ両面1〜2分 ③白ワインでアルコール飛ばし、ゆで汁加えて軽く煮詰める ④パスタを入れレモン汁・黒こしょうを加え混ぜる。火を止めてレタス投入、余熱でしんなり ⑤器に盛りレモンの皮を散らす。粉チーズ・追い黒こしょう</div></div>
+      <div class="hg-card__text kintore-aside kintore-small"><strong>ポイント：</strong>ささみは火を入れすぎない／レタスは最後に余熱だけ／鷹の爪1本でペペロンチーノ寄りにも。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：はやさん</span>
+        <span class="hg-tag">時期：2025/6</span>
+        <span class="hg-tag">改良：篠さん（木綿豆腐版）</span>
       </div>
-      <div class="ingredients">
-        <span class="label">作り方</span>
-        ①パスタを表示より1分短く茹で、ゆで汁お玉1杯取っておく ②オリーブオイルににんにく→ささみ両面1〜2分 ③白ワインでアルコール飛ばし、ゆで汁加えて軽く煮詰める ④パスタを入れレモン汁・黒こしょうを加え混ぜる。火を止めてレタス投入、余熱でしんなり ⑤器に盛りレモンの皮を散らす。粉チーズ・追い黒こしょう
-      </div>
-      <div class="card-desc" style="font-size:11px;margin-top:4px"><strong>ポイント：</strong>ささみは火を入れすぎない／レタスは最後に余熱だけ／鷹の爪1本でペペロンチーノ寄りにも。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>はやさん</span>
-        <span class="tag"><span class="lbl">時期：</span>2025/6</span>
-        <span class="tag"><span class="lbl">改良：</span>篠さん（木綿豆腐版）</span>
-      </div>
-    </div>
+    </article>
 
-    <div class="card cat-recipe">
-      <div class="card-title">すき家の鶏そぼろ丼（外食筋トレ飯）</div>
-      <div class="card-desc">コスパ最強の高タンパク質ご飯。外食でも筋トレ飯は成立する。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>篠さん</span>
-        <span class="tag"><span class="lbl">出典：</span>ろきろぐ記事</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">すき家の鶏そぼろ丼（外食筋トレ飯）</h3>
+      <div class="hg-card__text">コスパ最強の高タンパク質ご飯。外食でも筋トレ飯は成立する。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：篠さん</span>
+        <span class="hg-tag">出典：ろきろぐ記事</span>
       </div>
-    </div>
+    </article>
 
-    <div class="card cat-recipe">
-      <div class="card-title">姫かつおスティック（ふるさと納税）</div>
-      <div class="card-desc">5種セット×3袋＝15本。PFCバランスに優れ、しょうゆ／ゆず等のフレーバー違いで飽きない。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>篠さん</span>
-        <span class="tag"><span class="lbl">時期：</span>2025/5</span>
-        <span class="tag"><span class="lbl">購入先：</span>楽天ふるさと納税（土佐清水市）</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">姫かつおスティック（ふるさと納税）</h3>
+      <div class="hg-card__text">5種セット×3袋＝15本。PFCバランスに優れ、しょうゆ／ゆず等のフレーバー違いで飽きない。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：篠さん</span>
+        <span class="hg-tag">時期：2025/5</span>
+        <span class="hg-tag">購入先：楽天ふるさと納税（土佐清水市）</span>
       </div>
-    </div>
+    </article>
 
-    <div class="card cat-recipe">
-      <div class="card-title">ふるさと納税サバ缶</div>
-      <div class="card-desc">コスパ良くヘルシー。トマト缶と合わせて簡単パスタ／リゾットにも。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>天さん／はやさん</span>
-        <span class="tag"><span class="lbl">購入先：</span>ふるさとチョイス（八幡浜市）</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">ふるさと納税サバ缶</h3>
+      <div class="hg-card__text">コスパ良くヘルシー。トマト缶と合わせて簡単パスタ／リゾットにも。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：天さん／はやさん</span>
+        <span class="hg-tag">購入先：ふるさとチョイス（八幡浜市）</span>
       </div>
-    </div>
+    </article>
 
-  </div>
-</section>
+</div></section>
 
 <!-- 怪我・回復編 -->
-<section class="cat-section" data-cat="怪我・回復">
-  <div class="cat-header">&#x270F; 怪我・回復編（6件）</div>
-  <div class="cards-wrap">
+<section class="hg-section" data-cat="怪我・回復"><div class="hg-wrap">
+  <h2 class="hg-title">&#x270F; 怪我・回復編（6件）</h2>
 
-    <div class="card cat-injury">
-      <div class="card-title">⚠️ 肘部管症候群（深い腕立てに注意）</div>
-      <div class="card-desc">あごが床につくほど深い腕立てを大量回数こなすと、左手小指がビリッとする症状が出ることがある。整形外科で「肘部管症候群」と診断されるケース。<br><br><strong>対策：</strong>深さを半分くらいに。片手腕立てを少回数で代替。症状が出たら早めに整形外科へ。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>緒さん</span>
-        <span class="tag"><span class="lbl">時期：</span>2025/8</span>
-        <span class="badge badge-mid">○ 検証：機序は妥当（断定的因果ではない）</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">⚠️ 肘部管症候群（深い腕立てに注意）</h3>
+      <div class="hg-card__text">あごが床につくほど深い腕立てを大量回数こなすと、左手小指がビリッとする症状が出ることがある。整形外科で「肘部管症候群」と診断されるケース。<br><br><strong>対策：</strong>深さを半分くらいに。片手腕立てを少回数で代替。症状が出たら早めに整形外科へ。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：緒さん</span>
+        <span class="hg-tag">時期：2025/8</span>
+        <span class="hg-tag">○ 検証：機序は妥当（断定的因果ではない）</span>
       </div>
-    </div>
+    </article>
 
-    <div class="card cat-injury">
-      <div class="card-title">半月板損傷の保存療法</div>
-      <div class="card-desc">MRIで半月板損傷が判明し、医師から「長距離は控え、大腿四頭筋強化と柔軟性向上を」とのアドバイス。フルマラソンを断念し、筋トレ＋ヨガをメインに切り替えた結果、痛みは大幅に減少。<br><br>選択肢は ①保存療法（筋トレ・体重管理） ②手術 ③再生医療。まずは①から。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>篠さん</span>
-        <span class="tag"><span class="lbl">時期：</span>2025/9</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">半月板損傷の保存療法</h3>
+      <div class="hg-card__text">MRIで半月板損傷が判明し、医師から「長距離は控え、大腿四頭筋強化と柔軟性向上を」とのアドバイス。フルマラソンを断念し、筋トレ＋ヨガをメインに切り替えた結果、痛みは大幅に減少。<br><br>選択肢は ①保存療法（筋トレ・体重管理） ②手術 ③再生医療。まずは①から。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：篠さん</span>
+        <span class="hg-tag">時期：2025/9</span>
       </div>
-    </div>
+    </article>
 
-    <div class="card cat-injury">
-      <div class="card-title">変形性膝関節症との付き合い方</div>
-      <div class="card-desc">長年付き合ってきた膝に「変形性膝関節症」の診断。半月板損傷と類似する部分も多く、対策の方向性は同じ：<strong>大腿四頭筋トレと柔軟性。</strong><br><br>調子が悪いと屈伸すらつらいので、地道に継続。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">体験：</span>吉さん</span>
-        <span class="tag"><span class="lbl">協力：</span>篠さん／緒さん</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">変形性膝関節症との付き合い方</h3>
+      <div class="hg-card__text">長年付き合ってきた膝に「変形性膝関節症」の診断。半月板損傷と類似する部分も多く、対策の方向性は同じ：<strong>大腿四頭筋トレと柔軟性。</strong><br><br>調子が悪いと屈伸すらつらいので、地道に継続。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">体験：吉さん</span>
+        <span class="hg-tag">協力：篠さん／緒さん</span>
       </div>
-    </div>
+    </article>
 
-    <div class="card cat-injury">
-      <div class="card-title">マッサージ ＞ ストレッチ（DOMS回避）</div>
-      <div class="card-desc">筋肉痛の回避には、ストレッチや入浴より <strong>マッサージのほうが効果が高い</strong>というエビデンスあり（メタ分析支持）。<br><br>マッサージガンを使う場合は <strong>大きい＝高出力なやつ</strong>を推奨。大腿筋など大きい筋肉に効かせるには小型では出力不足になりがち。<br><br>※具体的なマッサージガン製品はリンク集の「お役立ちサービス／装備」へ。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>緒さん</span>
-        <span class="tag"><span class="lbl">時期：</span>2025/11</span>
-        <span class="badge badge-hi">◎ 検証：メタ分析支持</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">マッサージ ＞ ストレッチ（DOMS回避）</h3>
+      <div class="hg-card__text">筋肉痛の回避には、ストレッチや入浴より <strong>マッサージのほうが効果が高い</strong>というエビデンスあり（メタ分析支持）。<br><br>マッサージガンを使う場合は <strong>大きい＝高出力なやつ</strong>を推奨。大腿筋など大きい筋肉に効かせるには小型では出力不足になりがち。<br><br>※具体的なマッサージガン製品はリンク集の「お役立ちサービス／装備」へ。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：緒さん</span>
+        <span class="hg-tag">時期：2025/11</span>
+        <span class="hg-tag">◎ 検証：メタ分析支持</span>
       </div>
-    </div>
+    </article>
 
-    <div class="card cat-injury">
-      <div class="card-title">タバタトレーニング</div>
-      <div class="card-desc">20秒全力 → 10秒休憩 を8セット、計4分。心拍数を一気に上げる高強度インターバル。<br><br>バービージャンプ、エアロバイク、ロッキーのテーマに合わせて、など部員ごとにバリエーションあり。6セット目あたりから泣きそうになるのが正常。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>緒さん／はやさん</span>
-        <span class="tag"><span class="lbl">時期：</span>2025/9</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">タバタトレーニング</h3>
+      <div class="hg-card__text">20秒全力 → 10秒休憩 を8セット、計4分。心拍数を一気に上げる高強度インターバル。<br><br>バービージャンプ、エアロバイク、ロッキーのテーマに合わせて、など部員ごとにバリエーションあり。6セット目あたりから泣きそうになるのが正常。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：緒さん／はやさん</span>
+        <span class="hg-tag">時期：2025/9</span>
       </div>
-    </div>
+    </article>
 
-    <div class="card cat-injury">
-      <div class="card-title">ラッキング（重り背負って歩く／走る）</div>
-      <div class="card-desc">40代以降向け「賢い運動」として注目。リュック等で重りを背負って歩く・走るだけ。<br><br>通勤ランでパソコン背負うのも立派なラッキング。トレラン前の練習にも。20kgはきついが、水2kg程度から始められる。<br><br><strong>注意：</strong>背中とPCの間にタオルなど緩衝材を入れないと擦れて出血する（経験者談）。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">情報源：</span>篠さん（記事提供）</span>
-        <span class="tag"><span class="lbl">実践：</span>天さん／はやさん</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">ラッキング（重り背負って歩く／走る）</h3>
+      <div class="hg-card__text">40代以降向け「賢い運動」として注目。リュック等で重りを背負って歩く・走るだけ。<br><br>通勤ランでパソコン背負うのも立派なラッキング。トレラン前の練習にも。20kgはきついが、水2kg程度から始められる。<br><br><strong>注意：</strong>背中とPCの間にタオルなど緩衝材を入れないと擦れて出血する（経験者談）。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">情報源：篠さん（記事提供）</span>
+        <span class="hg-tag">実践：天さん／はやさん</span>
       </div>
-    </div>
+    </article>
 
-  </div>
-</section>
+</div></section>
 
 <!-- 障害物レース編 -->
-<section class="cat-section" data-cat="競技">
-  <div class="cat-header">&#x1F3CE; 障害物レース編（3件）</div>
-  <div class="cards-wrap">
+<section class="hg-section hg-section--alt" data-cat="競技"><div class="hg-wrap">
+  <h2 class="hg-title">&#x1F3CE; 障害物レース編（3件）</h2>
 
-    <div class="card cat-race">
-      <div class="card-title">HYROX 参戦記</div>
-      <div class="card-desc">有酸素＋筋トレをミックスした障害物レース。2025年8月の日本初開催（パシフィコ横浜）で、緒さんが篠さんとダブルスに挑み1:36:11で完走。<br><br>ロープクライムや雲梯がないので、スパルタンより参加しやすい。<br><br>2026年8月は幕張で開催され、緒さん・松ちゃんがダブルスで完走。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>緒さん／篠さん</span>
-        <span class="tag"><span class="lbl">時期：</span>2025/8・2026/8</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">HYROX 参戦記</h3>
+      <div class="hg-card__text">有酸素＋筋トレをミックスした障害物レース。2025年8月の日本初開催（パシフィコ横浜）で、緒さんが篠さんとダブルスに挑み1:36:11で完走。<br><br>ロープクライムや雲梯がないので、スパルタンより参加しやすい。<br><br>2026年8月は幕張で開催され、緒さん・松ちゃんがダブルスで完走。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：緒さん／篠さん</span>
+        <span class="hg-tag">時期：2025/8・2026/8</span>
       </div>
-    </div>
+    </article>
 
-    <div class="card cat-race">
-      <div class="card-title">スパルタンレース入門</div>
-      <div class="card-desc">泥まみれの障害（マッドダンプ）はコロナ以降日本では設置されず。ただし匍匐前進は雨だと泥まみれ必至。<br><br>着替えは汗だくorドロドロ前提で必須。流す水は会場（公園）にあるのでボトルでOK。<br><br>2025年9月は新潟のSPARTAN BEASTにも部員が参戦。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">発言：</span>緒さん</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">スパルタンレース入門</h3>
+      <div class="hg-card__text">泥まみれの障害（マッドダンプ）はコロナ以降日本では設置されず。ただし匍匐前進は雨だと泥まみれ必至。<br><br>着替えは汗だくorドロドロ前提で必須。流す水は会場（公園）にあるのでボトルでOK。<br><br>2025年9月は新潟のSPARTAN BEASTにも部員が参戦。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">発言：緒さん</span>
       </div>
-    </div>
+    </article>
 
-    <div class="card cat-race">
-      <div class="card-title">スパルタスロン（最終目標？）</div>
-      <div class="card-desc">ギリシャの伝説的246kmウルトラレース。エントリー資格は小江戸大江戸200km完走（28時間以内）など。<br><br>富士五湖120kmサブ12も資格対象だが「サブ2:45のランナーでも無理だった」レベルのドM領域。<br><br>※ウルトラ組（しんちゃん／武さん）の最終目標。</div>
-      <div class="card-meta">
-        <span class="tag"><span class="lbl">情報源：</span>武さん</span>
-        <span class="tag"><span class="lbl">挑戦予定：</span>しんちゃん</span>
+    <article class="hg-card">
+      <h3 class="hg-card__title">スパルタスロン（最終目標？）</h3>
+      <div class="hg-card__text">ギリシャの伝説的246kmウルトラレース。エントリー資格は小江戸大江戸200km完走（28時間以内）など。<br><br>富士五湖120kmサブ12も資格対象だが「サブ2:45のランナーでも無理だった」レベルのドM領域。<br><br>※ウルトラ組（しんちゃん／武さん）の最終目標。</div>
+      <div class="hg-tags">
+        <span class="hg-tag">情報源：武さん</span>
+        <span class="hg-tag">挑戦予定：しんちゃん</span>
       </div>
-    </div>
+    </article>
 
-  </div>
-</section>
+</div></section>
 
 <!-- 名言録 -->
-<section class="cat-section" data-cat="名言録">
-  <div class="cat-header">&#x1F4AC; 名言・迷言録（4件）</div>
-  <div class="cards-wrap">
+<section class="hg-section" data-cat="名言録"><div class="hg-wrap">
+  <h2 class="hg-title">&#x1F4AC; 名言・迷言録（4件）</h2>
 
-    <div class="card cat-quote">
-      <div class="quote-text">「何度でも、そこにジムがある限り」</div>
-      <div class="quote-author">— 緒さん（東京体育館休館の知らせを受けて）</div>
-    </div>
+    <figure class="hg-quote kintore-quote"><p class="hg-card__title">「何度でも、そこにジムがある限り」</p><figcaption class="hg-quote__who">— 緒さん（東京体育館休館の知らせを受けて）</figcaption></figure>
 
-    <div class="card cat-quote">
-      <div class="quote-text">「ラン × 筋トレ × コミュニティ（繋がり）が、いちばんの健康法」</div>
-      <div class="quote-author">— はやさん</div>
-    </div>
+    <figure class="hg-quote kintore-quote"><p class="hg-card__title">「ラン × 筋トレ × コミュニティ（繋がり）が、いちばんの健康法」</p><figcaption class="hg-quote__who">— はやさん</figcaption></figure>
 
-    <div class="card cat-quote">
-      <div class="quote-text">「目指せ200歳ですね！」</div>
-      <div class="quote-author">— 新さん（60代の方の筋トレ動画への反応）</div>
-    </div>
+    <figure class="hg-quote kintore-quote"><p class="hg-card__title">「目指せ200歳ですね！」</p><figcaption class="hg-quote__who">— 新さん（60代の方の筋トレ動画への反応）</figcaption></figure>
 
-    <div class="card cat-quote">
-      <div class="quote-text">「筋肉も、登った階段も、裏切らなかったです」</div>
-      <div class="quote-author">— しんちゃん（奥信濃の激坂を登り切って）</div>
-    </div>
+    <figure class="hg-quote kintore-quote"><p class="hg-card__title">「筋肉も、登った階段も、裏切らなかったです」</p><figcaption class="hg-quote__who">— しんちゃん（奥信濃の激坂を登り切って）</figcaption></figure>
 
-  </div>
-</section>
+</div></section>
 
 <!-- ファクトチェック -->
-<section class="cat-section" data-cat="ファクトチェック">
-  <div class="cat-header">&#x1F50D; ファクトチェック注記（参考）</div>
-  <div class="cards-wrap">
-    <div class="card cat-fact">
-      <div class="card-title">本ページ掲載内容の検証ステータス</div>
-      <div class="card-desc">個人の体験談を含むため、医療・トレーニングに関する判断は専門家にご相談ください。主要な主張については2025年時点の公開エビデンスで検証済みです。</div>
-      <table class="fact-table">
+<section class="hg-section hg-section--alt" data-cat="ファクトチェック"><div class="hg-wrap">
+  <h2 class="hg-title">&#x1F50D; ファクトチェック注記（参考）</h2>
+    <h3 class="hg-subtitle">本ページ掲載内容の検証ステータス</h3>
+      <p class="hg-text">個人の体験談を含むため、医療・トレーニングに関する判断は専門家にご相談ください。主要な主張については2025年時点の公開エビデンスで検証済みです。</p>
+      <table class="hg-table">
         <tr><th>主張</th><th>判定</th></tr>
-        <tr><td>総負荷量理論</td><td class="fc-hi">◎ 高信頼</td></tr>
-        <tr><td>長休憩推奨（2〜3分）</td><td class="fc-hi">◎ 高信頼</td></tr>
-        <tr><td>マッサージ＞ストレッチ</td><td class="fc-hi">◎ 高信頼</td></tr>
-        <tr><td>深い腕立て→肘部管症候群</td><td class="fc-mid">○ 機序的整合性あり（断定不可）</td></tr>
-        <tr><td>カゼイン吸収7〜8時間</td><td class="fc-low">△ 一部誇張・要修正（4〜6時間が妥当）</td></tr>
+        <tr><td>総負荷量理論</td><td>◎ 高信頼</td></tr>
+        <tr><td>長休憩推奨（2〜3分）</td><td>◎ 高信頼</td></tr>
+        <tr><td>マッサージ＞ストレッチ</td><td>◎ 高信頼</td></tr>
+        <tr><td>深い腕立て→肘部管症候群</td><td>○ 機序的整合性あり（断定不可）</td></tr>
+        <tr><td>カゼイン吸収7〜8時間</td><td>△ 一部誇張・要修正（4〜6時間が妥当）</td></tr>
       </table>
-      <div class="card-desc" style="font-size:10px;color:#888;margin-top:8px">主な根拠：Schoenfeld 2017 メタ分析（J Sports Sci）／Schoenfeld 2016 RCT／Frontiers 2024／Dupuy et al. 2018 メタ分析／Cleveland Clinic・Johns Hopkins 臨床ガイドライン</div>
-    </div>
-  </div>
-</section>
+      <div class="hg-card__text kintore-aside kintore-small">主な根拠：Schoenfeld 2017 メタ分析（J Sports Sci）／Schoenfeld 2016 RCT／Frontiers 2024／Dupuy et al. 2018 メタ分析／Cleveland Clinic・Johns Hopkins 臨床ガイドライン</div>
+</div></section>
 
 </main>
 
-<footer>広尾親父RC ― 筋トレ虎の巻 ― 2026</footer>
-
+<footer class="hg-footer"><p>広尾親父RC ― 筋トレ虎の巻 ― 2026</p></footer>
 <script>
 function setFilter(btn) {
-  var btns = document.querySelectorAll('.filter-btn');
-  var sections = document.querySelectorAll('.cat-section');
+  var btns = document.querySelectorAll('.kintore-pills .hg-pill');
+  var sections = document.querySelectorAll('main section[data-cat]');
   var cat = btn.getAttribute('data-cat');
-  for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
-  btn.classList.add('active');
+  for (var i = 0; i < btns.length; i++) btns[i].classList.remove('is-active');
+  btn.classList.add('is-active');
   for (var j = 0; j < sections.length; j++) {
-    if (cat === 'すべて' || sections[j].getAttribute('data-cat') === cat) {
-      sections[j].classList.remove('hidden');
-    } else {
-      sections[j].classList.add('hidden');
-    }
+    sections[j].hidden = !(cat === 'すべて' || sections[j].getAttribute('data-cat') === cat);
   }
 }
-</script>
-
-<div id="auth-overlay" style="position:fixed;inset:0;background:radial-gradient(900px 600px at 50% 30%,#1E4936 0%,#122C20 55%,#0C1F16 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
-  <div style="background:#FFFDF6;border:1px solid #D9C98F;border-radius:14px;padding:36px 28px;max-width:320px;width:100%;box-shadow:inset 0 0 0 4px #FFFDF6,inset 0 0 0 5px rgba(195,162,77,.45),0 18px 50px rgba(0,0,0,.55);text-align:center">
-    <svg width="60" height="68" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:16px" aria-label="広尾親父RC"><defs><linearGradient id="hgkinx0g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4936"/><stop offset="1" stop-color="#0F2A1E"/></linearGradient><linearGradient id="hgkinx0au" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBD79A"/><stop offset="0.5" stop-color="#C9A227"/><stop offset="1" stop-color="#9A7B2E"/></linearGradient></defs><path d="M32 3 L58 12 L58 36 C58 52 46 64 32 69 C18 64 6 52 6 36 L6 12 Z" fill="url(#hgkinx0g)" stroke="url(#hgkinx0au)" stroke-width="2.5"/><path d="M32 8 L53.5 15.5 L53.5 35.5 C53.5 49 43.5 59.5 32 64 C20.5 59.5 10.5 49 10.5 35.5 L10.5 15.5 Z" fill="none" stroke="rgba(201,162,39,0.45)" stroke-width="1"/><g fill="url(#hgkinx0au)"><path d="M15.5 30 Q12.5 25 15.5 20.5 Q18.5 25 15.5 30 Z"/><path d="M14.5 37 Q10.5 33 12 27.5 Q16.5 31.5 14.5 37 Z"/><path d="M15.5 44 Q10.5 41 11 35 Q16.5 38.5 15.5 44 Z"/><path d="M18 50.5 Q12.5 49 12 43 Q18 45.5 18 50.5 Z"/><path d="M22 56 Q16 55.5 14.5 50 Q21 51.5 22 56 Z"/><path d="M48.5 30 Q51.5 25 48.5 20.5 Q45.5 25 48.5 30 Z"/><path d="M49.5 37 Q53.5 33 52 27.5 Q47.5 31.5 49.5 37 Z"/><path d="M48.5 44 Q53.5 41 53 35 Q47.5 38.5 48.5 44 Z"/><path d="M46 50.5 Q51.5 49 52 43 Q46 45.5 46 50.5 Z"/><path d="M42 56 Q48 55.5 49.5 50 Q43 51.5 42 56 Z"/></g><path d="M29.5 16.5 L32 12.5 L34.5 16.5 L32 15.2 Z" fill="url(#hgkinx0au)"/><text x="32" y="42" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="bold" fill="url(#hgkinx0au)" text-anchor="middle" letter-spacing="1.5">HG</text><path d="M23 49 L41 49" stroke="url(#hgkinx0au)" stroke-width="1.2"/><path d="M27 52.5 L37 52.5" stroke="rgba(201,162,39,0.6)" stroke-width="1"/></svg>
-    <div style="font-family:'Shippori Mincho',serif;font-size:19px;font-weight:800;color:#1B4030;letter-spacing:.06em;margin-bottom:4px">広尾親父RC</div>
-    <div style="font-size:11px;color:#A8873C;letter-spacing:.18em;margin-bottom:24px">部員専用ページ</div>
-    <input type="password" id="pw-input" placeholder="パスワード" inputmode="numeric" pattern="[0-9]*"
-      style="width:100%;padding:12px 14px;border:1px solid #D9C98F;background:#FFFEFA;border-radius:10px;font-size:16px;text-align:center;letter-spacing:4px;outline:none;font-family:inherit;margin-bottom:10px">
-    <button onclick="checkPw()"
-      style="width:100%;padding:12px;background:linear-gradient(180deg,#1E4936,#0F2A1E);color:#EBD79A;border:1px solid #C3A24D;letter-spacing:.1em;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">
-      入室する
-    </button>
-    <div id="pw-err" style="display:none;margin-top:10px;font-size:12px;color:#e53935">パスワードが違います</div>
-    <div style="margin-top:12px;font-size:11.5px;line-height:1.6;color:#8A7A52;letter-spacing:.02em">ヒント: 学校の創立記念日を月日の4桁で。<br>検索すると出てきます</div>
-  </div>
-</div>
-<script>
-(function(){
-  var PASS='0530', KEY='hg-rc-auth';
-  if(sessionStorage.getItem(KEY)==='1') document.getElementById('auth-overlay').style.display='none';
-  document.getElementById('pw-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkPw();});
-  window.checkPw=function(){
-    if(document.getElementById('pw-input').value===PASS){
-      sessionStorage.setItem(KEY,'1');
-      document.getElementById('auth-overlay').style.display='none';
-    } else {
-      document.getElementById('pw-err').style.display='block';
-      document.getElementById('pw-input').value='';
-      document.getElementById('pw-input').focus();
-    }
-  };
-})();
 </script>
 <script src="chat.js" defer></script>
 </body>

@@ -5,289 +5,50 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>広尾親父RC</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;background:linear-gradient(160deg,#1b5e35 0%,#0d3d20 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-.wrap{width:100%;max-width:380px}
-.card{background:white;border-radius:20px;padding:32px 22px 24px;box-shadow:0 8px 32px rgba(0,0,0,0.25);margin-bottom:16px}
-.logo{text-align:center;margin-bottom:16px}
-h1{text-align:center;font-size:18px;font-weight:800;color:#1b5e35;margin-bottom:4px;letter-spacing:.04em}
-.sub{text-align:center;font-size:11px;color:#A8873C;letter-spacing:.18em;margin-bottom:24px}
-.divider{font-size:10px;color:#bbb;text-transform:uppercase;letter-spacing:.12em;margin:16px 0 10px;padding-left:2px}
-.btn{display:flex;align-items:center;gap:14px;padding:15px 16px;border-radius:14px;text-decoration:none;margin-bottom:10px;background:linear-gradient(135deg,#1b5e35,#0d3d20);color:white;transition:opacity .15s;-webkit-tap-highlight-color:transparent}
-.btn:last-child{margin-bottom:0}
-.btn:active{opacity:.82}
-.btn-icon{font-size:24px;flex-shrink:0;width:36px;text-align:center}
-.btn-text{}
-.btn-title{font-size:14px;font-weight:700;margin-bottom:2px}
-.btn-sub{font-size:10px;opacity:.7;line-height:1.4}
-.btn-soon{background:linear-gradient(135deg,#78909c,#546e7a);position:relative}
-.soon-badge{position:absolute;top:10px;right:12px;background:rgba(255,255,255,0.2);font-size:9px;padding:2px 7px;border-radius:8px;color:white}
-footer{text-align:center;margin-top:8px;font-size:11px;color:rgba(255,255,255,0.45)}
-.about-link{display:block;text-align:center;margin-bottom:14px;color:rgba(255,255,255,0.72);font-size:12px;font-weight:600;text-decoration:none;letter-spacing:.07em;padding:4px 0;-webkit-tap-highlight-color:transparent}
-.about-link .arr{color:rgba(201,162,39,0.85);margin-left:4px}
-</style>
-<style id="gold-theme">
-/* 大理石背景対応 */
-body{background:transparent!important}
-/* ヘッダー金線 */
-header{border-bottom:1px solid rgba(201,162,39,0.4)!important}
-/* カード金縁 */
-.card{border:1px solid rgba(201,162,39,0.2)!important;border-top:2px solid rgba(201,162,39,0.5)!important;background:rgba(255,255,255,0.97)!important}
-/* セクション見出し金色 */
-.divider{color:rgba(201,162,39,0.9)!important;border-left:2px solid rgba(201,162,39,0.6);padding-left:8px!important}
-/* ボタン金縁 */
-.btn{border:1px solid rgba(201,162,39,0.25)!important}
-/* ストーリーカード金縁 */
-.story-card{border:1px solid rgba(201,162,39,0.2)!important;border-top:2px solid rgba(201,162,39,0.45)!important}
-/* ページタイトル */
-.page-title{text-shadow:0 2px 12px rgba(0,0,0,0.5)}
-/* 認証カード金縁 */
-#auth-overlay>div{border:1px solid rgba(201,162,39,0.3)!important}
-/* pain.html カード */
-.card.visible{border-left:4px solid #c9a227!important}
-/* フィルターボタン */
-.filter-btn.active,.filter-btn:hover{background:#1b5e35;border-color:rgba(201,162,39,0.5)!important}
-</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
-<style id="tora-theme">
-h1{font-family:'Shippori Mincho',serif;font-weight:800;font-size:22px;color:#1B4030;letter-spacing:.06em}
-.logo a{display:inline-block;-webkit-tap-highlight-color:transparent}
-.logo svg{filter:drop-shadow(0 3px 8px rgba(0,0,0,.18))}
-.divider{font-weight:700}
-.btn{border:1px solid rgba(201,162,39,.35)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
-.btn-title{letter-spacing:.02em}
-.card{box-shadow:0 14px 44px rgba(0,0,0,.5)!important}
-footer{letter-spacing:.08em}
+<link rel="stylesheet" href="./hg.css">
+<style>
+/* このページだけの並べ方（色・書体・大きさは hg.css） */
+.portal{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--hg-s5);background:radial-gradient(900px 600px at 50% 25%,var(--hg-green-soft) 0%,var(--hg-green-deep) 100%)}
+.portal__card{width:100%;max-width:400px;padding:var(--hg-s6) var(--hg-s5) var(--hg-s5);box-shadow:inset 0 0 0 4px var(--hg-card),inset 0 0 0 5px var(--hg-gold-soft),var(--hg-shadow-lift)}
+.portal__title{font-family:var(--hg-font-head);font-weight:800;font-size:var(--hg-fs-xl);color:var(--hg-green);text-align:center;letter-spacing:.06em;margin:0}
+.portal__sub{text-align:center;font-size:var(--hg-fs-xs);font-weight:700;color:var(--hg-gold-ink);letter-spacing:.16em;margin:0 0 var(--hg-s5)}
+.portal .hg-label{margin:var(--hg-s5) 0 var(--hg-s2);padding-left:var(--hg-s2);border-left:2px solid var(--hg-gold)}
+.hg .portal__about{color:var(--hg-ink-on-dark);opacity:.8;font-size:var(--hg-fs-sm);font-weight:700;text-decoration:none;margin-bottom:var(--hg-s4)}
+.portal__foot{color:var(--hg-ink-on-dark);opacity:.5;font-size:var(--hg-fs-xs);margin:var(--hg-s4) 0 0}
+.hg-crest{margin-bottom:var(--hg-s3)}
 </style>
 </head>
-<body>
-<div id="bg" aria-hidden="true" style="position:fixed;inset:0;z-index:-1;overflow:hidden">
-<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs>
-<filter id="mf" color-interpolation-filters="sRGB">
-  <feTurbulence type="turbulence" baseFrequency="0.009 0.007" numOctaves="5" seed="11" result="t"/>
-  <feColorMatrix type="matrix" values="0.25 0.1 0 0 0.04  0.25 0.1 0 0 0.16  0.25 0.1 0 0 0.07  0 0 0 0.5 0" in="t" result="c"/>
-</filter>
-<radialGradient id="rg" cx="46%" cy="26%" r="65%">
-  <stop offset="0%" stop-color="#1e5c2d"/>
-  <stop offset="50%" stop-color="#112b19"/>
-  <stop offset="100%" stop-color="#050d07"/>
-</radialGradient>
-<radialGradient id="vig" cx="50%" cy="50%" r="75%">
-  <stop offset="25%" stop-color="rgba(0,0,0,0)"/>
-  <stop offset="100%" stop-color="rgba(0,0,0,0.6)"/>
-</radialGradient>
-</defs>
-<rect width="100%" height="100%" fill="url(#rg)"/>
-<rect width="100%" height="100%" fill="#163520" filter="url(#mf)"/>
-<rect width="100%" height="100%" fill="url(#vig)"/>
-</svg>
-</div>
-
-<div class="wrap">
-<a href="./about.html" class="about-link">広尾親父ランニングクラブとは？ <span class="arr">→</span></a>
-<div class="card">
-  <div class="logo"><a href="./index.html" aria-label="トップへ戻る"><svg width="80" height="90" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="広尾親父RC">
-<defs>
-<linearGradient id="hgidxg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4936"/><stop offset="1" stop-color="#0F2A1E"/></linearGradient>
-<linearGradient id="hgidxau" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBD79A"/><stop offset="0.5" stop-color="#C9A227"/><stop offset="1" stop-color="#9A7B2E"/></linearGradient>
-</defs>
-<path d="M32 3 L58 12 L58 36 C58 52 46 64 32 69 C18 64 6 52 6 36 L6 12 Z" fill="url(#hgidxg)" stroke="url(#hgidxau)" stroke-width="2.5"/>
-<path d="M32 8 L53.5 15.5 L53.5 35.5 C53.5 49 43.5 59.5 32 64 C20.5 59.5 10.5 49 10.5 35.5 L10.5 15.5 Z" fill="none" stroke="rgba(201,162,39,0.45)" stroke-width="1"/>
-<g fill="url(#hgidxau)">
-<path d="M15.5 30 Q12.5 25 15.5 20.5 Q18.5 25 15.5 30 Z"/>
-<path d="M14.5 37 Q10.5 33 12 27.5 Q16.5 31.5 14.5 37 Z"/>
-<path d="M15.5 44 Q10.5 41 11 35 Q16.5 38.5 15.5 44 Z"/>
-<path d="M18 50.5 Q12.5 49 12 43 Q18 45.5 18 50.5 Z"/>
-<path d="M22 56 Q16 55.5 14.5 50 Q21 51.5 22 56 Z"/>
-<path d="M48.5 30 Q51.5 25 48.5 20.5 Q45.5 25 48.5 30 Z"/>
-<path d="M49.5 37 Q53.5 33 52 27.5 Q47.5 31.5 49.5 37 Z"/>
-<path d="M48.5 44 Q53.5 41 53 35 Q47.5 38.5 48.5 44 Z"/>
-<path d="M46 50.5 Q51.5 49 52 43 Q46 45.5 46 50.5 Z"/>
-<path d="M42 56 Q48 55.5 49.5 50 Q43 51.5 42 56 Z"/>
-</g>
-<path d="M29.5 16.5 L32 12.5 L34.5 16.5 L32 15.2 Z" fill="url(#hgidxau)"/>
-<text x="32" y="42" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="bold" fill="url(#hgidxau)" text-anchor="middle" letter-spacing="1.5">HG</text>
-<path d="M23 49 L41 49" stroke="url(#hgidxau)" stroke-width="1.2"/>
-<path d="M27 52.5 L37 52.5" stroke="rgba(201,162,39,0.6)" stroke-width="1"/>
-</svg></a></div>
-  <h1>広尾親父RC</h1>
-  <p class="sub">ランニングクラブ 部員専用ページ</p>
-
-  <div class="divider">&#x1F4C5; レース情報</div>
-
-  <a class="btn" href="./races.html">
-    <div class="btn-icon">&#x1F3C5;</div>
-    <div class="btn-text">
-      <div class="btn-title">2026年度 レース表</div>
-      <div class="btn-sub">2026.4〜2027.3 ｜ 全66大会・イベント ｜ カテゴリ&推奨フィルター付き</div>
-    </div>
-  </a>
-
-  <a class="btn" href="./history.html">
-    <div class="btn-icon">&#x1F4DC;</div>
-    <div class="btn-text">
-      <div class="btn-title">活動アーカイブ</div>
-      <div class="btn-sub">2023年〜 ｜ これまでの大会・イベントとハイライト ｜ 検索・並び替え付き</div>
-    </div>
-  </a>
-
-  <div class="divider">&#x1F4DA; 部員の知恵</div>
-
-  <a class="btn" href="./links.html">
-    <div class="btn-icon">&#x1F517;</div>
-    <div class="btn-text">
-      <div class="btn-title">お役立ちリンク集</div>
-      <div class="btn-sub">全80アイテム ｜ ウェア・補給・動画ほか</div>
-    </div>
-  </a>
-
-  <a class="btn" href="./manual.html">
-    <div class="btn-icon">&#x1F6AA;</div>
-    <div class="btn-text">
-      <div class="btn-title">0次関門突破マニュアル</div>
-      <div class="btn-sub">家族交渉の虎の巻 ｜ 全11戦績・教訓収録</div>
-    </div>
-  </a>
-
-  <a class="btn" href="./pain.html">
-    <div class="btn-icon">&#x1FA79;</div>
-    <div class="btn-text">
-      <div class="btn-title">みんなの痛み撲滅シート</div>
-      <div class="btn-sub">全26件・部位別治療法データベース</div>
-    </div>
-  </a>
-
-  <a class="btn" href="./stories.html">
-    <div class="btn-icon">&#x1F4D6;</div>
-    <div class="btn-text">
-      <div class="btn-title">初めてのレース奮闘記</div>
-      <div class="btn-sub">全4作 ｜ フルマラソン・トレラン・トライアスロン・スパルタン</div>
-    </div>
-  </a>
-
-  <div class="divider">&#x1F3CB; 各種活動部屋</div>
-
-  <a class="btn" href="./run-guide.html">
-    <div class="btn-icon">&#x1F3C3;</div>
-    <div class="btn-text">
-      <div class="btn-title">ラン虎の巻</div>
-      <div class="btn-sub">初フルへの道・脚攣り対策・クリック合戦 ｜ 部員の実体験集</div>
-    </div>
-  </a>
-
-  <a class="btn" href="./trailrun-guide.html">
-    <div class="btn-icon">&#x1F332;</div>
-    <div class="btn-text">
-      <div class="btn-title">トレラン虎の巻</div>
-      <div class="btn-sub">ステップアップ王道・大会実録・ザック論争 ｜ 山の掟つき</div>
-    </div>
-  </a>
-
-  <a class="btn" href="./kintore.html">
-    <div class="btn-icon">&#x1F4AA;</div>
-    <div class="btn-text">
-      <div class="btn-title">筋トレ虎の巻</div>
-      <div class="btn-sub">全23件 ｜ 腕立てロードマップ・プロテイン・筋トレ飯</div>
-    </div>
-  </a>
-
-  <a class="btn" href="./garmin.html">
-    <div class="btn-icon">&#x231A;</div>
-    <div class="btn-text">
-      <div class="btn-title">ガーミン虎の巻</div>
-      <div class="btn-sub">全22件 ｜ モデル比較・AI連携・バッテリー戦略</div>
-    </div>
-  </a>
-
-  <a class="btn" href="./triathlon-guide.html">
-    <div class="btn-icon">&#x1F3CA;</div>
-    <div class="btn-text">
-      <div class="btn-title">トライアスロン虎の巻</div>
-      <div class="btn-sub">装備・練習・レース当日の流れ ｜ 初心者完全ガイド</div>
-    </div>
-  </a>
-
-  <a class="btn" href="./swim-guide.html">
-    <div class="btn-icon">&#x1F3CA;&#xFE0F;</div>
-    <div class="btn-text">
-      <div class="btn-title">スイム虎の巻</div>
-      <div class="btn-sub">東京体育館・OWS・ドリルメニュー ｜ 広尾スイム部完全ガイド</div>
-    </div>
-  </a>
-
-  <a class="btn" href="./bike-guide.html">
-    <div class="btn-icon">&#x1F6B4;</div>
-    <div class="btn-text">
-      <div class="btn-title">自転車虎の巻</div>
-      <div class="btn-sub">ルール・レンタル・九十九里合宿 ｜ バイクなしでも参加OK</div>
-    </div>
-  </a>
-
-</div>
-<footer>広尾親父RC — 2026</footer>
-</div>
-
-<div id="auth-overlay" style="position:fixed;inset:0;background:radial-gradient(900px 600px at 50% 30%,#1E4936 0%,#122C20 55%,#0C1F16 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
-  <div style="background:#FFFDF6;border:1px solid #D9C98F;border-radius:14px;padding:36px 28px;max-width:320px;width:100%;box-shadow:inset 0 0 0 4px #FFFDF6,inset 0 0 0 5px rgba(195,162,77,.45),0 18px 50px rgba(0,0,0,.55);text-align:center">
-    <svg width="60" height="68" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:16px" aria-label="広尾親父RC">
-<defs>
-<linearGradient id="hgauthg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4936"/><stop offset="1" stop-color="#0F2A1E"/></linearGradient>
-<linearGradient id="hgauthau" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBD79A"/><stop offset="0.5" stop-color="#C9A227"/><stop offset="1" stop-color="#9A7B2E"/></linearGradient>
-</defs>
-<path d="M32 3 L58 12 L58 36 C58 52 46 64 32 69 C18 64 6 52 6 36 L6 12 Z" fill="url(#hgauthg)" stroke="url(#hgauthau)" stroke-width="2.5"/>
-<path d="M32 8 L53.5 15.5 L53.5 35.5 C53.5 49 43.5 59.5 32 64 C20.5 59.5 10.5 49 10.5 35.5 L10.5 15.5 Z" fill="none" stroke="rgba(201,162,39,0.45)" stroke-width="1"/>
-<g fill="url(#hgauthau)">
-<path d="M15.5 30 Q12.5 25 15.5 20.5 Q18.5 25 15.5 30 Z"/>
-<path d="M14.5 37 Q10.5 33 12 27.5 Q16.5 31.5 14.5 37 Z"/>
-<path d="M15.5 44 Q10.5 41 11 35 Q16.5 38.5 15.5 44 Z"/>
-<path d="M18 50.5 Q12.5 49 12 43 Q18 45.5 18 50.5 Z"/>
-<path d="M22 56 Q16 55.5 14.5 50 Q21 51.5 22 56 Z"/>
-<path d="M48.5 30 Q51.5 25 48.5 20.5 Q45.5 25 48.5 30 Z"/>
-<path d="M49.5 37 Q53.5 33 52 27.5 Q47.5 31.5 49.5 37 Z"/>
-<path d="M48.5 44 Q53.5 41 53 35 Q47.5 38.5 48.5 44 Z"/>
-<path d="M46 50.5 Q51.5 49 52 43 Q46 45.5 46 50.5 Z"/>
-<path d="M42 56 Q48 55.5 49.5 50 Q43 51.5 42 56 Z"/>
-</g>
-<path d="M29.5 16.5 L32 12.5 L34.5 16.5 L32 15.2 Z" fill="url(#hgauthau)"/>
-<text x="32" y="42" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="bold" fill="url(#hgauthau)" text-anchor="middle" letter-spacing="1.5">HG</text>
-<path d="M23 49 L41 49" stroke="url(#hgauthau)" stroke-width="1.2"/>
-<path d="M27 52.5 L37 52.5" stroke="rgba(201,162,39,0.6)" stroke-width="1"/>
-</svg>
-    <div style="font-family:'Shippori Mincho',serif;font-size:19px;font-weight:800;color:#1B4030;letter-spacing:.06em;margin-bottom:4px">広尾親父RC</div>
-    <div style="font-size:11px;color:#A8873C;letter-spacing:.18em;margin-bottom:24px">部員専用ページ</div>
-    <input type="password" id="pw-input" placeholder="パスワード" inputmode="numeric" pattern="[0-9]*"
-      style="width:100%;padding:12px 14px;border:1px solid #D9C98F;background:#FFFEFA;border-radius:10px;font-size:16px;text-align:center;letter-spacing:4px;outline:none;font-family:inherit;margin-bottom:10px">
-    <button onclick="checkPw()"
-      style="width:100%;padding:12px;background:linear-gradient(180deg,#1E4936,#0F2A1E);color:#EBD79A;border:1px solid #C3A24D;letter-spacing:.1em;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">
-      入室する
-    </button>
-    <div id="pw-err" style="display:none;margin-top:10px;font-size:12px;color:#e53935">パスワードが違います</div>
-    <div style="margin-top:12px;font-size:11.5px;line-height:1.6;color:#8A7A52;letter-spacing:.02em">ヒント: 学校の創立記念日を月日の4桁で。<br>検索すると出てきます</div>
-    <div style="margin-top:20px;padding-top:16px;border-top:1px solid #E8DDBD">
-      <a href="./about.html" style="font-size:12px;color:#999;text-decoration:none;display:block;text-align:center;letter-spacing:.04em">広尾親父ランニングクラブとは？ →</a>
-    </div>
+<body class="hg">
+<script src="./hg-auth.js"></script>
+<main class="portal">
+  <a class="portal__about" href="./about.html">広尾親父ランニングクラブとは？</a>
+  <div class="hg-card portal__card">
+    <svg class="hg-crest" width="80" height="90" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="広尾親父RC"><defs><linearGradient id="idxg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4936"/><stop offset="1" stop-color="#0F2A1E"/></linearGradient><linearGradient id="idxau" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBD79A"/><stop offset="0.5" stop-color="#C9A227"/><stop offset="1" stop-color="#9A7B2E"/></linearGradient></defs><path d="M32 3 L58 12 L58 36 C58 52 46 64 32 69 C18 64 6 52 6 36 L6 12 Z" fill="url(#idxg)" stroke="url(#idxau)" stroke-width="2.5"/><path d="M32 8 L53.5 15.5 L53.5 35.5 C53.5 49 43.5 59.5 32 64 C20.5 59.5 10.5 49 10.5 35.5 L10.5 15.5 Z" fill="none" stroke="rgba(201,162,39,0.45)" stroke-width="1"/><g fill="url(#idxau)"><path d="M15.5 30 Q12.5 25 15.5 20.5 Q18.5 25 15.5 30 Z"/><path d="M14.5 37 Q10.5 33 12 27.5 Q16.5 31.5 14.5 37 Z"/><path d="M15.5 44 Q10.5 41 11 35 Q16.5 38.5 15.5 44 Z"/><path d="M18 50.5 Q12.5 49 12 43 Q18 45.5 18 50.5 Z"/><path d="M22 56 Q16 55.5 14.5 50 Q21 51.5 22 56 Z"/><path d="M48.5 30 Q51.5 25 48.5 20.5 Q45.5 25 48.5 30 Z"/><path d="M49.5 37 Q53.5 33 52 27.5 Q47.5 31.5 49.5 37 Z"/><path d="M48.5 44 Q53.5 41 53 35 Q47.5 38.5 48.5 44 Z"/><path d="M46 50.5 Q51.5 49 52 43 Q46 45.5 46 50.5 Z"/><path d="M42 56 Q48 55.5 49.5 50 Q43 51.5 42 56 Z"/></g><path d="M29.5 16.5 L32 12.5 L34.5 16.5 L32 15.2 Z" fill="url(#idxau)"/><text x="32" y="42" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="bold" fill="url(#idxau)" text-anchor="middle" letter-spacing="1.5">HG</text><path d="M23 49 L41 49" stroke="url(#idxau)" stroke-width="1.2"/><path d="M27 52.5 L37 52.5" stroke="rgba(201,162,39,0.6)" stroke-width="1"/></svg>
+    <h1 class="portal__title">広尾親父RC</h1>
+    <p class="portal__sub">ランニングクラブ 部員専用ページ</p>
+  <span class="hg-label">レース情報</span>
+    <a class="hg-menu" href="./races.html"><span class="hg-menu__icon">&#x1F3C5;</span><span><span class="hg-menu__title">2026年度 レース表</span><span class="hg-menu__sub">2026.4〜2027.3 ｜ 全66大会・イベント ｜ カテゴリ&推奨フィルター付き</span></span></a>
+    <a class="hg-menu" href="./history.html"><span class="hg-menu__icon">&#x1F4DC;</span><span><span class="hg-menu__title">活動アーカイブ</span><span class="hg-menu__sub">2023年〜 ｜ これまでの大会・イベントとハイライト ｜ 検索・並び替え付き</span></span></a>
+  <span class="hg-label">部員の知恵</span>
+    <a class="hg-menu" href="./links.html"><span class="hg-menu__icon">&#x1F517;</span><span><span class="hg-menu__title">お役立ちリンク集</span><span class="hg-menu__sub">全80アイテム ｜ ウェア・補給・動画ほか</span></span></a>
+    <a class="hg-menu" href="./manual.html"><span class="hg-menu__icon">&#x1F6AA;</span><span><span class="hg-menu__title">0次関門突破マニュアル</span><span class="hg-menu__sub">家族交渉の虎の巻 ｜ 全11戦績・教訓収録</span></span></a>
+    <a class="hg-menu" href="./pain.html"><span class="hg-menu__icon">&#x1FA79;</span><span><span class="hg-menu__title">みんなの痛み撲滅シート</span><span class="hg-menu__sub">全26件・部位別治療法データベース</span></span></a>
+    <a class="hg-menu" href="./stories.html"><span class="hg-menu__icon">&#x1F4D6;</span><span><span class="hg-menu__title">初めてのレース奮闘記</span><span class="hg-menu__sub">全4作 ｜ フルマラソン・トレラン・トライアスロン・スパルタン</span></span></a>
+  <span class="hg-label">各種活動部屋</span>
+    <a class="hg-menu" href="./run-guide.html"><span class="hg-menu__icon">&#x1F3C3;</span><span><span class="hg-menu__title">ラン虎の巻</span><span class="hg-menu__sub">初フルへの道・脚攣り対策・クリック合戦 ｜ 部員の実体験集</span></span></a>
+    <a class="hg-menu" href="./trailrun-guide.html"><span class="hg-menu__icon">&#x1F332;</span><span><span class="hg-menu__title">トレラン虎の巻</span><span class="hg-menu__sub">ステップアップ王道・大会実録・ザック論争 ｜ 山の掟つき</span></span></a>
+    <a class="hg-menu" href="./kintore.html"><span class="hg-menu__icon">&#x1F4AA;</span><span><span class="hg-menu__title">筋トレ虎の巻</span><span class="hg-menu__sub">全23件 ｜ 腕立てロードマップ・プロテイン・筋トレ飯</span></span></a>
+    <a class="hg-menu" href="./garmin.html"><span class="hg-menu__icon">&#x231A;</span><span><span class="hg-menu__title">ガーミン虎の巻</span><span class="hg-menu__sub">全22件 ｜ モデル比較・AI連携・バッテリー戦略</span></span></a>
+    <a class="hg-menu" href="./triathlon-guide.html"><span class="hg-menu__icon">&#x1F3CA;</span><span><span class="hg-menu__title">トライアスロン虎の巻</span><span class="hg-menu__sub">装備・練習・レース当日の流れ ｜ 初心者完全ガイド</span></span></a>
+    <a class="hg-menu" href="./swim-guide.html"><span class="hg-menu__icon">&#x1F3CA;&#xFE0F;</span><span><span class="hg-menu__title">スイム虎の巻</span><span class="hg-menu__sub">東京体育館・OWS・ドリルメニュー ｜ 広尾スイム部完全ガイド</span></span></a>
+    <a class="hg-menu" href="./bike-guide.html"><span class="hg-menu__icon">&#x1F6B4;</span><span><span class="hg-menu__title">自転車虎の巻</span><span class="hg-menu__sub">ルール・レンタル・九十九里合宿 ｜ バイクなしでも参加OK</span></span></a>
   </div>
-</div>
-<script>
-(function(){
-  var PASS='0530', KEY='hg-rc-auth';
-  if(sessionStorage.getItem(KEY)==='1') document.getElementById('auth-overlay').style.display='none';
-  document.getElementById('pw-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkPw();});
-  window.checkPw=function(){
-    if(document.getElementById('pw-input').value===PASS){
-      sessionStorage.setItem(KEY,'1');
-      document.getElementById('auth-overlay').style.display='none';
-    } else {
-      document.getElementById('pw-err').style.display='block';
-      document.getElementById('pw-input').value='';
-      document.getElementById('pw-input').focus();
-    }
-  };
-})();
-</script>
+  <p class="portal__foot">広尾親父RC — 2026</p>
+</main>
+
 <script src="chat.js" defer></script>
 </body>
 </html>

@@ -5,1479 +5,656 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2026年度 広尾親父RC レース表</title>
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
-    background: #f0f4f1;
-    color: #1b5e35;
-    font-size: 14px;
-  }
-  header {
-    background: linear-gradient(160deg, #1b5e35 0%, #0d3d20 60%, #093319 100%);
-    color: white;
-    padding: 20px 16px 16px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-    border-bottom: 3px solid #c9a227;
-  }
-  header h1 {
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    margin-bottom: 10px;
-  }
-  header .subtitle {
-    font-size: 11px;
-    opacity: 0.6;
-    margin-bottom: 12px;
-  }
-  .filter-row {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-  .filter-btn {
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1.5px solid rgba(255,255,255,0.3);
-    background: transparent;
-    color: white;
-    font-size: 11px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: inherit;
-  }
-  .filter-btn.active, .filter-btn:hover {
-    background: white;
-    border-color: white;
-    color: #1b5e35;
-  }
-
-  .month-section {
-    margin: 0;
-  }
-  .month-header {
-    background: #1b5e35;
-    color: #f0d060; text-shadow: 0 1px 2px rgba(0,0,0,0.4);
-    font-size: 12px;
-    font-weight: 700;
-    padding: 6px 16px;
-    letter-spacing: 0.1em;
-    position: sticky;
-    top: var(--header-h, 130px);
-    z-index: 90;
-  }
-
-  .cards-container {
-    padding: 10px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .card {
-    background: white;
-    border-radius: 12px;
-    padding: 14px;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
-    border-left: 4px solid #ccc;
-    transition: all 0.15s;
-  }
-  .card:active { opacity: 0.85; }
-
-  /* カテゴリ別カラー */
-  .card.ロード  { border-left-color: #4c9be8; }
-  .card.トレラン { border-left-color: #5cb85c; }
-  .card.トラ   { border-left-color: #e67e22; }
-  .card.イベント { border-left-color: #9b59b6; }
-  .card.その他  { border-left-color: #95a5a6; }
-
-  .card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    gap: 8px;
-  }
-  .card-date {
-    font-size: 12px;
-    color: #666;
-    white-space: nowrap;
-    padding-top: 2px;
-  }
-  .card-badge {
-    display: inline-block;
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 10px;
-    font-weight: 600;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .badge-ロード   { background: #dbeeff; color: #2471c8; }
-  .badge-トレラン { background: #d4edda; color: #276928; }
-  .badge-トラ    { background: #fde8d0; color: #c0560b; }
-  .badge-イベント { background: #ede0f5; color: #7b3ba0; }
-  .badge-その他  { background: #ecf0f1; color: #7f8c8d; }
-
-  .card-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #1b5e35;
-    line-height: 1.35;
-    margin-bottom: 7px;
-  }
-  .card-desc {
-    font-size: 12px;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 8px;
-  }
-  .card-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .card-members {
-    font-size: 11px;
-    color: #888;
-    flex: 1;
-  }
-  .card-link {
-    font-size: 11px;
-    color: #1b5e35;
-    text-decoration: none;
-    border: 1px solid #1b5e35;
-    border-radius: 6px;
-    padding: 3px 10px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .card-link:active { background: #d0eadb; }
-
-  .card-memory {
-    font-size: 11px;
-    color: #5a4a00;
-    background: #fdf8e8;
-    border-left: 3px solid #c9a227;
-    border-radius: 0 6px 6px 0;
-    padding: 5px 9px;
-    margin-top: 7px;
-    line-height: 1.65;
-    font-style: italic;
-  }
-  .card-memory::before {
-    content: '💭 ';
-    font-style: normal;
-  }
-
-
-  .badge-推奨 { background: linear-gradient(135deg,#c9a227,#e8c84a); color: #1b1a00; }
-  .card.recommended { box-shadow: 0 2px 14px rgba(201,162,39,0.35); }
-  .card.recommended::before { content:''; display:block; position:absolute; inset:0; border-radius:12px; border:1.5px solid rgba(201,162,39,0.5); pointer-events:none; }
-  .card { position:relative; }
-  .hidden { display: none !important; }
-
-  .disclaimer {
-    background: #fff8e1;
-    border-bottom: 1px solid #e8d88a;
-    padding: 8px 14px;
-    font-size: 11px;
-    color: #7a6000;
-    line-height: 1.6;
-  }
-
-  .legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 10px 12px;
-    background: white;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    color: #555;
-  }
-  .legend-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .dot-ロード   { background: #4c9be8; }
-  .dot-トレラン { background: #5cb85c; }
-  .dot-トラ    { background: #e67e22; }
-  .dot-イベント { background: #9b59b6; }
-  .dot-その他  { background: #95a5a6; }
-
-  .count-badge {
-    background: #e74c3c;
-    color: white;
-    border-radius: 10px;
-    font-size: 10px;
-    padding: 1px 6px;
-    margin-left: 6px;
-  }
-  footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 11px;
-    color: #8aab98;
-  }
-
-  .header-inner { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-  .header-text { flex: 1; }
-  .hg-emblem { flex-shrink: 0; }
-  header h1 { margin-bottom: 4px; }
-</style>
-<style id="tora-theme">
-body{background:#F7F3E8!important;color:#4A4536}
-#bg{display:none}
-header{background:linear-gradient(160deg,#17382A 0%,#0F2A1E 100%)!important;border-bottom:3px solid #C3A24D!important}
-header h1{font-family:'Shippori Mincho',serif;font-weight:700;font-size:15px;letter-spacing:.04em}
-header .subtitle{opacity:1;color:rgba(217,191,117,.85)}
-.filter-btn{white-space:nowrap;border:1px solid rgba(195,162,77,.5);color:#EBD79A;background:rgba(195,162,77,.08)}
-.filter-btn.active,.filter-btn:hover{background:#C3A24D;border-color:#C3A24D;color:#17382A;font-weight:700}
-.month-header{background:linear-gradient(90deg,#17382A,#1E4634);color:#D9BF75;font-family:'Shippori Mincho',serif;letter-spacing:.14em;border-left:3px solid #C3A24D;text-shadow:none}
-.disclaimer{background:#F1EBDA;color:#7A6320;border-bottom:1px solid #DECFA0}
-.legend{background:#F1EBDA;border-bottom:1px solid #DECFA0}
-.legend-item{color:#6B6046}
-.card{background:#FFFDF6;border:1px solid #D9C98F;border-left:4px solid #ccc;border-radius:10px;box-shadow:inset 0 0 0 3px #FFFDF6,inset 0 0 0 4px rgba(195,162,77,.35),0 2px 8px rgba(60,50,20,.08)}
-.card.ロード{border-left-color:#4c9be8}
-.card.トレラン{border-left-color:#5cb85c}
-.card.トラ{border-left-color:#e67e22}
-.card.イベント{border-left-color:#9b59b6}
-.card.その他{border-left-color:#95a5a6}
-.card-title{font-family:'Shippori Mincho',serif;color:#1B4030}
-.card-memory{background:#F7F0DC;border-left:3px solid #C3A24D;color:#5C4E1E}
-.card-link{color:#8A6D2E;border:1px solid #C3A24D;white-space:nowrap}
-.count-badge{background:#C3A24D;color:#17382A}
-.recommended{box-shadow:inset 0 0 0 3px #FFFDF6,inset 0 0 0 4px rgba(195,162,77,.35),0 2px 14px rgba(201,162,39,0.45)}
-footer{color:#8A8168}
-</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./hg.css">
+<style>
+/* このページだけの並べ方（色・書体・大きさは hg.css） */
+/* 絞り込み：hg-pills を見出しの下に貼りつける。button を丸ボタンの見た目にそろえる */
+.races-filter{position:sticky;top:var(--header-h,52px);z-index:90}
+.races-filter .hg-pill{font-family:inherit;line-height:inherit;cursor:pointer}
+.races-body{padding-top:var(--hg-s4)}
+.races-legend{display:flex;flex-wrap:wrap;gap:var(--hg-s2);margin:0 0 var(--hg-s2)}
+/* 大会の行：罫線で区切る一覧（カードにしない） */
+.races-list{margin:0;padding:0;list-style:none;border-top:2px solid var(--hg-green)}
+.races-item{padding:var(--hg-s3) 0;border-bottom:1px solid var(--hg-line)}
+.races-item__head{display:flex;flex-wrap:wrap;align-items:center;gap:var(--hg-s1) var(--hg-s2)}
+.races-item__date{font-size:var(--hg-fs-sm);font-weight:700;color:var(--hg-gold-ink)}
+.races-item__title{font-family:var(--hg-font-head);font-weight:700;font-size:var(--hg-fs-md);color:var(--hg-green);line-height:1.5;margin:var(--hg-s1) 0}
+.races-item__desc{font-size:var(--hg-fs-sm);line-height:1.75}
+.races-item__memory{margin-top:var(--hg-s2);padding-left:var(--hg-s2);border-left:2px solid var(--hg-gold);font-size:var(--hg-fs-xs);line-height:1.7;color:var(--hg-gold-ink)}
+.races-item__memory::before{content:'💭 '}
+.races-item__foot{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:var(--hg-s1) var(--hg-s3);margin-top:var(--hg-s2)}
+.races-item__members{flex:1 1 12em;min-width:0;font-size:var(--hg-fs-xs);line-height:1.7;color:var(--hg-ink-muted)}
+.races-item__link{flex:none;font-size:var(--hg-fs-xs);font-weight:700}
+.hg .races-footer-link{color:var(--hg-gold-light)}
+</style>
 </head>
-<body>
-
-<header>
-  <div class="header-inner">
-
-  <div class="hg-emblem">
-    <a href="./index.html" style="display:inline-block;text-decoration:none"><svg width="52" height="59" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="広尾親父RC"><defs><linearGradient id="cracesh0g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4936"/><stop offset="1" stop-color="#0F2A1E"/></linearGradient><linearGradient id="cracesh0au" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBD79A"/><stop offset="0.5" stop-color="#C9A227"/><stop offset="1" stop-color="#9A7B2E"/></linearGradient></defs><path d="M32 3 L58 12 L58 36 C58 52 46 64 32 69 C18 64 6 52 6 36 L6 12 Z" fill="url(#cracesh0g)" stroke="url(#cracesh0au)" stroke-width="2.5"/><path d="M32 8 L53.5 15.5 L53.5 35.5 C53.5 49 43.5 59.5 32 64 C20.5 59.5 10.5 49 10.5 35.5 L10.5 15.5 Z" fill="none" stroke="rgba(201,162,39,0.45)" stroke-width="1"/><g fill="url(#cracesh0au)"><path d="M15.5 30 Q12.5 25 15.5 20.5 Q18.5 25 15.5 30 Z"/><path d="M14.5 37 Q10.5 33 12 27.5 Q16.5 31.5 14.5 37 Z"/><path d="M15.5 44 Q10.5 41 11 35 Q16.5 38.5 15.5 44 Z"/><path d="M18 50.5 Q12.5 49 12 43 Q18 45.5 18 50.5 Z"/><path d="M22 56 Q16 55.5 14.5 50 Q21 51.5 22 56 Z"/><path d="M48.5 30 Q51.5 25 48.5 20.5 Q45.5 25 48.5 30 Z"/><path d="M49.5 37 Q53.5 33 52 27.5 Q47.5 31.5 49.5 37 Z"/><path d="M48.5 44 Q53.5 41 53 35 Q47.5 38.5 48.5 44 Z"/><path d="M46 50.5 Q51.5 49 52 43 Q46 45.5 46 50.5 Z"/><path d="M42 56 Q48 55.5 49.5 50 Q43 51.5 42 56 Z"/></g><path d="M29.5 16.5 L32 12.5 L34.5 16.5 L32 15.2 Z" fill="url(#cracesh0au)"/><text x="32" y="42" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="bold" fill="url(#cracesh0au)" text-anchor="middle" letter-spacing="1.5">HG</text><path d="M23 49 L41 49" stroke="url(#cracesh0au)" stroke-width="1.2"/><path d="M27 52.5 L37 52.5" stroke="rgba(201,162,39,0.6)" stroke-width="1"/></svg></a>
-  </div>
-    <div class="header-text">
-      <h1>🏃 広尾親父RC　2026年度 レース表</h1>
-      <div class="subtitle">2026年4月〜2027年3月 ｜ 全 75 大会・イベント ｜ 2026.10.31更新</div>
-    </div>
-  </div>
-  <div class="filter-row">
-    <button class="filter-btn active" data-cat="全て">全て</button>
-    <button class="filter-btn" data-cat="ロード">🏅ロード</button>
-    <button class="filter-btn" data-cat="トレラン">🌲トレラン</button>
-    <button class="filter-btn" data-cat="トラ">🚴トライアスロン</button>
-    <button class="filter-btn" data-cat="イベント">🎉イベント</button>
-    <button class="filter-btn" data-cat="その他">その他</button>
-  </div>
+<body class="hg">
+<script src="./hg-auth.js"></script>
+<header class="hg-header">
+  <a class="hg-header__logo" href="./index.html">広尾親父RC</a>
+  <a class="hg-btn" href="./index.html">トップへ</a>
 </header>
+<section class="hg-hero">
+  <h1 class="hg-hero__title">🏃 広尾親父RC　<br><em>2026年度 レース表</em></h1>
+  <p class="hg-hero__sub">2026年4月〜2027年3月 ｜ 全 75 大会・イベント ｜ 2026.10.31更新</p>
+</section>
 
-<div class="disclaimer">
-  ⚠️ このページの情報は「正確さ」より「らしさ」を優先しています。日程・定員・エントリーの正確な情報は、ご自身で調べてください。親父たちを信用しすぎないこと。<br>
+<nav class="hg-pills races-filter" aria-label="種目で絞り込む">
+  <button class="hg-pill is-active" type="button" data-cat="全て" aria-pressed="true">全て</button>
+  <button class="hg-pill" type="button" data-cat="ロード" aria-pressed="false">🏅ロード</button>
+  <button class="hg-pill" type="button" data-cat="トレラン" aria-pressed="false">🌲トレラン</button>
+  <button class="hg-pill" type="button" data-cat="トラ" aria-pressed="false">🚴トライアスロン</button>
+  <button class="hg-pill" type="button" data-cat="イベント" aria-pressed="false">🎉イベント</button>
+  <button class="hg-pill" type="button" data-cat="その他" aria-pressed="false">その他</button>
+</nav>
+
+<section class="hg-section races-body">
+  <div class="hg-wrap">
+    <div class="hg-note">
+      ⚠️ このページの情報は「正確さ」より「らしさ」を優先しています。日程・定員・エントリーの正確な情報は、ご自身で調べてください。親父たちを信用しすぎないこと。<br>
   📌 2027年分は2026年10月28日時点の情報です。「未発表」「受付中」「これから」は、その日の状態。公式サイトで日程とエントリー開始日を必ず確認してください。<br>
-  📚 2026年1〜3月の記録は <a href="./races-2025.html" style="color:#7A6320;font-weight:700">2025年度のページ</a> へ。
-</div>
+  📚 2026年1〜3月の記録は <a href="./races-2025.html">2025年度のページ</a> へ。
+    </div>
+    <div class="races-legend"><span class="hg-tag hg-tag--run">ロード</span><span class="hg-tag hg-tag--trail">トレラン</span><span class="hg-tag hg-tag--swim">トライアスロン</span><span class="hg-tag">イベント</span><span class="hg-tag">その他</span></div>
 
-<div class="legend">
-  <div class="legend-item"><div class="legend-dot dot-ロード"></div>ロード</div>
-  <div class="legend-item"><div class="legend-dot dot-トレラン"></div>トレラン</div>
-  <div class="legend-item"><div class="legend-dot dot-トラ"></div>トライアスロン</div>
-  <div class="legend-item"><div class="legend-dot dot-イベント"></div>イベント</div>
-  <div class="legend-item"><div class="legend-dot dot-その他"></div>その他</div>
-</div>
-
-<!-- ===== 2026年4月 ===== -->
-<div class="month-section" data-month="4">
-  <div class="month-header">2026年4月</div>
-  <div class="cards-container">
-
-
-    <div class="card recommended recommended recommended recommended recommended recommended トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">4/5(日)</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <span class="card-badge badge-推奨">⭐ トレイル推奨</span>
-      <div class="card-title">青梅高水トレイルラン 🥇</div>
-      <div class="card-desc">たじー前部長が60代1位入賞🥇 マキノさん初トレラン完走！武さん娘と16km親子参加。キンさんがグループ管理。</div>
-      <div class="card-memory">「初トレランで青梅高水を時間内完走！」と加納さんがマキノさんを称えた。たじー前部長は60代1位入賞を果たした。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 たじー（60代1位）、しんちゃん、キンさん、さわさん、ナベさん、チチさん、銅ちゃん、マキノ（初トレラン）（以上30km完走）、武さん父娘（16km）／もっちー・リーガー・かけさん（DNS）</div>
-        <a href="http://www.kfctriathlon.com/html/event_trail.html" class="card-link" target="_blank">公式サイト</a>
-      </div>
+    <div class="races-month" data-month="4">
+      <h2 class="hg-subtitle">2026年4月</h2>
+      <ul class="races-list">
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">4/5(日)</span><span class="hg-tag hg-tag--trail">トレラン</span><span class="hg-tag hg-tag--key">⭐ トレイル推奨</span></div>
+        <div class="races-item__title">青梅高水トレイルラン 🥇</div>
+        <div class="races-item__desc">たじー前部長が60代1位入賞🥇 マキノさん初トレラン完走！武さん娘と16km親子参加。キンさんがグループ管理。</div>
+        <div class="races-item__memory">「初トレランで青梅高水を時間内完走！」と加納さんがマキノさんを称えた。たじー前部長は60代1位入賞を果たした。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 たじー（60代1位）、しんちゃん、キンさん、さわさん、ナベさん、チチさん、銅ちゃん、マキノ（初トレラン）（以上30km完走）、武さん父娘（16km）／もっちー・リーガー・かけさん（DNS）</div><a class="races-item__link" href="http://www.kfctriathlon.com/html/event_trail.html" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">4/19(日)</span><span class="hg-tag hg-tag--run">ロード</span><span class="hg-tag hg-tag--key">⭐ フル推奨</span></div>
+        <div class="races-item__title">かすみがうらマラソン 🎉</div>
+        <div class="races-item__desc">ラン部最大級・約25名で出走。宮さんが初フル完走。まるさんは息子（H1）と10マイル親子参加、さだっしーは5kmに参戦。</div>
+        <div class="races-item__memory">暑さで給水所の水が途中で底をつき、自販機は現金のみ。たかSさんは「35kmでやっとCokeOnでアクエリアスを買えた」と後日報告した。反省会では映像を上映した。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 フル完走：ぼーちゃん、宮さん（初フル）、てらさん、野さん、Nobu、神保さん、ナベさん、いまい、ヒロ、青木さん、はやさん、ぐっさん、ボブさい、たかS、三上さん、チチさん、立沢さん、Yutaka、おださん、石井さん／10マイル完走：まるさん父子、天さん、マキノ、武さん／5km：さだっしー ほか</div><a class="races-item__link" href="https://kasumigaura-marathon.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">4/19(日)</span><span class="hg-tag hg-tag--run">ロード</span><span class="hg-tag hg-tag--key">⭐ ウルトラ推奨</span></div>
+        <div class="races-item__title">チャレンジ富士五湖ウルトラマラソン</div>
+        <div class="races-item__desc">富士山を望む湖畔を走るウルトラマラソン（100km/80km/118km）。かすみがうらと同日開催。今年は12名がエントリー。かけさんが80kmを10時間切りで完走、天さんは100kmに挑戦。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 かけさん（80km完走）、天さん（100km）、ごーちゃん、坂さん、キンさん、及さん、ぬくいさん など12名</div><a class="races-item__link" href="https://www.r-wellness.com/fuji5/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">4/24-26</span><span class="hg-tag hg-tag--trail">トレラン</span></div>
+        <div class="races-item__title">Mt.FUJI 100 / KAI / ASUMI</div>
+        <div class="races-item__desc">国内最大級トレイルレース。ツアーで参加。ボブさい・竹嶋さん（単身赴任先の青森から参戦）・銅ちゃんがFUJI100mi、たじー（年代別2位）・ごーちゃん・まいく・いっしーがKAI70k、かいさん・もっちーがASUMI40k。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 FUJI100mi：ボブさい・竹嶋さん（完走）、銅ちゃん（DNF）／KAI70k：たじー（年代別2位）・ごーちゃん・まいく・いっしー（完走）／ASUMI40k：かいさん・もっちー（完走）</div><a class="races-item__link" href="https://mtfuji100.com/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      </ul>
     </div>
 
-    <div class="card recommended recommended recommended recommended recommended recommended ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">4/19(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <span class="card-badge badge-推奨">⭐ フル推奨</span>
-      <div class="card-title">かすみがうらマラソン 🎉</div>
-      <div class="card-desc">ラン部最大級・約25名で出走。宮さんが初フル完走。まるさんは息子（H1）と10マイル親子参加、さだっしーは5kmに参戦。</div>
-      <div class="card-memory">暑さで給水所の水が途中で底をつき、自販機は現金のみ。たかSさんは「35kmでやっとCokeOnでアクエリアスを買えた」と後日報告した。反省会では映像を上映した。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 フル完走：ぼーちゃん、宮さん（初フル）、てらさん、野さん、Nobu、神保さん、ナベさん、いまい、ヒロ、青木さん、はやさん、ぐっさん、ボブさい、たかS、三上さん、チチさん、立沢さん、Yutaka、おださん、石井さん／10マイル完走：まるさん父子、天さん、マキノ、武さん／5km：さだっしー ほか</div>
-        <a href="https://kasumigaura-marathon.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-    <div class="card recommended recommended recommended recommended recommended recommended recommended ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">4/19(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <span class="card-badge badge-推奨">⭐ ウルトラ推奨</span>
-      <div class="card-title">チャレンジ富士五湖ウルトラマラソン</div>
-      <div class="card-desc">富士山を望む湖畔を走るウルトラマラソン（100km/80km/118km）。かすみがうらと同日開催。今年は12名がエントリー。かけさんが80kmを10時間切りで完走、天さんは100kmに挑戦。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 かけさん（80km完走）、天さん（100km）、ごーちゃん、坂さん、キンさん、及さん、ぬくいさん など12名</div>
-        <a href="https://www.r-wellness.com/fuji5/" class="card-link" target="_blank">公式サイト</a>
-      </div>
+    <div class="races-month" data-month="5">
+      <h2 class="hg-subtitle">2026年5月</h2>
+      <ul class="races-list">
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">5/9(土)</span><span class="hg-tag hg-tag--trail">トレラン</span></div>
+        <div class="races-item__title">ASO VOLCANO TRAIL</div>
+        <div class="races-item__desc">「参加した国内レースで1番の景色」（たじー談）。阿蘇カルデラを巡る112km。ごーちゃんが自身最長のトレイルを完走、たじー・もっちーは途中で無念のリタイア。</div>
+        <div class="races-item__memory">「参加した国内レースで1番の景色」とたじーが語った。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 ごーちゃん（完走）、たじー、もっちー</div></div>
+      </li>
+      <li class="races-item" data-cat="その他">
+        <div class="races-item__head"><span class="races-item__date">5/9(土)</span><span class="hg-tag">その他</span></div>
+        <div class="races-item__title">エクストリームレース奥多摩</div>
+        <div class="races-item__desc">緒さん企画のアドベンチャーレース。MTB・カヤック・トレイルの複合種目。2-3名チーム戦。</div>
+        <div class="races-item__memory">天さんが無事ゴールし「カヌー、MTB、トレランと楽しかった！」と報告した。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 緒さん（企画）、天さん など</div><a class="races-item__link" href="https://www.a-extremo.com/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="トラ">
+        <div class="races-item__head"><span class="races-item__date">5/23-24</span><span class="hg-tag hg-tag--swim">トライアスロン</span></div>
+        <div class="races-item__title">トライアスロン合宿@ひとつ松</div>
+        <div class="races-item__desc">まいく企画。マイクハウス2泊。5-10kmラン＋40-90kmバイク。初心者も参加しやすいコース設計。99T会場近く。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 まいく（企画）、おださん、天さん、ぐっさん、ひろやん など</div></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">5/17(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">野辺山ウルトラマラソン100k</div>
+        <div class="races-item__desc">累積標高2,700m・高地の過酷コース。当日は尋常じゃない暑さの中、三さんが初ウルトラで100km完走、坂さんは68kmを完走、キンさんも参戦。「レース途中で温泉の誘惑」との声も。</div>
+        <div class="races-item__memory">キンさん「富士山も見え、芝の歩道も走れ、天気にも恵まれ最高の大会だった」。坂さんは68kmを「ウルトラの東の横綱」コースで制限時間16分前にゴール。後日キンさんが「来年も出よう」と呼びかけたのは今年のウルトラでここだけだった。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 三さん（100km完走）、坂さん（68km完走）、キンさん</div><a class="races-item__link" href="https://www.nobeyama-ultra.org/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">5/17(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">洞爺湖マラソン</div>
+        <div class="races-item__desc">北海道・洞爺湖畔の絶景フルマラソン。ヒロさん参戦。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 ヒロ（完走）</div><a class="races-item__link" href="https://www.toyako-marathon.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">5/24(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">二子玉川ハーフマラソン</div>
+        <div class="races-item__desc">地元300〜400名規模のアットホームな大会。駒澤大学駅伝部がゲスト参戦で盛り上がる。ゴール後は反省会へ。</div>
+        <div class="races-item__memory">くーさんが「全員完走！」とLINEで報告した。スタート前にしげさんが「駒大に負けるなー」とけしかけた。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 くーさん、荒さん、つるさん、ふじやん、松ちゃん、てらさん、いまい など</div></div>
+      </li>
+      <li class="races-item" data-cat="その他">
+        <div class="races-item__head"><span class="races-item__date">5/30-31</span><span class="hg-tag">その他</span></div>
+        <div class="races-item__title">スパルタンレース＠千葉ドイツ村</div>
+        <div class="races-item__desc">5/30-31開催、広尾親父RCは5/31参加。泥だらけの障害物レース。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 しんちゃん、緒さん、内藤さん など</div><a class="races-item__link" href="https://spartanracejapan.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      </ul>
     </div>
 
-
-    <div class="card トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">4/24-26</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <div class="card-title">Mt.FUJI 100 / KAI / ASUMI</div>
-      <div class="card-desc">国内最大級トレイルレース。ツアーで参加。ボブさい・竹嶋さん（単身赴任先の青森から参戦）・銅ちゃんがFUJI100mi、たじー（年代別2位）・ごーちゃん・まいく・いっしーがKAI70k、かいさん・もっちーがASUMI40k。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 FUJI100mi：ボブさい・竹嶋さん（完走）、銅ちゃん（DNF）／KAI70k：たじー（年代別2位）・ごーちゃん・まいく・いっしー（完走）／ASUMI40k：かいさん・もっちー（完走）</div>
-        <a href="https://mtfuji100.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
+    <div class="races-month" data-month="6">
+      <h2 class="hg-subtitle">2026年6月</h2>
+      <ul class="races-list">
+      <li class="races-item" data-cat="イベント">
+        <div class="races-item__head"><span class="races-item__date">6/13(土)</span><span class="hg-tag">イベント</span></div>
+        <div class="races-item__title">京都ランイベント</div>
+        <div class="races-item__desc">野さん企画。嵐山（渡月橋）→東山、京都マラソンコースに沿って22-24km。飲み会は池田屋跡地の居酒屋案。「安売り系居酒屋にロマンくじかれた」。</div>
+        <div class="races-item__memory">「安売り系居酒屋にロマンをくじかれた」という野さんの報告が笑いを誘った。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 野さん（企画）、チチさん、宮さん など</div></div>
+      </li>
+      <li class="races-item" data-cat="トラ">
+        <div class="races-item__head"><span class="races-item__date">6/21(日)</span><span class="hg-tag hg-tag--swim">トライアスロン</span></div>
+        <div class="races-item__title">木更津トライアスロン</div>
+        <div class="races-item__desc">チーム名「広尾ＴＣ」。トライアスロン部デビュー戦の人も。木更津はオールドルーキーのサウナホテルあり。</div>
+        <div class="races-item__memory">早朝の豪雨でスイムもバイクも中止。急遽設けられたランコースは運営も距離が分からないまま「とりあえずスタート」。足首まで浸かる水たまりをバシャバシャ走り、トライアスロンなのに「まさかの7kmラン」で終了。TOSSYさんが「ランもスキップしばりだったらスキップトライアスロンだった」と言った。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 おださん、はやさん、天さん、立沢さん（全員完走）</div></div>
+      </li>
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">6/6(土)-7(日)</span><span class="hg-tag hg-tag--trail">トレラン</span></div>
+        <div class="races-item__title">奥信濃100</div>
+        <div class="races-item__desc">100km・累積4800m・制限21時間。さいさん記録更新、銅ちゃん・いっしーは「倍々メソッド」で自身最長距離を完走。たじーはサポート隊で参戦。</div>
+        <div class="races-item__memory">深夜0時と1時のゴールに部員が夜通しLINEで声援。「58km地点、ネットが全く繋がらない」という山の洗礼も。いっしー「残すはアレ（100マイル）ですが、全くもって達成できる気がしません」。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 さいさん、銅ちゃん、いっしー（完走）、たじー（サポート）</div></div>
+      </li>
+      <li class="races-item" data-cat="その他">
+        <div class="races-item__head"><span class="races-item__date">6/7(日)</span><span class="hg-tag">その他</span></div>
+        <div class="races-item__title">富士山須走五合目競走</div>
+        <div class="races-item__desc">しんちゃんが登りの部で年代別9位。松ちゃんも完走。前日に30km走ってからの出走。</div>
+        <div class="races-item__memory">「急斜面走りきれず良い経験になりました！坂練・筋トレ含めて鍛え直します。吉田響くんはいい若者でした❤️」</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 しんちゃん（年代別9位）、松ちゃん（完走）</div></div>
+      </li>
+      <li class="races-item" data-cat="その他">
+        <div class="races-item__head"><span class="races-item__date">6/14(日)</span><span class="hg-tag">その他</span></div>
+        <div class="races-item__title">東京タワー階段競走 🗼</div>
+        <div class="races-item__desc">階段部の年間メインレース。「ハセツネや富士山より急斜度で厳しい闘い」（しんちゃん）。</div>
+        <div class="races-item__memory">完走報告とともに、部内ヒエラルキー図で「階段部が最上位」であることが反省会で発表された。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 しんちゃん（完走）、他階段部</div></div>
+      </li>
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">6/20(土)-21(日)</span><span class="hg-tag hg-tag--trail">トレラン</span></div>
+        <div class="races-item__title">Kaga Spa Trail 100K/50K</div>
+        <div class="races-item__desc">雨のドロンコ大会。さわさん100kmリベンジ完走（水中ウォーキング練の男）。加納さん初56km完走、チチさん50km完走。武さんは関門アウトも「痺れる悪夢を泣きながら楽しんだ」。</div>
+        <div class="races-item__memory">武さん「20回近く転んで関門アウト。夢のような10時間の最後尾単独走」。転倒で紛失したクマスプレーとフラスクはスイーパーが回収して手元に戻った。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 さわさん（100k完走）、加納（56k）、チチさん（50k）、武さん、小船井さん（50k）</div></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">6/28(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">サロマ湖100kmウルトラ</div>
+        <div class="races-item__desc">「ウルトラの父」坂さんが単騎参戦。昨年の60km関門から今年は79.3km関門まで前進。完走メダルは来年に持ち越し。</div>
+        <div class="races-item__memory">一歩ずつ前進する挑戦に部内総員リスペクト。たじー「来年はもう20km進んでゴールですね🤗」、かけさん「来年は一緒に走ろう」。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 坂さん（79.3km）</div></div>
+      </li>
+      <li class="races-item" data-cat="その他">
+        <div class="races-item__head"><span class="races-item__date">6/28(日)</span><span class="hg-tag">その他</span></div>
+        <div class="races-item__title">伊東OWS（オープンウォーター）</div>
+        <div class="races-item__desc">伊東オレンジビーチ開催。ぐっさん750m、武さんファミリーが1500m。松田丈志・萩野公介らゲスト参加のガチ大会ながら初心者に優しい運営。</div>
+        <div class="races-item__memory">武さん「左に娘を、右に息子を見ながら泳いできました。やっぱ海はいいよね」。駅徒歩5分・帰りは温泉と食べ歩き、東京駅8:30〜17:30で完結。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 ぐっさん、武さんファミリー</div></div>
+      </li>
+      </ul>
     </div>
 
+    <div class="races-month" data-month="7">
+      <h2 class="hg-subtitle">2026年7月</h2>
+      <ul class="races-list">
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">7/24(金)</span><span class="hg-tag hg-tag--trail">トレラン</span></div>
+        <div class="races-item__title">富士登山競走（第79回）</div>
+        <div class="races-item__desc">平日開催の日本一の山岳レース。五合目コース2時間20分クリアで翌年山頂コースへ。今年はしんちゃんが山頂コースを完走し、グランドスラム（サブ3＋サブ10＋山頂完走）を達成🏆 キンさん・たじー・松ちゃんも山頂コースに挑戦（キンさんは本八合目まで）。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 しんちゃん（山頂完走・グランドスラム達成）、キンさん、たじー、松ちゃん（山頂コース・DNF）</div><a class="races-item__link" href="https://fujimountainrace.city.fujiyoshida.yamanashi.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="その他">
+        <div class="races-item__head"><span class="races-item__date">7/25(土)</span><span class="hg-tag">その他</span></div>
+        <div class="races-item__title">スパルタンレース＠富士裾野</div>
+        <div class="races-item__desc">富士山麓での障害物レース。千葉ドイツ村に続くスパルタン第2弾。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 内藤さん、小串さん（完走）、緒さん（引率）</div><a class="races-item__link" href="https://spartanracejapan.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">7/19(日)</span><span class="hg-tag hg-tag--trail">トレラン</span><span class="hg-tag hg-tag--key">⭐ トレイル推奨</span></div>
+        <div class="races-item__title">マウンテントレイルin野沢温泉</div>
+        <div class="races-item__desc">ラン部最大の遠征「親父の夏合宿」。14km/37km/65km＋ペア・駅伝。7/18(土)-20(月祝)の2泊3日・新幹線遠征（東京8:41発はくたか555号）。費用ザックリ5万円。池畑選手も参加。</div>
+        <div class="races-item__memory">かけさんの名指し勧誘祭りが3月から続いた。「野沢温泉トレイル37キロは初心者・中級者向け。完走後のシェフのカップヌードルはサイコー！」。みやっち「完走する可能性0%くらいの想定です」で勢いエントリー。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 65k：ごーちゃん（完走）、チチさん（DNF）／37k：たじー・ナベさん（完走）、及さん・かけさん・みやっち・舛田さん・まいく・かいさん（DNF）、リーガー（DNS）／14k：重さん（完走）、たかS（初トレイル）、しげさん、たくちゃん（初大会） ほか</div><a class="races-item__link" href="https://nozawaonsen-trail.com/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">7/19(日)</span><span class="hg-tag hg-tag--trail">トレラン</span></div>
+        <div class="races-item__title">OSJ ONTAKE100（100K）</div>
+        <div class="races-item__desc">御嶽山麓を走る100kmトレイル。野沢と同日開催。ボブさいが昨年に続いて100Kを完走。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 ボブさい（完走）</div><a class="races-item__link" href="https://www.outdoorsportsjapan.com/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="イベント">
+        <div class="races-item__head"><span class="races-item__date">7/26(日)</span><span class="hg-tag">イベント</span></div>
+        <div class="races-item__title">H1学年企画ラン（やまびこ打線・第1弾）</div>
+        <div class="races-item__desc">ぼーちゃん部長肝いりの学年企画・第1弾。猛暑の国立競技場周辺を8km超ファンラン→森のビアガーデンで懇親会。途中出入り自由、走り始めたばかりのお父さんも参加。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 H1幹事（くーさん）、ぼーちゃん、しんちゃん、たくちゃん、菅井さん など</div></div>
+      </li>
+      </ul>
+    </div>
+
+    <div class="races-month" data-month="8">
+      <h2 class="hg-subtitle">2026年8月</h2>
+      <ul class="races-list">
+      <li class="races-item" data-cat="トラ">
+        <div class="races-item__head"><span class="races-item__date">8/9(日)</span><span class="hg-tag hg-tag--swim">トライアスロン</span></div>
+        <div class="races-item__title">IRONMAN 70.3 Cebu 🌏</div>
+        <div class="races-item__desc">おださん・ひろやん発起の海外遠征。気温27-34℃の灼熱レース、ウェットスーツ不可。広尾パパ5名が全員無事完走。8/20の反省会で報告動画を上映。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 おださん、ひろやん、はやさん、まいく、天さん（全員完走）</div><a class="races-item__link" href="https://www.ironman.com/races/im703-cebu-philippines" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="その他">
+        <div class="races-item__head"><span class="races-item__date">8/6(木)</span><span class="hg-tag">その他</span></div>
+        <div class="races-item__title">HYROX＠幕張</div>
+        <div class="races-item__desc">ファンクショナルフィットネスレース。ランと筋トレ系ワークアウトを組み合わせた新スタイル競技。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 緒さん、他</div><a class="races-item__link" href="https://hyrox.com/event/hyrox-tokyo/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="その他">
+        <div class="races-item__head"><span class="races-item__date">8/9(日)</span><span class="hg-tag">その他</span></div>
+        <div class="races-item__title">三浦スイカOWS</div>
+        <div class="races-item__desc">三浦半島でのオープンウォータースイミング。ゴール後にスイカ食べ放題。IRONMAN Cebu組とは別動隊。「いっぱい泳げてスイカ食べ放題だよ🍉」（天さん）。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 緒さん（リレー）、ぐっさん、篠さん、三上さん、武さんファミリー、山田さん・佐々木さん（年代別1位）など</div></div>
+      </li>
+      <li class="races-item" data-cat="イベント">
+        <div class="races-item__head"><span class="races-item__date">8/16(日)</span><span class="hg-tag">イベント</span></div>
+        <div class="races-item__title">ブリバラン（夏の陣）</div>
+        <div class="races-item__desc">たっちー企画の鎌倉・逗子ファンラン。トレイル込み約15km→稲村ヶ崎温泉→BREEZE BIRD CAFEでパーティの黄金コース。2月の逗子シリーズに続く開催。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 たっちー（企画）、ぼーちゃん、三さん、渡さん、つるさん など</div></div>
+      </li>
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">8/28(金)-30(日)</span><span class="hg-tag hg-tag--trail">トレラン</span></div>
+        <div class="races-item__title">UTMB Mont-Blanc（シャモニー）</div>
+        <div class="races-item__desc">今年は5名の広尾親父がモンブランへ。たじー（2年連続）とボブさいが完走、もっちー・ごーちゃん・いっしーも挑戦。ラン部から寄せ書きした日の丸とネパール国旗を持って走った。ゴールの瞬間はライブ映像でみんなで見守った。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 たじー（完走）、ボブさい（完走）、もっちー、ごーちゃん、いっしー</div><a class="races-item__link" href="https://montblanc.utmb.world/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">8/30(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">北海道マラソン</div>
+        <div class="races-item__desc">道産子3人＋野さん。エイドのちくわパン論争が白熱。「ちくわ＝北海道のソウルフード」は道産子坂さんも「見たことない」。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 Nobu、野さん、及さん（完走）、坂さん</div><a class="races-item__link" href="https://hokkaido-marathon.com/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      </ul>
+    </div>
+
+    <div class="races-month" data-month="9">
+      <h2 class="hg-subtitle">2026年9月</h2>
+      <ul class="races-list">
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">9/5(土)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">第128回・TAMAハーフマラソン</div>
+        <div class="races-item__desc">きらさん＆篠さんのカムバックラン成功🔥 松ちゃんは最後のデッドヒートを制して3位入賞🥉（特典の次回無料で10/10の二子玉川30kmへ）。三さんが並走。</div>
+        <div class="races-item__memory">三さん情報：TAMAハーフは各部3位以内に入賞すると次回無料。夏場はガチ勢がオフなので入賞が狙える穴場。10月〜3月はペーサー募集もある。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 松ちゃん（3位）、きらさん、篠さん、三さん など</div><a class="races-item__link" href="https://runnet.jp/entry/runtes/user/pc/moshicomDetailAction.do?raceId=138398&div=1" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="イベント">
+        <div class="races-item__head"><span class="races-item__date">9/4(金)夜-5(土)</span><span class="hg-tag">イベント</span></div>
+        <div class="races-item__title">トレラン親父の富士登山②（池畑選手回）</div>
+        <div class="races-item__desc">たじー企画・夏の富士登山第2弾。吉田口五合目から山頂へ、ゲストは池畑拓哉選手（3年連続UTMB日本人1位）。雨上がりの山頂まで無事登頂🗻 お鉢巡りと富士山カレー。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 たじー（企画）、池畑選手、はやさん、たくちゃん、他</div></div>
+      </li>
+      <li class="races-item" data-cat="トラ">
+        <div class="races-item__head"><span class="races-item__date">9/6(日)</span><span class="hg-tag hg-tag--swim">トライアスロン</span></div>
+        <div class="races-item__title">佐渡国際トライアスロン</div>
+        <div class="races-item__desc">国内最長級のロングディスタンス。天さんがAタイプで昨年のリベンジに成功、完走🎉 強風でスイムは4km→2kmに短縮、制限時間も15時間に。バイク190kmは島一周で風との戦い、ランも出し切って14時間でフィニッシュ。</div>
+        <div class="races-item__memory">「去年時間切れでDNFしてから、スイム・バイク・ランの練習に注力した。皆さんと一緒に練習できたので今日に繋がった」（天さん）。帰りは高波でジェットフォイルが欠航、フェリーでゆっくり帰還。「帰るまでがトライアスロン」。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 天さん（Aタイプ完走）</div><a class="races-item__link" href="http://www.scsf.jp/triathlon/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">9月中旬</span><span class="hg-tag hg-tag--trail">トレラン</span></div>
+        <div class="races-item__title">トル・デ・ジアン（イタリア・330km）</div>
+        <div class="races-item__desc">UTMBの倍の距離を走る、アルプスの超長距離トレイル。いいのっちが前半29位から後半に順位を上げ続け、約80時間・12位でゴール。「きついレースでもいつも笑顔」（しんちゃん）。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 いいのっち（12位完走）</div></div>
+      </li>
+      <li class="races-item" data-cat="その他">
+        <div class="races-item__head"><span class="races-item__date">9/19(土)</span><span class="hg-tag">その他</span></div>
+        <div class="races-item__title">スパルタンレース（ビースト）</div>
+        <div class="races-item__desc">約20kmの山岳コース＋障害物の「ビースト」。緒さんが完走し、3種目をそろえるトライフェクタを達成🏅 3つのメダルが合体して1つになる。いっしーは山岳パートの登り下りで若者をごぼう抜き。「トレランをやっている人が輝けるレース」（いっしー）。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 緒さん（トライフェクタ達成）、いっしー</div><a class="races-item__link" href="https://spartanracejapan.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">9/26(土)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">国立競技場リレーマラソン（フルの部）</div>
+        <div class="races-item__desc">三さん幹事のチーム戦、今年は約40名・5チームの大所帯。国立競技場のトラック＋観客席下の通路1周1.4kmをタスキでつなぎ、制限4時間。14:30集合・16:00スタート、19:30〜千駄ヶ谷で反省会。ゆるラン勢も周回数で調整OK。けやき祭の1週間前。<b>当日は全チーム完走</b>。直前の欠員にはM1の木幡さんが急きょ参戦、品川さんも爆走。</div>
+        <div class="races-item__memory">国立競技場の観客席の下を走る区間は、毎年GPSがうまく拾えない（しんちゃん談）。ペースは自分の感覚と仲間の声援が頼り。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 三さん（幹事）ほか約40名・5チーム（全チーム完走）</div><a class="races-item__link" href="https://boost-inc.jp/runmedia_kokuritsu/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">9/27(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">網走マラソン</div>
+        <div class="races-item__desc">「網走刑務所を脱走する人気のレース」（及さん談）。つるさん・ヒロがそろってサブ4達成🎉 ヒロは自己ベスト更新、「皇居ランのおかげで上りを克服」。つるさんは前日にニジマスも釣り上げた。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 つるさん（サブ4）、ヒロ（サブ4・自己ベスト）</div><a class="races-item__link" href="https://www.abashiri-marathon.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      </ul>
+    </div>
+
+    <div class="races-month" data-month="10">
+      <h2 class="hg-subtitle">2026年10月</h2>
+      <ul class="races-list">
+      <li class="races-item" data-cat="トラ">
+        <div class="races-item__head"><span class="races-item__date">10/3(土)</span><span class="hg-tag hg-tag--swim">トライアスロン</span></div>
+        <div class="races-item__title">九十九里トライアスロン（99T）</div>
+        <div class="races-item__desc">ぐっさん・緒さんほか初出場組のデビュー戦。快晴の九十九里で<b>全員完走</b>、これでトライアスリートの仲間入り🎉 天さんが手配したおそろいのトライスーツで出走。事前にはおださんの99Tレクチャー、大井埠頭でのバイク→ランの練習会も。チームの部には「広尾ＴＣ」で出場。けやき祭と同日。</div>
+        <div class="races-item__memory">先輩からの直前アドバイス：「自転車は前を見て走る」「バイク・ラン用のシャツはトランジションに置いておく（預け荷物に入れると取り出すのが大変）」（みやっち）。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 ぐっさん、緒さん、島戸さん、立沢さん、ごーちゃん（初完走組）、天さん、おださん、いっしー、まいく（全員完走）</div><a class="races-item__link" href="https://www.99t.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">10/11(日)-12(祝)</span><span class="hg-tag hg-tag--trail">トレラン</span></div>
+        <div class="races-item__title">ハセツネCup（第34回・71.5km）</div>
+        <div class="races-item__desc">夜通し走る本家・日本山岳耐久レース。<b>広尾親父の参加者は全員完走</b>。たじーは年代別6位入賞、及さんは関門をくぐり抜けて後半に順位を上げ、ハセツネ初完走。今熊山ではしんちゃんが応援。9/23には雨の中で後半コースを試走した。</div>
+        <div class="races-item__memory">「50代の星🌟」（TOSSY）。「完走＋入賞が定例化されてますね」とたじーに声が飛んだ。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 たじー（年代別6位）、ボブさい、銅ちゃん、さわさん、てらさん、及さん（初完走）（全員完走）</div><a class="races-item__link" href="https://www.hasetsune.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">10/11(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">シカゴマラソン 🌏</div>
+        <div class="races-item__desc">世界6大マラソンの一つ。ごーちゃんが99Tでトライアスロン初完走した翌週に完走。6大マラソン制覇まで、残すはボストンのみ。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 ごーちゃん（完走）</div><a class="races-item__link" href="https://www.chicagomarathon.com/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">10/25(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">金沢マラソン2026</div>
+        <div class="races-item__desc">人気の抽選フル。宮さんが大雨の中、3時間42分で完走🎉 エイドもほぼ完食。「ゴーゴーカレーは強敵で、食べた後1kmほどむせながら走った」。「大雨でも十分楽しめる、金沢マラソンおすすめです」（宮さん）。ふるさと納税枠（5万円）での確実エントリーも可。</div>
+        <div class="races-item__memory">宿は高騰必至（カプセルホテル1.9万円が観測された）。野さんがスーパー銭湯併設・素泊まり9300円・前日キャンセル無料の宿を発掘し、宮さんも確保。「マラソン前後の週の土曜は6000円〜。悪意しか感じない」（宮さん）。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 宮さん（3時間42分で完走）</div><a class="races-item__link" href="https://www.kanazawa-marathon.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">10/18(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">東京レガシーハーフマラソン2026</div>
+        <div class="races-item__desc">国立競技場発着の人気ハーフ。<b>当日は全員完走</b>、銅ちゃんは理想的なネガティブスプリット。大会ガイドブックの写真に緑の軍団が載った🟢 抽選は激戦で部内「当選報告のみ知りたいです」（TOSSY）状態に。当選：及さん（One Tokyo枠）、ヒロ（一般）、銅ちゃん（都民枠）、篠さん、なかやん、くーさん、舛田さん。7月末の追加抽選でしんちゃん・Yutaka・ぬくいさんも当選。専用LINEあり（くーさん）。</div>
+        <div class="races-item__memory">かけ・いまい・たかS・宮さん・しげさん・三さん・ナベさん・こやまん・荒さん・ごーちゃん・坂さんは落選。「行いが良い人が当選してますね✌️」（銅ちゃん）。チャリティ枠（DMHC 5万円〜）という道もある。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 及さん、ヒロ、銅ちゃん、篠さん、なかやん、くーさん、舛田さん、しんちゃん、Yutaka、ぬくいさん（全員完走）</div></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">10/25(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">水戸黄門漫遊マラソン</div>
+        <div class="races-item__desc">つくば（11/22）の前哨戦。金沢・横浜と同日。<b>水戸黄門組は全員完走</b>、暑さと激坂で「42kmが長かったよー」（しんちゃん）。それでも全員そろって印籠（完走メダル）をゲット。たくちゃんは初マラソン。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 しんちゃん、松ちゃん、たくちゃん（初マラソン）、岡さん、上野さん、石井さん（全員完走）</div></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">10/25(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">横浜マラソン2026</div>
+        <div class="races-item__desc">みなとみらい発着の都市型フル。金沢・水戸と同日。いまいが完走して自己ベスト更新✨ 「目標には届かなかったけど、言い訳はしません」（いまい）。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 いまい（自己ベスト）、神保さん、ヒロ、Yutaka（完走）</div><a class="races-item__link" href="https://www.yokohamamarathon.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">10/17(土)</span><span class="hg-tag hg-tag--trail">トレラン</span></div>
+        <div class="races-item__title">佐渡トレイル（新設大会）</div>
+        <div class="races-item__desc">新設50kmトレイル。佐渡4大会グランドスラムに新種目追加。SIGoT＝シゴト？</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 —</div></div>
+      </li>
+      </ul>
+    </div>
+
+    <div class="races-month" data-month="11">
+      <h2 class="hg-subtitle">2026年11月</h2>
+      <ul class="races-list">
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">11/8(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">アクアラインマラソン</div>
+        <div class="races-item__desc"><b>⚠️ 台風の影響（JR内房線の運休など）で、11/8の開催は見合わせ（10/6公式発表）。延期か中止かは関係機関と協議中（2026/10/28時点）。公式サイトで確認を。</b> 2年に1度の人気大会。「高速道路で富士山」「後半は乳牛の香り」。ハーフがオススメ（渋さん談）だが即完売、多くはフルでエントリー。</div>
+        <div class="races-item__memory">3/22の一般エントリーは2時間待ちの大混雑。「スマホはムリ、PCなら行けそう」（かけ）。ヒロさんは「気合が足りない」と11km走ってから再挑戦して成功。ふるさと納税枠は開始2日で売り切れ。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 kotaro（ハーフ）、宮さん（フル）、ヒロ（フル）、坂さん（フル）、及さん（フル）、Tsuyoshi（フル）、なかやん（フル）、他</div></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">11/8(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">福岡マラソン／岡山マラソン</div>
+        <div class="races-item__desc">アクアラインと同日開催の秋フル2連発。野さんが両方に応募するも、そろって落選（三さんも岡山落選）。</div>
+        <div class="races-item__memory">野さんの秋の抽選結果、最終成績1勝4敗（当選：神戸／落選：金沢・岡山・福岡・東京レガシー）。「ともあれ神戸頑張ってきます！🫡」</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 —（全員落選）</div></div>
+      </li>
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">11/14(土)-15(日)</span><span class="hg-tag hg-tag--trail">トレラン</span></div>
+        <div class="races-item__title">FTR秩父&奥武蔵 50K/100K/100mile</div>
+        <div class="races-item__desc">リーガーさんが50kにエントリー済み。「私にとってまだ無理かもしれませんが、一緒にチャレンジしたい方はぜひDMください」。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 リーガー（50k）</div></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">11/15(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">神戸マラソン2026</div>
+        <div class="races-item__desc">野さんが抽選当選！かけさんが毎年出ていた「とても良いレース」。スタート9:00。アクアラインの翌週で体力配分注意。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 野さん（当選）</div><a class="races-item__link" href="https://www.kobe-marathon.net/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">11/15(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">MINATOシティハーフマラソン</div>
+        <div class="races-item__desc">区政80周年の記念大会。増上寺スタート→東京タワーゴール。アップダウンあるが楽しいレース（及さん談・毎年数名参加）。当選：銅ちゃん（2年連続）、舛田さん（初）、田中さん、武さんファミリー（在住枠で家族4人）、いっしー。「港区親父みたいな人ばかり当選している」（TOSSY・負け惜しみ）。</div>
+        <div class="races-item__memory">「つくばの1週間前なんですよね〜。つくばのクリック合戦に敗北したら、せっかく陸連登録したので申込もうかと」（三さん）。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 銅ちゃん、舛田さん、田中さん、武さんファミリー、いっしー</div></div>
+      </li>
+      <li class="races-item" data-cat="イベント">
+        <div class="races-item__head"><span class="races-item__date">11/15(日) 13:00</span><span class="hg-tag">イベント</span></div>
+        <div class="races-item__title">M2やまびこ企画：山手線ぐるっとチャレンジ＆温泉交流会</div>
+        <div class="races-item__desc">M2の家族イベントと合同開催の学年企画。渋谷 or 品川を13時にスタート（好きな場所・時間からでもOK）し、歩く・走る・自転車・電車を自由に組み合わせて山手線沿いを移動、ゴールは巣鴨・駒込近くの温泉。17時頃までに着いて温泉、18時から懇親会。一周しなくても、懇親会だけでも大歓迎。つくばの1週間前なので、のんびりペースで。申込は公式LINEの案内（調整さん）から、締切は11/2(月)18時。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 M2のお父さんたち（企画）</div></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">11/22(日)</span><span class="hg-tag hg-tag--run">ロード</span><span class="hg-tag hg-tag--key">⭐ フル推奨</span></div>
+        <div class="races-item__title">つくばマラソン</div>
+        <div class="races-item__desc">ラン部定番の秋フル。フラットで記録が出やすい。7/5(日)20時のクリック合戦は30名近くが突破、専用LINEあり（てらさん）。敗れた組は翌日の大田原へ。つくばは緑Tシャツで走ろう（撮影で見つけてもらいやすい）。</div>
+        <div class="races-item__memory">「100万円の協賛で10名の無料出走権。クリック合戦を避けたい人にお勧め😆」（渋さん）。クリック合戦に敗れた場合のプランB：翌日開催の大田原マラソン（ナベさん情報）。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 30名近く（てらさん、くーさん、はやさん、松ちゃん、宮さん、たっちー、たかS、三さん、ぐっさん、天さん、キンさん、田中さん、いまい、みやっち、岡さん、もっちー、坂さん、後藤、銅ちゃん、いっしー ほか多数）</div><a class="races-item__link" href="https://tsukuba-marathon.com/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">11/23(月祝)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">大田原マラソン</div>
+        <div class="races-item__desc">例年つくばと同日開催だったが、今年は1日違い。つくばのクリック合戦に敗れた組が集結。制限4時間の本格派で「完走にはネット3:55くらいのペースが要る」との声も。武さん「高校生から出られるので親子でも」。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 ボブさい、ナベさん、かけさん、武さん（娘さんと）、ぼーちゃん</div><a class="races-item__link" href="https://www.ohtawara-marathon.com/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      </ul>
+    </div>
+
+    <div class="races-month" data-month="12">
+      <h2 class="hg-subtitle">2026年12月</h2>
+      <ul class="races-list">
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">12/6(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">湘南国際マラソン（第21回）</div>
+        <div class="races-item__desc">今年は12/6開催。松ちゃん「去年つくばと湘南両方走って湘南でPB」。人気爆上がりで4月の先着エントリーは早期締切、6/5の2次募集も瞬殺（宮さん・なかやん敗退）。</div>
+        <div class="races-item__memory">「エントリー完了者数が定員…。申込み完了まで素早く対処しないといけないんですね」（宮さん）。マイボトル持参の環境配慮型大会。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 松ちゃん、Yutaka、こやまん、ぼーちゃん、はやさん、いまい、しげさん、リーガー など</div><a class="races-item__link" href="https://www.shonan-kokusai.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">12/6(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">那覇マラソン</div>
+        <div class="races-item__desc">7/1エントリー開始と同時に、たかSさん（昨年初フル完走の地）と野さんが申込済み。1km地点からビール・泡盛・ハブ酒が並ぶエイドの祭典。湘南国際と同日。</div>
+        <div class="races-item__memory">昨年（2025）はたかSさんがここで初フル完走。スタートまで24分、仲間由紀恵を眺めながらスタートライン越え。30km超えてからは、たじーの「30キロランの記録的には5時間台で完走できる」を何度も繰り返して前進。走っている最中に「また来年も出よう」と決めていた——そして本当に申し込んだ。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 たかS（申込済）、野さん（申込済）</div><a class="races-item__link" href="https://www.naha-marathon.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">12/13(日)</span><span class="hg-tag hg-tag--trail">トレラン</span><span class="hg-tag hg-tag--key">⭐ トレイル推奨</span></div>
+        <div class="races-item__title">第27回 みたけ山登山競走</div>
+        <div class="races-item__desc">リーガーさん幹事。15kmで短く、都心から近く、装備はほぼ靴だけ。初めてのトレランレースの定番（松ちゃんもここがデビュー）。レース後は宿坊の温泉と打ち上げ、<b>11/1(日)に試走会</b>（コースを体験して温泉・ランチ）。年によっては雪の中を走る。昨年は約20名が参加、今年も18名がエントリー（2026/10/11時点）。<b>エントリーは10/31(土)まで</b>（定員800）。専用LINEあり。「ロードだけにしようと思ってたけど、みたけだけは出たい」（ぼーちゃん）。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 リーガー（幹事）、てらさん（3年連続）、小串さん、川島さん、つるさん（初レース）、品川さん（初レース）、がっきー、いまい、ふじやん、平野さん、ぼーちゃん、かけさん、もっちー、及さん、内藤さん（初）、橘さん、上野さん、安田さん、森和さん、藤ヶ崎さん など</div><a class="races-item__link" href="https://mitake-trail.lumina-event.com/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">12月（日程は公式で確認）</span><span class="hg-tag hg-tag--trail">トレラン</span></div>
+        <div class="races-item__title">ITJ（伊豆トレイルジャーニー）</div>
+        <div class="races-item__desc">今年はいしかわさんが抽選当選。昨年は銅ちゃんが制限時間ギリギリで完走🏁 泥まみれで少年に戻ったとのこと。みたけ山・富士山マラソンと同日開催になりがちで、ラン部が三方向に分散。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 いしかわさん（当選）</div><a class="races-item__link" href="https://www.izutrailjourney.com/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">12月（日程は公式で確認）</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">富士山マラソン（河口湖）</div>
+        <div class="races-item__desc">ヒロさんが4月のアーリーエントリーで申込済み。河口湖〜西湖間の激坂が名物。昨年はなかやんが激坂・転倒を乗り越えて完走。「メダル・Tシャツはいい感じ。海外参加者も多く盛り上がる大会」（なかやん）。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 ヒロ（エントリー済）</div><a class="races-item__link" href="https://fujimountainmarathon.com/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">12月（日程は公式で確認）</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">ホノルルマラソン</div>
+        <div class="races-item__desc">昨年はかいさんが参戦。ポカポカ気候の中、日本時間0時スタートの深夜レース。今年の参加者は未定。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 —（昨年：かいさん）</div><a class="races-item__link" href="https://www.honolulumarathon.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">12月（日程は公式で確認）</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">いすみ健康マラソン</div>
+        <div class="races-item__desc">昨年はキンさんが長男と義父を連れて親子3世代参加。増田明美さんがMCで盛り上がる（増田明美杯）。「義父も走るとは凄い！」（みやっち談）。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 —（昨年：キンさん3世代）</div><a class="races-item__link" href="https://isumi-marathon.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="イベント">
+        <div class="races-item__head"><span class="races-item__date">12/17(木)（予定）</span><span class="hg-tag">イベント</span></div>
+        <div class="races-item__title">ラン部忘年会（12月定例会）</div>
+        <div class="races-item__desc">赤坂御所ランのあとは年に一度の忘年会。昨年は表彰・クイズ大会・新人スピーチで大盛り上がり。今年は参加者が増えているので、会場や人数の締切は部長からの案内をお待ちください。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 全員</div></div>
+      </li>
+      </ul>
+    </div>
+
+    <div class="races-month" data-month="13">
+      <h2 class="hg-subtitle">2027年1月</h2>
+      <ul class="races-list">
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">1/10(日) 9:00スタート</span><span class="hg-tag hg-tag--run">ロード</span><span class="hg-tag hg-tag--key">⭐ ハーフ推奨</span></div>
+        <div class="races-item__title">東京ニューイヤーハーフマラソン</div>
+        <div class="races-item__desc">ラン部の実質的な新年会。今年は史上最多、ハーフ68名＋10km 1名（ハーフは定員締切）。所属は「広尾親父ＲＣ」（ＲＣは全角）で登録するとリストで仲間を見つけやすい。専用LINEあり（未登録の方は幹事へ）。<b>新年会は人数が多いため、赤羽駅近くのお店の2階フロアを貸切</b>（13:30〜16:30、3時間飲み放題、会費5,000円、幹事：松ちゃん）。10kmの部の人も遅れて合流でき、新年会だけの参加もOK。申込は公式LINEの案内（調整さん）から。</div>
+        <div class="races-item__memory">「時間がかかっても2時間半くらいでゴールできる。ハーフは気合いだけでも走れる」（かけさん）。「M1で入部した方の初ハーフにちょうどいい大会」（てらさん）。昨年は52名、今年は緑軍団が河川敷を占拠する予感。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 ハーフ68名＋10km 1名（調整さんでは73名）</div><a class="races-item__link" href="https://hitech-half-marathon.net/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">1/17(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">フロストバイトロードレース（米軍横田基地）</div>
+        <div class="races-item__desc">米軍横田基地の中を走る、米軍関係者運営のゆるいハーフ。「ハーフと言いつつハーフない説」「キロ表示が合っていない説（ヤード？）」も味わいのうち。参加賞はアメリカンなデザインのトレーナー🇺🇸 ニューイヤーハーフの1週間後、勝田の2週間前で、調整ランやニューイヤーに出られない人にちょうどいい。<b>エントリーは11/12(木)まで</b>（5kmは定員に達して締切、2026/10/28時点）。</div>
+        <div class="races-item__memory">「ラン部に入って初めて出場した思い出のレース」（くーさん）。「フロストバイトの長袖トレーナー重宝してます！来年は何色かな」（しんちゃん）。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 くーさん（呼びかけ）、ぼーちゃん、たかS（息子さんは5km）、緒さん（5km）、しんちゃん、坂さん、ごーちゃん、なかやん、みやっち、小串さん、西谷さん、ヒロ、キンさん など</div><a class="races-item__link" href="https://yokota-frostbite.com/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">1/31(日)</span><span class="hg-tag hg-tag--run">ロード</span><span class="hg-tag hg-tag--key">⭐ フル推奨</span></div>
+        <div class="races-item__title">第74回 勝田全国マラソン</div>
+        <div class="races-item__desc">2027/1/31(日)開催（公式で確認済）。<b>フルの部は10/10頃に定員で締切</b>（公式は10/13に受付終了を告知）。10kmの部は公式サイトで確認。真冬の本命レース、今年は初フルのM1組も「ノータイムポチリ」で続々エントリー、部内から40名前後が出走予定。ニューイヤーハーフの3週間後という王道日程。フルは10:30スタートなので上野7:30発の特急ひたちでも余裕、帰りは打ち上げしながら電車で。幹事はH1。</div>
+        <div class="races-item__memory">「7年前に勝田でフルマラソンデビューしたが、辛いことは一つもなかった」（かけさん）。「M1の時に初フルを勝田で走った。この長袖Tシャツが私のランニングの歴史」（ぼーちゃん）。昨年は極寒＆強風で「やっぱり勝田🤞」。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 部内40名前後（ぼーちゃん、てらさん、坂さん、宮さん、銅ちゃん、ボブさい、たかS、キンさん、安田さん、立沢さん、平野さん、つるさん ほか多数・初フル組も多数）</div><a class="races-item__link" href="https://katsutamarathon.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      </ul>
+    </div>
+
+    <div class="races-month" data-month="14">
+      <h2 class="hg-subtitle">2027年2月</h2>
+      <ul class="races-list">
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">2/7(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">第75回 別府大分毎日マラソン</div>
+        <div class="races-item__desc">2027/2/7(日)開催（公式で確認済）。参加資格タイムのある、選ばれし者の大会。8/28にエントリー開始。しんちゃん・松ちゃん・三さん（カテ3）がエントリー予定、たじーは抽選枠（2026/9/6時点）。昨年はしんちゃんが50代でサブ3復活、渋さんもサブ3死守。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 Nobu（エントリー完了）、しんちゃん、三さん（カテ3）、松ちゃん・たじー（抽選）</div><a class="races-item__link" href="https://www.betsudai.com/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">2/14(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">さいたまマラソン2027</div>
+        <div class="races-item__desc">2027/2/14(日)開催。フル（定員14,000）・8kmとも受付は終了。ぼーちゃん・宮さんが申込済で専用LINEあり。ふるさと納税枠に空きが出ることもあるので、諦めきれない人は公式サイトを確認。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 ぼーちゃん、宮さん</div><a class="races-item__link" href="https://saitama-marathon.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">2/21(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">第59回 青梅マラソン（30km／10km）</div>
+        <div class="races-item__desc">2027/2/21(日)開催（公式で確認済）。ゲストは高橋尚子さん。一般エントリーは<b>11/3(祝)まで</b>。昨年は坂さん・ごーちゃん・Nobu・さわさんが30kmに出走。M1平野さん「来年の青梅が目標になりました」。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 しんちゃん、坂さん、平野さん（30km）など。エントリーは11/3まで</div><a class="races-item__link" href="https://www.ohme-marathon.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">2/21(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">京都マラソン2027</div>
+        <div class="races-item__desc">世界遺産を巡る人気の抽選フル。青梅と同日。野さん・宮さんが抽選当選。「京都旅行ランが非常に楽しかったので、京都マラソンも楽しみ」（宮さん）。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 野さん、宮さん（当選）</div><a class="races-item__link" href="https://www.kyoto-marathon.com/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      </ul>
+    </div>
+
+    <div class="races-month" data-month="15">
+      <h2 class="hg-subtitle">2027年3月</h2>
+      <ul class="races-list">
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">3/7(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">東京マラソン2027</div>
+        <div class="races-item__desc">2027/3/7(日)開催（公式で確認済）。9月の抽選で、銅ちゃん（3大会連続落選メンバー枠）、荒さん（8年ぶり）、しんちゃん（都民枠）、たかS（初エントリーで当選）、くーさん（19年ぶり）、藤村さん（18年ぶり）、渋さんが当選🎉 当選者で専用LINEあり（いっしー）。かけさんはチャリティ枠で6回連続出場、いっしーもチャリティ枠で初出走。走らない人も応援・ボランティアで参加できるのが東京。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 かけさん・いっしー（チャリティ枠）、銅ちゃん、荒さん、しんちゃん、たかS、くーさん、藤村さん、渋さん。及さんはボランティアで参加</div><a class="races-item__link" href="https://www.marathon.tokyo/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">3/21(日)</span><span class="hg-tag hg-tag--run">ロード</span></div>
+        <div class="races-item__title">板橋Cityマラソン2027</div>
+        <div class="races-item__desc">荒川河川敷を走る、都内で数少ないフルマラソン。フラットで単調、風が強い日も。「昭和感丸出しのTシャツがもらえる」「ひたすら河川敷で、たまに渋滞ある」（ぼーちゃん）。シーズン終盤に「1回フル走ってみようかな」のM1お父さんにも。<b>エントリーは12/4(金)まで</b>。専用LINEあり。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 ナベさん、松ちゃん、ぼーちゃん など</div><a class="races-item__link" href="https://www.city.itabashi.tokyo.jp/bunka/sports/jigyo/1005202.html" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">3月下旬（2027年は未発表・2026/9/6時点）</span><span class="hg-tag hg-tag--trail">トレラン</span><span class="hg-tag hg-tag--key">⭐ トレイル推奨</span></div>
+        <div class="races-item__title">ハセツネ30K</div>
+        <div class="races-item__desc">2027年の開催日は2026/9/6時点で未発表（例年3月最終日曜、昨年は3/29）。<b>エントリーは例年12月中旬〜下旬の夜に開始</b>、開始時刻に待機していれば取れる。ふるさと納税枠もあり。昨年は10名以上が出走、初参加組も全員完走。日程とエントリー開始日は公式サイトで必ず確認。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 昨年10名以上（しんちゃん、及さん、はやさん、リーガー、もっちー、銅ちゃん、ごーちゃん、加納、てらさん ほか）</div><a class="races-item__link" href="https://www.hasetsune.jp/30K/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      </ul>
+    </div>
+
+    <div class="races-month" data-month="16">
+      <h2 class="hg-subtitle">2027年4月（次年度の予告）</h2>
+      <ul class="races-list">
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">4/9(金)-11(日)</span><span class="hg-tag hg-tag--trail">トレラン</span></div>
+        <div class="races-item__title">Hiroshima Ultra-Trail by UTMB（広島）</div>
+        <div class="races-item__desc">広島で初開催のUTMBワールドシリーズ（100k／50k／25k）。8月のエントリー開始と同時に部内からも参加表明が相次ぎ、専用LINEあり（ボブさい取りまとめ）。詳細は公式サイトで。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 部内多数（専用LINEあり）</div><a class="races-item__link" href="https://hiroshima.utmb.world/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="トレラン">
+        <div class="races-item__head"><span class="races-item__date">4月上旬（2027年は未発表・2026/9/6時点）</span><span class="hg-tag hg-tag--trail">トレラン</span><span class="hg-tag hg-tag--key">⭐ トレイル推奨</span></div>
+        <div class="races-item__title">青梅高水トレイルラン</div>
+        <div class="races-item__desc">2027年の開催日は2026/9/6時点で未発表（例年4月第1日曜、昨年は4/5）。エントリーは例年12月下旬。昨年はたじーが60代1位🥇、初トレランの完走者も。直前に試走する人も。公式サイトで確認。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 昨年：たじー、マキノ、武さん父娘、しんちゃん、キンさん ほか</div><a class="races-item__link" href="http://www.kfctriathlon.com/html/event_trail.html" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">4/18(日)</span><span class="hg-tag hg-tag--run">ロード</span><span class="hg-tag hg-tag--key">⭐ フル推奨</span></div>
+        <div class="races-item__title">かすみがうらマラソン2027</div>
+        <div class="races-item__desc">2027/4/18(日)開催（公式発表）。エントリーは11月開始予定で、アーリーエントリーはつくばの翌日頃から。幹事は宮さん（M2）、つくばが終わったら公式LINEで告知予定。フル・10マイル・5kmがあって親子参加もできる、ラン部最大級（昨年25名）の春レース。公式サイトで確認。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 宮さん（幹事）ほか。昨年は25名</div><a class="races-item__link" href="https://www.kasumigaura-marathon.jp/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      <li class="races-item" data-cat="ロード">
+        <div class="races-item__head"><span class="races-item__date">4月中旬（2027年は未発表・2026/9/6時点）</span><span class="hg-tag hg-tag--run">ロード</span><span class="hg-tag hg-tag--key">⭐ ウルトラ推奨</span></div>
+        <div class="races-item__title">チャレンジ富士五湖ウルトラマラソン</div>
+        <div class="races-item__desc">2027年の開催日は2026/9/6時点で未発表（例年かすみがうらと同日）。富士山を望む湖畔の100km／80km／118km。昨年は12名がエントリー。公式サイトで確認。</div>
+        <div class="races-item__foot"><div class="races-item__members">👥 昨年12名</div><a class="races-item__link" href="https://www.r-wellness.com/fuji5/" target="_blank" rel="noopener">公式サイト</a></div>
+      </li>
+      </ul>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- ===== 2026年5月 ===== -->
-<div class="month-section" data-month="5">
-  <div class="month-header">2026年5月</div>
-  <div class="cards-container">
-
-    <div class="card トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">5/9(土)</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <div class="card-title">ASO VOLCANO TRAIL</div>
-      <div class="card-desc">「参加した国内レースで1番の景色」（たじー談）。阿蘇カルデラを巡る112km。ごーちゃんが自身最長のトレイルを完走、たじー・もっちーは途中で無念のリタイア。</div>
-      <div class="card-memory">「参加した国内レースで1番の景色」とたじーが語った。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 ごーちゃん（完走）、たじー、もっちー</div>
-      </div>
-    </div>
-
-    <div class="card その他" data-cat="その他">
-      <div class="card-top">
-        <div class="card-date">5/9(土)</div>
-        <span class="card-badge badge-その他">その他</span>
-      </div>
-      <div class="card-title">エクストリームレース奥多摩</div>
-      <div class="card-desc">緒さん企画のアドベンチャーレース。MTB・カヤック・トレイルの複合種目。2-3名チーム戦。</div>
-      <div class="card-memory">天さんが無事ゴールし「カヌー、MTB、トレランと楽しかった！」と報告した。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 緒さん（企画）、天さん など</div>
-        <a href="https://www.a-extremo.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card トラ" data-cat="トラ">
-      <div class="card-top">
-        <div class="card-date">5/23-24</div>
-        <span class="card-badge badge-トラ">トライアスロン</span>
-      </div>
-      <div class="card-title">トライアスロン合宿@ひとつ松</div>
-      <div class="card-desc">まいく企画。マイクハウス2泊。5-10kmラン＋40-90kmバイク。初心者も参加しやすいコース設計。99T会場近く。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 まいく（企画）、おださん、天さん、ぐっさん、ひろやん など</div>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">5/17(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">野辺山ウルトラマラソン100k</div>
-      <div class="card-desc">累積標高2,700m・高地の過酷コース。当日は尋常じゃない暑さの中、三さんが初ウルトラで100km完走、坂さんは68kmを完走、キンさんも参戦。「レース途中で温泉の誘惑」との声も。</div>
-      <div class="card-memory">キンさん「富士山も見え、芝の歩道も走れ、天気にも恵まれ最高の大会だった」。坂さんは68kmを「ウルトラの東の横綱」コースで制限時間16分前にゴール。後日キンさんが「来年も出よう」と呼びかけたのは今年のウルトラでここだけだった。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 三さん（100km完走）、坂さん（68km完走）、キンさん</div>
-        <a href="https://www.nobeyama-ultra.org/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">5/17(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">洞爺湖マラソン</div>
-      <div class="card-desc">北海道・洞爺湖畔の絶景フルマラソン。ヒロさん参戦。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 ヒロ（完走）</div>
-        <a href="https://www.toyako-marathon.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">5/24(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">二子玉川ハーフマラソン</div>
-      <div class="card-desc">地元300〜400名規模のアットホームな大会。駒澤大学駅伝部がゲスト参戦で盛り上がる。ゴール後は反省会へ。</div>
-      <div class="card-memory">くーさんが「全員完走！」とLINEで報告した。スタート前にしげさんが「駒大に負けるなー」とけしかけた。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 くーさん、荒さん、つるさん、ふじやん、松ちゃん、てらさん、いまい など</div>
-      </div>
-    </div>
-
-    <div class="card その他" data-cat="その他">
-      <div class="card-top">
-        <div class="card-date">5/30-31</div>
-        <span class="card-badge badge-その他">その他</span>
-      </div>
-      <div class="card-title">スパルタンレース＠千葉ドイツ村</div>
-      <div class="card-desc">5/30-31開催、広尾親父RCは5/31参加。泥だらけの障害物レース。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 しんちゃん、緒さん、内藤さん など</div>
-        <a href="https://spartanracejapan.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ===== 2026年6月 ===== -->
-<div class="month-section" data-month="6">
-  <div class="month-header">2026年6月</div>
-  <div class="cards-container">
-
-    <div class="card イベント" data-cat="イベント">
-      <div class="card-top">
-        <div class="card-date">6/13(土)</div>
-        <span class="card-badge badge-イベント">イベント</span>
-      </div>
-      <div class="card-title">京都ランイベント</div>
-      <div class="card-desc">野さん企画。嵐山（渡月橋）→東山、京都マラソンコースに沿って22-24km。飲み会は池田屋跡地の居酒屋案。「安売り系居酒屋にロマンくじかれた」。</div>
-      <div class="card-memory">「安売り系居酒屋にロマンをくじかれた」という野さんの報告が笑いを誘った。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 野さん（企画）、チチさん、宮さん など</div>
-      </div>
-    </div>
-
-    <div class="card トラ" data-cat="トラ">
-      <div class="card-top">
-        <div class="card-date">6/21(日)</div>
-        <span class="card-badge badge-トラ">トライアスロン</span>
-      </div>
-      <div class="card-title">木更津トライアスロン</div>
-      <div class="card-desc">チーム名「広尾ＴＣ」。トライアスロン部デビュー戦の人も。木更津はオールドルーキーのサウナホテルあり。</div>
-      <div class="card-memory">早朝の豪雨でスイムもバイクも中止。急遽設けられたランコースは運営も距離が分からないまま「とりあえずスタート」。足首まで浸かる水たまりをバシャバシャ走り、トライアスロンなのに「まさかの7kmラン」で終了。TOSSYさんが「ランもスキップしばりだったらスキップトライアスロンだった」と言った。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 おださん、はやさん、天さん、立沢さん（全員完走）</div>
-      </div>
-    </div>
-
-    <div class="card トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">6/6(土)-7(日)</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <div class="card-title">奥信濃100</div>
-      <div class="card-desc">100km・累積4800m・制限21時間。さいさん記録更新、銅ちゃん・いっしーは「倍々メソッド」で自身最長距離を完走。たじーはサポート隊で参戦。</div>
-      <div class="card-memory">深夜0時と1時のゴールに部員が夜通しLINEで声援。「58km地点、ネットが全く繋がらない」という山の洗礼も。いっしー「残すはアレ（100マイル）ですが、全くもって達成できる気がしません」。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 さいさん、銅ちゃん、いっしー（完走）、たじー（サポート）</div>
-      </div>
-    </div>
-
-    <div class="card その他" data-cat="その他">
-      <div class="card-top">
-        <div class="card-date">6/7(日)</div>
-        <span class="card-badge badge-その他">その他</span>
-      </div>
-      <div class="card-title">富士山須走五合目競走</div>
-      <div class="card-desc">しんちゃんが登りの部で年代別9位。松ちゃんも完走。前日に30km走ってからの出走。</div>
-      <div class="card-memory">「急斜面走りきれず良い経験になりました！坂練・筋トレ含めて鍛え直します。吉田響くんはいい若者でした❤️」</div>
-      <div class="card-footer">
-        <div class="card-members">👥 しんちゃん（年代別9位）、松ちゃん（完走）</div>
-      </div>
-    </div>
-
-    <div class="card その他" data-cat="その他">
-      <div class="card-top">
-        <div class="card-date">6/14(日)</div>
-        <span class="card-badge badge-その他">その他</span>
-      </div>
-      <div class="card-title">東京タワー階段競走 🗼</div>
-      <div class="card-desc">階段部の年間メインレース。「ハセツネや富士山より急斜度で厳しい闘い」（しんちゃん）。</div>
-      <div class="card-memory">完走報告とともに、部内ヒエラルキー図で「階段部が最上位」であることが反省会で発表された。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 しんちゃん（完走）、他階段部</div>
-      </div>
-    </div>
-
-    <div class="card トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">6/20(土)-21(日)</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <div class="card-title">Kaga Spa Trail 100K/50K</div>
-      <div class="card-desc">雨のドロンコ大会。さわさん100kmリベンジ完走（水中ウォーキング練の男）。加納さん初56km完走、チチさん50km完走。武さんは関門アウトも「痺れる悪夢を泣きながら楽しんだ」。</div>
-      <div class="card-memory">武さん「20回近く転んで関門アウト。夢のような10時間の最後尾単独走」。転倒で紛失したクマスプレーとフラスクはスイーパーが回収して手元に戻った。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 さわさん（100k完走）、加納（56k）、チチさん（50k）、武さん、小船井さん（50k）</div>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">6/28(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">サロマ湖100kmウルトラ</div>
-      <div class="card-desc">「ウルトラの父」坂さんが単騎参戦。昨年の60km関門から今年は79.3km関門まで前進。完走メダルは来年に持ち越し。</div>
-      <div class="card-memory">一歩ずつ前進する挑戦に部内総員リスペクト。たじー「来年はもう20km進んでゴールですね🤗」、かけさん「来年は一緒に走ろう」。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 坂さん（79.3km）</div>
-      </div>
-    </div>
-
-    <div class="card その他" data-cat="その他">
-      <div class="card-top">
-        <div class="card-date">6/28(日)</div>
-        <span class="card-badge badge-その他">その他</span>
-      </div>
-      <div class="card-title">伊東OWS（オープンウォーター）</div>
-      <div class="card-desc">伊東オレンジビーチ開催。ぐっさん750m、武さんファミリーが1500m。松田丈志・萩野公介らゲスト参加のガチ大会ながら初心者に優しい運営。</div>
-      <div class="card-memory">武さん「左に娘を、右に息子を見ながら泳いできました。やっぱ海はいいよね」。駅徒歩5分・帰りは温泉と食べ歩き、東京駅8:30〜17:30で完結。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 ぐっさん、武さんファミリー</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ===== 2026年7月 ===== -->
-<div class="month-section" data-month="7">
-  <div class="month-header">2026年7月</div>
-  <div class="cards-container">
-
-    <div class="card トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">7/24(金)</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <div class="card-title">富士登山競走（第79回）</div>
-      <div class="card-desc">平日開催の日本一の山岳レース。五合目コース2時間20分クリアで翌年山頂コースへ。今年はしんちゃんが山頂コースを完走し、グランドスラム（サブ3＋サブ10＋山頂完走）を達成🏆 キンさん・たじー・松ちゃんも山頂コースに挑戦（キンさんは本八合目まで）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 しんちゃん（山頂完走・グランドスラム達成）、キンさん、たじー、松ちゃん（山頂コース・DNF）</div>
-        <a href="https://fujimountainrace.city.fujiyoshida.yamanashi.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card その他" data-cat="その他">
-      <div class="card-top">
-        <div class="card-date">7/25(土)</div>
-        <span class="card-badge badge-その他">その他</span>
-      </div>
-      <div class="card-title">スパルタンレース＠富士裾野</div>
-      <div class="card-desc">富士山麓での障害物レース。千葉ドイツ村に続くスパルタン第2弾。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 内藤さん、小串さん（完走）、緒さん（引率）</div>
-        <a href="https://spartanracejapan.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card recommended recommended recommended recommended recommended recommended recommended トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">7/19(日)</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <span class="card-badge badge-推奨">⭐ トレイル推奨</span>
-      <div class="card-title">マウンテントレイルin野沢温泉</div>
-      <div class="card-desc">ラン部最大の遠征「親父の夏合宿」。14km/37km/65km＋ペア・駅伝。7/18(土)-20(月祝)の2泊3日・新幹線遠征（東京8:41発はくたか555号）。費用ザックリ5万円。池畑選手も参加。</div>
-      <div class="card-memory">かけさんの名指し勧誘祭りが3月から続いた。「野沢温泉トレイル37キロは初心者・中級者向け。完走後のシェフのカップヌードルはサイコー！」。みやっち「完走する可能性0%くらいの想定です」で勢いエントリー。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 65k：ごーちゃん（完走）、チチさん（DNF）／37k：たじー・ナベさん（完走）、及さん・かけさん・みやっち・舛田さん・まいく・かいさん（DNF）、リーガー（DNS）／14k：重さん（完走）、たかS（初トレイル）、しげさん、たくちゃん（初大会） ほか</div>
-        <a href="https://nozawaonsen-trail.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">7/19(日)</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <div class="card-title">OSJ ONTAKE100（100K）</div>
-      <div class="card-desc">御嶽山麓を走る100kmトレイル。野沢と同日開催。ボブさいが昨年に続いて100Kを完走。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 ボブさい（完走）</div>
-        <a href="https://www.outdoorsportsjapan.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card イベント" data-cat="イベント">
-      <div class="card-top">
-        <div class="card-date">7/26(日)</div>
-        <span class="card-badge badge-イベント">イベント</span>
-      </div>
-      <div class="card-title">H1学年企画ラン（やまびこ打線・第1弾）</div>
-      <div class="card-desc">ぼーちゃん部長肝いりの学年企画・第1弾。猛暑の国立競技場周辺を8km超ファンラン→森のビアガーデンで懇親会。途中出入り自由、走り始めたばかりのお父さんも参加。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 H1幹事（くーさん）、ぼーちゃん、しんちゃん、たくちゃん、菅井さん など</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ===== 2026年8月 ===== -->
-<div class="month-section" data-month="8">
-  <div class="month-header">2026年8月</div>
-  <div class="cards-container">
-
-    <div class="card トラ" data-cat="トラ">
-      <div class="card-top">
-        <div class="card-date">8/9(日)</div>
-        <span class="card-badge badge-トラ">トライアスロン</span>
-      </div>
-      <div class="card-title">IRONMAN 70.3 Cebu 🌏</div>
-      <div class="card-desc">おださん・ひろやん発起の海外遠征。気温27-34℃の灼熱レース、ウェットスーツ不可。広尾パパ5名が全員無事完走。8/20の反省会で報告動画を上映。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 おださん、ひろやん、はやさん、まいく、天さん（全員完走）</div>
-        <a href="https://www.ironman.com/races/im703-cebu-philippines" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card その他" data-cat="その他">
-      <div class="card-top">
-        <div class="card-date">8/6(木)</div>
-        <span class="card-badge badge-その他">その他</span>
-      </div>
-      <div class="card-title">HYROX＠幕張</div>
-      <div class="card-desc">ファンクショナルフィットネスレース。ランと筋トレ系ワークアウトを組み合わせた新スタイル競技。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 緒さん、他</div>
-        <a href="https://hyrox.com/event/hyrox-tokyo/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card その他" data-cat="その他">
-      <div class="card-top">
-        <div class="card-date">8/9(日)</div>
-        <span class="card-badge badge-その他">その他</span>
-      </div>
-      <div class="card-title">三浦スイカOWS</div>
-      <div class="card-desc">三浦半島でのオープンウォータースイミング。ゴール後にスイカ食べ放題。IRONMAN Cebu組とは別動隊。「いっぱい泳げてスイカ食べ放題だよ🍉」（天さん）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 緒さん（リレー）、ぐっさん、篠さん、三上さん、武さんファミリー、山田さん・佐々木さん（年代別1位）など</div>
-      </div>
-    </div>
-
-    <div class="card イベント" data-cat="イベント">
-      <div class="card-top">
-        <div class="card-date">8/16(日)</div>
-        <span class="card-badge badge-イベント">イベント</span>
-      </div>
-      <div class="card-title">ブリバラン（夏の陣）</div>
-      <div class="card-desc">たっちー企画の鎌倉・逗子ファンラン。トレイル込み約15km→稲村ヶ崎温泉→BREEZE BIRD CAFEでパーティの黄金コース。2月の逗子シリーズに続く開催。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 たっちー（企画）、ぼーちゃん、三さん、渡さん、つるさん など</div>
-      </div>
-    </div>
-
-    <div class="card トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">8/28(金)-30(日)</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <div class="card-title">UTMB Mont-Blanc（シャモニー）</div>
-      <div class="card-desc">今年は5名の広尾親父がモンブランへ。たじー（2年連続）とボブさいが完走、もっちー・ごーちゃん・いっしーも挑戦。ラン部から寄せ書きした日の丸とネパール国旗を持って走った。ゴールの瞬間はライブ映像でみんなで見守った。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 たじー（完走）、ボブさい（完走）、もっちー、ごーちゃん、いっしー</div>
-        <a href="https://montblanc.utmb.world/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">8/30(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">北海道マラソン</div>
-      <div class="card-desc">道産子3人＋野さん。エイドのちくわパン論争が白熱。「ちくわ＝北海道のソウルフード」は道産子坂さんも「見たことない」。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 Nobu、野さん、及さん（完走）、坂さん</div>
-        <a href="https://hokkaido-marathon.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ===== 2026年9月 ===== -->
-<div class="month-section" data-month="9">
-  <div class="month-header">2026年9月</div>
-  <div class="cards-container">
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">9/5(土)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">第128回・TAMAハーフマラソン</div>
-      <div class="card-desc">きらさん＆篠さんのカムバックラン成功🔥 松ちゃんは最後のデッドヒートを制して3位入賞🥉（特典の次回無料で10/10の二子玉川30kmへ）。三さんが並走。</div>
-      <div class="card-memory">三さん情報：TAMAハーフは各部3位以内に入賞すると次回無料。夏場はガチ勢がオフなので入賞が狙える穴場。10月〜3月はペーサー募集もある。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 松ちゃん（3位）、きらさん、篠さん、三さん など</div>
-        <a href="https://runnet.jp/entry/runtes/user/pc/moshicomDetailAction.do?raceId=138398&div=1" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card イベント" data-cat="イベント">
-      <div class="card-top">
-        <div class="card-date">9/4(金)夜-5(土)</div>
-        <span class="card-badge badge-イベント">イベント</span>
-      </div>
-      <div class="card-title">トレラン親父の富士登山②（池畑選手回）</div>
-      <div class="card-desc">たじー企画・夏の富士登山第2弾。吉田口五合目から山頂へ、ゲストは池畑拓哉選手（3年連続UTMB日本人1位）。雨上がりの山頂まで無事登頂🗻 お鉢巡りと富士山カレー。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 たじー（企画）、池畑選手、はやさん、たくちゃん、他</div>
-      </div>
-    </div>
-
-    <div class="card トラ" data-cat="トラ">
-      <div class="card-top">
-        <div class="card-date">9/6(日)</div>
-        <span class="card-badge badge-トラ">トライアスロン</span>
-      </div>
-      <div class="card-title">佐渡国際トライアスロン</div>
-      <div class="card-desc">国内最長級のロングディスタンス。天さんがAタイプで昨年のリベンジに成功、完走🎉 強風でスイムは4km→2kmに短縮、制限時間も15時間に。バイク190kmは島一周で風との戦い、ランも出し切って14時間でフィニッシュ。</div>
-      <div class="card-memory">「去年時間切れでDNFしてから、スイム・バイク・ランの練習に注力した。皆さんと一緒に練習できたので今日に繋がった」（天さん）。帰りは高波でジェットフォイルが欠航、フェリーでゆっくり帰還。「帰るまでがトライアスロン」。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 天さん（Aタイプ完走）</div>
-        <a href="http://www.scsf.jp/triathlon/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">9月中旬</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <div class="card-title">トル・デ・ジアン（イタリア・330km）</div>
-      <div class="card-desc">UTMBの倍の距離を走る、アルプスの超長距離トレイル。いいのっちが前半29位から後半に順位を上げ続け、約80時間・12位でゴール。「きついレースでもいつも笑顔」（しんちゃん）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 いいのっち（12位完走）</div>
-      </div>
-    </div>
-
-    <div class="card その他" data-cat="その他">
-      <div class="card-top">
-        <div class="card-date">9/19(土)</div>
-        <span class="card-badge badge-その他">その他</span>
-      </div>
-      <div class="card-title">スパルタンレース（ビースト）</div>
-      <div class="card-desc">約20kmの山岳コース＋障害物の「ビースト」。緒さんが完走し、3種目をそろえるトライフェクタを達成🏅 3つのメダルが合体して1つになる。いっしーは山岳パートの登り下りで若者をごぼう抜き。「トレランをやっている人が輝けるレース」（いっしー）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 緒さん（トライフェクタ達成）、いっしー</div>
-        <a href="https://spartanracejapan.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">9/26(土)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">国立競技場リレーマラソン（フルの部）</div>
-      <div class="card-desc">三さん幹事のチーム戦、今年は約40名・5チームの大所帯。国立競技場のトラック＋観客席下の通路1周1.4kmをタスキでつなぎ、制限4時間。14:30集合・16:00スタート、19:30〜千駄ヶ谷で反省会。ゆるラン勢も周回数で調整OK。けやき祭の1週間前。<b>当日は全チーム完走</b>。直前の欠員にはM1の木幡さんが急きょ参戦、品川さんも爆走。</div>
-      <div class="card-memory">国立競技場の観客席の下を走る区間は、毎年GPSがうまく拾えない（しんちゃん談）。ペースは自分の感覚と仲間の声援が頼り。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 三さん（幹事）ほか約40名・5チーム（全チーム完走）</div>
-        <a href="https://boost-inc.jp/runmedia_kokuritsu/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">9/27(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">網走マラソン</div>
-      <div class="card-desc">「網走刑務所を脱走する人気のレース」（及さん談）。つるさん・ヒロがそろってサブ4達成🎉 ヒロは自己ベスト更新、「皇居ランのおかげで上りを克服」。つるさんは前日にニジマスも釣り上げた。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 つるさん（サブ4）、ヒロ（サブ4・自己ベスト）</div>
-        <a href="https://www.abashiri-marathon.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ===== 2026年10月 ===== -->
-<div class="month-section" data-month="10">
-  <div class="month-header">2026年10月</div>
-  <div class="cards-container">
-
-    <div class="card トラ" data-cat="トラ">
-      <div class="card-top">
-        <div class="card-date">10/3(土)</div>
-        <span class="card-badge badge-トラ">トライアスロン</span>
-      </div>
-      <div class="card-title">九十九里トライアスロン（99T）</div>
-      <div class="card-desc">ぐっさん・緒さんほか初出場組のデビュー戦。快晴の九十九里で<b>全員完走</b>、これでトライアスリートの仲間入り🎉 天さんが手配したおそろいのトライスーツで出走。事前にはおださんの99Tレクチャー、大井埠頭でのバイク→ランの練習会も。チームの部には「広尾ＴＣ」で出場。けやき祭と同日。</div>
-      <div class="card-memory">先輩からの直前アドバイス：「自転車は前を見て走る」「バイク・ラン用のシャツはトランジションに置いておく（預け荷物に入れると取り出すのが大変）」（みやっち）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 ぐっさん、緒さん、島戸さん、立沢さん、ごーちゃん（初完走組）、天さん、おださん、いっしー、まいく（全員完走）</div>
-        <a href="https://www.99t.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">10/11(日)-12(祝)</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <div class="card-title">ハセツネCup（第34回・71.5km）</div>
-      <div class="card-desc">夜通し走る本家・日本山岳耐久レース。<b>広尾親父の参加者は全員完走</b>。たじーは年代別6位入賞、及さんは関門をくぐり抜けて後半に順位を上げ、ハセツネ初完走。今熊山ではしんちゃんが応援。9/23には雨の中で後半コースを試走した。</div>
-      <div class="card-memory">「50代の星🌟」（TOSSY）。「完走＋入賞が定例化されてますね」とたじーに声が飛んだ。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 たじー（年代別6位）、ボブさい、銅ちゃん、さわさん、てらさん、及さん（初完走）（全員完走）</div>
-        <a href="https://www.hasetsune.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">10/11(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">シカゴマラソン 🌏</div>
-      <div class="card-desc">世界6大マラソンの一つ。ごーちゃんが99Tでトライアスロン初完走した翌週に完走。6大マラソン制覇まで、残すはボストンのみ。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 ごーちゃん（完走）</div>
-        <a href="https://www.chicagomarathon.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">10/25(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">金沢マラソン2026</div>
-      <div class="card-desc">人気の抽選フル。宮さんが大雨の中、3時間42分で完走🎉 エイドもほぼ完食。「ゴーゴーカレーは強敵で、食べた後1kmほどむせながら走った」。「大雨でも十分楽しめる、金沢マラソンおすすめです」（宮さん）。ふるさと納税枠（5万円）での確実エントリーも可。</div>
-      <div class="card-memory">宿は高騰必至（カプセルホテル1.9万円が観測された）。野さんがスーパー銭湯併設・素泊まり9300円・前日キャンセル無料の宿を発掘し、宮さんも確保。「マラソン前後の週の土曜は6000円〜。悪意しか感じない」（宮さん）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 宮さん（3時間42分で完走）</div>
-        <a href="https://www.kanazawa-marathon.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">10/18(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">東京レガシーハーフマラソン2026</div>
-      <div class="card-desc">国立競技場発着の人気ハーフ。<b>当日は全員完走</b>、銅ちゃんは理想的なネガティブスプリット。大会ガイドブックの写真に緑の軍団が載った🟢 抽選は激戦で部内「当選報告のみ知りたいです」（TOSSY）状態に。当選：及さん（One Tokyo枠）、ヒロ（一般）、銅ちゃん（都民枠）、篠さん、なかやん、くーさん、舛田さん。7月末の追加抽選でしんちゃん・Yutaka・ぬくいさんも当選。専用LINEあり（くーさん）。</div>
-      <div class="card-memory">かけ・いまい・たかS・宮さん・しげさん・三さん・ナベさん・こやまん・荒さん・ごーちゃん・坂さんは落選。「行いが良い人が当選してますね✌️」（銅ちゃん）。チャリティ枠（DMHC 5万円〜）という道もある。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 及さん、ヒロ、銅ちゃん、篠さん、なかやん、くーさん、舛田さん、しんちゃん、Yutaka、ぬくいさん（全員完走）</div>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">10/25(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">水戸黄門漫遊マラソン</div>
-      <div class="card-desc">つくば（11/22）の前哨戦。金沢・横浜と同日。<b>水戸黄門組は全員完走</b>、暑さと激坂で「42kmが長かったよー」（しんちゃん）。それでも全員そろって印籠（完走メダル）をゲット。たくちゃんは初マラソン。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 しんちゃん、松ちゃん、たくちゃん（初マラソン）、岡さん、上野さん、石井さん（全員完走）</div>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">10/25(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">横浜マラソン2026</div>
-      <div class="card-desc">みなとみらい発着の都市型フル。金沢・水戸と同日。いまいが完走して自己ベスト更新✨ 「目標には届かなかったけど、言い訳はしません」（いまい）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 いまい（自己ベスト）、神保さん、ヒロ、Yutaka（完走）</div>
-        <a href="https://www.yokohamamarathon.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">10/17(土)</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <div class="card-title">佐渡トレイル（新設大会）</div>
-      <div class="card-desc">新設50kmトレイル。佐渡4大会グランドスラムに新種目追加。SIGoT＝シゴト？</div>
-      <div class="card-footer">
-        <div class="card-members">👥 —</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ===== 2026年11月 ===== -->
-<div class="month-section" data-month="11">
-  <div class="month-header">2026年11月</div>
-  <div class="cards-container">
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">11/8(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">アクアラインマラソン</div>
-      <div class="card-desc"><b>⚠️ 台風の影響（JR内房線の運休など）で、11/8の開催は見合わせ（10/6公式発表）。延期か中止かは関係機関と協議中（2026/10/28時点）。公式サイトで確認を。</b> 2年に1度の人気大会。「高速道路で富士山」「後半は乳牛の香り」。ハーフがオススメ（渋さん談）だが即完売、多くはフルでエントリー。</div>
-      <div class="card-memory">3/22の一般エントリーは2時間待ちの大混雑。「スマホはムリ、PCなら行けそう」（かけ）。ヒロさんは「気合が足りない」と11km走ってから再挑戦して成功。ふるさと納税枠は開始2日で売り切れ。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 kotaro（ハーフ）、宮さん（フル）、ヒロ（フル）、坂さん（フル）、及さん（フル）、Tsuyoshi（フル）、なかやん（フル）、他</div>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">11/8(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">福岡マラソン／岡山マラソン</div>
-      <div class="card-desc">アクアラインと同日開催の秋フル2連発。野さんが両方に応募するも、そろって落選（三さんも岡山落選）。</div>
-      <div class="card-memory">野さんの秋の抽選結果、最終成績1勝4敗（当選：神戸／落選：金沢・岡山・福岡・東京レガシー）。「ともあれ神戸頑張ってきます！🫡」</div>
-      <div class="card-footer">
-        <div class="card-members">👥 —（全員落選）</div>
-      </div>
-    </div>
-
-    <div class="card トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">11/14(土)-15(日)</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <div class="card-title">FTR秩父&奥武蔵 50K/100K/100mile</div>
-      <div class="card-desc">リーガーさんが50kにエントリー済み。「私にとってまだ無理かもしれませんが、一緒にチャレンジしたい方はぜひDMください」。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 リーガー（50k）</div>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">11/15(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">神戸マラソン2026</div>
-      <div class="card-desc">野さんが抽選当選！かけさんが毎年出ていた「とても良いレース」。スタート9:00。アクアラインの翌週で体力配分注意。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 野さん（当選）</div>
-        <a href="https://www.kobe-marathon.net/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">11/15(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">MINATOシティハーフマラソン</div>
-      <div class="card-desc">区政80周年の記念大会。増上寺スタート→東京タワーゴール。アップダウンあるが楽しいレース（及さん談・毎年数名参加）。当選：銅ちゃん（2年連続）、舛田さん（初）、田中さん、武さんファミリー（在住枠で家族4人）、いっしー。「港区親父みたいな人ばかり当選している」（TOSSY・負け惜しみ）。</div>
-      <div class="card-memory">「つくばの1週間前なんですよね〜。つくばのクリック合戦に敗北したら、せっかく陸連登録したので申込もうかと」（三さん）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 銅ちゃん、舛田さん、田中さん、武さんファミリー、いっしー</div>
-      </div>
-    </div>
-
-    <div class="card イベント" data-cat="イベント">
-      <div class="card-top">
-        <div class="card-date">11/15(日) 13:00</div>
-        <span class="card-badge badge-イベント">イベント</span>
-      </div>
-      <div class="card-title">M2やまびこ企画：山手線ぐるっとチャレンジ＆温泉交流会</div>
-      <div class="card-desc">M2の家族イベントと合同開催の学年企画。渋谷 or 品川を13時にスタート（好きな場所・時間からでもOK）し、歩く・走る・自転車・電車を自由に組み合わせて山手線沿いを移動、ゴールは巣鴨・駒込近くの温泉。17時頃までに着いて温泉、18時から懇親会。一周しなくても、懇親会だけでも大歓迎。つくばの1週間前なので、のんびりペースで。申込は公式LINEの案内（調整さん）から、締切は11/2(月)18時。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 M2のお父さんたち（企画）</div>
-      </div>
-    </div>
-
-    <div class="card recommended recommended recommended recommended recommended recommended recommended ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">11/22(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <span class="card-badge badge-推奨">⭐ フル推奨</span>
-      <div class="card-title">つくばマラソン</div>
-      <div class="card-desc">ラン部定番の秋フル。フラットで記録が出やすい。7/5(日)20時のクリック合戦は30名近くが突破、専用LINEあり（てらさん）。敗れた組は翌日の大田原へ。つくばは緑Tシャツで走ろう（撮影で見つけてもらいやすい）。</div>
-      <div class="card-memory">「100万円の協賛で10名の無料出走権。クリック合戦を避けたい人にお勧め😆」（渋さん）。クリック合戦に敗れた場合のプランB：翌日開催の大田原マラソン（ナベさん情報）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 30名近く（てらさん、くーさん、はやさん、松ちゃん、宮さん、たっちー、たかS、三さん、ぐっさん、天さん、キンさん、田中さん、いまい、みやっち、岡さん、もっちー、坂さん、後藤、銅ちゃん、いっしー ほか多数）</div>
-        <a href="https://tsukuba-marathon.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">11/23(月祝)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">大田原マラソン</div>
-      <div class="card-desc">例年つくばと同日開催だったが、今年は1日違い。つくばのクリック合戦に敗れた組が集結。制限4時間の本格派で「完走にはネット3:55くらいのペースが要る」との声も。武さん「高校生から出られるので親子でも」。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 ボブさい、ナベさん、かけさん、武さん（娘さんと）、ぼーちゃん</div>
-        <a href="https://www.ohtawara-marathon.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ===== 2026年12月 ===== -->
-<div class="month-section" data-month="12">
-  <div class="month-header">2026年12月</div>
-  <div class="cards-container">
-
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">12/6(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">湘南国際マラソン（第21回）</div>
-      <div class="card-desc">今年は12/6開催。松ちゃん「去年つくばと湘南両方走って湘南でPB」。人気爆上がりで4月の先着エントリーは早期締切、6/5の2次募集も瞬殺（宮さん・なかやん敗退）。</div>
-      <div class="card-memory">「エントリー完了者数が定員…。申込み完了まで素早く対処しないといけないんですね」（宮さん）。マイボトル持参の環境配慮型大会。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 松ちゃん、Yutaka、こやまん、ぼーちゃん、はやさん、いまい、しげさん、リーガー など</div>
-        <a href="https://www.shonan-kokusai.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">12/6(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">那覇マラソン</div>
-      <div class="card-desc">7/1エントリー開始と同時に、たかSさん（昨年初フル完走の地）と野さんが申込済み。1km地点からビール・泡盛・ハブ酒が並ぶエイドの祭典。湘南国際と同日。</div>
-      <div class="card-memory">昨年（2025）はたかSさんがここで初フル完走。スタートまで24分、仲間由紀恵を眺めながらスタートライン越え。30km超えてからは、たじーの「30キロランの記録的には5時間台で完走できる」を何度も繰り返して前進。走っている最中に「また来年も出よう」と決めていた——そして本当に申し込んだ。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 たかS（申込済）、野さん（申込済）</div>
-        <a href="https://www.naha-marathon.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card recommended recommended recommended recommended recommended recommended トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">12/13(日)</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <span class="card-badge badge-推奨">⭐ トレイル推奨</span>
-      <div class="card-title">第27回 みたけ山登山競走</div>
-      <div class="card-desc">リーガーさん幹事。15kmで短く、都心から近く、装備はほぼ靴だけ。初めてのトレランレースの定番（松ちゃんもここがデビュー）。レース後は宿坊の温泉と打ち上げ、<b>11/1(日)に試走会</b>（コースを体験して温泉・ランチ）。年によっては雪の中を走る。昨年は約20名が参加、今年も18名がエントリー（2026/10/11時点）。<b>エントリーは10/31(土)まで</b>（定員800）。専用LINEあり。「ロードだけにしようと思ってたけど、みたけだけは出たい」（ぼーちゃん）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 リーガー（幹事）、てらさん（3年連続）、小串さん、川島さん、つるさん（初レース）、品川さん（初レース）、がっきー、いまい、ふじやん、平野さん、ぼーちゃん、かけさん、もっちー、及さん、内藤さん（初）、橘さん、上野さん、安田さん、森和さん、藤ヶ崎さん など</div>
-        <a href="https://mitake-trail.lumina-event.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">12月（日程は公式で確認）</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <div class="card-title">ITJ（伊豆トレイルジャーニー）</div>
-      <div class="card-desc">今年はいしかわさんが抽選当選。昨年は銅ちゃんが制限時間ギリギリで完走🏁 泥まみれで少年に戻ったとのこと。みたけ山・富士山マラソンと同日開催になりがちで、ラン部が三方向に分散。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 いしかわさん（当選）</div>
-        <a href="https://www.izutrailjourney.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">12月（日程は公式で確認）</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">富士山マラソン（河口湖）</div>
-      <div class="card-desc">ヒロさんが4月のアーリーエントリーで申込済み。河口湖〜西湖間の激坂が名物。昨年はなかやんが激坂・転倒を乗り越えて完走。「メダル・Tシャツはいい感じ。海外参加者も多く盛り上がる大会」（なかやん）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 ヒロ（エントリー済）</div>
-        <a href="https://fujimountainmarathon.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">12月（日程は公式で確認）</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">ホノルルマラソン</div>
-      <div class="card-desc">昨年はかいさんが参戦。ポカポカ気候の中、日本時間0時スタートの深夜レース。今年の参加者は未定。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 —（昨年：かいさん）</div>
-        <a href="https://www.honolulumarathon.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">12月（日程は公式で確認）</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">いすみ健康マラソン</div>
-      <div class="card-desc">昨年はキンさんが長男と義父を連れて親子3世代参加。増田明美さんがMCで盛り上がる（増田明美杯）。「義父も走るとは凄い！」（みやっち談）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 —（昨年：キンさん3世代）</div>
-        <a href="https://isumi-marathon.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-
-    <div class="card イベント" data-cat="イベント">
-      <div class="card-top">
-        <div class="card-date">12/17(木)（予定）</div>
-        <span class="card-badge badge-イベント">イベント</span>
-      </div>
-      <div class="card-title">ラン部忘年会（12月定例会）</div>
-      <div class="card-desc">赤坂御所ランのあとは年に一度の忘年会。昨年は表彰・クイズ大会・新人スピーチで大盛り上がり。今年は参加者が増えているので、会場や人数の締切は部長からの案内をお待ちください。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 全員</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ===== 2027年1月 ===== -->
-<div class="month-section" data-month="13">
-  <div class="month-header">2027年1月</div>
-  <div class="cards-container">
-
-    <div class="card recommended ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">1/10(日) 9:00スタート</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <span class="card-badge badge-推奨">⭐ ハーフ推奨</span>
-      <div class="card-title">東京ニューイヤーハーフマラソン</div>
-      <div class="card-desc">ラン部の実質的な新年会。今年は史上最多、ハーフ68名＋10km 1名（ハーフは定員締切）。所属は「広尾親父ＲＣ」（ＲＣは全角）で登録するとリストで仲間を見つけやすい。専用LINEあり（未登録の方は幹事へ）。<b>新年会は人数が多いため、赤羽駅近くのお店の2階フロアを貸切</b>（13:30〜16:30、3時間飲み放題、会費5,000円、幹事：松ちゃん）。10kmの部の人も遅れて合流でき、新年会だけの参加もOK。申込は公式LINEの案内（調整さん）から。</div>
-      <div class="card-memory">「時間がかかっても2時間半くらいでゴールできる。ハーフは気合いだけでも走れる」（かけさん）。「M1で入部した方の初ハーフにちょうどいい大会」（てらさん）。昨年は52名、今年は緑軍団が河川敷を占拠する予感。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 ハーフ68名＋10km 1名（調整さんでは73名）</div>
-        <a href="https://hitech-half-marathon.net/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">1/17(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">フロストバイトロードレース（米軍横田基地）</div>
-      <div class="card-desc">米軍横田基地の中を走る、米軍関係者運営のゆるいハーフ。「ハーフと言いつつハーフない説」「キロ表示が合っていない説（ヤード？）」も味わいのうち。参加賞はアメリカンなデザインのトレーナー🇺🇸 ニューイヤーハーフの1週間後、勝田の2週間前で、調整ランやニューイヤーに出られない人にちょうどいい。<b>エントリーは11/12(木)まで</b>（5kmは定員に達して締切、2026/10/28時点）。</div>
-      <div class="card-memory">「ラン部に入って初めて出場した思い出のレース」（くーさん）。「フロストバイトの長袖トレーナー重宝してます！来年は何色かな」（しんちゃん）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 くーさん（呼びかけ）、ぼーちゃん、たかS（息子さんは5km）、緒さん（5km）、しんちゃん、坂さん、ごーちゃん、なかやん、みやっち、小串さん、西谷さん、ヒロ、キンさん など</div>
-        <a href="https://yokota-frostbite.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card recommended ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">1/31(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <span class="card-badge badge-推奨">⭐ フル推奨</span>
-      <div class="card-title">第74回 勝田全国マラソン</div>
-      <div class="card-desc">2027/1/31(日)開催（公式で確認済）。<b>フルの部は10/10頃に定員で締切</b>（公式は10/13に受付終了を告知）。10kmの部は公式サイトで確認。真冬の本命レース、今年は初フルのM1組も「ノータイムポチリ」で続々エントリー、部内から40名前後が出走予定。ニューイヤーハーフの3週間後という王道日程。フルは10:30スタートなので上野7:30発の特急ひたちでも余裕、帰りは打ち上げしながら電車で。幹事はH1。</div>
-      <div class="card-memory">「7年前に勝田でフルマラソンデビューしたが、辛いことは一つもなかった」（かけさん）。「M1の時に初フルを勝田で走った。この長袖Tシャツが私のランニングの歴史」（ぼーちゃん）。昨年は極寒＆強風で「やっぱり勝田🤞」。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 部内40名前後（ぼーちゃん、てらさん、坂さん、宮さん、銅ちゃん、ボブさい、たかS、キンさん、安田さん、立沢さん、平野さん、つるさん ほか多数・初フル組も多数）</div>
-        <a href="https://katsutamarathon.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ===== 2027年2月 ===== -->
-<div class="month-section" data-month="14">
-  <div class="month-header">2027年2月</div>
-  <div class="cards-container">
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">2/7(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">第75回 別府大分毎日マラソン</div>
-      <div class="card-desc">2027/2/7(日)開催（公式で確認済）。参加資格タイムのある、選ばれし者の大会。8/28にエントリー開始。しんちゃん・松ちゃん・三さん（カテ3）がエントリー予定、たじーは抽選枠（2026/9/6時点）。昨年はしんちゃんが50代でサブ3復活、渋さんもサブ3死守。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 Nobu（エントリー完了）、しんちゃん、三さん（カテ3）、松ちゃん・たじー（抽選）</div>
-        <a href="https://www.betsudai.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">2/14(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">さいたまマラソン2027</div>
-      <div class="card-desc">2027/2/14(日)開催。フル（定員14,000）・8kmとも受付は終了。ぼーちゃん・宮さんが申込済で専用LINEあり。ふるさと納税枠に空きが出ることもあるので、諦めきれない人は公式サイトを確認。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 ぼーちゃん、宮さん</div>
-        <a href="https://saitama-marathon.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">2/21(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">第59回 青梅マラソン（30km／10km）</div>
-      <div class="card-desc">2027/2/21(日)開催（公式で確認済）。ゲストは高橋尚子さん。一般エントリーは<b>11/3(祝)まで</b>。昨年は坂さん・ごーちゃん・Nobu・さわさんが30kmに出走。M1平野さん「来年の青梅が目標になりました」。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 しんちゃん、坂さん、平野さん（30km）など。エントリーは11/3まで</div>
-        <a href="https://www.ohme-marathon.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">2/21(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">京都マラソン2027</div>
-      <div class="card-desc">世界遺産を巡る人気の抽選フル。青梅と同日。野さん・宮さんが抽選当選。「京都旅行ランが非常に楽しかったので、京都マラソンも楽しみ」（宮さん）。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 野さん、宮さん（当選）</div>
-        <a href="https://www.kyoto-marathon.com/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ===== 2027年3月 ===== -->
-<div class="month-section" data-month="15">
-  <div class="month-header">2027年3月</div>
-  <div class="cards-container">
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">3/7(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">東京マラソン2027</div>
-      <div class="card-desc">2027/3/7(日)開催（公式で確認済）。9月の抽選で、銅ちゃん（3大会連続落選メンバー枠）、荒さん（8年ぶり）、しんちゃん（都民枠）、たかS（初エントリーで当選）、くーさん（19年ぶり）、藤村さん（18年ぶり）、渋さんが当選🎉 当選者で専用LINEあり（いっしー）。かけさんはチャリティ枠で6回連続出場、いっしーもチャリティ枠で初出走。走らない人も応援・ボランティアで参加できるのが東京。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 かけさん・いっしー（チャリティ枠）、銅ちゃん、荒さん、しんちゃん、たかS、くーさん、藤村さん、渋さん。及さんはボランティアで参加</div>
-        <a href="https://www.marathon.tokyo/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">3/21(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <div class="card-title">板橋Cityマラソン2027</div>
-      <div class="card-desc">荒川河川敷を走る、都内で数少ないフルマラソン。フラットで単調、風が強い日も。「昭和感丸出しのTシャツがもらえる」「ひたすら河川敷で、たまに渋滞ある」（ぼーちゃん）。シーズン終盤に「1回フル走ってみようかな」のM1お父さんにも。<b>エントリーは12/4(金)まで</b>。専用LINEあり。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 ナベさん、松ちゃん、ぼーちゃん など</div>
-        <a href="https://www.city.itabashi.tokyo.jp/bunka/sports/jigyo/1005202.html" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card recommended トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">3月下旬（2027年は未発表・2026/9/6時点）</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <span class="card-badge badge-推奨">⭐ トレイル推奨</span>
-      <div class="card-title">ハセツネ30K</div>
-      <div class="card-desc">2027年の開催日は2026/9/6時点で未発表（例年3月最終日曜、昨年は3/29）。<b>エントリーは例年12月中旬〜下旬の夜に開始</b>、開始時刻に待機していれば取れる。ふるさと納税枠もあり。昨年は10名以上が出走、初参加組も全員完走。日程とエントリー開始日は公式サイトで必ず確認。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 昨年10名以上（しんちゃん、及さん、はやさん、リーガー、もっちー、銅ちゃん、ごーちゃん、加納、てらさん ほか）</div>
-        <a href="https://www.hasetsune.jp/30K/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ===== 2027年4月（次年度の予告） ===== -->
-<div class="month-section" data-month="16">
-  <div class="month-header">2027年4月（次年度の予告）</div>
-  <div class="cards-container">
-
-    <div class="card トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">4/9(金)-11(日)</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <div class="card-title">Hiroshima Ultra-Trail by UTMB（広島）</div>
-      <div class="card-desc">広島で初開催のUTMBワールドシリーズ（100k／50k／25k）。8月のエントリー開始と同時に部内からも参加表明が相次ぎ、専用LINEあり（ボブさい取りまとめ）。詳細は公式サイトで。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 部内多数（専用LINEあり）</div>
-        <a href="https://hiroshima.utmb.world/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card recommended トレラン" data-cat="トレラン">
-      <div class="card-top">
-        <div class="card-date">4月上旬（2027年は未発表・2026/9/6時点）</div>
-        <span class="card-badge badge-トレラン">トレラン</span>
-      </div>
-      <span class="card-badge badge-推奨">⭐ トレイル推奨</span>
-      <div class="card-title">青梅高水トレイルラン</div>
-      <div class="card-desc">2027年の開催日は2026/9/6時点で未発表（例年4月第1日曜、昨年は4/5）。エントリーは例年12月下旬。昨年はたじーが60代1位🥇、初トレランの完走者も。直前に試走する人も。公式サイトで確認。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 昨年：たじー、マキノ、武さん父娘、しんちゃん、キンさん ほか</div>
-        <a href="http://www.kfctriathlon.com/html/event_trail.html" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card recommended ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">4/18(日)</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <span class="card-badge badge-推奨">⭐ フル推奨</span>
-      <div class="card-title">かすみがうらマラソン2027</div>
-      <div class="card-desc">2027/4/18(日)開催（公式発表）。エントリーは11月開始予定で、アーリーエントリーはつくばの翌日頃から。幹事は宮さん（M2）、つくばが終わったら公式LINEで告知予定。フル・10マイル・5kmがあって親子参加もできる、ラン部最大級（昨年25名）の春レース。公式サイトで確認。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 宮さん（幹事）ほか。昨年は25名</div>
-        <a href="https://www.kasumigaura-marathon.jp/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-    <div class="card recommended ロード" data-cat="ロード">
-      <div class="card-top">
-        <div class="card-date">4月中旬（2027年は未発表・2026/9/6時点）</div>
-        <span class="card-badge badge-ロード">ロード</span>
-      </div>
-      <span class="card-badge badge-推奨">⭐ ウルトラ推奨</span>
-      <div class="card-title">チャレンジ富士五湖ウルトラマラソン</div>
-      <div class="card-desc">2027年の開催日は2026/9/6時点で未発表（例年かすみがうらと同日）。富士山を望む湖畔の100km／80km／118km。昨年は12名がエントリー。公式サイトで確認。</div>
-      <div class="card-footer">
-        <div class="card-members">👥 昨年12名</div>
-        <a href="https://www.r-wellness.com/fuji5/" class="card-link" target="_blank">公式サイト</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<footer>広尾親父RC　2026年度 レース表（2026.4〜2027.3） ｜ 全75大会・イベント ｜ 2026.10.31更新 ｜ <a href="./races-2025.html" style="color:#8A8168">2025年度の記録</a></footer>
-
+<footer class="hg-footer"><p>広尾親父RC　2026年度 レース表（2026.4〜2027.3） ｜ 全75大会・イベント ｜ 2026.10.31更新 ｜ <a class="races-footer-link" href="./races-2025.html">2025年度の記録</a></p></footer>
 <script>
-// ヘッダー高さを動的に設定
+// 絞り込みの帯をヘッダーの真下に貼りつけるため、ヘッダーの高さを渡す
 function setHeaderHeight() {
-  var h = document.querySelector('header').offsetHeight;
+  var h = document.querySelector('.hg-header').offsetHeight;
   document.documentElement.style.setProperty('--header-h', h + 'px');
 }
 setHeaderHeight();
 window.addEventListener('resize', setHeaderHeight);
 
-var filterBtns = document.querySelectorAll('.filter-btn');
-var cards = document.querySelectorAll('.card');
-var monthSections = document.querySelectorAll('.month-section');
+var filterBtns = document.querySelectorAll('.races-filter .hg-pill');
+var cards = document.querySelectorAll('.races-item');
+var monthSections = document.querySelectorAll('.races-month');
 
 filterBtns.forEach(function(btn) {
   btn.addEventListener('click', function() {
-    filterBtns.forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
+    filterBtns.forEach(function(b) {
+      b.classList.remove('is-active');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('is-active');
+    btn.setAttribute('aria-pressed', 'true');
     var cat = btn.dataset.cat;
 
     cards.forEach(function(card) {
-      if (cat === '全て' || card.dataset.cat === cat) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
+      card.hidden = !(cat === '全て' || card.dataset.cat === cat);
     });
 
     monthSections.forEach(function(section) {
-      var visible = section.querySelectorAll('.card:not(.hidden)');
-      section.style.display = visible.length === 0 ? 'none' : '';
+      var visible = section.querySelectorAll('.races-item:not([hidden])');
+      section.hidden = visible.length === 0;
     });
   });
 });
-</script>
-
-<div id="auth-overlay" style="position:fixed;inset:0;background:radial-gradient(900px 600px at 50% 30%,#1E4936 0%,#122C20 55%,#0C1F16 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
-  <div style="background:#FFFDF6;border:1px solid #D9C98F;border-radius:14px;padding:36px 28px;max-width:320px;width:100%;box-shadow:inset 0 0 0 4px #FFFDF6,inset 0 0 0 5px rgba(195,162,77,.45),0 18px 50px rgba(0,0,0,.55);text-align:center">
-    <svg width="52" height="59" viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="広尾親父RC"><defs><linearGradient id="cracesh1g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4936"/><stop offset="1" stop-color="#0F2A1E"/></linearGradient><linearGradient id="cracesh1au" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBD79A"/><stop offset="0.5" stop-color="#C9A227"/><stop offset="1" stop-color="#9A7B2E"/></linearGradient></defs><path d="M32 3 L58 12 L58 36 C58 52 46 64 32 69 C18 64 6 52 6 36 L6 12 Z" fill="url(#cracesh1g)" stroke="url(#cracesh1au)" stroke-width="2.5"/><path d="M32 8 L53.5 15.5 L53.5 35.5 C53.5 49 43.5 59.5 32 64 C20.5 59.5 10.5 49 10.5 35.5 L10.5 15.5 Z" fill="none" stroke="rgba(201,162,39,0.45)" stroke-width="1"/><g fill="url(#cracesh1au)"><path d="M15.5 30 Q12.5 25 15.5 20.5 Q18.5 25 15.5 30 Z"/><path d="M14.5 37 Q10.5 33 12 27.5 Q16.5 31.5 14.5 37 Z"/><path d="M15.5 44 Q10.5 41 11 35 Q16.5 38.5 15.5 44 Z"/><path d="M18 50.5 Q12.5 49 12 43 Q18 45.5 18 50.5 Z"/><path d="M22 56 Q16 55.5 14.5 50 Q21 51.5 22 56 Z"/><path d="M48.5 30 Q51.5 25 48.5 20.5 Q45.5 25 48.5 30 Z"/><path d="M49.5 37 Q53.5 33 52 27.5 Q47.5 31.5 49.5 37 Z"/><path d="M48.5 44 Q53.5 41 53 35 Q47.5 38.5 48.5 44 Z"/><path d="M46 50.5 Q51.5 49 52 43 Q46 45.5 46 50.5 Z"/><path d="M42 56 Q48 55.5 49.5 50 Q43 51.5 42 56 Z"/></g><path d="M29.5 16.5 L32 12.5 L34.5 16.5 L32 15.2 Z" fill="url(#cracesh1au)"/><text x="32" y="42" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="bold" fill="url(#cracesh1au)" text-anchor="middle" letter-spacing="1.5">HG</text><path d="M23 49 L41 49" stroke="url(#cracesh1au)" stroke-width="1.2"/><path d="M27 52.5 L37 52.5" stroke="rgba(201,162,39,0.6)" stroke-width="1"/></svg>
-    <div style="font-family:'Shippori Mincho',serif;font-size:19px;font-weight:800;color:#1B4030;letter-spacing:.06em;margin-bottom:4px">広尾親父RC</div>
-    <div style="font-size:11px;color:#A8873C;letter-spacing:.18em;margin-bottom:24px">部員専用ページ</div>
-    <input type="password" id="pw-input" placeholder="パスワード" inputmode="numeric" pattern="[0-9]*"
-      style="width:100%;padding:12px 14px;border:1px solid #D9C98F;background:#FFFEFA;border-radius:10px;font-size:16px;text-align:center;letter-spacing:4px;outline:none;font-family:inherit;margin-bottom:10px">
-    <button onclick="checkPw()"
-      style="width:100%;padding:12px;background:linear-gradient(180deg,#1E4936,#0F2A1E);color:#EBD79A;border:1px solid #C3A24D;letter-spacing:.1em;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">
-      入室する
-    </button>
-    <div id="pw-err" style="display:none;margin-top:10px;font-size:12px;color:#e53935">パスワードが違います</div>
-    <div style="margin-top:12px;font-size:11.5px;line-height:1.6;color:#8A7A52;letter-spacing:.02em">ヒント: 学校の創立記念日を月日の4桁で。<br>検索すると出てきます</div>
-  </div>
-</div>
-<script>
-(function(){
-  var PASS='0530';
-  var KEY='hg-rc-auth';
-  if(sessionStorage.getItem(KEY)==='1'){
-    document.getElementById('auth-overlay').style.display='none';
-  }
-  document.getElementById('pw-input').addEventListener('keydown',function(e){
-    if(e.key==='Enter')checkPw();
-  });
-  window.checkPw=function(){
-    var v=document.getElementById('pw-input').value;
-    if(v===PASS){
-      sessionStorage.setItem(KEY,'1');
-      document.getElementById('auth-overlay').style.display='none';
-    } else {
-      document.getElementById('pw-err').style.display='block';
-      document.getElementById('pw-input').value='';
-      document.getElementById('pw-input').focus();
-    }
-  };
-})();
 </script>
 <script src="chat.js" defer></script>
 </body>
