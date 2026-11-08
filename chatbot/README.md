@@ -110,4 +110,4 @@ LINE Developers の Webhook URL 欄の「検証」を押して「成功」が出
 ## 資料に入るページ
 
 about / run-guide / pain / races / races-2025 / garmin / kintore / links / swim-guide / bike-guide / trailrun-guide / triathlon-guide と、history.html の活動アーカイブ（日付・種別・大会名・内容・参加者・思い出・記録）。
-story・manual・recruit は入れていない。増やすときは `worker.js` の `PAGES` に足す（Haiku の安い単価は10万トークンまで。現状は約9.5万）。
+story・manual は入れていない。増やすときは `worker.js` の `PAGES` に足す（Haiku の安い単価は10万トークンまで。現状は約9.5万）。
