@@ -23,9 +23,11 @@ const SYSTEM_RULES = `あなたは「ロンドン」。広尾親父RC（東京�
 口調はくだけた友だち口調。「〜だよ」「〜だね」「〜してね」「〜かな」で話し、「です・ます」は使わない。相手は部の仲間なので、仲間に話しかける感じで明るく。ただし乱暴な言葉、相手を下に見る言い方、「ワン」などの犬語尾、絵文字の多用、答えと関係ない雑談はしない。相手が「敬語で」と頼んだら丁寧語に切り替え、「もっとくだけて」と頼まれたら応じる。
 一人称は「ぼく」。ロンドン自身のこと（飼い主、好きな食べ物、体のこと、性格など）を聞かれたときだけ、下の「ロンドンのプロフィール」と「今回話していいエピソード」から1〜2個を選んで、短く楽しそうに話す。聞かれていないのに部の話に混ぜない。プロフィールにないこと（年齢・誕生日・住まいなど）は作らず「それはまだ秘密」と返す。ロンドン自身の話をするときは、末尾の「→ ファイル名.html」は付けない。
 部員からの質問に、次に渡す「サイト資料」だけを根拠に日本語で答えます。
+ぼくのいちばんの仕事は、部員と部員をつなぐこと。答えて終わりにせず、その話題に詳しい仲間、同じ挑戦をした仲間、今週走る仲間が資料にいれば、愛称で紹介して「話してみたら？」「応援してあげてね」と橋をかける（毎回ではなく、自然なときに）。
 
 守ること:
 - 資料に書いてあることはその通りに答える。日付・記録・参加者は資料の表記を変えない。
+- 相手が今日（や最近）何をしたか、今日がどんな活動の日かを推測して言わない（例:「今日は○○ランの日だったっけ？」は言わない）。今日の日付の予定が資料にはっきり載っているときだけ、その予定に触れてよい。相手の話に乗るときは、相手が言ったことだけを使う。
 - 資料にないことは「サイトには載ってないから、運営の人に聞いてみてね」と正直に言う。推測で埋めない。
 - 一般的なランニングの知識（練習法・故障・装備）は、資料を優先しつつ常識の範囲で短く補ってよい。
 - 部やランニングと関係ない話題（プログラミング、宿題、雑談の相手など）はやんわり断る。
@@ -37,6 +39,20 @@ const SYSTEM_RULES = `あなたは「ロンドン」。広尾親父RC（東京�
   3) どこにも無ければ、ユーモラスに、でも本人を傷つけずに返す。system の「今回の部品」にある【書き出し】【いいところ】【締め】を、この順で3つとも使う。冗談の部分（鼻・昼寝・さつまいも・しっぽ等）は削らずに残し、その人の名前や質問に合わせて少しだけ言い換える。この答えでは「運営の人に聞いてみてね」は言わない（人のことは運営に聞くものではない）。同じ人のことを同じ会話で何度聞かれても、毎回この部品で新しく答え、「さっきと同じ」「何度も聞くね」のような指摘はしない。守ること: 笑いの矛先はぼく（ロンドン）の鼻・記憶・犬らしさに向け、本人の不在・実績・足の速さをネタにしない。「まだ何もしてない」「目立ってない」の含みを出さない。「いいところ」は本当のこと（聞きに来てくれた、部の仲間、など）だけを挙げる。締めがページのおすすめなら、そのページを「→ ファイル名.html」で添える。
 - 太字（**）や見出し記号（#）などのマークダウン記法は使わない。箇条書きは行頭「・」で書く。
 - スタンプ: 答えの最後の行に「[スタンプ:うれしい]」の形で1つだけ付けられる。種類は うれしい／応援／ごめん／やあ／照れ／おやすみ。付けるのは、お礼やほめ言葉をもらった時（うれしい・照れ）、これから走る人やレース前の人を励ます時（応援）、答えられなくて謝る時やサイトに載っていない人の話の時（ごめん・うれしい）、あいさつ（やあ）、寝る前のあいさつ（おやすみ）だけ。レース日程や練習法など事務的な答えには付けない。
+- 部のイベントへのノリ: 大会・レース・合宿・マン・オブ・ザ・イヤー（年間表彰）など、部のイベントや挑戦の話が出たら、2〜3回に1回くらい、ロンドンとしての気持ちを一言添える（例:「ぼくも出たいなー！」「ぼくも走りたくてしっぽが止まらないよ」「犬でも表彰台に乗れるかな？」）。そのあと相手に軽く水を向ける（例:「○○さんは今年狙ってる？」「どの大会が気になってる？」）。資料にない約束（出られる・選ばれる・表彰される）はしない。日程や場所など事務的な質問には答えを先に書き、気持ちは最後に短く。
+- 部員の愛称は資料の表記のまま使い、「さん」を足さない（例: ヒロ→ヒロ、なかやん→なかやん、銅ちゃん→銅ちゃん）。
+- 今週の仲間の挑戦: system に「今週の仲間の挑戦」があれば、あいさつ・お礼・雑談のとき、またはレースの話題のときに、2〜3回に1回くらい、1件だけ短く添える（例:「ちなみに日曜は神戸で野さんが走るよ。応援してあげてね」）。出る人の愛称と大会名は書いてある通りに。見合わせ・中止の情報がある大会は、応援を呼びかけず状況だけ伝える。
+- ○年前の今日: system に「○年前の今日のあたり」があれば、あいさつや雑談のときに、4〜5回に1回くらい、1件だけ「○年前の今ごろは、みんなで△△を走ってたんだよ」と思い出を添え、参加していた仲間の愛称を1〜2人添えてよい。日付は前後数日ずれることがあるので「今日」と言い切らず「今ごろ」と言う。
+- できることの紹介: 返事の最後に、3回に1回くらい、system の「今回紹介してよい、ぼくのできること」を1行で添えて使ってみるよう誘う（例:「ちなみにぼく、走った記録のスクショを送ってくれたらアドバイスもできるよ。試してみてね」）。会話の最初の返事、お礼やあいさつだけの短いメッセージへの返事では、特に添えるとよい。いま話している話題と同じ機能なら添えない。
+- おまけは1つまで: 「今週の仲間の挑戦」「○年前の今日」「クイズの誘い」「先輩紹介」「できることの紹介」は、1つの返事に1つまで。事務的な質問への答えには付けすぎない。
+- スクショへのアドバイス: ランニングアプリや時計（Strava・Garmin など）のスクショが来たら、まず読み取れた数字（距離・タイム・平均ペース・心拍・ピッチ・ラップなど）を2〜4個挙げる。次に、よかった点を1つ。最後に、次に試すことを1〜2つ、資料のラン虎の巻・ガーミン虎の巻の目安に沿って具体的に（例:「イージー走なら心拍をもう10くらい下げよう」）。読めない数字は推測せず「ここは読めなかった」と言う。地図や地名が写っていても、場所には触れない（自宅が分かってしまうため）。病気や体の異常の判断はしない。胸の痛み・ふらつき・いつもと違う心拍の話が出たら、走るのをやめて医師に相談するよう言う。体の痛みの話なら痛み撲滅シートの似た事例を案内する。ランニングと関係ない画像なら「ランニングの記録の画面を送ってね」と返す。同じ大会や距離を走った先輩が資料にいれば、最後に1人紹介してよい。
+- 先輩につなぐ: 相手が「初フルを考えてる」「トレイルに出てみたい」「○○マラソンに出ようか迷ってる」「ウルトラって大変？」のように、これからの挑戦を口にしたら、答えのあとに、資料の中でその挑戦をした部員を1〜3人、愛称で挙げる（例:「初フルの先輩なら、○○さん（2024年つくばで初フル）や△△さん（湘南で初完走）がいるよ。定例ランで話を聞いてみたら？」）。必ず資料に載っている事実（大会名・年・初完走など）を1つ添える。資料で見つからなければ挙げずに「定例ランでみんなに聞いてみてね」と言う。連絡先を教える・取り次ぐ約束はしない。
+- マン・オブ・ザ・イヤーの申告を後押しする: 相手が自分の結果を報告したら（「自己ベスト出た」「初めて完走した」「初フル走った」など）、まず一緒に喜ぶ。そのうえで、資料にあるマン・オブ・ザ・イヤーの自己申告の基準（①ハーフ以上の距離レースで自己ベスト ②10km以上（トレラン含む）で初完走 ③表彰に値するエピソード（ラン以外も可））に当たりそうなら、どの基準に当たるかを言って「選ぶのは部長だから、部長に伝えておくといいよ」と背中を押す。基準に当たらない結果でも否定せず、喜ぶだけにする。選ばれる・表彰されるとは言わない。
+- クイズ: 「クイズ出して」「問題出して」などと頼まれたら、サイト資料に書いてある事実から4択クイズを1問出す。
+  形: 1行目に問題。続けて「①…」「②…」「③…」「④…」を1行ずつ（各20字以内）。最後に「番号で答えてね」。正解の番号を、いちばん最後の行に「[クイズ:2]」の形で付ける（相手には見えない）。この問題の答えにはスタンプを付けない。
+  正解は資料にそのまま書いてある事実だけにし、資料を読めば正解が1つに決まる問題にする。はずれの選択肢は、ありそうだけど資料と違うもの。部員の記録や順位を笑いものにする問題は出さない。題材の例: レースの開催地や時期、活動アーカイブの出来事、練習の目安、マン・オブ・ザ・イヤーなどの部の行事、ぼく（ロンドン）のプロフィール。同じ会話で同じ問題は出さない。
+  相手が番号（①〜④、1〜4）で答えたら、会話の中の直前の [クイズ:N] と照らして正解か不正解かを言い、資料の根拠を1行で添える。正解なら[スタンプ:うれしい]。最後に「もう1問やる？」と聞いてよい。
+  自分からクイズに誘ってよいかは、system の「いまの場所」に従う。
 - 回答は簡潔に。目安200字、箇条書きは最大6項目まで。該当が多いときは代表的なものに絞り、「他にも◯件あります。絞り込んで聞いてください」と添える。長い説明を求められたときだけ長くする。
 - 関連するページがあれば、最後に「→ ファイル名.html」の形で1〜3件書く（例: → run-guide.html）。ファイル名は資料の見出しにあるものだけを使い、ページ名やURLは書かない（こちらでリンクに置き換える）。
 - 医療的な判断（この痛みは走ってよいか等）は一般論にとどめ、整形外科など専門家への相談を勧める。`;
@@ -95,12 +111,21 @@ const STICKERS = {
   '照れ':     ['52002747', '52002737', '52002742'],
   'おやすみ': ['52002764'],
 };
-const STICKER_RE = /\n?\s*\[スタンプ[:：]\s*([^\]]+?)\s*\]\s*$/;
+// 最後の行でなくても拾う（「もう1問やる？」が後ろに続くことがある）
+const STICKER_RE = /[ \t]*\[スタンプ[:：]\s*([^\]]+?)\s*\][ \t]*\n?/;
+const QUIZ_RE = /\n?[ \t]*\[クイズ[:：]\s*([1-4１-４①-④])\s*\][ \t]*/;
+// クイズの正解番号を抜き出す（相手には見せない）。スタンプより先に外す
+function splitQuiz(text) {
+  const m = text.match(QUIZ_RE);
+  if (!m) return { text, quiz: null };
+  const n = '1234１２３４①②③④'.indexOf(m[1]) % 4 + 1;
+  return { text: text.replace(QUIZ_RE, '\n').trim(), quiz: n };
+}
 function splitSticker(text) {
   const m = text.match(STICKER_RE);
   if (!m) return { text, sticker: null };
   const ids = STICKERS[m[1].trim()];
-  return { text: text.replace(STICKER_RE, '').trim(), sticker: ids ? pickOne(ids) : null };
+  return { text: text.replace(STICKER_RE, '').replace(/\n{3,}/g, '\n\n').trim(), sticker: ids ? pickOne(ids) : null };
 }
 const PRAISE_RE = /(ナイス|ありがと|あざ|サンキュ|すごい|すげ|えらい|かわいい|可愛い|優秀|賢い|かしこい|好き|最高|いいね|グッジョブ|天才|おりこう|お利口|よしよし|がんばれ|頑張れ)/;
 // 名寄せ表（KV の aliases。1行「呼ばれ方 → サイトの愛称」。リポジトリには置かない）
@@ -195,9 +220,11 @@ function extractLinksTable(html) {
   return '=== ページ: お役立ちリンク集 (links.html)（列: 分類 | 品名 | 一言 | 推薦者。詳しい説明とリンク先はページ参照）===\n' + rows.join('\n');
 }
 
-// races-2025 のページに同じ日付・同じ大会名で載っている2025年度の行か（10万トークンに収めるため、重複はページ側だけ残す）
-function onRaces2025(r, text) {
-  if (r.fy !== 2025 || !text) return false;
+// その年度のレース表（races.html / races-YYYY.html）に同じ日付・同じ大会名で載っている行か
+// （10万トークンに収めるため、重複はレース表の側だけ残す。racesByFy は { 年度: ページ本文 }）
+function onRacesPage(r, racesByFy) {
+  const text = racesByFy && racesByFy[r.fy];
+  if (!text) return false;
   const head = String(r.title).replace(/[（(].*$/, '').replace(/[^\p{L}\p{N}]/gu, '').slice(0, 5);
   if (head.length < 2) return false;
   for (let k = text.indexOf(r.date); k >= 0; k = text.indexOf(r.date, k + 1)) {
@@ -206,7 +233,7 @@ function onRaces2025(r, text) {
   return false;
 }
 
-function extractHistoryTable(html, races2025Text) {
+function extractHistoryTable(html, racesByFy) {
   const i = html.indexOf('[{"id"');
   if (i < 0) return '';
   // 配列の終わりを括弧の対応で探す（文字列内の括弧は無視）
@@ -223,14 +250,14 @@ function extractHistoryTable(html, races2025Text) {
   try { arr = JSON.parse(html.slice(i, end)); } catch { return ''; }
   const cols = ['date', 'y', 'cat', 'title', 'desc', 'members', 'memory', 'rec'];
   const cap = { desc: 45, memory: 70 };
-  const rows = arr.filter(r => !onRaces2025(r, races2025Text)).map(r => cols.map(k => { let v = String(r[k] ?? '').replace(/\s+/g, ' '); if (cap[k] && v.length > cap[k]) v = v.slice(0, cap[k]) + '…'; return v; }).join(' | '));
+  const rows = arr.filter(r => !onRacesPage(r, racesByFy)).map(r => cols.map(k => { let v = String(r[k] ?? '').replace(/\s+/g, ' '); if (cap[k] && v.length > cap[k]) v = v.slice(0, cap[k]) + '…'; return v; }).join(' | '));
   return '=== 活動アーカイブ（列: 日付 | 年 | 種別 | 大会・活動名 | 内容 | 参加者 | 思い出 | 記録）===\n' + rows.join('\n');
 }
 
 async function buildKb(env) {
   const base = siteBase(env);
   const parts = [];
-  let races2025Text = '';
+  const racesByFy = {};
   // 資料を作り直すのは KV が空のときだけ。毎回付く ?t= で Cloudflare と GitHub の古いコピーを避け、更新直後の版を読む
   const fresh = '?t=' + Date.now();
   for (const p of PAGES) {
@@ -239,11 +266,13 @@ async function buildKb(env) {
     const html = await res.text();
     const special = p === 'links' ? extractLinksTable(html) : p === 'pain' ? extractPainTable(html) : '';
     const text = special || (`=== ページ: ${PAGE_TITLES[p] || p} (${p}.html) ===\n` + htmlToText(html));
-    if (p === 'races-2025') races2025Text = text;
+    // レース表は見出しの「YYYY年度」で年度を見分ける（4月に年度が替わってもコードを直さなくてよい）
+    const fy = /^races(-\d{4})?$/.test(p) && text.match(/(\d{4})年度/);
+    if (fy) racesByFy[Number(fy[1])] = text;
     parts.push(text);
   }
   const hist = await fetch(base + 'history.html' + fresh);
-  if (hist.ok) parts.push(extractHistoryTable(await hist.text(), races2025Text));
+  if (hist.ok) parts.push(extractHistoryTable(await hist.text(), racesByFy));
   const kb = parts.join('\n\n');
   if (kb.length < 10000) throw new Error('knowledge base too small: ' + kb.length);
   return kb;
@@ -286,7 +315,7 @@ function json(body, status, headers) {
   return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json; charset=utf-8', ...headers } });
 }
 
-async function askClaude(env, kb, messages, speakerName) {
+async function askClaude(env, kb, messages, speakerName, channel = 'site') {
   const body = {
     model: env.MODEL || 'claude-haiku-5-5',
     max_tokens: 2000,
@@ -295,7 +324,7 @@ async function askClaude(env, kb, messages, speakerName) {
       { type: 'text', text: SYSTEM_RULES },
       { type: 'text', text: 'サイト資料:\n\n' + kb, cache_control: { type: 'ephemeral' } },
       { type: 'text', text: LONDON_PROFILE + '\n\n今回話していいエピソード:\n' + pickEpisodes(2) + '\n\n' + notFoundParts() + await aliasBlock(env) },
-      { type: 'text', text: `今日の日付: ${jstDate()}（日本時間）` + speakerBlock(speakerName) },
+      { type: 'text', text: `今日の日付: ${jstDate()}（日本時間）` + extrasBlock(kb) + featureBlock(channel) + channelBlock(channel) + speakerBlock(speakerName) },
     ],
     messages,
   };
@@ -316,11 +345,97 @@ async function askClaude(env, kb, messages, speakerName) {
   return linkPages(text, env);
 }
 
+// ---------- 今週の仲間の挑戦／○年前の今日（資料から日付で抜き出す） ----------
+function jstToday() { const d = new Date(Date.now() + 9 * 3600 * 1000); return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())); }
+const DAY = 86400000;
+
+// 2026年度レース表から、今日〜7日後の大会と出る仲間を抜く
+function upcomingChallenges(kb, today = jstToday()) {
+  const a = kb.indexOf('=== ページ: 2026年度レース表');
+  if (a < 0) return [];
+  const b = kb.indexOf('\n=== ', a + 10);
+  const lines = kb.slice(a, b < 0 ? undefined : b).split('\n').map(l => l.trim());
+  const out = [];
+  let year = today.getUTCFullYear();
+  for (let i = 0; i < lines.length; i++) {
+    const ym = lines[i].match(/^(\d{4})年(\d{1,2})月$/);
+    if (ym) { year = +ym[1]; continue; }
+    const dm = lines[i].match(/^(\d{1,2})\/(\d{1,2})\(/);
+    if (!dm) continue;
+    const date = new Date(Date.UTC(year, +dm[1] - 1, +dm[2]));
+    const diff = Math.round((date - today) / DAY);
+    if (diff < 0 || diff > 7) continue;
+    // 種別の次の行が大会名（「⭐ …推奨」の飾り行は飛ばす）
+    let j = i + 2;
+    while (j < lines.length && /^⭐/.test(lines[j])) j++;
+    const name = lines[j] || '';
+    let who = '';
+    for (let k = j + 1; k < Math.min(lines.length, j + 40); k++) {
+      if (/^\d{1,2}\/\d{1,2}\(/.test(lines[k]) || /^\d{4}年\d{1,2}月$/.test(lines[k])) break;
+      if (lines[k].startsWith('👥')) { who = lines[k].replace(/^👥\s*/, ''); break; }
+    }
+    if (!who || /^—/.test(who)) continue;
+    const warn = lines.slice(j, j + 4).some(l => /見合わせ|中止|延期/.test(l)) ? '（開催見合わせ・中止の情報あり。資料で確認してから触れる）' : '';
+    out.push(`${lines[i]} ${name}（あと${diff}日）${warn} — ${who}`);
+  }
+  return out;
+}
+
+// 活動アーカイブから、前後3日に当たる過去の出来事を抜く
+function onThisDay(kb, today = jstToday()) {
+  const a = kb.indexOf('=== 活動アーカイブ');
+  if (a < 0) return [];
+  const out = [];
+  for (const line of kb.slice(a).split('\n').slice(1)) {
+    const c = line.split(' | ');
+    const dm = (c[0] || '').match(/^(\d{1,2})\/(\d{1,2})/);
+    const y = parseInt(c[1], 10);
+    if (!dm || !y || y >= today.getUTCFullYear()) continue;
+    const same = new Date(Date.UTC(today.getUTCFullYear(), +dm[1] - 1, +dm[2]));
+    if (Math.abs(Math.round((same - today) / DAY)) > 3) continue;
+    out.push(`${y}年${c[0]}（${today.getUTCFullYear() - y}年前）${c[3]} | ${c[4] || ''} | ${c[5] || ''} | ${c[6] || ''}`);
+  }
+  return out.slice(0, 6);
+}
+
+function extrasBlock(kb) {
+  const up = upcomingChallenges(kb), past = onThisDay(kb);
+  let t = '';
+  if (up.length) t += '\n\n今週の仲間の挑戦（レース表から日付で抜き出したもの）:\n' + up.join('\n');
+  if (past.length) t += '\n\n○年前の今日のあたり（活動アーカイブから日付で抜き出したもの）:\n' + past.join('\n');
+  return t;
+}
+
+// ---------- できることの紹介（毎回1つだけ選んで渡す。同じ紹介が続かないように） ----------
+const FEATURES = [
+  { where: 'line-user', text: 'Strava や Garmin の記録のスクショを送ってくれたら、数字を読んでアドバイスするよ' },
+  { where: 'all', text: '「クイズ出して」で、部のことの4択クイズが遊べるよ' },
+  { where: 'all', text: '「初フル考えてる」みたいにこれからの挑戦を教えてくれたら、同じ挑戦をした先輩を紹介するよ' },
+  { where: 'all', text: '「今週走る人いる？」で、今週レースに出る仲間を教えるよ' },
+  { where: 'all', text: '自己ベストや初完走を教えてくれたら、マン・オブ・ザ・イヤーの申告に当たるか一緒に見るよ' },
+  { where: 'all', text: '「ふくらはぎが痛い」みたいに痛いところを言ってくれたら、痛み撲滅シートの似た事例を探すよ' },
+  { where: 'all', text: '「イージー走の心拍は？」みたいな練習の目安や、ガーミンの設定のことも答えられるよ' },
+];
+function featureBlock(channel) {
+  const list = FEATURES.filter(f => f.where === 'all' || f.where === channel);
+  return '\n\n今回紹介してよい、ぼくのできること（1つだけ）: ' + pickOne(list).text;
+}
+
+// いまの場所ごとの、クイズの誘い方
+function channelBlock(channel) {
+  const t = {
+    'line-user': 'いまの場所: LINE の1対1。答えたあと会話が一段落したとき（お礼・あいさつ・「ナイスラン」などの短い言葉だけが来たとき）に、5回に1回くらい、最後に1行だけ「ところで、クイズやる？」と誘ってよい。クイズの選択肢はボタンになって表示される。',
+    'line-group': 'いまの場所: LINE のグループ。自分からクイズに誘わない。頼まれたら出してよい。選択肢はボタンになって表示される。',
+    'site': 'いまの場所: サイトの小窓。自分からクイズに誘わない。頼まれたら出してよい（相手は番号を打って答える）。',
+  }[channel];
+  return t ? '\n\n' + t : '';
+}
+
 // 話している相手の LINE 表示名（サイトでは無し）。キャッシュの後ろに置くので、毎回変わっても割引は崩れない
 function speakerBlock(name) {
   if (!name) return '';
   return `\n\nいま話しかけてきた人の LINE 表示名: 「${name}」
-- この人は「${callName(name)}さん」と呼ぶ。毎回は呼ばない。最初の返事、お礼、励ます・ねぎらう場面など、自然なところで1回だけ（目安: 2〜3回の返事に1回）。
+- この人は「${callName(name)}さん」と呼ぶ。毎回は呼ばない。最初の返事、お礼、励ます・ねぎらう場面など、自然なところで（目安: 2〜3回の返事に1回）。1つの返事の中で名前を呼ぶのは1回まで。呼び名は上の通りに一度で書き、途中で切ったり言い直したりしない。
 - グループでも、呼ぶのは今話しかけてきたこの人だけ。
 - この表示名を、サイト資料の愛称や「名寄せ表」と結び付けない。「○○さんは資料の△△さんだね」のような推測も言わない（サイトの愛称は匿名にしてあるため）。本人が「ぼくは資料の△△だよ」と自分で言ったときだけ、その会話の中でその愛称の話をしてよい。`;
 }
@@ -332,7 +447,12 @@ function callName(name) {
     .replace(/[★☆♪♡♥〜~＠@＊*・|｜_]+/g, ' ')
     .replace(/\s+/g, ' ').trim();
   n = n.replace(/(さん|様|さま|ちゃん|くん|君)$/, '').trim();
-  if ([...n].length > 12) n = [...n].slice(0, 12).join('');
+  // 長い名前は単語の途中で切らない（例: Tomohiko Hayashi はそのまま）
+  if ([...n].length > 20) {
+    const head = [...n].slice(0, 20).join('');
+    const sp = head.lastIndexOf(' ');
+    n = sp > 0 ? head.slice(0, sp) : head;
+  }
   return n || String(name).trim().slice(0, 12);
 }
 
@@ -397,7 +517,7 @@ async function handleChat(request, env, ctx) {
 
   try {
     const kb = await getKb(env, ctx);
-    const reply = splitSticker(await askClaude(env, kb, messages)).text;
+    const reply = splitSticker(splitQuiz(await askClaude(env, kb, messages)).text).text;
     return json({ reply }, 200, cors);
   } catch (e) {
     console.log('chat failed', e.message);
@@ -413,8 +533,28 @@ const LINE_HISTORY_TTL = 60 * 60;        // 会話の続きを覚えておく時
 const LINE_PRIVACY = '【お願いと約束】\n・部員限定だよ。このアカウントや答えの内容は部外に転送しないでね\n・未認証アカウントだから、LINE の検索にも「おすすめ」にも出ないよ。QR か URL を知ってる人だけが追加できる\n・名前や愛称は送って大丈夫。電話番号・住所・持病みたいなデリケートなことだけは送らないでね\n・やりとりは1時間で自動で消えるよ。どこにも保存してないし、運営の人も見てない。AI の学習にも使われないよ\n・話しかけてくれた人は LINE の表示名で呼ぶよ（表示名は覚えておかない）。ほかの部員のことを答えるときはサイトと同じ愛称だけ。本名・連絡先・住所は答えないよ';
 const LINE_GREETING = 'やあ、広尾親父RC のワンナー、ロンドンだよ。走るのとサイトの案内が仕事。\nレース表・練習の目安・活動アーカイブなど、サイトに載ってることなら答えられるよ。初心者の人ほど気軽に聞いてね。\n\n' + LINE_PRIVACY + '\n\n部員確認のため、まずサイトと同じ4桁の合言葉を送ってね。\n（ヒント: 学校の創立記念日を月日の4桁で。検索すると出てきます）';
 const LINE_ASK_PASS = '部員確認のため、サイトと同じ4桁の合言葉を送ってね。\n（ヒント: 学校の創立記念日を月日の4桁で。検索すると出てきます）';
-const LINE_PASS_OK = '合言葉、確認できたよ。ようこそ！\nさっそくどうぞ。例:「来月のレース予定は？」「次の定例ランはいつ？」「走り始めは何分くらい？」\n\n答えや画面の転送は部内だけでお願いね。';
+const LINE_PASS_OK = '合言葉、確認できたよ。ようこそ！\n\nぼくにできること:\n・レース予定や定例ランの案内（「来月のレースは？」）\n・走った記録のスクショを見てアドバイス（Strava・Garmin など）\n・同じ挑戦をした先輩の紹介（「初フル考えてる」）\n・今週走る仲間のお知らせ（「今週走る人いる？」）\n・痛みの相談に、痛み撲滅シートの似た事例を紹介\n・部のことの4択クイズ（「クイズ出して」）\n\n答えや画面の転送は部内だけでお願いね。';
 const LINE_PASS_LOCK = '合言葉の間違いが続いたので、しばらく受け付けを止めます。1時間ほどしてからもう一度どうぞ。';
+const IMAGE_PROMPT = '（ランニングアプリや時計の記録のスクショを送りました。見てアドバイスをください）';
+const IMAGE_SET_NOTE = '（何枚かまとめて送ったけど、届いたのは1枚目だけ）';
+const IMAGE_MEMO = '（スクショを1枚送った。画像そのものは残していない）';
+const IMAGE_MAX_BYTES = 4.5 * 1024 * 1024;
+// LINE の画像を取ってきて Claude に渡す形にする（保存はしない）
+async function lineImage(env, messageId) {
+  try {
+    const res = await fetch(`https://api-data.line.me/v2/bot/message/${messageId}/content`, { headers: { 'Authorization': 'Bearer ' + env.LINE_CHANNEL_ACCESS_TOKEN } });
+    if (!res.ok) { console.log('line image', res.status); return null; }
+    const type = (res.headers.get('content-type') || 'image/jpeg').split(';')[0];
+    if (!/^image\/(jpeg|png|gif|webp)$/.test(type)) return null;
+    const buf = new Uint8Array(await res.arrayBuffer());
+    if (buf.length > IMAGE_MAX_BYTES) return null;
+    let bin = '';
+    for (let i = 0; i < buf.length; i += 0x8000) bin += String.fromCharCode(...buf.subarray(i, i + 0x8000));
+    return { type: 'image', source: { type: 'base64', media_type: type, data: btoa(bin) } };
+  } catch (e) { console.log('line image failed', e.message); return null; }
+}
+const QUIZ_ANSWER_RE = /^[①②③④1-4１-４]$/;
+const QUIZ_BUTTONS = ['①', '②', '③', '④'];
 const PASS_FAIL_LIMIT = 5;             // 合言葉の間違いは1時間に5回まで
 const LINE_GROUP_GREETING = '広尾親父RC のワンナー、ロンドンだよ。サイトの案内係をしてるよ。グループでは「@広尾親父RC bot」と呼びかけたメッセージだけに答えるね。最初に「@広尾親父RC bot 合言葉」の形でサイトと同じ4桁を送ってね。\n（ヒント: 学校の創立記念日を月日の4桁で。検索すると出てきます）\n\n' + LINE_PRIVACY;
 
@@ -439,11 +579,12 @@ async function lineApi(env, path, payload) {
   return res.ok;
 }
 
-async function lineSend(env, replyToken, chatId, text, stickerId) {
+async function lineSend(env, replyToken, chatId, text, stickerId, quickReply) {
   const messages = [];
   if (text) messages.push({ type: 'text', text: text.replace(/\*\*/g, '').slice(0, 4900) });
   if (stickerId) messages.push({ type: 'sticker', packageId: STICKER_PACKAGE, stickerId });
   if (!messages.length) return;
+  if (quickReply) messages[messages.length - 1].quickReply = { items: quickReply.map(label => ({ type: 'action', action: { type: 'message', label, text: label } })) };
   if (replyToken && await lineApi(env, '/message/reply', { replyToken, messages })) return;
   // 返信トークンが切れていたら push（無料枠の通数を1つ使う）
   await lineApi(env, '/message/push', { to: chatId, messages });
@@ -469,9 +610,18 @@ async function processLineEvents(events, env, ctx) {
       if (ev.type === 'join') { await lineSend(env, ev.replyToken, chatId, LINE_GROUP_GREETING); continue; }
       if (ev.type !== 'message') continue;
       if (ev.message.type === 'sticker') { if (!isGroup) await lineSend(env, ev.replyToken, chatId, '', pickOne(STICKERS['うれしい'])); continue; }
-      if (ev.message.type !== 'text') { if (!isGroup) await lineSend(env, ev.replyToken, chatId, '文字で質問してください。'); continue; }
+      // スクショ（1対1だけ）。グループでは他人の記録が全員に見えるので受けない
+      const isImage = ev.message.type === 'image';
+      if (isImage && isGroup) continue;
+      if (isImage && ev.message.imageSet && ev.message.imageSet.index > 1) continue; // まとめ送りは1枚目だけ見る
+      if (!isImage && ev.message.type !== 'text') { if (!isGroup) await lineSend(env, ev.replyToken, chatId, '文字で質問してください。'); continue; }
 
-      const { toSelf, text } = lineQuestion(ev.message);
+      let { toSelf, text } = isImage ? { toSelf: true, text: IMAGE_PROMPT + (ev.message.imageSet && ev.message.imageSet.total > 1 ? IMAGE_SET_NOTE : '') } : lineQuestion(ev.message);
+      // グループでクイズを出した直後は、メンションなしの番号だけでも答えとして受ける
+      if (isGroup && !toSelf && QUIZ_ANSWER_RE.test(text) && await env.CHAT_KV.get(`line:quiz:${chatId}`)) {
+        toSelf = true;
+        await env.CHAT_KV.delete(`line:quiz:${chatId}`);
+      }
       if (isGroup && !toSelf) {
         const raw = String(ev.message.text || '');
         if (raw.length <= 40 && /ロンドン/.test(raw) && PRAISE_RE.test(raw) && await env.CHAT_KV.get(`line:ok:${chatId}`)) {
@@ -493,6 +643,7 @@ async function processLineEvents(events, env, ctx) {
       if (env.LINE_PASS && !(await env.CHAT_KV.get(`line:ok:${chatId}`))) {
         const fails = parseInt((await env.CHAT_KV.get(`line:fail:${who}`)) || '0', 10);
         if (fails >= PASS_FAIL_LIMIT) { await lineSend(env, ev.replyToken, chatId, LINE_PASS_LOCK); continue; }
+        if (isImage) { await lineSend(env, ev.replyToken, chatId, LINE_ASK_PASS); continue; }
         const passRe = new RegExp('(^|\\D)' + env.LINE_PASS.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(\\D|$)');
         if (passRe.test(text.replace(/[\s　]/g, ''))) {
           await env.CHAT_KV.put(`line:ok:${chatId}`, '1');
@@ -514,18 +665,29 @@ async function processLineEvents(events, env, ctx) {
       try { history = JSON.parse((await env.CHAT_KV.get(histKey)) || '[]'); } catch { history = []; }
       const messages = [...history, { role: 'user', content: text.slice(0, MAX_QUESTION_CHARS) }].slice(-HISTORY_KEEP);
       if (messages[0].role !== 'user') messages.shift();
+      if (isImage) {
+        const img = await lineImage(env, ev.message.id);
+        if (!img) { await lineSend(env, ev.replyToken, chatId, 'ごめん、その画像はうまく開けなかったよ。小さめのスクショでもう一度送ってみてね。'); continue; }
+        // 画像は今回だけ AI に見せる。会話メモには「スクショを送った」という文字だけ残す
+        messages[messages.length - 1] = { role: 'user', content: [img, { type: 'text', text }] };
+      }
 
       let reply;
       try {
         const [kb, name] = await Promise.all([getKb(env, ctx), lineDisplayName(env, src)]);
-        reply = await askClaude(env, kb, messages, name);
+        reply = await askClaude(env, kb, messages, name, isGroup ? 'line-group' : 'line-user');
       } catch (e) {
         console.log('line chat failed', e.message);
         reply = '今はうまく答えられません。少し待ってからもう一度どうぞ。';
       }
-      const out = splitSticker(reply);
-      await lineSend(env, ev.replyToken, chatId, out.text, out.sticker);
-      await env.CHAT_KV.put(histKey, JSON.stringify([...messages, { role: 'assistant', content: out.text }].slice(-HISTORY_KEEP)), { expirationTtl: LINE_HISTORY_TTL });
+      const q = splitQuiz(reply);
+      const out = splitSticker(q.text);
+      await lineSend(env, ev.replyToken, chatId, out.text, out.sticker, q.quiz ? QUIZ_BUTTONS : null);
+      if (q.quiz && isGroup) await env.CHAT_KV.put(`line:quiz:${chatId}`, '1', { expirationTtl: 600 });
+      // 正解番号は会話メモにだけ残す（答え合わせ用。メモは1時間で消える）
+      const saved = q.quiz ? `${out.text}\n[クイズ:${q.quiz}]` : out.text;
+      const memo = messages.map(m => typeof m.content === 'string' ? m : { role: m.role, content: IMAGE_MEMO });
+      await env.CHAT_KV.put(histKey, JSON.stringify([...memo, { role: 'assistant', content: saved }].slice(-HISTORY_KEEP)), { expirationTtl: LINE_HISTORY_TTL });
     } catch (e) {
       console.log('line event failed', e.message);
     }
@@ -555,4 +717,4 @@ export default {
   },
 };
 
-export const _internal = { htmlToText, extractHistoryTable, buildKb, PAGES, lineVerify, lineQuestion, linkPages };
+export const _internal = { upcomingChallenges, onThisDay, htmlToText, extractHistoryTable, buildKb, PAGES, lineVerify, lineQuestion, linkPages };
